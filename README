@@ -1,0 +1,10 @@
+This is my emacs configuration. Feel free to clone.
+
+Libraries and modes:
+
+1) malabar: A great replacement for JDEE that supports maven and Java 1.5 generics (see https://github.com/espenhw/malabar-mode)
+2) yaml: Yml mode (see http://tweedle-dee.org/svn/emacs.d/site-lisp/yaml-mode.el)
+3) rinary: Ruby mode (see http://github.com/eschulte/rinari)
+4) project-root: Provides support for other libraries and mode to do project management (see http://piranha.org.ua/project-root/)
+5) cedet: The library that comes with emacs 23 is missing some features (see http://cedet.sourceforge.net/)
+6) scala: Only syntax highlighting for scala
