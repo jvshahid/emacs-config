@@ -1,0 +1,101 @@
+;; Object pubsub/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "pubsub/"
+  :tables (list 
+   (semanticdb-table "ContextStatisticsMbean.java"
+    :major-mode 'malabar-mode
+    :tags 
+        '( ("bmrk.engine.pubsub" package nil (reparse-symbol package_declaration) [1 28])
+            ("org.springframework.jmx.export.annotation.ManagedAttribute" include nil (reparse-symbol import_declaration) [30 96])
+            ("org.springframework.jmx.export.annotation.ManagedResource" include nil (reparse-symbol import_declaration) [97 162])
+            ("ContextStatisticsMbean" type
+               (:typemodifiers ("@ManagedResource" "public")
+                :interfaces ("IContextStatisticsMbean")
+                :members 
+                  ( ("contextStatistics" variable
+                       (:typemodifiers ("private" "final")
+                        :type "ContextStatistics")
+                        (reparse-symbol field_declaration) [308 358])
+                    ("ContextStatisticsMbean" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("contextStatistics" variable (:type "ContextStatistics") (reparse-symbol formal_parameter) [394 429]))                          )
+                        (reparse-symbol constructor_declaration) [364 490])
+                    ("getReceivedMessages" function
+                       (:typemodifiers ("@Override" "@ManagedAttribute" "public")
+                        :type "long")
+                        (reparse-symbol method_declaration) [496 629])
+                    ("getSentMessages" function
+                       (:typemodifiers ("@Override" "@ManagedAttribute" "public")
+                        :type "long")
+                        (reparse-symbol method_declaration) [635 760]))                  
+                :type "class")
+                (reparse-symbol class_declaration) [164 763]))          
+    :file "ContextStatisticsMbean.java"
+    :pointmax 764
+    :fsize 763
+    :lastmodtime '(19635 42027)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ContextStatistics.java"
+    :major-mode 'malabar-mode
+    :tags 
+        '( ("bmrk.engine.pubsub" package nil (reparse-symbol package_declaration) [1 28])
+            ("java.util.concurrent.atomic.AtomicLong" include nil (reparse-symbol import_declaration) [30 76])
+            ("ContextStatistics" type
+               (:type "class"
+                :members 
+                  ( ("sentMessages" variable
+                       (:typemodifiers ("private")
+                        :type "AtomicLong")
+                        (reparse-symbol field_declaration) [115 147])
+                    ("receivedMessages" variable
+                       (:typemodifiers ("private")
+                        :type "AtomicLong")
+                        (reparse-symbol field_declaration) [152 188])
+                    ("ContextStatistics" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol constructor_declaration) [194 328])
+                    ("getSentMessages" function
+                       (:typemodifiers ("public")
+                        :type "long")
+                        (reparse-symbol method_declaration) [334 406])
+                    ("incrementSentMessages" function
+                       (:typemodifiers ("public")
+                        :type "long")
+                        (reparse-symbol method_declaration) [412 502])
+                    ("addSendMessages" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("delta" variable (:type "long") (reparse-symbol formal_parameter) [536 546]))                          
+                        :type "long")
+                        (reparse-symbol method_declaration) [508 601])
+                    ("getReceivedMessages" function
+                       (:typemodifiers ("public")
+                        :type "long")
+                        (reparse-symbol method_declaration) [607 687])
+                    ("incrementReceivedMessages" function
+                       (:typemodifiers ("public")
+                        :type "long")
+                        (reparse-symbol method_declaration) [693 791])
+                    ("addReceivedMessages" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("delta" variable (:type "long") (reparse-symbol formal_parameter) [829 839]))                          
+                        :type "long")
+                        (reparse-symbol method_declaration) [797 898]))                  
+                :typemodifiers ("public"))
+                (reparse-symbol class_declaration) [78 900]))          
+    :file "ContextStatistics.java"
+    :pointmax 901
+    :fsize 900
+    :lastmodtime '(19635 42027)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!jvshahid!Documents!benchmark!temp!support-library!src!main!java!bmrk!engine!pubsub!semantic.cache"
+  :semantic-tag-version "2.0pre7"
+  :semanticdb-version "2.0pre7"
+  )

@@ -1,0 +1,36 @@
+;; Object ps2/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "ps2/"
+  :tables (list 
+   (semanticdb-table "MessageListener.java"
+    :major-mode 'malabar-mode
+    :tags 
+        '( ("bmrk.ps2" package nil (reparse-symbol package_declaration) [1 18])
+            ("bmrk.engine.pubsub.translation.DictionaryMessage" include nil (reparse-symbol import_declaration) [20 76])
+            ("MessageListener" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("processMessage" function
+                       (:arguments 
+                          ( ("subscriptionToken" variable (:type "int") (reparse-symbol formal_parameter) [137 158])
+                            ("message" variable (:type "DictionaryMessage") (reparse-symbol formal_parameter) [160 185]))                          
+                        :type "void")
+                        (reparse-symbol abstract_method_declaration) [117 187])
+                    ("done" function
+                       (:arguments 
+                          ( ("subscriptionToken" variable (:type "int") (reparse-symbol formal_parameter) [202 223]))                          
+                        :type "void")
+                        (reparse-symbol abstract_method_declaration) [192 225]))                  
+                :type "interface")
+                (reparse-symbol interface_declaration) [78 227]))          
+    :file "MessageListener.java"
+    :pointmax 228
+    :fsize 227
+    :lastmodtime '(19635 42027)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!Users!jvshahid!Documents!benchmark!pubsub!common!src!main!java!bmrk!ps2!semantic.cache"
+  :semantic-tag-version "2.0pre7"
+  :semanticdb-version "2.0pre7"
+  )
