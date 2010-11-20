@@ -22,13 +22,10 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(ido-mode (quote both) nil (ido))
- '(show-paren-mode t))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "bitstream" :family "Bitstream Vera Sans Mono")))))
+ '(malabar-case-fixed-abbrevs (quote (("pu" "public") ("pri" "private") ("pro" "protected") ("st" "static") ("vo" "void") ("ab" "abstract") ("bo" "boolean") ("cl" "class") ("impl" "implements") ("ext" "extends") ("pa" "package") ("re" "return") ("#Test" malabar-abbrevs-create-test) ("sysout" "System.out.println(\"\")"))))
+ '(show-paren-mode t)
+ '(show-trailing-whitespace t)
+ '(tab-width 2))
 (setq project-roots
       '(("Generic workspace" :root-contains-files (".workspace"))))
 (defun my-ido-project-files ()
@@ -38,9 +35,9 @@
     (unless project-details (project-root-fetch))
     (setq my-project-root (cdr project-details))
     ;; get project files
-    (setq project-files 
-	  (split-string 
-	   (shell-command-to-string 
+    (setq project-files
+	  (split-string
+	   (shell-command-to-string
 	    (concat "find "
 		    my-project-root
 		    " \\( -name \"*.svn\" -o -name \"*.git\" \\) -prune -o -type f -print | grep -E -v \"\.(pyc)$\""
@@ -62,4 +59,12 @@
 	    )
       (find-file (gethash (ido-completing-read "project-files: " ido-list) tbl)))))
 (define-key global-map [f6] 'my-ido-project-files)
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil) ; always replace tabs with spaces
+(setq-default tab-width 2) ; set tab width to 4 for all buffers
+(setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "bitstream" :family "Bitstream Vera Sans Mono")))))
