@@ -3,16 +3,16 @@
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/scala")
+(load-file "~/.emacs.d/libs/cedet/common/cedet.el")
 (setq malabar-groovy-lib-dir "~/.emacs.d/libs/malabar/lib/")
-(require 'malabar-mode)
-(require 'yaml-mode)
-(require 'project-root)
-(require 'scala-mode-auto)
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
 				  global-semanticdb-minor-mode
 				  global-semantic-idle-summary-mode
 				  global-semantic-mru-bookmark-mode))
-(semantic-mode 1)
+(require 'malabar-mode)
+(require 'yaml-mode)
+(require 'project-root)
+(require 'scala-mode-auto)
 (add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
 (add-to-list 'auto-mode-alist '("\\.groovy\\'" . malabar-mode))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
@@ -62,9 +62,3 @@
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default tab-width 2) ; set tab width to 4 for all buffers
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "bitstream" :family "Bitstream Vera Sans Mono")))))
