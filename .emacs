@@ -3,12 +3,14 @@
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/scala")
+(add-to-list 'load-path "~/.emacs.d/libs/magit")
 (load-file "~/.emacs.d/libs/cedet/common/cedet.el")
 (setq malabar-groovy-lib-dir "~/.emacs.d/libs/malabar/lib/")
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
 				  global-semanticdb-minor-mode
 				  global-semantic-idle-summary-mode
 				  global-semantic-mru-bookmark-mode))
+(require 'magit)
 (require 'malabar-mode)
 (require 'yaml-mode)
 (require 'project-root)
