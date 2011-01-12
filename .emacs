@@ -76,3 +76,6 @@
 ;; if you're not using the standard scala mode.
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 (global-linum-mode 1)
+(add-hook 'magit-mode-hook '(lambda ()
+                              (setq show-trailing-whitespace nil)
+                              (setq truncate-lines nil)))
