@@ -1,22 +1,17 @@
 ;; Or enable more if you wish
-(add-to-list 'load-path "~/.emacs.d/libs/malabar/lisp")
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/scala")
 (add-to-list 'load-path "~/.emacs.d/libs/magit")
 (load-file "~/.emacs.d/libs/cedet/common/cedet.el")
-(setq malabar-groovy-lib-dir "~/.emacs.d/libs/malabar/lib/")
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
 				  global-semanticdb-minor-mode
 				  global-semantic-idle-summary-mode
 				  global-semantic-mru-bookmark-mode))
 (require 'magit)
-(require 'malabar-mode)
 (require 'yaml-mode)
 (require 'project-root)
 (require 'scala-mode-auto)
-(add-to-list 'auto-mode-alist '("\\.java\\'" . malabar-mode))
-(add-to-list 'auto-mode-alist '("\\.groovy\\'" . malabar-mode))
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -24,7 +19,6 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(ido-mode (quote both) nil (ido))
- '(malabar-case-fixed-abbrevs (quote (("pu" "public") ("pri" "private") ("pro" "protected") ("st" "static") ("vo" "void") ("ab" "abstract") ("bo" "boolean") ("cl" "class") ("impl" "implements") ("ext" "extends") ("pa" "package") ("re" "return") ("#Test" malabar-abbrevs-create-test) ("sysout" "System.out.println(\"\")"))))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(tab-width 2))
