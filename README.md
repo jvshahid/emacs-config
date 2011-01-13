@@ -1,8 +1,8 @@
 # Libraries and modes:
 
-1. yaml: Yml mode (see http://tweedle-dee.org/svn/emacs.d/site-lisp/yaml-mode.el)
-2. rinary: Ruby mode (see http://github.com/eschulte/rinari)
-3. project-root: Provides support for other libraries and mode to do project management (see http://piranha.org.ua/project-root/)
-4. cedet: The library that comes with emacs 23 is missing some features (see http://cedet.sourceforge.net/)
+1. [yaml](http://tweedle-dee.org/svn/emacs.d/site-lisp/yaml-mode.el): Yml mode
+2. [rinary](http://github.com/eschulte/rinari) : Ruby mode
+3. [project-root](http://piranha.org.ua/project-root/): Provides support for other libraries and mode to do project management
+4. [cedet](http://cedet.sourceforge.net/): The library that comes with emacs 23 is missing some features
 5. scala: Only syntax highlighting for scala
-6. ensime: Ensime is an extension to the scala mode that offers code completion, refactoring, etc (see https://github.com/aemoncannon/ensime)
+6. [ensime](https://github.com/aemoncannon/ensime): Ensime is an extension to the scala mode that offers code completion, refactoring, etc
