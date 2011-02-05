@@ -4,6 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d/libs/scala")
 (add-to-list 'load-path "~/.emacs.d/libs/magit")
 (load-file "~/.emacs.d/libs/cedet/common/cedet.el")
+(load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
 				  global-semanticdb-minor-mode
 				  global-semantic-idle-summary-mode
@@ -13,6 +14,7 @@
 (require 'project-root)
 (require 'scala-mode-auto)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
