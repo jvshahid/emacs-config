@@ -71,3 +71,4 @@
 (add-hook 'magit-mode-hook '(lambda ()
                               (setq show-trailing-whitespace nil)
                               (setq truncate-lines nil)))
+(setq linum-format "%d ")
