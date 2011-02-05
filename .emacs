@@ -21,7 +21,8 @@
  '(ido-mode (quote both) nil (ido))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
- '(tab-width 2))
+ '(tab-width 2)
+ '(tool-bar-mode nil))
 (setq project-roots
       '(("Generic workspace" :root-contains-files (".workspace"))))
 (defun my-ido-project-files ()
