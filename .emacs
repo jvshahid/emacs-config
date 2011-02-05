@@ -56,9 +56,7 @@
       (find-file (gethash (ido-completing-read "project-files: " ido-list) tbl)))))
 (define-key global-map [f6] 'my-ido-project-files)
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
-(setq-default tab-width 2) ; set tab width to 4 for all buffers
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
-
 
 ;; Add ensime
 ;; Load the ensime lisp code...
