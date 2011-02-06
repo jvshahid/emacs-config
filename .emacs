@@ -89,3 +89,13 @@
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 (global-set-key [f11] 'toggle-fullscreen)
+
+; TODO: for some reason highlighting doesn't work in JavaDoc comments
+; that start with /**
+(defface todo-face '((t :background "red" :foreground "grey"))
+  "The face used to mark TODO"
+  :group 'todo-faces)
+(defvar todo-face "todo-face")
+(defun add-todo-font-locking-to-mode ()
+  (font-lock-add-keywords nil (list (cons "\\(TODO\\|FIXME\\):" (list 1 'todo-face 'prepend))) nil))
+(add-hook 'after-change-major-mode-hook 'add-todo-font-locking-to-mode)
