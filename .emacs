@@ -59,6 +59,7 @@
 	    )
       (find-file (gethash (ido-completing-read "project-files: " ido-list) tbl)))))
 (define-key global-map [f6] 'my-ido-project-files)
+(define-key global-map (kbd "C-c C-a") 'hs-toggle-hiding)
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
 
@@ -100,3 +101,4 @@
 (defun add-todo-font-locking-to-mode ()
   (font-lock-add-keywords nil (list (cons "\\(TODO\\|FIXME\\):" (list 1 'todo-face 'prepend))) nil))
 (add-hook 'after-change-major-mode-hook 'add-todo-font-locking-to-mode)
+(add-hook 'scala-mode-hook 'hs-minor-mode)
