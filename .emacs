@@ -20,8 +20,8 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
  '(ido-mode (quote both) nil (ido))
+ '(ns-command-modifier (quote control))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(tab-width 2)
@@ -82,7 +82,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Monaco"))))
+ '(default ((t (:background "black" :foreground "grey" :weight bold :height 120 :width normal :foundry "apple" :family "Monaco"))))
  '(cursor ((t (:background "white")))))
 
 ; Toggle full screen
