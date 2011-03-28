@@ -1,31 +1,44 @@
 # ENSIME
 the ENhanced Scala Interaction Mode for Emacs
 
+# Links
+- [ Downloads ](https://github.com/aemoncannon/ensime/downloads)
+- [ Manual ](http://aemon.com/file_dump/ensime_manual.html)
+- [ Discussion Group ](http://groups.google.com/group/ensime?hl=en)
+
 
 ## Features
 
 - Highlight errors and warnings in your code buffers.
 - Inspect the type of any expression.
 - Browse packages
-- Completion-on-demand for variables, methods, constructors, etc.
+- Completion for variables, methods, constructors, etc.
+- Incrementally search through classpath symbols
+- Find references to a symbol
 - Jump to symbol definitions.
-- Automated Refactorings (rename, organize imports, extract method...)
+- Automated Refactorings (rename, organize imports, extract method)
 - Source Formatting
-- Finds sbt,Maven,Ivy dependencies
-- Scala REPL
-- Scala Debugger
+- AST-based selection
+- Supports sbt,Maven,Ivy projects
 - Embedded sbt shell
+- REPL
+- Debugger
 
 
-Check out this (rather old)[video](http://www.youtube.com/watch?v=A2Lai8IjLoY) or this [one](http://www.youtube.com/watch?v=v7-G6vD42z8) showcasing debugger support
+## Demo Videos
+
+- [Overview (a bit out of date)](http://www.youtube.com/watch?v=A2Lai8IjLoY)
+- [Searching](http://www.youtube.com/watch?v=fcgnAJz98QE)
+- [Debugger Support](http://www.youtube.com/watch?v=v7-G6vD42z8)
+
 
 
 ## System Requirements
 
 - Emacs 22 or later.
-- Unix-like OS or Windows. Note that you'll need to use bin/server.bat on windows.
+- Unix-like OS or Windows.
 - Java Runtime
-- Scala 2.8 compatible source and libraries. ENSIME is built against the 2.8 nightly Scala releases. 
+- A Scala 2.8.1 compatible project. 
 
 
 ## Documentation
@@ -71,3 +84,18 @@ __5) Start ENSIME__
 
 Execute M-x ensime
 You only need to do this once per project.
+
+
+## Developer Quick Start
+Note: This section is for people who want to hack on ENSIME itself.
+
+After cloning, and before you can run ENSIME, you must create the distribution directory structure. The sbt task 'stage' will create the directory 'dist' underneath the root clone directory. Then, follow the install instructions in section 2.2 above, substituting CLONE_DIR/dist as the root of your ENSIME distribution.
+
+
+The work-flow I use when hacking ENSIME:
+
+- Edit source files
+- 'sbt update'
+- 'sbt dist'
+- Stop existing ENSIME server by killing *inferior-ensime-server* buffer
+- Restart ENSIME with M-x ensime
