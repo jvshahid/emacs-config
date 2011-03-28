@@ -20,8 +20,11 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
  '(ido-mode (quote both) nil (ido))
  '(ns-command-modifier (quote control))
+ '(menu-bar-mode nil)
+ '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(tab-width 2)
@@ -102,3 +105,13 @@
   (font-lock-add-keywords nil (list (cons "\\(TODO\\|FIXME\\):" (list 1 'todo-face 'prepend))) nil))
 (add-hook 'after-change-major-mode-hook 'add-todo-font-locking-to-mode)
 (add-hook 'scala-mode-hook 'hs-minor-mode)
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
+(display-time)
