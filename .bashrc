@@ -102,6 +102,11 @@ if [ -n "$PS1" ]; then
         . /etc/bash_completion
     fi
 
+
+    ####################################################################################################
+    #####                                 These are my own modifications                           #####
+    ####################################################################################################
+
     PS1='$(
 if [[ -n "$(__git_ps1)" ]]; then
     DIR_NAME=$(cd $(dirname $(__gitdir)); pwd -P)
@@ -119,6 +124,21 @@ fi
     alias gst="git status"
 
     export JAVA_HOME=$HOME/Downloads/jdk1.6.0_23
-    export PATH=$JAVA_HOME/bin:$PATH
+    export PATH=$HOME/Downloads/scala-2.8.1.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/
+    export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+    alias sbt='java -Xmx512M -jar ~/Downloads/sbt-launch-0.7.4.jar'
+
+    # Set CDPATH to my Documents directory
+    document=($HOME/Documents/*)
+    IFS=':'
+    document_with_colons="${document[*]}"
+    unset IFS
+
+    CDPATH=.:$document_with_colons
+
+    ####################################################################################################
+    #####                                 End of my own modifications                           #####
+    ####################################################################################################
+
 fi
