@@ -1542,7 +1542,7 @@ FUNC should leave point at the end of the modified region"
     (define-key map (kbd "f") 'magit-remote-update)
     (define-key map (kbd "F") 'magit-pull)
     (define-key map (kbd "c") 'magit-log-edit)
-    (define-key map (kbd "l") 'magit-log-ll)
+    (define-key map (kbd "l") 'magit-log-all)
     (define-key map (kbd "L") 'magit-log-long)
     (define-key map (kbd "h") 'magit-reflog-head)
     (define-key map (kbd "H") 'magit-reflog)
