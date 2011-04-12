@@ -21,9 +21,12 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
+ '(column-number-mode t)
+ '(column-number-more t)
+ '(display-time-mode t)
  '(ido-mode (quote both) nil (ido))
- '(ns-command-modifier (quote control))
  '(menu-bar-mode nil)
+ '(ns-command-modifier (quote control))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
@@ -63,6 +66,10 @@
       (find-file (gethash (ido-completing-read "project-files: " ido-list) tbl)))))
 (define-key global-map [f6] 'my-ido-project-files)
 (define-key global-map (kbd "C-x C-a") 'hs-toggle-hiding)
+(define-key global-map (kbd "C-;") 'comment-or-uncomment-region)
+(define-key global-map (kbd "C-x C-r") 'query-replace)
+(define-key global-map (kbd "C-x C-g") 'magit-status)
+(define-key global-map (kbd "C-x C-e") 'query-replace-regexp)
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
 
