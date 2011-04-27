@@ -144,8 +144,9 @@ closing bracket or not."
              (insert " ")
              (save-excursion
                (if scala-mode-feature:electric-newline-before-closing-bracket
-                   (newline))
-               (insert "}")))
+                   (newline-and-indent))
+               (insert "}")
+               (indent-for-tab-command)))
             ((scala-mode-feature-electric-string-at-point-p)
              (save-excursion
                (backward-char 1)

@@ -1,9 +1,14 @@
 ;; Or enable more if you wish
+;; "y or n" instead of "yes or no"
+(fset 'yes-or-no-p 'y-or-n-p)
+(global-set-key "\C-c\C-w" 'backward-kill-word)
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/scala")
 (add-to-list 'load-path "~/.emacs.d/libs/magit")
 (load-file "~/.emacs.d/libs/cedet/common/cedet.el")
+(load-file "~/.emacs.d/libs/ruby/ruby-electric.el")
+(load-file "~/.emacs.d/libs/ruby/ruby-mode.el")
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
 				  global-semanticdb-minor-mode
@@ -27,6 +32,8 @@
  '(ido-mode (quote both) nil (ido))
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
+ '(scala-mode-feature:electric-newline-before-closing-bracket t)
+ '(scala-mode-feature:electric-on-per-default t)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
@@ -68,7 +75,7 @@
 (define-key global-map (kbd "C-x C-a") 'hs-toggle-hiding)
 (define-key global-map (kbd "C-;") 'comment-or-uncomment-region)
 (define-key global-map (kbd "C-x C-r") 'query-replace)
-(define-key global-map (kbd "C-x C-g") 'magit-status)
+(define-key global-map (kbd "C-x g") 'magit-status)
 (define-key global-map (kbd "C-x C-e") 'query-replace-regexp)
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
@@ -122,3 +129,15 @@
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
 (display-time)
+
+;; Add ruby mode and ruby electric
+(autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+;; Enable ruby electric when ruby-mode is activated
+(add-hook 'ruby-mode-hook
+          (lambda()
+            (imenu-add-to-menubar "IMENU")
+            (require 'ruby-electric)
+            (ruby-electric-mode t)
+            ))
