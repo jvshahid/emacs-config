@@ -296,6 +296,11 @@ Also ignores spaces after parenthesis when 'space."
     (while (and (setq state (apply 'ruby-parse-partial end state))
                 (>= (nth 2 state) 0) (< (point) end)))))
 
+(defun ruby-indent-line (&optional flag)
+  "Correct indentation of the current ruby line."
+  (interactive)
+  (ruby-indent-to (ruby-calculate-indent)))
+
 (defun ruby-mode-variables ()
   (set-syntax-table ruby-mode-syntax-table)
   (setq show-trailing-whitespace t)
@@ -364,10 +369,6 @@ Also ignores spaces after parenthesis when 'space."
     (beginning-of-line)
     (back-to-indentation)
     (current-column)))
-
-(defun ruby-indent-line (&optional flag)
-  "Correct indentation of the current ruby line."
-  (ruby-indent-to (ruby-calculate-indent)))
 
 (defun ruby-indent-command ()
   (interactive)

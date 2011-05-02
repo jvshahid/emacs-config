@@ -2,14 +2,27 @@
 ;; "y or n" instead of "yes or no"
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
+(add-to-list 'load-path "~/.emacs.d/libs/color-theme")
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/scala")
 (add-to-list 'load-path "~/.emacs.d/libs/magit")
+(add-to-list 'load-path "~/.emacs.d/libs/color-theme-solarized")
+(require 'color-theme)
+(require 'color-theme-solarized)
+(color-theme-initialize)
+(color-theme-solarized-dark)
 (load-file "~/.emacs.d/libs/cedet/common/cedet.el")
 (load-file "~/.emacs.d/libs/ruby/ruby-electric.el")
 (load-file "~/.emacs.d/libs/ruby/ruby-mode.el")
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
+(load-file "~/.emacs.d/libs/fold-dwim/fold-dwim.el")
+(require 'fold-dwim)
+(setq fold-dwim-outline-style-default 'nested)
+(global-set-key (kbd "C-c t") 'fold-dwim-toggle)
+(global-set-key (kbd "C-c e") 'fold-dwim-hide-all)
+(global-set-key (kbd "C-c s") 'fold-dwim-show-all)
+
 (setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
 				  global-semanticdb-minor-mode
 				  global-semantic-idle-summary-mode
@@ -99,7 +112,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:background "black" :foreground "grey" :weight bold :height 120 :width normal :foundry "apple" :family "Monaco"))))
+ '(default ((t (:stipple nil :background "black" :foreground "grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Monaco"))))
  '(cursor ((t (:background "white")))))
 
 ; Toggle full screen
@@ -119,6 +132,11 @@
   (font-lock-add-keywords nil (list (cons "\\(TODO\\|FIXME\\):" (list 1 'todo-face 'prepend))) nil))
 (add-hook 'after-change-major-mode-hook 'add-todo-font-locking-to-mode)
 (add-hook 'scala-mode-hook 'hs-minor-mode)
+;; Add hide show support for ruby
+(add-to-list 'hs-special-modes-alist
+             '(ruby-mode
+               "\\(def\\|class\\|module\\|do\\|{\\)" "\\(end\\|end\\|}\\)" "#"
+               (lambda (arg) (ruby-end-of-block)) nil))
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
 ;;; interfacing with ELPA, the package archive.
@@ -137,7 +155,15 @@
 ;; Enable ruby electric when ruby-mode is activated
 (add-hook 'ruby-mode-hook
           (lambda()
+            (hs-minor-mode)
             (imenu-add-to-menubar "IMENU")
             (require 'ruby-electric)
             (ruby-electric-mode t)
             ))
+;; Adding automatic untabify and delete trailing whitespaces (very useful)
+            ;; (add-hook 'local-write-file-hooks
+            ;;           '(lambda()
+            ;;              (save-excursion
+            ;;                (untabify (point-min) (point-max))
+            ;;                (delete-trailing-whitespace)
+            ;;                )))
