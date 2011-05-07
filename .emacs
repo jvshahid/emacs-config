@@ -182,11 +182,13 @@
             ;;                (delete-trailing-whitespace)
             ;;                )))
 
-;; Trigger selective display to hide lines that have more indentation than the current line
-(defun toggle-indent-longer-lines ()
-  (interactive)
+(defun toggle-indent-longer-lines (&optional delta)
+  "Trigger selective display to hide lines that have more indentation than the current line. \
+If DELTA was provided it will be added to the current line's indentation."
+  (interactive "P")
   (let ((indentation (current-indentation)))
     (if selective-display
         (set-selective-display nil)
-        (set-selective-display (+ indentation 1)))))
+        (set-selective-display (+ indentation 1
+                                  (if delta delta 0))))))
 (define-key global-map (kbd "C-x t") 'toggle-indent-longer-lines)
