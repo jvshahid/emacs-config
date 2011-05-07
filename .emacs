@@ -167,3 +167,12 @@
             ;;                (untabify (point-min) (point-max))
             ;;                (delete-trailing-whitespace)
             ;;                )))
+
+;; Trigger selective display to hide lines that have more indentation than the current line
+(defun toggle-indent-longer-lines ()
+  (interactive)
+  (let ((indentation (current-indentation)))
+    (if selective-display
+        (set-selective-display nil)
+        (set-selective-display (+ indentation 1)))))
+(define-key global-map (kbd "C-x t") 'toggle-indent-longer-lines)
