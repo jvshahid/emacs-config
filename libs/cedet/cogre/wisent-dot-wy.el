@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 2003, 2004, 2009 Eric M. Ludlam
 
-;; Author: John Shahid <jvshahid@casper.local>
-;; Created: 2010-10-23 23:25:23-0400
+;; Author: John Shahid <jvshahid@horus>
+;; Created: 2011-05-30 13:46:23-0400
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 

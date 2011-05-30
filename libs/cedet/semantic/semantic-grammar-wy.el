@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 2002, 2003, 2004 David Ponce
 
-;; Author: John Shahid <jvshahid@casper.local>
-;; Created: 2010-10-23 23:25:04-0400
+;; Author: John Shahid <jvshahid@horus>
+;; Created: 2011-05-30 13:45:42-0400
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 

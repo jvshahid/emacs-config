@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010 Eric M. Ludlam
 
-;; Author: John Shahid <jvshahid@casper.local>
-;; Created: 2010-10-23 23:25:16-0400
+;; Author: John Shahid <jvshahid@horus>
+;; Created: 2011-05-30 13:46:04-0400
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 
@@ -1244,7 +1244,9 @@
 	 (nth 7 vals))
 	(nth 0 vals)
 	(nth 10 vals)
-	(nth 4 vals))
+	(list
+	 (nth 4 vals))
+	(nth 9 vals))
       )
      (opt-stars
       opt-class
@@ -1266,7 +1268,9 @@
 	 (nth 6 vals))
 	(nth 0 vals)
 	(nth 9 vals)
-	(nth 4 vals))
+	(list
+	 (nth 4 vals))
+	(nth 8 vals))
       )
      ) ;; end func-decl
 

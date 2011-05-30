@@ -2,8 +2,8 @@
 
 ;;; Copyright (C) 2007 Daniel Debertin (debertin@gmail.com)
 
-;; Author: John Shahid <jvshahid@casper.local>
-;; Created: 2010-10-23 23:25:28-0400
+;; Author: John Shahid <jvshahid@horus>
+;; Created: 2011-05-30 13:46:31-0400
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 

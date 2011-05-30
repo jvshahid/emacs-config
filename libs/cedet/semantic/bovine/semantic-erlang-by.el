@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 2002, 2003 Vladimir G. Sekissov
 
-;; Author: John Shahid <jvshahid@casper.local>
-;; Created: 2010-10-23 23:25:16-0400
+;; Author: John Shahid <jvshahid@horus>
+;; Created: 2011-05-30 13:46:06-0400
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 
