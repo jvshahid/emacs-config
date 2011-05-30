@@ -12,11 +12,21 @@
 (require 'color-theme-solarized)
 (color-theme-initialize)
 (color-theme-solarized-dark)
-(load-file "~/.emacs.d/libs/cedet/common/cedet.el")
 (load-file "~/.emacs.d/libs/ruby/ruby-electric.el")
 (load-file "~/.emacs.d/libs/ruby/ruby-mode.el")
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
 (load-file "~/.emacs.d/libs/fold-dwim/fold-dwim.el")
+;; Load cedet
+(load-file "~/.emacs.d/libs/cedet/common/cedet.el")
+(semantic-load-enable-excessive-code-helpers)
+(require 'semantic-ia)
+(require 'semantic-gcc)
+(global-ede-mode t)
+(ede-cpp-root-project "Feedhandlers"
+                      :name "Feed handlers"
+                      :file "~/Documents/benchmark/feed-handlers/CMakeLists.txt"
+                      :include-path '("/include"))
+;; End of cedet section
 (require 'fold-dwim)
 (setq fold-dwim-outline-style-default 'nested)
 (global-set-key (kbd "C-c t") 'fold-dwim-toggle)
@@ -39,6 +49,8 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
+ '(browse-url-browser-function (quote browse-url-generic))
+ '(browse-url-generic-program "gnome-open")
  '(column-number-mode t)
  '(column-number-more t)
  '(display-time-mode t)
@@ -51,7 +63,8 @@
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(tab-width 2)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(x-select-enable-clipboard t))
 (setq project-roots
       '(("Generic workspace" :root-contains-files (".workspace"))))
 (defun my-ido-project-files ()
@@ -102,6 +115,7 @@
 ;; scala-mode is started for a buffer. You may have to customize this step
 ;; if you're not using the standard scala mode.
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+(add-hook 'scala-mode-hook 'subword-mode)
 (global-linum-mode 1)
 (add-hook 'magit-mode-hook '(lambda ()
                               (setq show-trailing-whitespace nil)
