@@ -21,11 +21,13 @@
 (semantic-load-enable-excessive-code-helpers)
 (require 'semantic-ia)
 (require 'semantic-gcc)
+(setq semantic-symref-tool 'global)
 (global-ede-mode t)
 (ede-cpp-root-project "Feedhandlers"
                       :name "Feed handlers"
                       :file "~/Documents/benchmark/feed-handlers/CMakeLists.txt"
-                      :include-path '("/include"))
+                      :include-path '("/include")
+                      :system-include-path '("/usr/include/c++/4.4"))
 ;; End of cedet section
 (require 'fold-dwim)
 (setq fold-dwim-outline-style-default 'nested)
@@ -116,6 +118,7 @@
 ;; if you're not using the standard scala mode.
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 (add-hook 'scala-mode-hook 'subword-mode)
+(add-hook 'ruby-mode-hook 'subword-mode)
 (global-linum-mode 1)
 (add-hook 'magit-mode-hook '(lambda ()
                               (setq show-trailing-whitespace nil)
