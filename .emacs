@@ -45,6 +45,7 @@
 (require 'scala-mode-auto)
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -121,8 +122,7 @@
 (add-hook 'ruby-mode-hook 'subword-mode)
 (global-linum-mode 1)
 (add-hook 'magit-mode-hook '(lambda ()
-                              (setq show-trailing-whitespace nil)
-                              (setq truncate-lines nil)))
+                              (setq show-trailing-whitespace nil)))
 (setq linum-format "%d ")
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -195,3 +195,40 @@ If DELTA was provided it will be added to the current line's indentation."
         (set-selective-display (+ indentation 1
                                   (if delta delta 0))))))
 (define-key global-map (kbd "C-x t") 'toggle-indent-longer-lines)
+
+;; Flymake section
+;;;;;;;;;;
+;;;  ruby-mode
+;;;;;;;;;;
+;;;
+;;;  http://www.emacswiki.org/cgi-bin/wiki/FlymakeRuby
+;;;
+(require 'flymake)
+(defun flymake-ruby-init ()
+  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+         (local-file  (file-relative-name
+                       temp-file
+                       (file-name-directory buffer-file-name))))
+    (list "/home/jvshahid/.rvm/rubies/ruby-1.9.2-p180/bin/ruby" (list "-c" local-file))))
+(push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
+(push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
+(push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
+
+(add-hook 'ruby-mode-hook
+          (function
+           (lambda ()
+             (fset 'my-ruby-comment
+                   [?\C-o tab escape ?1 ?0 ?# return tab ?# ?  ?  return tab escape ?1 ?0 ?# ?\C-p])
+             (fset 'my-ruby-comment2
+                   [?\C-o tab ?# return tab ?# ?  ?  return tab ?# ?\C-p ?\C-e])
+             (local-set-key "\C-cc" 'my-ruby-comment)
+             (local-set-key "\C-cv" 'my-ruby-comment2)
+             (setq case-fold-search t) ;; this should be in ruby-mode, imho.
+             (local-set-key "\t" 'indent-for-tab-command) ;; this should be in ruby-mode, imho.
+             (setq ruby-deep-indent-paren nil)
+
+             ;; Don't want flymake mode for ruby regions in rhtml files and also on read only files
+             (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
+                 (flymake-mode))
+             )))
