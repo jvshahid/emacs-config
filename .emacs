@@ -26,6 +26,8 @@
 ;;       '(("Generic workspace" :root-contains-files (".workspace"))))
 
 (display-time)
+(setq global-auto-revert-mode t)
+(setq magit-revert-item-confirm t)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
 (color-theme-initialize)
@@ -261,6 +263,11 @@ If DELTA was provided it will be added to the current line's indentation."
            (indent-for-tab-command)))))
 
 (add-hook 'c++-mode-hook
+          #'(lambda ()
+              (setq autopair-handle-action-fns
+                    (list #'autopair-default-handle-action
+                          #'insert-newline-before-curlies))))
+(add-hook 'c-mode-hook
           #'(lambda ()
               (setq autopair-handle-action-fns
                     (list #'autopair-default-handle-action
