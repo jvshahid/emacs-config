@@ -1,3 +1,4 @@
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -110,24 +111,30 @@ if [ -n "$PS1" ]; then
     PS1='$(
 if [[ -n "$(__git_ps1)" ]]; then
     DIR_NAME=$(cd $(dirname $(__gitdir)); pwd -P)
-    REPO=$(echo $DIR_NAME | awk -F \/ "{print \$NF}")
+    REPO=$(basename $DIR_NAME)
+    CWD=$(basename $PWD)
     git rev-parse --verify refs/stash > /dev/null 2>&1 && STATUS="S"
     git diff --quiet --no-ext-diff || STATUS="$STATUS*"
     git diff-index --cached --quiet --no-ext-diff HEAD > /dev/null 2>&1 || STATUS="$STATUS+"
     if [[ -n $(git ls-files --others --exclude-standard) ]]; then STATUS="$STATUS%"; fi
     if [[ -n "$STATUS" ]]; then STATUS=" $STATUS"; fi
-    echo "\[\e[1;32m\]\u@\h:[GIT $REPO$(__git_ps1)$STATUS]\$\[\e[0m\] "
+    if [[ "x$CWD" == "x$REPO" ]]; then echo "[GIT $REPO$(__git_ps1)$STATUS]\$ "; else echo "[GIT $REPO [${PWD##$DIR_NAME}]$(__git_ps1)$STATUS]\$ "; fi
 else
-    echo "\[\e[1;32m\]\u@\h:[\w]$\[\e[0m\] "
+    echo "\h [\W]:$ "
 fi
    )'
-    alias gst="git status"
-
-    export JAVA_HOME=$HOME/Downloads/jdk1.6.0_23
-    export PATH=$HOME/Downloads/scala-2.8.1.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/
+    export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
+    export JAVA_FONTS=$HOME/.fonts/
+    export PATH=$HOME/Downloads/scala-2.9.0.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/
     export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-    alias sbt='java -Xmx512M -jar ~/Downloads/sbt-launch-0.7.4.jar'
+    alias sbt='java -Xmx512M -jar ~/Downloads/sbt-launch-0.7.7.jar'
+    alias ec='emacsclient --no-wait'
+    alias go='gnome-open'
+    alias gst="git status"
+    alias redis="~/Downloads/redis-2.2.2/src/redis-cli"
+    alias be='bundle exec'
+    export EDITOR='emacsclient'
 
     # Set CDPATH to my Documents directory
     document=($HOME/Documents/*)
@@ -140,5 +147,20 @@ fi
     ####################################################################################################
     #####                                 End of my own modifications                           #####
     ####################################################################################################
-
 fi
+
+function millis_to_date {
+    if [ $# -ne 1 ]; then
+        echo "Usage: millis_to_date <milliseconds since epoc>"
+        return 1
+    fi
+    ((millis = $1 / 1000))
+    date --date="@$millis"
+}
+
+function repo_home {
+    cd $(dirname $(__gitdir))
+}
+
+alias get_lvc_data=$HOME/Documents/benchmark/cache-loader-ruby/scripts/get_cached_values.rb
+alias get_url=$HOME/Documents/benchmark/cache-loader-ruby/scripts/convert_log_to_url.rb

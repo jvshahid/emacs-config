@@ -4,6 +4,7 @@
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
 (add-to-list 'load-path "~/.emacs.d/libs/color-theme")
 (add-to-list 'load-path "~/.emacs.d/libs/color-theme-solarized")
+(add-to-list 'load-path "~/.emacs.d/libs/edit-emacs-server")
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
 ;; (load-file "~/.emacs.d/libs/fold-dwim/fold-dwim.el")
 ;; (require 'fold-dwim)
@@ -11,10 +12,7 @@
 ;; (global-set-key (kbd "C-c t") 'fold-dwim-toggle)
 ;; (global-set-key (kbd "C-c e") 'fold-dwim-hide-all)
 ;; (global-set-key (kbd "C-c s") 'fold-dwim-show-all)
-;; (global-set-key (kbd "C-c , <") 'semantic-ia-fast-jump)
-
-(require 'color-theme)
-(require 'color-theme-solarized)
+(global-set-key (kbd "C-c , <") 'semantic-ia-fast-jump)
 
 (when
     (load
@@ -24,14 +22,25 @@
 ;; (require 'project-root)
 ;; (setq project-roots
 ;;       '(("Generic workspace" :root-contains-files (".workspace"))))
+(require 'edit-server)
+(setq edit-server-new-frame nil)
+(edit-server-start)
+(require 'color-theme)
+(require 'color-theme-solarized)
+(require 'hungry-delete)
+
+(color-theme-initialize)
 
 (display-time)
-(setq global-auto-revert-mode t)
+(global-auto-revert-mode)
 (setq magit-revert-item-confirm t)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
-(color-theme-initialize)
-(color-theme-solarized-dark)
+(if window-system
+    (progn
+      (server-start)
+      (color-theme-solarized-dark))
+  nil)
 (yas/global-mode 1)
 
 (custom-set-variables
@@ -42,6 +51,7 @@
  '(blink-cursor-mode nil)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "gnome-open")
+ '(c-default-style (quote ((c-mode . "google-c-style") (c++-mode . "google-c-style") (java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
  '(column-number-mode t)
  '(column-number-more t)
  '(display-time-mode t)
@@ -141,8 +151,8 @@ If DELTA was provided it will be added to the current line's indentation."
 
 ;; Omit emacs files from the Dired
 ;; (dired-omit-mode 1)
-;;  (setq dired-omit-files
-;;        (concat dired-omit-files ".*~$"))
+;; (setq dired-omit-files
+;;       (concat dired-omit-files ".*~$"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Simple modes           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -150,10 +160,21 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/protocol-buffers")
 (add-to-list 'load-path "~/.emacs.d/libs/cmake")
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
+(add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
 
 (require 'yaml-mode)
 (require 'cmake-mode)
 (require 'protobuf-mode)
+(require 'confluence)
+
+(add-hook 'edit-server-start-hook
+          (lambda ()
+            (if (string-match "wiki*" (buffer-name))
+                (progn
+                  (confluence-edit-mode)
+                  (local-set-key "\C-c\C-o" 'confluence-get-page-at-point)
+                  (outline-minor-mode)
+                  (setq outline-regexp "h1\\|h2\\.\\|h3\\. ")))))
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
@@ -182,7 +203,7 @@ If DELTA was provided it will be added to the current line's indentation."
             (imenu-add-to-menubar "IMENU")
             (require 'ruby-electric)
             (ruby-electric-mode t)
-            ))
+            (subword-mode)))
 
 (require 'flymake)
 (defun flymake-ruby-init ()
@@ -212,7 +233,7 @@ If DELTA was provided it will be added to the current line's indentation."
              (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
                  (flymake-mode))
              )))
-
+(add-hook 'ruby-mode-hook 'turn-on-hungry-delete-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -224,13 +245,13 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'semantic-ia)
 (require 'semantic-gcc)
 
-(add-hook 'c++-mode-hook 'autopair-mode)
-(add-hook 'c-mode-hook 'autopair-mode)
-(add-hook 'c-mode-hook 'google-set-c-style)
-(add-hook 'c++-mode-hook 'google-set-c-style)
-(add-hook 'ruby-mode-hook 'subword-mode)
-(add-hook 'c-mode-hook 'subword-mode)
-(add-hook 'c++-mode-hook 'subword-mode)
+(defun c-c++-hook ()
+  (autopair-mode)
+  (google-set-c-style)
+  (subword-mode))
+
+(add-hook 'c-mode-hook 'c-c++-hook)
+(add-hook 'c++-mode-hook 'c-c++-hook)
 
 (semantic-load-enable-excessive-code-helpers)
 (setq semantic-symref-tool 'global)
@@ -248,12 +269,9 @@ If DELTA was provided it will be added to the current line's indentation."
                       :name "Messaging"
                       :file "~/Documents/benchmark/messaging/CMakeLists.txt"
                       :include-path '("/cpp/include" "/schema/cpp")
-                      :system-include-path '("/usr/include/c++/4.4" "/usr/local/include"))
+                      :system-include-path '("/usr/include/c++/4.4" "/usr/local/include" "/home/jvshahid/Downloads/jdk1.6.0_24/include/"
+                                      "/home/jvshahid/Downloads/jdk1.6.0_24/include/linux"))
 
-(add-hook 'c++-mode-hook
-          #'(lambda ()
-              (push '(?< . ?>)
-                    (getf autopair-extra-pairs :code))))
 (defun insert-newline-before-curlies (action pair pos-before)
   (progn
     (cond ((eq pair ?})
@@ -286,6 +304,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'scala-mode-hook 'subword-mode)
 (add-hook 'scala-mode-hook 'scala-electric-mode)
 (add-hook 'scala-mode-hook 'hs-minor-mode)
+(add-hook 'scala-mode-hook 'turn-on-hungry-delete-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         MaGit mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
