@@ -19,6 +19,9 @@
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
 
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+
 ;; (require 'project-root)
 ;; (setq project-roots
 ;;       '(("Generic workspace" :root-contains-files (".workspace"))))
@@ -305,6 +308,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'scala-mode-hook 'scala-electric-mode)
 (add-hook 'scala-mode-hook 'hs-minor-mode)
 (add-hook 'scala-mode-hook 'turn-on-hungry-delete-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Clojure mode           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         MaGit mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
