@@ -26,8 +26,7 @@
   :prefix 'ensime-db)
 
 (defcustom ensime-db-cmd-template
-  '("jdb" "-classpath" :classpath
-    "-sourcepath" :sourcepath :debug-class :debug-args)
+  '("jdb" "-sourcepath" :sourcepath "-attach" "8888" "-J-Djava.net.preferIPv4Stack=true")
   "The command to launch the debugger. Keywords will be replaced
  with data loaded from server."
   :type 'string
