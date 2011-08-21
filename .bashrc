@@ -103,6 +103,10 @@ if [ -n "$PS1" ]; then
         . /etc/bash_completion
     fi
 
+    if [ -f /etc/profile ]; then
+        . /etc/profile
+    fi
+
 
     ####################################################################################################
     #####                                 These are my own modifications                           #####
@@ -118,9 +122,13 @@ if [[ -n "$(__git_ps1)" ]]; then
     git diff-index --cached --quiet --no-ext-diff HEAD > /dev/null 2>&1 || STATUS="$STATUS+"
     if [[ -n $(git ls-files --others --exclude-standard) ]]; then STATUS="$STATUS%"; fi
     if [[ -n "$STATUS" ]]; then STATUS=" $STATUS"; fi
-    if [[ "x$CWD" == "x$REPO" ]]; then echo "[GIT $REPO$(__git_ps1)$STATUS]\$ "; else echo "[GIT $REPO [${PWD##$DIR_NAME}]$(__git_ps1)$STATUS]\$ "; fi
+    if [[ "x$CWD" == "x$REPO" ]]; then
+       echo "\u@\h [\[\033[1;34m\]GIT $REPO\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS] \$ ";
+    else
+       echo "\u@\h [\[\033[1;34m\]GIT $REPO [${PWD##$DIR_NAME}]\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS] \$ ";
+    fi
 else
-    echo "\h [\W]:$ "
+    echo "\u@\h [\w] $ "
 fi
    )'
     export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
@@ -144,6 +152,9 @@ fi
 
     CDPATH=.:$document_with_colons
 
+    # disable terminal xon/xoff to be able to search forward
+    stty -ixon
+
     ####################################################################################################
     #####                                 End of my own modifications                           #####
     ####################################################################################################
@@ -162,5 +173,16 @@ function repo_home {
     cd $(dirname $(__gitdir))
 }
 
-alias get_lvc_data=$HOME/Documents/benchmark/cache-loader-ruby/scripts/get_cached_values.rb
+function get_lvc_data() {
+    pushd $HOME/Documents/benchmark/cache-loader-ruby
+    if [[ "$2" == "A_S_CDS" ]]; then product="ATTRIBUTION_SENSITIVITIES_CDS_CURVES"
+    elif [[ "$2" == "A_S" ]]; then product="ATTRIBUTION_SENSITIVITIES"
+    elif [[ "$2" == "A_S_IRS" ]]; then product="ATTRIBUTION_SENSITIVITIES_IRS"
+    elif [[ "$2" == "A_R" ]]; then product="ATTRIBUTION_REALTIME"
+    elif [[ "$2" == "A_R_IRS" ]]; then product="ATTRIBUTION_REALTIME_IRS"
+    elif [[ "$2" == "A_R_CDS" ]]; then product="ATTRIBUTION_REALTIME_CDS_CURVES"
+    fi
+    $HOME/Documents/benchmark/cache-loader-ruby/scripts/get_cached_values.rb $1 $product $3
+    popd
+}
 alias get_url=$HOME/Documents/benchmark/cache-loader-ruby/scripts/convert_log_to_url.rb
