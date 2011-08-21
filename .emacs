@@ -34,7 +34,6 @@
 
 (color-theme-initialize)
 
-(display-time)
 (global-auto-revert-mode)
 (setq magit-revert-item-confirm t)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
@@ -57,17 +56,21 @@
  '(c-default-style (quote ((c-mode . "google-c-style") (c++-mode . "google-c-style") (java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
  '(column-number-mode t)
  '(column-number-more t)
+ '(display-time-day-and-date t)
  '(display-time-mode t)
  '(ido-mode (quote both) nil (ido))
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
  '(scala-mode-feature:electric-newline-before-closing-bracket t)
  '(scroll-bar-mode nil)
+ '(scroll-conservatively 1000)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(tab-width 2)
  '(tool-bar-mode nil)
  '(x-select-enable-clipboard t))
+
+(display-time)
 
 (defun my-ido-project-files ()
   "Use ido to select a file from the project."
