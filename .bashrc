@@ -142,6 +142,7 @@ fi
     alias gst="git status"
     alias redis="~/Downloads/redis-2.2.2/src/redis-cli"
     alias be='bundle exec'
+    alias ack=ack-grep
     export EDITOR='emacsclient'
 
     # Set CDPATH to my Documents directory
