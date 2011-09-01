@@ -170,6 +170,25 @@ function millis_to_date {
     date --date="@$millis"
 }
 
+function print_header {
+    screen_rows=$(tput lines)
+    read header
+    echo "$header"
+    if [[ $? -ne 0 ]]; then
+        echo "EOF reached while reading the header"
+        return 1
+    fi
+    count=2
+    while read line; do
+        if [[ "$count" -eq "$screen_rows" ]]; then
+            echo "$header"
+            count=2
+        fi
+        echo "$line"
+        let "count = count + 1"
+    done
+}
+
 function repo_home {
     cd $(dirname $(__gitdir))
 }
