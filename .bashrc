@@ -169,7 +169,7 @@ function millis_to_date {
     fi
     millis=$(echo "$1 / 1000" | bc)
     date -d @$millis
-    echo $(date -d @$millis) | xclip
+    echo -n $(date -d @$millis) | xclip -selection clipboard
 }
 
 function date_to_millis {
@@ -179,7 +179,7 @@ function date_to_millis {
     fi
     seconds=$(date -d "$1" +"%s")
     echo "${seconds}000"
-    echo "${seconds}000" | xclip
+    echo -n "${seconds}000" | xclip -selection clipboard
 }
 
 function print_header {
