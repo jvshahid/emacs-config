@@ -189,11 +189,60 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun ruby-insert-end ()
+  (interactive)
+  (insert "end")
+  (ruby-indent-line t)
+  (end-of-line))
+
+(defun ruby-brace-to-do-end ()
+  (when (looking-at "{")
+    (let ((orig (point)) (end (progn (ruby-forward-sexp) (point))))
+      (when (eq (char-before) ?\})
+        (delete-char -1)
+        (if (eq (char-syntax (char-before)) ?w)
+            (insert " "))
+        (insert "end")
+        (if (eq (char-syntax (char-after)) ?w)
+            (insert " "))
+        (goto-char orig)
+        (delete-char 1)
+        (if (eq (char-syntax (char-before)) ?w)
+            (insert " "))
+        (insert "do")
+        (when (looking-at "\\sw\\||")
+          (insert " ")
+          (backward-char))
+        t))))
+
+(defun ruby-do-end-to-brace ()
+  (when (and (or (bolp)
+                 (not (memq (char-syntax (char-before)) '(?w ?_))))
+             (looking-at "\\<do\\(\\s \\|$\\)"))
+    (let ((orig (point)) (end (progn (ruby-forward-sexp) (point))))
+      (backward-char 3)
+      (when (looking-at ruby-block-end-re)
+        (delete-char 3)
+        (insert "}")
+        (goto-char orig)
+        (delete-char 2)
+        (insert "{")
+        (if (looking-at "\\s +|")
+            (delete-char (- (match-end 0) (match-beginning 0) 1)))
+        t))))
+
+(defun ruby-toggle-block ()
+  (interactive)
+  (or (ruby-brace-to-do-end)
+      (ruby-do-end-to-brace)))
+
+
+
 (load-file "~/.emacs.d/libs/ruby/ruby-electric.el")
-(load-file "~/.emacs.d/libs/ruby/ruby-mode.el")
+;; (load-file "~/.emacs.d/libs/ruby/ruby-mode.el")
 
 ;; Add hide show support for ruby
 (add-to-list 'hs-special-modes-alist
@@ -201,7 +250,7 @@ If DELTA was provided it will be added to the current line's indentation."
                "\\(def\\|class\\|module\\|do\\|{\\)" "\\(end\\|end\\|}\\)" "#"
                (lambda (arg) (ruby-end-of-block)) nil))
 
-(autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
+;; (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 ;; Enable ruby electric when ruby-mode is activated
