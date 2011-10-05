@@ -63,6 +63,7 @@
  '(ido-mode (quote both) nil (ido))
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
+ '(perl-indent-level 2)
  '(scala-mode-feature:electric-newline-before-closing-bracket t)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
