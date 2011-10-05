@@ -143,6 +143,7 @@ fi
     alias redis="~/Downloads/redis-2.2.2/src/redis-cli"
     alias be='bundle exec'
     alias ack=ack-grep
+    alias run_query=~/Documents/benchmark/one-tick-scripts/run_query.sh
     export EDITOR='emacsclient'
 
     # Set CDPATH to my Documents directory
@@ -166,8 +167,19 @@ function millis_to_date {
         echo "Usage: millis_to_date <milliseconds since epoc>"
         return 1
     fi
-    ((millis = $1 / 1000))
-    date --date="@$millis"
+    millis=$(echo "$1 / 1000" | bc)
+    date -d @$millis
+    echo $(date -d @$millis) | xclip
+}
+
+function date_to_millis {
+    if [ $# -ne 1 ]; then
+        echo "Usage: millis_to_date <YYYYMMDD [HH:[MM:[SS]]]>"
+        return 1
+    fi
+    seconds=$(date -d "$1" +"%s")
+    echo "${seconds}000"
+    echo "${seconds}000" | xclip
 }
 
 function print_header {
@@ -185,7 +197,7 @@ function print_header {
             count=2
         fi
         echo "$line"
-        let "count = count + 1"
+        count=$((count + 1))
     done
 }
 
@@ -201,6 +213,7 @@ function get_lvc_data() {
     elif [[ "$2" == "A_R" ]]; then product="ATTRIBUTION_REALTIME"
     elif [[ "$2" == "A_R_IRS" ]]; then product="ATTRIBUTION_REALTIME_IRS"
     elif [[ "$2" == "A_R_CDS" ]]; then product="ATTRIBUTION_REALTIME_CDS_CURVES"
+    else product=$2
     fi
     $HOME/Documents/benchmark/cache-loader-ruby/scripts/get_cached_values.rb $1 $product $3
     popd
