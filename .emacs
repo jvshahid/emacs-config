@@ -6,6 +6,7 @@
 (add-to-list 'load-path "~/.emacs.d/libs/color-theme-solarized")
 (add-to-list 'load-path "~/.emacs.d/libs/edit-emacs-server")
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
+(load-file "~/.emacs.d/libs/crontab/crontab.el")
 ;; (load-file "~/.emacs.d/libs/fold-dwim/fold-dwim.el")
 ;; (require 'fold-dwim)
 ;; (setq fold-dwim-outline-style-default 'nested)
@@ -31,6 +32,7 @@
 (require 'color-theme)
 (require 'color-theme-solarized)
 (require 'hungry-delete)
+(require 'crontab-mode)
 
 (color-theme-initialize)
 
