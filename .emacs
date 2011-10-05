@@ -48,10 +48,10 @@
 (yas/global-mode 1)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "gnome-open")
@@ -82,27 +82,27 @@
     (setq my-project-root (cdr project-details))
     ;; get project files
     (setq project-files
-	  (split-string
-	   (shell-command-to-string
-	    (concat "find "
-		    my-project-root
-		    " \\( -name \"*.svn\" -o -name \"*.git\" \\) -prune -o -type f -print | grep -E -v \"\.(pyc)$\""
-		    )) "\n"))
+          (split-string
+           (shell-command-to-string
+            (concat "find "
+                    my-project-root
+                    " \\( -name \"*.svn\" -o -name \"*.git\" \\) -prune -o -type f -print | grep -E -v \"\.(pyc)$\""
+                    )) "\n"))
     ;; populate hash table (display repr => path)
     (setq tbl (make-hash-table :test 'equal))
     (let (ido-list)
       (mapc (lambda (path)
-	      ;; format path for display in ido list
-	      (setq key (replace-regexp-in-string "\\(.*?\\)\\([^/]+?\\)$" "\\2|\\1" path))
-	      ;; strip project root
-	      (setq key (replace-regexp-in-string my-project-root "" key))
-	      ;; remove trailing | or /
-	      (setq key (replace-regexp-in-string "\\(|\\|/\\)$" "" key))
-	      (puthash key path tbl)
-	      (push key ido-list)
-	      )
-	    project-files
-	    )
+              ;; format path for display in ido list
+              (setq key (replace-regexp-in-string "\\(.*?\\)\\([^/]+?\\)$" "\\2|\\1" path))
+              ;; strip project root
+              (setq key (replace-regexp-in-string my-project-root "" key))
+              ;; remove trailing | or /
+              (setq key (replace-regexp-in-string "\\(|\\|/\\)$" "" key))
+              (puthash key path tbl)
+              (push key ido-list)
+              )
+            project-files
+            )
       (find-file (gethash (ido-completing-read "project-files: " ido-list) tbl)))))
 
 (define-key global-map [f6] 'my-ido-project-files)
@@ -116,20 +116,20 @@
 (global-linum-mode 1)
 (setq linum-format "%d ")
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:stipple nil :background "black" :foreground "grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Monaco"))))
  '(cursor ((t (:background "white")))))
 
 ;; Adding automatic untabify and delete trailing whitespaces (very useful)
-            ;; (add-hook 'local-write-file-hooks
-            ;;           '(lambda()
-            ;;              (save-excursion
-            ;;                (untabify (point-min) (point-max))
-            ;;                (delete-trailing-whitespace)
-            ;;                )))
+;; (add-hook 'local-write-file-hooks
+;;           '(lambda()
+;;              (save-excursion
+;;                (untabify (point-min) (point-max))
+;;                (delete-trailing-whitespace)
+;;                )))
 
 (defun toggle-indent-longer-lines (&optional delta)
   "Trigger selective display to hide lines that have more indentation than the current line. \
@@ -138,8 +138,8 @@ If DELTA was provided it will be added to the current line's indentation."
   (let ((indentation (current-indentation)))
     (if selective-display
         (set-selective-display nil)
-        (set-selective-display (+ indentation 1
-                                  (if delta delta 0))))))
+      (set-selective-display (+ indentation 1
+                                (if delta delta 0))))))
 (define-key global-map (kbd "C-x t") 'toggle-indent-longer-lines)
 
 (defun toggle-fullscreen ()
@@ -147,8 +147,8 @@ If DELTA was provided it will be added to the current line's indentation."
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 (global-set-key [f11] 'toggle-fullscreen)
-; TODO: for some reason highlighting doesn't work in JavaDoc comments
-; that start with /**
+;; TODO: for some reason highlighting doesn't work in JavaDoc comments
+;; that start with /**
 (defface todo-face '((t :background "red" :foreground "grey"))
   "The face used to mark TODO"
   :group 'todo-faces)
@@ -263,11 +263,12 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (semantic-load-enable-excessive-code-helpers)
 (setq semantic-symref-tool 'global)
-(global-ede-mode t)
-(setq semantic-default-submodes '(global-semantic-idle-scheduler-mode
-				  global-semanticdb-minor-mode
-				  global-semantic-idle-summary-mode
-				  global-semantic-mru-bookmark-mode))
+;; (global-ede-mode t)
+(setq semantic-default-submodes
+      '(global-semantic-idle-scheduler-mode
+        global-semanticdb-minor-mode
+        global-semantic-idle-summary-mode
+        global-semantic-mru-bookmark-mode))
 (ede-cpp-root-project "Feedhandlers"
                       :name "Feed handlers"
                       :file "~/Documents/benchmark/feed-handlers/CMakeLists.txt"
@@ -278,7 +279,7 @@ If DELTA was provided it will be added to the current line's indentation."
                       :file "~/Documents/benchmark/messaging/CMakeLists.txt"
                       :include-path '("/cpp/include" "/schema/cpp")
                       :system-include-path '("/usr/include/c++/4.4" "/usr/local/include" "/home/jvshahid/Downloads/jdk1.6.0_24/include/"
-                                      "/home/jvshahid/Downloads/jdk1.6.0_24/include/linux"))
+                                             "/home/jvshahid/Downloads/jdk1.6.0_24/include/linux"))
 
 (defun insert-newline-before-curlies (action pair pos-before)
   (progn
