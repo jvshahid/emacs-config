@@ -1,6 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         GLOBAL SETTINGS        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq tooltip-mode nil)
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
 (add-to-list 'load-path "~/.emacs.d/libs/color-theme")
 (add-to-list 'load-path "~/.emacs.d/libs/color-theme-solarized")
@@ -148,8 +149,8 @@ If DELTA was provided it will be added to the current line's indentation."
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 (global-set-key [f11] 'toggle-fullscreen)
-;; TODO: for some reason highlighting doesn't work in JavaDoc comments
-;; that start with /**
+                                        ; TODO: for some reason highlighting doesn't work in JavaDoc comments
+                                        ; that start with /**
 (defface todo-face '((t :background "red" :foreground "grey"))
   "The face used to mark TODO"
   :group 'todo-faces)
@@ -189,6 +190,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
+(add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -377,3 +379,28 @@ If DELTA was provided it will be added to the current line's indentation."
 (define-key global-map (kbd "C-x g") 'magit-status)
 (add-hook 'magit-mode-hook '(lambda ()
                               (setq show-trailing-whitespace nil)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C#/F# mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/libs/fsharp/")
+(add-to-list 'auto-mode-alist '("\\.fs[iylx]?$" . fsharp-mode))
+(autoload 'fsharp-mode "fsharp" "Major mode for editing F# code." t)
+(autoload 'run-fsharp "inf-fsharp" "Run an inferior F# process." t)
+
+(setq inferior-fsharp-program "~/Downloads/FSharp-2.0.0.0/bin/fsi.exe --readline-")
+(setq fsharp-compiler "~/Downloads/FSharp-2.0.0.0/bin/fsc.exe")
+
+(add-hook 'fsharp-mode-hook 'subword-mode)
+
+;; C#
+
+(add-to-list 'load-path "~/.emacs.d/libs/csharp/")
+(autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
+(add-to-list 'auto-mode-alist '("\\.cs?$" . csharp-mode))
+
+(defun my-csharp-mode-fn ()
+  "function that runs when csharp-mode is initialized for a buffer."
+  (yas/minor-mode-on))
+(add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
+(add-hook 'fsharp-mode-hook 'subword-mode)
