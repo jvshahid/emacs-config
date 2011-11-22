@@ -8,6 +8,13 @@
 (add-to-list 'load-path "~/.emacs.d/libs/edit-emacs-server")
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
 (load-file "~/.emacs.d/libs/crontab/crontab.el")
+
+;; load haskell mode
+(load-file "~/.emacs.d/libs/haskell-mode/haskell-site-file.el")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+;; (load-file "~/.emacs.d/libs/git-commit/git-commit.el")
 ;; (load-file "~/.emacs.d/libs/fold-dwim/fold-dwim.el")
 ;; (require 'fold-dwim)
 ;; (setq fold-dwim-outline-style-default 'nested)
