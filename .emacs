@@ -56,10 +56,10 @@
 (yas/global-mode 1)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "gnome-open")
@@ -115,7 +115,7 @@
       (find-file (gethash (ido-completing-read "project-files: " ido-list) tbl)))))
 
 (define-key global-map [f6] 'my-ido-project-files)
-(define-key global-map (kbd "C-x C-a") 'hs-toggle-hiding)
+;;(define-key global-map (kbd "C-x C-a") 'hs-toggle-hiding)
 (define-key global-map (kbd "C-;") 'comment-or-uncomment-region)
 (define-key global-map (kbd "C-x C-r") 'query-replace)
 (define-key global-map (kbd "C-x C-e") 'query-replace-regexp)
@@ -125,11 +125,11 @@
 (global-linum-mode 1)
 (setq linum-format "%d ")
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:stipple nil :background "black" :foreground "grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "Monaco"))))
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#fcf4dc" :foreground "#52676f" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
  '(cursor ((t (:background "white")))))
 
 ;; Adding automatic untabify and delete trailing whitespaces (very useful)
@@ -339,6 +339,9 @@ If DELTA was provided it will be added to the current line's indentation."
                       :include-path '("/cpp/include" "/schema/cpp")
                       :system-include-path '("/usr/include/c++/4.4" "/usr/local/include" "/home/jvshahid/Downloads/jdk1.6.0_24/include/"
                                              "/home/jvshahid/Downloads/jdk1.6.0_24/include/linux"))
+(ede-cpp-root-project "definetti"
+                      :name "definetii"
+                      :file "~/Documents/benchmark/definetti/.gitignore")
 
 (defun insert-newline-before-curlies (action pair pos-before)
   (progn
@@ -364,6 +367,7 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/libs/scala")
 (add-to-list 'load-path "~/.emacs.d/libs/ensime/elisp/")
+;;(add-to-list 'load-path "~/.emacs.d/libs/ensime_2.9.2-SNAPSHOT-0.8.0.RC3/elisp/")
 
 (require 'ensime)
 (require 'scala-mode-auto)
@@ -411,3 +415,10 @@ If DELTA was provided it will be added to the current line's indentation."
   (yas/minor-mode-on))
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
 (add-hook 'fsharp-mode-hook 'subword-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Matlab mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/libs/matlab-emacs")
+(load-library "matlab-load")
+(matlab-cedet-setup)
