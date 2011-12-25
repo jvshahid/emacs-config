@@ -133,7 +133,7 @@ fi
    )'
     export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
     export JAVA_FONTS=$HOME/.fonts/
-    export PATH=$HOME/Downloads/scala-2.9.0.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/
+    export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/
     export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
     alias sbt='java -Xmx512M -jar ~/Downloads/sbt-launch-0.7.7.jar'
@@ -144,6 +144,7 @@ fi
     alias be='bundle exec'
     alias ack=ack-grep
     alias run_query=~/Documents/benchmark/one-tick-scripts/run_query.sh
+    alias xclipc='xclip -selection clipboard'
     export EDITOR='emacsclient'
 
     # Set CDPATH to my Documents directory
@@ -169,7 +170,7 @@ function millis_to_date {
     fi
     millis=$(echo "$1 / 1000" | bc)
     date -d @$millis
-    echo -n $(date -d @$millis) | xclip -selection clipboard
+    echo -n $(date -d @$millis) | xclipc
 }
 
 function date_to_millis {
@@ -179,7 +180,7 @@ function date_to_millis {
     fi
     seconds=$(date -d "$1" +"%s")
     echo "${seconds}000"
-    echo -n "${seconds}000" | xclip -selection clipboard
+    echo -n "${seconds}000" | xclipc
 }
 
 function print_header {
@@ -219,3 +220,12 @@ function get_lvc_data() {
     popd
 }
 alias get_url=$HOME/Documents/benchmark/cache-loader-ruby/scripts/convert_log_to_url.rb
+
+# Setup the less colors
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[01;31;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[0m'           # end mode
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_us=$'\E[01;92;5;146m' # begin underline
