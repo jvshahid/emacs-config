@@ -3,8 +3,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq tooltip-mode nil)
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
-(add-to-list 'load-path "~/.emacs.d/libs/color-theme")
-(add-to-list 'load-path "~/.emacs.d/libs/color-theme-solarized")
 (add-to-list 'load-path "~/.emacs.d/libs/edit-emacs-server")
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
 (load-file "~/.emacs.d/libs/crontab/crontab.el")
@@ -37,12 +35,8 @@
 (require 'edit-server)
 (setq edit-server-new-frame nil)
 (edit-server-start)
-(require 'color-theme)
-(require 'color-theme-solarized)
 (require 'hungry-delete)
 (require 'crontab-mode)
-
-(color-theme-initialize)
 
 (global-auto-revert-mode)
 (setq magit-revert-item-confirm t)
@@ -51,6 +45,11 @@
 (if window-system
     (progn
       (server-start)
+      (add-to-list 'load-path "~/.emacs.d/libs/color-theme")
+      (add-to-list 'load-path "~/.emacs.d/libs/color-theme-solarized")
+      (require 'color-theme)
+      (require 'color-theme-solarized)
+      (color-theme-initialize)
       (color-theme-solarized-dark))
   nil)
 (yas/global-mode 1)
@@ -129,7 +128,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#fcf4dc" :foreground "#52676f" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
  '(cursor ((t (:background "white")))))
 
 ;; Adding automatic untabify and delete trailing whitespaces (very useful)
@@ -369,8 +368,8 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Scala mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/libs/scala")
-(add-to-list 'load-path "~/.emacs.d/libs/ensime/elisp/")
-;;(add-to-list 'load-path "~/.emacs.d/libs/ensime_2.9.2-SNAPSHOT-0.8.0.RC3/elisp/")
+;;(add-to-list 'load-path "~/.emacs.d/libs/ensime/elisp/")
+(add-to-list 'load-path "~/.emacs.d/libs/ensime_2.9.2-SNAPSHOT-0.8.0.RC3/elisp/")
 
 (require 'ensime)
 (require 'scala-mode-auto)
@@ -420,7 +419,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'fsharp-mode-hook 'subword-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Matlab mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Matlan mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/libs/matlab-emacs")
 (load-library "matlab-load")
