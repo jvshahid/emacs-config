@@ -178,11 +178,14 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/cmake")
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
+(add-to-list 'load-path "~/.emacs.d/libs/pianobar")
 
 (require 'yaml-mode)
 (require 'cmake-mode)
 (require 'protobuf-mode)
 (require 'confluence)
+(require 'pianobar)
+(setq pianobar-command "~/Documents/git/pianobar/pianobar")
 
 (add-hook 'edit-server-start-hook
           (lambda ()
