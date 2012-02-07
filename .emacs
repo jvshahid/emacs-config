@@ -21,6 +21,11 @@
 ;; (global-set-key (kbd "C-c s") 'fold-dwim-show-all)
 (global-set-key (kbd "C-c , <") 'semantic-ia-fast-jump)
 
+(global-set-key (kbd "C-c C-x l") 'windmove-left) ; move to left windnow
+(global-set-key (kbd "C-c C-x r") 'windmove-right) ; move to left windnow
+(global-set-key (kbd "C-c C-x u") 'windmove-up) ; move to left windnow
+(global-set-key (kbd "C-c C-x d") 'windmove-down) ; move to left windnow
+
 (when
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
