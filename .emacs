@@ -273,6 +273,7 @@ If DELTA was provided it will be added to the current line's indentation."
 
 ;; (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile.*" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 ;; Enable ruby electric when ruby-mode is activated
 (add-hook 'ruby-mode-hook
@@ -378,7 +379,7 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/libs/scala")
 ;;(add-to-list 'load-path "~/.emacs.d/libs/ensime/elisp/")
-(add-to-list 'load-path "~/.emacs.d/libs/ensime_2.9.2-SNAPSHOT-0.8.0.RC3/elisp/")
+(add-to-list 'load-path "~/.emacs.d/libs/ensime_head/elisp/")
 
 (require 'ensime)
 (require 'scala-mode-auto)
