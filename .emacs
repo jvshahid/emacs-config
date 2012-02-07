@@ -73,6 +73,7 @@
  '(display-time-day-and-date t)
  '(display-time-mode t)
  '(ido-mode (quote both) nil (ido))
+ '(js-indent-level 2)
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
  '(perl-indent-level 2)
