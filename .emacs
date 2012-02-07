@@ -173,6 +173,7 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Simple modes           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/libs/haml")
 (add-to-list 'load-path "~/.emacs.d/libs/protocol-buffers")
 (add-to-list 'load-path "~/.emacs.d/libs/cmake")
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
@@ -180,6 +181,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
 
 (require 'yaml-mode)
+(require 'haml-mode)
 (require 'cmake-mode)
 (require 'protobuf-mode)
 (require 'confluence)
@@ -196,6 +198,7 @@ If DELTA was provided it will be added to the current line's indentation."
                   (setq outline-regexp "h1\\|h2\\.\\|h3\\. ")))))
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.scaml\\'" . haml-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
