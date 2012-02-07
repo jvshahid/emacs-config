@@ -123,12 +123,12 @@ if [[ -n "$(__git_ps1)" ]]; then
     if [[ -n $(git ls-files --others --exclude-standard) ]]; then STATUS="$STATUS%"; fi
     if [[ -n "$STATUS" ]]; then STATUS=" $STATUS"; fi
     if [[ "x$CWD" == "x$DIR_NAME" ]]; then
-       echo "\u@\h [\[\033[1;34m\]GIT $REPO\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS] \$ ";
+       echo "\u@\h [\[\033[1;34m\]GIT $REPO\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS] \n\$ ";
     else
-       echo "\u@\h [\[\033[1;34m\]GIT $REPO [${PWD##$DIR_NAME}]\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS] \$ ";
+       echo "\u@\h [\[\033[1;34m\]GIT $REPO [${PWD##$DIR_NAME}]\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS] \n\$ ";
     fi
 else
-    echo "\u@\h [\w] $ "
+    echo "\u@\h [\w] \n$ "
 fi
    )'
     export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
@@ -140,8 +140,9 @@ fi
     alias ec='emacsclient --no-wait'
     alias go='gnome-open'
     alias gst="git status"
-    alias redis="~/Downloads/redis-2.2.2/src/redis-cli"
+    alias redis="~/Downloads/redis-2.4.5/src/redis-cli"
     alias be='bundle exec'
+    alias bi='bundle install'
     alias ack=ack-grep
     alias run_query=~/Documents/benchmark/one-tick-scripts/run_query.sh
     alias xclipc='xclip -selection clipboard'
@@ -216,7 +217,7 @@ function get_lvc_data() {
     elif [[ "$2" == "A_R_CDS" ]]; then product="ATTRIBUTION_REALTIME_CDS_CURVES"
     else product=$2
     fi
-    $HOME/Documents/benchmark/cache-loader-ruby/scripts/get_cached_values.rb $1 $product $3
+    $HOME/Documents/benchmark/cache-loader-ruby/scripts/get_cached_values.rb $1 $product $3 $4
     popd
 }
 alias get_url=$HOME/Documents/benchmark/cache-loader-ruby/scripts/convert_log_to_url.rb
@@ -225,7 +226,7 @@ alias get_url=$HOME/Documents/benchmark/cache-loader-ruby/scripts/convert_log_to
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\E[01;31;5;74m'  # begin bold
 export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'           # end underline
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_us=$'\E[01;92;5;146m' # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
