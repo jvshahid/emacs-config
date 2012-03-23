@@ -55,7 +55,7 @@
       (require 'color-theme)
       (require 'color-theme-solarized)
       (color-theme-initialize)
-      (color-theme-solarized-dark))
+      (color-theme-solarized-light))
   nil)
 (yas/global-mode 1)
 
@@ -321,8 +321,8 @@ If DELTA was provided it will be added to the current line's indentation."
 (load-file "~/.emacs.d/libs/cedet/common/cedet.el")
 
 (require 'google-c-style)
-(require 'semantic-ia)
-(require 'semantic-gcc)
+;; (require 'semantic-ia)
+;; (require 'semantic-gcc)
 
 (defun c-c++-hook ()
   (autopair-mode)
@@ -332,28 +332,28 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'c-mode-hook 'c-c++-hook)
 (add-hook 'c++-mode-hook 'c-c++-hook)
 
-(semantic-load-enable-excessive-code-helpers)
-(setq semantic-symref-tool 'global)
-;; (global-ede-mode t)
-(setq semantic-default-submodes
-      '(global-semantic-idle-scheduler-mode
-        global-semanticdb-minor-mode
-        global-semantic-idle-summary-mode
-        global-semantic-mru-bookmark-mode))
-(ede-cpp-root-project "Feedhandlers"
-                      :name "Feed handlers"
-                      :file "~/Documents/benchmark/feed-handlers/CMakeLists.txt"
-                      :include-path '("/include" "/schema/cpp")
-                      :system-include-path '("/usr/include/c++/4.4" "/usr/local/include"))
-(ede-cpp-root-project "Messaging"
-                      :name "Messaging"
-                      :file "~/Documents/benchmark/messaging/CMakeLists.txt"
-                      :include-path '("/cpp/include" "/schema/cpp")
-                      :system-include-path '("/usr/include/c++/4.4" "/usr/local/include" "/home/jvshahid/Downloads/jdk1.6.0_24/include/"
-                                             "/home/jvshahid/Downloads/jdk1.6.0_24/include/linux"))
-(ede-cpp-root-project "definetti"
-                      :name "definetii"
-                      :file "~/Documents/benchmark/definetti/.gitignore")
+;; (semantic-load-enable-excessive-code-helpers)
+;; (setq semantic-symref-tool 'global)
+;; ;; (global-ede-mode t)
+;; (setq semantic-default-submodes
+;;       '(global-semantic-idle-scheduler-mode
+;;         global-semanticdb-minor-mode
+;;         global-semantic-idle-summary-mode
+;;         global-semantic-mru-bookmark-mode))
+;; (ede-cpp-root-project "Feedhandlers"
+;;                       :name "Feed handlers"
+;;                       :file "~/Documents/benchmark/feed-handlers/CMakeLists.txt"
+;;                       :include-path '("/include" "/schema/cpp")
+;;                       :system-include-path '("/usr/include/c++/4.4" "/usr/local/include"))
+;; (ede-cpp-root-project "Messaging"
+;;                       :name "Messaging"
+;;                       :file "~/Documents/benchmark/messaging/CMakeLists.txt"
+;;                       :include-path '("/cpp/include" "/schema/cpp")
+;;                       :system-include-path '("/usr/include/c++/4.4" "/usr/local/include" "/home/jvshahid/Downloads/jdk1.6.0_24/include/"
+;;                                              "/home/jvshahid/Downloads/jdk1.6.0_24/include/linux"))
+;; (ede-cpp-root-project "definetti"
+;;                       :name "definetii"
+;;                       :file "~/Documents/benchmark/definetti/.gitignore")
 
 (defun insert-newline-before-curlies (action pair pos-before)
   (progn
@@ -420,7 +420,7 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (add-to-list 'load-path "~/.emacs.d/libs/csharp/")
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
-(add-to-list 'auto-mode-alist '("\\.cs?$" . csharp-mode))
+(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
 
 (defun my-csharp-mode-fn ()
   "function that runs when csharp-mode is initialized for a buffer."
