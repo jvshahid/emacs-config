@@ -1,0 +1,26 @@
+[user]
+  email = john.shahid@benchmarksolutions.com
+  name = John Shahid
+[alias]
+  l  = log --decorate=short --graph
+  lc = log --decorate=short --graph --color -w
+  lcw = log --decorate=short --graph --color-words -w
+
+  d = diff
+  dc = diff --color -w
+  dcw = diff --color-words -w
+
+	prb = pull --rebase
+
+  s = stash save
+  sp = stash pop
+
+  co = checkout
+
+  st = status
+
+  c  = commit --verbose
+[core]
+  editor = emacs -nw
+[diff]
+  wordRegex = [^=.,()[:space:]\"]+
