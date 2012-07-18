@@ -55,7 +55,7 @@
       (require 'color-theme)
       (require 'color-theme-solarized)
       (color-theme-initialize)
-      (color-theme-solarized-light))
+      (color-theme-solarized-dark))
   nil)
 (yas/global-mode 1)
 
@@ -67,7 +67,7 @@
  '(blink-cursor-mode nil)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "gnome-open")
- '(c-default-style (quote ((c-mode . "google-c-style") (c++-mode . "google-c-style") (java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
+ '(c-default-style (quote ((java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
  '(column-number-mode t)
  '(column-number-more t)
  '(display-time-day-and-date t)
@@ -185,6 +185,11 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
+(add-to-list 'load-path "~/.emacs.d/libs/jira")
+
+(setq jira2-url "http://jira.benchmark.local/jira/")
+(require 'jira2)
+(require 'org-jira)
 
 (require 'yaml-mode)
 (require 'haml-mode)
@@ -317,10 +322,10 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load-file "~/.emacs.d/libs/autopair/autopair.el")
-(add-to-list 'load-path "~/.emacs.d/libs/google-c-style")
 (load-file "~/.emacs.d/libs/cedet/common/cedet.el")
-
+(add-to-list 'load-path "~/.emacs.d/libs/google-c-style")
 (require 'google-c-style)
+
 ;; (require 'semantic-ia)
 ;; (require 'semantic-gcc)
 
@@ -402,6 +407,13 @@ If DELTA was provided it will be added to the current line's indentation."
 (define-key global-map (kbd "C-x g") 'magit-status)
 (add-hook 'magit-mode-hook '(lambda ()
                               (setq show-trailing-whitespace nil)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Shell mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'eshell-mode-hook '(lambda ()
+                               (setq show-trailing-whitespace nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C#/F# mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

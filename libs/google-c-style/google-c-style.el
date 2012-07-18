@@ -58,7 +58,7 @@ Suitable for inclusion in `c-offsets-alist'."
     (if (looking-at "\\(\\(if\\|for\\|while\\)\\s *(\\)")
         (goto-char (match-end 1)))
     (vector (+ 4 (current-column)))))
-        
+
 (defconst google-c-style
   `((c-recognize-knr-p . nil)
     (c-enable-xemacs-performance-kludge-p . t) ; speed up indentation in XEmacs
