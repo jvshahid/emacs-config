@@ -185,11 +185,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
-(add-to-list 'load-path "~/.emacs.d/libs/jira")
-
-(setq jira2-url "http://jira.benchmark.local/jira/")
-(require 'jira2)
-(require 'org-jira)
 
 (require 'yaml-mode)
 (require 'haml-mode)
