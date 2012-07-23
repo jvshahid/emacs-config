@@ -132,7 +132,13 @@ else
     echo "\u@\h [\w] \n$ "
 fi
    )'
-    export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
+    if [ "x$JAVA_HOME" == "x" ]; then
+        if which java > /dev/null 2>&1; then
+            export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+        else
+            export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
+        fi
+    fi
     export JAVA_FONTS=$HOME/.fonts/
     export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/
     export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
