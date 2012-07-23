@@ -38,8 +38,15 @@ sudo apt-get install \
     cmake \
     make \
     zlib1g-dev \
-    libreadline6-dev \
-    libssl-dev
+    libreadline-dev \
+    libssl-dev \
+    sshfs \
+    libjson0-dev \
+    libfaad-dev \
+    libmad0-dev \
+    libgcrypt11-dev \
+    libgnutls-dev \
+    libao-dev
 
 # setup the ensime git repo
 pushd $repos_dir
@@ -60,10 +67,21 @@ popd
 if [ ! -d $HOME/.rvm ]; then
     curl -L https://get.rvm.io | bash -s stable --ruby
     source ~/.rvm/scripts/rvm
+    rvm pkg install readline
 fi
-( rvm list | grep 1.9.2 > /dev/null 2>&1 ) || rvm install 1.9.2
+( rvm list | grep 1.9.3 > /dev/null 2>&1 ) || rvm install 1.9.3
 ( rvm list | grep jruby-1.6.7 > /dev/null 2>&1 ) || rvm install jruby-1.6.7
 ( rvm list | grep jruby-head > /dev/null 2>&1 ) || rvm install jruby-head
+
+# setup pianobar
+if [ ! -d $repos_dir/pianobar ]; then
+    pushd $repos_dir
+    git clone https://github.com/PromyLOPh/pianobar.git
+    pushd pianobar
+    make
+    popd
+    popd
+fi
 
 # setup quicktile
 if [ ! -d $repos_dir/quicktile ]; then
@@ -72,16 +90,25 @@ if [ ! -d $repos_dir/quicktile ]; then
     popd
 fi
 
+# TODO: setup mosh
+
+echo
+echo
+echo "================================================================"
 echo "don't forgot to make the following changes by hand (they aren't automated yet)"
 
 # TODO: change the capslock to control programatically
-echo "change the capslock to control programatically"
+echo "* change the capslock to control"
 # TODO: change the window focus to follow the mouse programatically
-echo "change the window focus to follow the mouse programatically"
+echo "* change the window focus to follow the mouse"
 # TODO: change the terminal key shortcuts programatically
-echo "change the terminal key shortcuts programatically"
+echo "* change the terminal key shortcuts"
 # gconftool-2 /apps/metacity/global_keybindings/run_command_terminal -s '<Ctrl><Alt>t' -t string
 # TODO: add the quicktile shortcuts programatically
-echo "add the quicktile shortcuts programatically"
+echo "* add the quicktile shortcuts"
+# TODO: setup dropbox programatically
+echo "* setup dropbox"
 
+echo "================================================================"
+echo
 echo "Finished setting up the new machine, have fun hacking"
