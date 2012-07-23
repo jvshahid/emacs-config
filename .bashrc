@@ -153,6 +153,7 @@ fi
     alias ack=ack-grep
     alias run_query=~/Documents/benchmark/one-tick-scripts/run_query.sh
     alias xclipc='xclip -selection clipboard'
+    alias gen_tags="$HOME/Documents/generate_tags.sh"
     export EDITOR='emacsclient'
 
     # Set CDPATH to my Documents directory

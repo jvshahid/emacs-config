@@ -45,7 +45,10 @@ sudo apt-get install \
     libmad0-dev \
     libgcrypt11-dev \
     libgnutls-dev \
-    libao-dev
+    libao-dev \
+    id3 \
+    libxml2-dev \
+    libxslt1-dev
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
@@ -83,6 +86,14 @@ if [ ! -d $repos_dir/pianobar ]; then
     make
     popd
     popd
+fi
+
+# create the generate tags script
+if [ ! -f ~/Documents/generate_tags.sh ]; then
+    cat > ~/Documents/generate_tags.sh <<EOF
+find . -print0 -name *.cpp -or -name *.java -or -name *.rb | xargs --null etags
+EOF
+    chmod a+x ~/Documents/generate_tags.sh
 fi
 
 # setup quicktile
