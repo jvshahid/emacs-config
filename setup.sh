@@ -21,7 +21,6 @@ sudo apt-get install \
     emacs-snapshot \
     gnome-do \
     curl \
-    openjdk-7-jdk \
     ack-grep \
     exuberant-ctags \
     htop \
@@ -47,6 +46,9 @@ sudo apt-get install \
     libgcrypt11-dev \
     libgnutls-dev \
     libao-dev
+
+# this might fail on old distros
+sudo apt-get install openjdk-7-jdk
 
 # setup the ensime git repo
 pushd $repos_dir
