@@ -17,6 +17,7 @@ clear mod4
 
 keycode 133 = Alt_L Meta_L Alt_L Meta_L
 keycode 135 = Alt_R Meta_R Alt_R Meta_R
+keycode 134 = Alt_R Meta_R Alt_R Meta_R
 
 keycode 64  = Control_L Control_L Control_L Control_L
 keycode 108  = Control_R Control_R Control_R Control_R
