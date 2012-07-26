@@ -49,7 +49,8 @@ sudo apt-get install \
     id3 \
     libxml2-dev \
     libxslt1-dev \
-    samba
+    samba \
+    mercurial
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
