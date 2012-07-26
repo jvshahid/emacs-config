@@ -48,7 +48,8 @@ sudo apt-get install \
     libao-dev \
     id3 \
     libxml2-dev \
-    libxslt1-dev
+    libxslt1-dev \
+    samba
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
