@@ -50,7 +50,9 @@ sudo apt-get install \
     libxml2-dev \
     libxslt1-dev \
     samba \
-    mercurial
+    mercurial \
+    xclip \
+    colordiff
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
