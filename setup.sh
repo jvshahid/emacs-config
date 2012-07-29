@@ -78,7 +78,7 @@ if [ ! -d $HOME/.rvm ]; then
     source ~/.rvm/scripts/rvm
     rvm pkg install readline
 fi
-( rvm list | grep 1.9.3 > /dev/null 2>&1 ) || rvm install 1.9.3
+( rvm list | grep 1.9.3 > /dev/null 2>&1 ) || ( rvm install 1.9.3 && rvm use --default 1.9.3 )
 ( rvm list | grep jruby-1.6.7 > /dev/null 2>&1 ) || rvm install jruby-1.6.7
 ( rvm list | grep jruby-head > /dev/null 2>&1 ) || rvm install jruby-head
 
