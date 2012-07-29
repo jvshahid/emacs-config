@@ -52,7 +52,13 @@ sudo apt-get install \
     samba \
     mercurial \
     xclip \
-    colordiff
+    colordiff \
+    evince \
+    mysql-server \
+    mysql-client \
+    libmysqlclient-dev \
+    libsqlite3-dev \
+    openssh-server
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
