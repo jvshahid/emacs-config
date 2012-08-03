@@ -58,7 +58,8 @@ sudo apt-get install \
     mysql-client \
     libmysqlclient-dev \
     libsqlite3-dev \
-    openssh-server
+    openssh-server \
+    acpi
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
