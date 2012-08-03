@@ -72,6 +72,7 @@
  '(column-number-more t)
  '(display-time-day-and-date t)
  '(display-time-mode t)
+ '(erc-user-full-name "John Shahid")
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(menu-bar-mode nil)
