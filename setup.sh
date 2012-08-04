@@ -13,6 +13,7 @@ fi
 
 if ! grep 'DO NOT REPLACE' ~/.bashrc > /dev/null 2>&1; then
     ln -s $config_repo/.bashrc ~/.bashrc
+    . ~/.bashrc
 fi
 
 sudo apt-get install \
@@ -59,10 +60,25 @@ sudo apt-get install \
     libmysqlclient-dev \
     libsqlite3-dev \
     openssh-server \
-    acpi
+    acpi \
+    libprotobuf-dev \
+    libncurses5-dev \
+    libio-pty-perl
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
+
+# setup mosh
+mosh_installation_dir=$(eval "echo $MOSH_INSTALLATION")
+if [ ! -d $mosh_installation_dir ]; then
+    pushd $repos_dir
+    [ -d mosh ] || git clone https://github.com/keithw/mosh.git
+    pushd mosh
+    autoreconf -i
+    ./configure --prefix=$mosh_installation_dir && make && make install
+    popd
+    popd
+fi
 
 # setup the ensime git repo
 pushd $repos_dir

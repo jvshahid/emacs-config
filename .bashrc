@@ -142,6 +142,7 @@ fi
     export JAVA_FONTS=$HOME/.fonts/
     export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/
     export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
+    export MOSH_INSTALLATION='$HOME/mosh-installation'
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
     alias sbt='java -Xmx512M -jar ~/Downloads/sbt-launch-0.7.7.jar'
     alias ec='emacsclient --no-wait'
@@ -154,6 +155,7 @@ fi
     alias run_query=~/Documents/benchmark/one-tick-scripts/run_query.sh
     alias xclipc='xclip -selection clipboard'
     alias gen_tags="$HOME/Documents/generate_tags.sh"
+    alias mosh="$MOSH_INSTALLATION/bin/mosh --client=$MOSH_INSTALLATION/bin/mosh-client --server='$MOSH_INSTALLATION/bin/mosh-server'"
     export EDITOR='emacsclient'
 
     # Set CDPATH to my Documents directory
