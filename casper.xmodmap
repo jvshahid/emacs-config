@@ -1,14 +1,19 @@
 clear control
 clear mod1
 clear mod4
+clear shift
 
 keycode 66 = Control_L Control_L Control_L Control_L
 
 keycode 37 = Super_L NoSymbol Super_L
+! keycode 133 = Super_L NoSymbol Super_L
 
 ! keycode 206 = Control_L Control_L Control_L Control_L
-keycode 64 = Control_L Control_L Control_L Control_L
-keycode 108 = Control_R Control_R Control_R Control_R
+keycode 66 = Shift_R Shift_R Shift_R Shift_R
+! keycode 108 = Control_R Control_R Control_R Control_R
+
+keycode 50 = Control_L Control_L Control_L Control_L
+keycode 62 = Control_R Control_R Control_R Control_R
 
 
 keycode 133 = Alt_L Alt_L Alt_L Alt_L
@@ -17,3 +22,4 @@ keycode 134 = Alt_R Alt_R Alt_R Alt_R
 add control = Control_L Control_R
 add mod1   = Alt_L Alt_R
 add mod4    = Super_L Hyper_L
+add shift  = Shift_R
