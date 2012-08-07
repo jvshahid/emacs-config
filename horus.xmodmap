@@ -1,6 +1,5 @@
 clear control
 clear mod1
-clear shift
 clear mod4
 
 !original keymapping
@@ -16,21 +15,15 @@ clear mod4
 !keycode 134 = Super_R NoSymbol Super_R
 !keycode 206 = NoSymbol Super_L NoSymbol Super_L
 
-keycode 62  = Control_L Control_L Control_L Control_L
-keycode 66  = Control_R Control_R Control_R Control_R
-
 keycode 133 = Alt_L Meta_L Alt_L Meta_L
 keycode 135 = Alt_R Meta_R Alt_R Meta_R
+keycode 134 = Alt_R Meta_R Alt_R Meta_R
 
-keycode 64  = Alt_L Alt_L Alt_L Alt_L
-keycode 108  = Alt_R Alt_R Alt_R Alt_R
+keycode 64  = Control_L Control_L Control_L Control_L
+keycode 108  = Control_R Control_R Control_R Control_R
+keycode  66 = Super_L NoSymbol Super_L
 
-keycode  50 = Super_L NoSymbol Super_L
-
-keycode 50  = Shift_R Shift_R Shift_R Shift_R
-keycode 134 = Shift_L Shift_L Shift_L Shift_L
 
 add control = Control_L Control_R
 add mod4    = Super_L Hyper_L
 add mod1    = Alt_L Alt_R
-add shift   = Shift_L Shift_R
