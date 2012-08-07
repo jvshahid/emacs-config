@@ -63,7 +63,8 @@ sudo apt-get install \
     acpi \
     libprotobuf-dev \
     libncurses5-dev \
-    libio-pty-perl
+    libio-pty-perl \
+    chmsee
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
