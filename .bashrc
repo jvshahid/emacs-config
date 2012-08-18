@@ -139,6 +139,12 @@ fi
             export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
         fi
     fi
+    shift_to_titlebar='\[\e]0;'
+    shift_to_tty='\a\]'
+    export XTERM_PS1="${shift_to_titlebar}\h:\w${shift_to_tty}"
+    if [[ ${EMACS} != 't' ]] ; then
+        export PS1="${XTERM_PS1}${PS1}"
+    fi
     export JAVA_FONTS=$HOME/.fonts/
     export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/
     export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
@@ -151,6 +157,7 @@ fi
     alias redis="~/Downloads/redis-2.4.5/src/redis-cli"
     alias be='bundle exec'
     alias bi='bundle install'
+    alias bu='bundle update'
     alias ack=ack-grep
     alias run_query=~/Documents/benchmark/one-tick-scripts/run_query.sh
     alias xclipc='xclip -selection clipboard'
