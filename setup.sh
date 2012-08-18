@@ -64,7 +64,9 @@ sudo apt-get install \
     libprotobuf-dev \
     libncurses5-dev \
     libio-pty-perl \
-    chmsee
+    chmsee \
+    ghc \
+    ghc-doc
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
