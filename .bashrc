@@ -193,7 +193,7 @@ function millis_to_date {
 
 function date_to_millis {
     if [ $# -ne 1 ]; then
-        echo "Usage: millis_to_date <YYYYMMDD [HH:[MM:[SS]]]>"
+        echo "Usage: date_to_millis <YYYYMMDD [HH:[MM:[SS]]]>"
         return 1
     fi
     seconds=$(date -d "$1" +"%s")
