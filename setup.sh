@@ -83,6 +83,21 @@ if [ ! -d $mosh_installation_dir ]; then
     popd
 fi
 
+if ! dpkg -l | grep vagrant; then
+    filename=$(mktemp)
+    if [ ! $? ]; then
+        echo "cannot create tempfile ${filename}"
+        exit 1
+    fi
+    echo "Using ${filename} as the temporary filename"
+    curl 'http://files.vagrantup.com/packages/5ab18a4f114c2bcbcce67db40b18d026264f428c/vagrant_1.0.4_x86_64.deb' -o ${filename}
+    if ! sudo dpkg -i ${filename}; then
+        echo "Cannot install vagrant"
+        exit 1
+    fi
+    rm $filename
+fi
+
 # setup the ensime git repo
 pushd $repos_dir
 [ -d ensime ] || git clone git@github.com:jvshahid/ensime.git
