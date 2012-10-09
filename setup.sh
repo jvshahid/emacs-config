@@ -170,3 +170,9 @@ echo "* setup dropbox"
 echo "================================================================"
 echo
 echo "Finished setting up the new machine, have fun hacking"
+
+
+# setup the firewall
+
+# Block access to 1.2.3.4 (vodafone image resolution modification proxy)
+sudo iptables -A OUTPUT -p tcp -d 1.2.3.4 --dport 80 -j REJECT --reject-with tcp-reset
