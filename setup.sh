@@ -66,7 +66,8 @@ sudo apt-get install \
     libio-pty-perl \
     chmsee \
     ghc \
-    ghc-doc
+    ghc-doc \
+    skype
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
