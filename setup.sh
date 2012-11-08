@@ -67,7 +67,9 @@ sudo apt-get install \
     chmsee \
     ghc \
     ghc-doc \
-    skype
+    skype \
+    postgresql \
+    postgresql-client
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
