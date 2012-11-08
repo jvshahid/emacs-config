@@ -296,7 +296,7 @@ If DELTA was provided it will be added to the current line's indentation."
          (local-file  (file-relative-name
                        temp-file
                        (file-name-directory buffer-file-name))))
-    (list "ruby" (list "-c" local-file))))
+    (list (file-truename "~/.emacs.d/check_ruby_script.sh") (list local-file))))
 (push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
 (push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
 (push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
