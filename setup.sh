@@ -173,14 +173,14 @@ echo "================================================================"
 echo "don't forgot to make the following changes by hand (they aren't automated yet)"
 
 # TODO: change the capslock to control programatically
-echo "* change the capslock to control"
+echo "* change the capslock to control or disable it"
 # TODO: change the window focus to follow the mouse programatically
 echo "* change the window focus to follow the mouse"
 # TODO: change the terminal key shortcuts programatically
 echo "* change the terminal key shortcuts"
-# gconftool-2 /apps/metacity/global_keybindings/run_command_terminal -s '<Ctrl><Alt>t' -t string
-# TODO: add the quicktile shortcuts programatically
-echo "* add the quicktile shortcuts"
+# gconftool-2 /apps/metacity/global_keybinndings/run_command_terminal -s '<Ctrl><Alt>t' -t string
+# TODO: add the quicktile shortcuts programatically and change workspace switching shortcuts
+echo "* add the quicktile shortcuts and change the workspace switching shortcuts"
 # TODO: setup dropbox programatically
 echo "* setup dropbox"
 
