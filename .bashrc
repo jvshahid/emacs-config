@@ -166,7 +166,7 @@ fi
     export EDITOR='emacsclient'
 
     # Set CDPATH to my Documents directory
-    document=($HOME/Documents/*)
+    document=($HOME/codez)
     IFS=':'
     document_with_colons="${document[*]}"
     unset IFS
