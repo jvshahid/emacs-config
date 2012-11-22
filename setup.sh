@@ -115,7 +115,7 @@ if [ ! -d $mosh_installation_dir ]; then
     popd
 fi
 
-if ! dpkg -l | grep vagrant; then
+if ! dpkg -l | grep vagrant > /dev/null 2>&1; then
     filename=$(mktemp)
     if [ ! $? ]; then
         echo "cannot create tempfile ${filename}"
