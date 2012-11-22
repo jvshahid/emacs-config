@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+function add_repo {
+    if [ $# -ne 1 ]; then
+        echo "You should pass exactly one arg to this function, the repo ppa:... to be added"
+        echo "This is probably a bug in the script abandon ship"
+        exit 1
+    fi
+    search_for=${1/*://}/ubuntu
+    if ! grep -R $search_for /etc/apt/sources.list.d/ > /dev/null 2>&1; then
+        sudo add-apt-repository $1
+    fi
+}
+
 config_repo=$(readlink -f $(dirname $0))
 repos_dir="$HOME/codez"
 
@@ -7,10 +19,8 @@ if [ ! -d $repos_dir ]; then
     repos_dir="$PWD/.."
 fi
 
-if ! grep -R http://ppa.launchpad.net/cassou/emacs/ubuntu /etc/apt/sources.list.d/ > /dev/null 2>&1; then
-    sudo add-apt-repository ppa:cassou/emacs
-    sudo apt-get update
-fi
+add_repo ppa:cassou/emacs
+
 [ -a ~/.xmodmap ] || ln -s $config_repo/`hostname`.xmodmap ~/.xmodmap
 [ -d ~/.emacs.d ] || ln -s $config_repo ~/.emacs.d
 [ -f ~/.emacs   ] || ln -s $config_repo/.emacs ~/.emacs
@@ -78,11 +88,16 @@ sudo apt-get install \
     wireshark
 
 if sudo dmidecode --type 1 | grep -i lenovo 2>&1 > /dev/null; then
-    if ! grep -R http://ppa.launchpad.net/fingerprint/fingerprint-gui/ubuntu /etc/apt/sources.list.d/ > /dev/null 2>&1; then
-        sudo add-apt-repository ppa:fingerprint/fingerprint-gui
-        sudo apt-get update
-    fi
-    sudo apt-get install libbsapi policykit-1-fingerprint-gui fingerprint-gui
+    add_repo ppa:fingerprint/fingerprint-gui
+    add_repo ppa:bumblebee/stable
+    add_repo ppa:ubuntu-x-swat/x-updates
+    sudo apt-get update
+    sudo apt-get install bumblebee \
+        bumblebee-nvidia \
+        linux-headers-generic \
+        libbsapi \
+        policykit-1-fingerprint-gui \
+        fingerprint-gui
 fi
 
 # this might fail on old distros
