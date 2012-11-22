@@ -74,7 +74,8 @@ sudo apt-get install \
     skype \
     postgresql \
     postgresql-client \
-    google-chrome-stable
+    google-chrome-stable \
+    wireshark
 
 if sudo dmidecode --type 1 | grep -i lenovo 2>&1 > /dev/null; then
     if ! grep -R http://ppa.launchpad.net/fingerprint/fingerprint-gui/ubuntu /etc/apt/sources.list.d/ > /dev/null 2>&1; then
