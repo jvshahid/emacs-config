@@ -121,7 +121,7 @@ pushd $repos_dir
 pushd ensime
 [ -f ./sbt ] || curl 'https://raw.github.com/paulp/sbt-extras/master/sbt' -o ./sbt
 chmod a+x ./sbt
-[ -d target/dist ] || ./sbt dist
+[ -d target/dist ] || ./sbt stage
 dist_dir=$(readlink -f $(ls -d dist*))
 ln -s $dist_dir $HOME/.emacs.d/libs/ensime_head
 popd
