@@ -193,7 +193,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'protobuf-mode)
 (require 'confluence)
 (require 'pianobar)
-(setq pianobar-command "~/Documents/git/pianobar/pianobar")
+(setq pianobar-command "~/codez/pianobar/pianobar")
 
 (add-hook 'edit-server-start-hook
           (lambda ()
