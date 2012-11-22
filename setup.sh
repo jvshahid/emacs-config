@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 config_repo=$(readlink -f $(dirname $0))
-repos_dir="$HOME/Documents/git"
+repos_dir="$HOME/codez"
+
+if [ ! -d $repos_dir ]; then
+    repos_dir="$PWD/.."
+fi
 
 if ! grep -R http://ppa.launchpad.net/cassou/emacs/ubuntu /etc/apt/sources.list.d/ > /dev/null 2>&1; then
     sudo add-apt-repository ppa:cassou/emacs
@@ -69,7 +73,16 @@ sudo apt-get install \
     ghc-doc \
     skype \
     postgresql \
-    postgresql-client
+    postgresql-client \
+    google-chrome-stable
+
+if sudo dmidecode --type 1 | grep -i lenovo 2>&1 > /dev/null; then
+    if ! grep -R http://ppa.launchpad.net/fingerprint/fingerprint-gui/ubuntu /etc/apt/sources.list.d/ > /dev/null 2>&1; then
+        sudo add-apt-repository ppa:fingerprint/fingerprint-gui
+        sudo apt-get update
+    fi
+    sudo apt-get install libbsapi policykit-1-fingerprint-gui fingerprint-gui
+fi
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk
@@ -107,8 +120,9 @@ pushd $repos_dir
 pushd ensime
 [ -f ./sbt ] || curl 'https://raw.github.com/paulp/sbt-extras/master/sbt' -o ./sbt
 chmod a+x ./sbt
-# [ -d target/dist ] || ./sbt dist
-# ln -s $repos_dir/ensime $HOME/.emacs.d/libs/ensime_head
+[ -d target/dist ] || ./sbt dist
+dist_dir=$(readlink -f $(ls -d dist*))
+ln -s $dist_dir $HOME/.emacs.d/libs/ensime_head
 popd
 popd
 
