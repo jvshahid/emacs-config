@@ -85,7 +85,7 @@ if sudo dmidecode --type 1 | grep -i lenovo 2>&1 > /dev/null; then
 fi
 
 # this might fail on old distros
-sudo apt-get install openjdk-7-jdk
+sudo apt-get install openjdk-7-jdk openjdk-6-jdk
 
 # setup mosh
 mosh_installation_dir=$(eval "echo $MOSH_INSTALLATION")
@@ -138,6 +138,7 @@ if [ ! -d $HOME/.rvm ]; then
 fi
 ( rvm list | grep 1.9.3 > /dev/null 2>&1 ) || ( rvm install 1.9.3 && rvm use --default 1.9.3 )
 ( rvm list | grep jruby-1.6.7 > /dev/null 2>&1 ) || rvm install jruby-1.6.7
+( rvm list | grep jruby-1.7.0 > /dev/null 2>&1 ) || rvm install jruby-1.7.0
 ( rvm list | grep jruby-head > /dev/null 2>&1 ) || rvm install jruby-head
 
 # setup pianobar
