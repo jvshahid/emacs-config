@@ -86,7 +86,11 @@ sudo apt-get install \
     postgresql \
     postgresql-client \
     google-chrome-stable \
-    wireshark
+    wireshark \
+    irssi \
+    libyaml-dev \
+    nmap \
+    synergy
 
 if sudo dmidecode --type 1 | grep -i lenovo 2>&1 > /dev/null; then
     add_repo ppa:fingerprint/fingerprint-gui
