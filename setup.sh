@@ -9,6 +9,7 @@ function add_repo {
     search_for=${1/*://}/ubuntu
     if ! grep -R $search_for /etc/apt/sources.list.d/ > /dev/null 2>&1; then
         sudo add-apt-repository $1
+        sudo apt-get update
     fi
 }
 
@@ -91,9 +92,9 @@ if sudo dmidecode --type 1 | grep -i lenovo 2>&1 > /dev/null; then
     add_repo ppa:fingerprint/fingerprint-gui
     add_repo ppa:bumblebee/stable
     add_repo ppa:ubuntu-x-swat/x-updates
-    sudo apt-get update
     sudo apt-get install bumblebee \
         bumblebee-nvidia \
+        bbswitch-dkms \
         linux-headers-generic \
         libbsapi \
         policykit-1-fingerprint-gui \
