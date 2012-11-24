@@ -21,6 +21,8 @@ if [ ! -d $repos_dir ]; then
 fi
 
 add_repo ppa:cassou/emacs
+add_repo ppa:ggreer/ag
+add_repo ppa:git-core/ppa
 
 [ -a ~/.xmodmap ] || ln -s $config_repo/`hostname`.xmodmap ~/.xmodmap
 [ -d ~/.emacs.d ] || ln -s $config_repo ~/.emacs.d
