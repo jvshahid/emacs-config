@@ -55,7 +55,6 @@ sudo apt-get install \
     cmake \
     make \
     zlib1g-dev \
-    libreadline-dev \
     libssl-dev \
     sshfs \
     libjson0-dev \
@@ -92,7 +91,8 @@ sudo apt-get install \
     irssi \
     libyaml-dev \
     nmap \
-    synergy
+    synergy \
+    the-silver-searcher
 
 if sudo dmidecode --type 1 | grep -i lenovo 2>&1 > /dev/null; then
     add_repo ppa:fingerprint/fingerprint-gui
@@ -157,8 +157,11 @@ popd
 if [ ! -d $HOME/.rvm ]; then
     curl -L https://get.rvm.io | bash -s stable --ruby
     source ~/.rvm/scripts/rvm
-    rvm pkg install readline
 fi
+
+# get the requirements for ruby 1.9.3
+requirements=$(rvm requirements | grep '\bruby:' | sed 's/.*apt-get install\(.*\)/\1/')
+sudo apt-get install $requirements
 ( rvm list | grep 1.9.3 > /dev/null 2>&1 ) || ( rvm install 1.9.3 && rvm use --default 1.9.3 )
 ( rvm list | grep jruby-1.6.7 > /dev/null 2>&1 ) || rvm install jruby-1.6.7
 ( rvm list | grep jruby-1.7.0 > /dev/null 2>&1 ) || rvm install jruby-1.7.0
