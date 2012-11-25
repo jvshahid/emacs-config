@@ -93,9 +93,16 @@ sudo apt-get install \
     irssi \
     libyaml-dev \
     nmap \
-    synergy \
     openjdk-7-source \
     openjdk-6-source
+
+# download and install synergy
+if ! dpkg -l | grep synergy > /dev/null 2>&1; then
+    pushd /tmp
+    wget http://synergy.googlecode.com/files/synergy-1.4.10-Linux-x86_64.deb
+    sudo dpkg -i synergy-1.4.10-Linux-x86_64.deb
+    popd
+fi
 
 if sudo dmidecode --type 1 | grep -i lenovo 2>&1 > /dev/null; then
     add_repo ppa:fingerprint/fingerprint-gui
