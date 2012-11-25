@@ -21,10 +21,12 @@ if [ ! -d $repos_dir ]; then
 fi
 
 add_repo ppa:cassou/emacs
-add_repo ppa:ggreer/ag
+# the following ppa doesn't seem to work, this is the ag (faster ack)
+
+# add_repo ppa:ggreer/ag
 add_repo ppa:git-core/ppa
 
-[ -a ~/.xmodmap ] || ln -s $config_repo/`hostname`.xmodmap ~/.xmodmap
+[ -a ~/.xmodmap ] || ln -s $config_repo/`hostname`.xmodmap ~/.Xmodmap
 [ -d ~/.emacs.d ] || ln -s $config_repo ~/.emacs.d
 [ -f ~/.emacs   ] || ln -s $config_repo/.emacs ~/.emacs
 
@@ -92,7 +94,8 @@ sudo apt-get install \
     libyaml-dev \
     nmap \
     synergy \
-    the-silver-searcher
+    openjdk-7-source \
+    openjdk-6-source
 
 if sudo dmidecode --type 1 | grep -i lenovo 2>&1 > /dev/null; then
     add_repo ppa:fingerprint/fingerprint-gui
@@ -194,9 +197,16 @@ fi
 
 # TODO: setup mosh
 
+# Setup wireshark to allow non root users to capture packets (answer yes)
+sudo dpkg-reconfigure wireshark-common
+sudo usermod -a -G wireshark $USER
+echo "==========================================================================================="
+echo "IMPORTANT: You will have to logout and log back in for wireshark permissions to take effect"
+echo "==========================================================================================="
+
 echo
 echo
-echo "================================================================"
+echo "===================================================================================="
 echo "don't forgot to make the following changes by hand (they aren't automated yet)"
 
 # TODO: change the capslock to control programatically
@@ -211,7 +221,7 @@ echo "* add the quicktile shortcuts and change the workspace switching shortcuts
 # TODO: setup dropbox programatically
 echo "* setup dropbox"
 
-echo "================================================================"
+echo "===================================================================================="
 echo
 echo "Finished setting up the new machine, have fun hacking"
 
