@@ -106,8 +106,8 @@ sudo apt-get install \
 # download and install synergy
 if ! dpkg -l | grep synergy > /dev/null 2>&1; then
     pushd /tmp
-    wget http://synergy.googlecode.com/files/synergy-1.4.10-Linux-x86_64.deb
-    sudo dpkg -i synergy-1.4.10-Linux-x86_64.deb
+    wget http://synergy.googlecode.com/files/synergy-1.4.10-Linux-$(uname -m).deb
+    sudo dpkg -i synergy-1.4.10-Linux-$(uname -m).deb
     popd
 fi
 
