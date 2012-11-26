@@ -26,13 +26,20 @@ add_repo ppa:cassou/emacs
 # add_repo ppa:ggreer/ag
 add_repo ppa:git-core/ppa
 
-[ -a ~/.xmodmap ] || ln -s $config_repo/`hostname`.xmodmap ~/.Xmodmap
+[ -a ~/.Xmodmap ] || ln -s $config_repo/`hostname`.xmodmap ~/.Xmodmap
 [ -d ~/.emacs.d ] || ln -s $config_repo ~/.emacs.d
 [ -f ~/.emacs   ] || ln -s $config_repo/.emacs ~/.emacs
 
 if ! grep 'DO NOT REPLACE' ~/.bashrc > /dev/null 2>&1; then
     ln -s $config_repo/.bashrc ~/.bashrc
     . ~/.bashrc
+fi
+
+# add google chrome ppa
+if ! grep -R linux/chrome /etc/apt/sources.list.d/ > /dev/null 2>&1; then
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+    sudo apt-get update
 fi
 
 sudo apt-get install \
@@ -133,12 +140,7 @@ if [ ! -d $mosh_installation_dir ]; then
 fi
 
 if ! dpkg -l | grep vagrant > /dev/null 2>&1; then
-    filename=$(mktemp)
-    if [ ! $? ]; then
-        echo "cannot create tempfile ${filename}"
-        exit 1
-    fi
-    echo "Using ${filename} as the temporary filename"
+    filename=/tmp/vagrant.deb
     curl 'http://files.vagrantup.com/packages/5ab18a4f114c2bcbcce67db40b18d026264f428c/vagrant_1.0.4_x86_64.deb' -o ${filename}
     if ! sudo dpkg -i ${filename}; then
         echo "Cannot install vagrant"
