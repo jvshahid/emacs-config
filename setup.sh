@@ -42,7 +42,7 @@ if ! grep -R linux/chrome /etc/apt/sources.list.d/ > /dev/null 2>&1; then
     sudo apt-get update
 fi
 
-sudo apt-get install \
+sudo apt-get --ignore-missing install \
     emacs-snapshot-el \
     emacs-snapshot-gtk \
     emacs-snapshot \
