@@ -101,7 +101,8 @@ sudo apt-get --ignore-missing install \
     libyaml-dev \
     nmap \
     openjdk-7-source \
-    openjdk-6-source
+    openjdk-6-source \
+    gnome-disk-utility
 
 # download and install synergy
 if ! dpkg -l | grep synergy > /dev/null 2>&1; then
