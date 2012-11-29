@@ -95,6 +95,8 @@ sudo apt-get --ignore-missing install \
     skype \
     postgresql \
     postgresql-client \
+    postgresql-server-dev-all \
+    postgresql-contrib \
     google-chrome-stable \
     wireshark \
     irssi \
@@ -102,7 +104,8 @@ sudo apt-get --ignore-missing install \
     nmap \
     openjdk-7-source \
     openjdk-6-source \
-    gnome-disk-utility
+    gnome-disk-utility \
+    imagemagick                 # provides handy binaries to resize (as well as other operations on) images
 
 # download and install synergy
 if ! dpkg -l | grep synergy > /dev/null 2>&1; then
