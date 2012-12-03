@@ -151,7 +151,7 @@ fi
     export MOSH_INSTALLATION='$HOME/mosh-installation'
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
     alias sbt='java -Xmx512M -jar ~/Downloads/sbt-launch-0.7.7.jar'
-    alias ec='emacsclient --no-wait'
+    alias ec_internal='emacsclient --no-wait'
     alias go='gnome-open'
     alias gst="git status"
     alias redis="~/Downloads/redis-2.4.5/src/redis-cli"
@@ -180,6 +180,15 @@ fi
     #####                                 End of my own modifications                           #####
     ####################################################################################################
 fi
+
+function ec {
+    IFS=":" read -ra file_and_linenumber <<< "$@"
+    if [ ${#file_and_linenumber[@]} -eq 1 ]; then
+        ec_internal ${file_and_linenumber[0]}
+    else
+        ec_internal -e "(progn (find-file \"${file_and_linenumber[0]}\") (goto-line ${file_and_linenumber[1]}))"
+    fi
+}
 
 function millis_to_date {
     if [ $# -ne 1 ]; then
