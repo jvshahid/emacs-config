@@ -105,7 +105,8 @@ sudo apt-get --ignore-missing install \
     openjdk-7-source \
     openjdk-6-source \
     gnome-disk-utility \
-    imagemagick                 # provides handy binaries to resize (as well as other operations on) images
+    imagemagick \
+    git-svn
 
 # download and install synergy
 if ! dpkg -l | grep synergy > /dev/null 2>&1; then
