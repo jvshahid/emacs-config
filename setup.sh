@@ -106,7 +106,8 @@ sudo apt-get --ignore-missing install \
     openjdk-6-source \
     gnome-disk-utility \
     imagemagick \
-    git-svn
+    git-svn \
+    tofrodos
 
 # download and install synergy
 if ! dpkg -l | grep synergy > /dev/null 2>&1; then
