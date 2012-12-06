@@ -20,6 +20,10 @@
   st = status
 
   c  = commit --verbose
+
+  f  = fetch --all --tags
+
+  p  = push --tags
 [core]
   editor = emacs -nw
 [diff]
