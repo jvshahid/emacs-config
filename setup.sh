@@ -109,6 +109,11 @@ sudo apt-get --ignore-missing install \
     git-svn \
     tofrodos
 
+# download and setup repo (the android repo management script)
+[ -d ~/bin ] || mkdir ~/bin
+curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+
 # download and install synergy
 if ! dpkg -l | grep synergy > /dev/null 2>&1; then
     pushd /tmp

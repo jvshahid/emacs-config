@@ -146,7 +146,7 @@ fi
         export PS1="${XTERM_PS1}${PS1}"
     fi
     export JAVA_FONTS=$HOME/.fonts/
-    export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/
+    export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$JAVA_HOME/bin:$PATH:$HOME/Documents/:$HOME/bin
     export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
     export MOSH_INSTALLATION='$HOME/mosh-installation'
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
