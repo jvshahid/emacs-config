@@ -115,6 +115,8 @@ curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 cp generate_tags.sh ~/bin/
 chmod a+x ~/bin/generate_tags.sh
+cp cleanup_shit.sh ~/bin/
+chmod a+x ~/bin/cleanup_shit.sh
 
 # download and install synergy
 if ! dpkg -l | grep synergy > /dev/null 2>&1; then
