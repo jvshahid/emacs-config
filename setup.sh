@@ -107,7 +107,11 @@ sudo apt-get --ignore-missing install \
     gnome-disk-utility \
     imagemagick \
     git-svn \
-    tofrodos
+    tofrodos \
+    libcurl4-gnutls-dev \
+    apache2 \
+    phantomjs \
+    coffeescript
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
