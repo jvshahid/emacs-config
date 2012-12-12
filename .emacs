@@ -5,6 +5,7 @@
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
 (add-to-list 'load-path "~/.emacs.d/libs/edit-emacs-server")
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
+(load-file "~/.emacs.d/libs/textile-mode/textile-mode.el")
 (load-file "~/.emacs.d/libs/crontab/crontab.el")
 
 ;; load haskell mode
