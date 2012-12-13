@@ -35,6 +35,10 @@ if ! grep 'DO NOT REPLACE' ~/.bashrc > /dev/null 2>&1; then
     . ~/.bashrc
 fi
 
+if [ ! -f ~/.ackrc ]; then
+    ln -s $config_repo/.ackrc ~/.ackrc
+fi
+
 # add google chrome ppa
 if ! grep -R linux/chrome /etc/apt/sources.list.d/ > /dev/null 2>&1; then
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
