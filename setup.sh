@@ -115,7 +115,8 @@ sudo apt-get --ignore-missing install \
     libcurl4-gnutls-dev \
     apache2 \
     phantomjs \
-    coffeescript
+    coffeescript \
+    vagrant
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
@@ -160,16 +161,6 @@ if [ ! -d $mosh_installation_dir ]; then
     ./configure --prefix=$mosh_installation_dir && make && make install
     popd
     popd
-fi
-
-if ! dpkg -l | grep vagrant > /dev/null 2>&1; then
-    filename=/tmp/vagrant.deb
-    curl 'http://files.vagrantup.com/packages/5ab18a4f114c2bcbcce67db40b18d026264f428c/vagrant_1.0.4_x86_64.deb' -o ${filename}
-    if ! sudo dpkg -i ${filename}; then
-        echo "Cannot install vagrant"
-        exit 1
-    fi
-    rm $filename
 fi
 
 # setup the ensime git repo
