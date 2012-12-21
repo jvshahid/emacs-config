@@ -3,12 +3,10 @@
   name = John Shahid
 [alias]
   l  = log --decorate=short --graph
-  lc = log --decorate=short --graph --color -w
-  lcw = log --decorate=short --graph --color-words -w
+  lw = log --decorate=short --graph -w
 
   d = diff
-  dc = diff --color -w
-  dcw = diff --color-words -w
+  dw = diff --color-words -w
 
 	prb = pull --rebase
 
@@ -20,8 +18,6 @@
   st = status
 
   c  = commit --verbose
-
-  f  = fetch --all --tags
 
   p  = push --tags
 [core]
