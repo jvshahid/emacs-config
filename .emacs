@@ -21,7 +21,6 @@
 ;; (global-set-key (kbd "C-c t") 'fold-dwim-toggle)
 ;; (global-set-key (kbd "C-c e") 'fold-dwim-hide-all)
 ;; (global-set-key (kbd "C-c s") 'fold-dwim-show-all)
-(global-set-key (kbd "C-c , <") 'semantic-ia-fast-jump)
 
 (global-set-key (kbd "C-c C-x l") 'windmove-left) ; move to left windnow
 (global-set-key (kbd "C-c C-x r") 'windmove-right) ; move to left windnow
