@@ -118,23 +118,11 @@ sudo apt-get --ignore-missing install \
     apache2 \
     phantomjs \
     coffeescript \
-    vagrant \
     oracle-java7-installer \
     ia32-sun-java6-bin \
     cifs-utils \
-    valgrind
-
-# download virtual box
-if ! dpkg -l | grep ii | grep virtualbox > /dev/null 2>&1 ; then
-    echo "Installing virtual box"
-    pushd /tmp
-    rm virtualbox-4.2_4.2.4-81684~Ubuntu~quantal_amd64.deb
-    wget http://download.virtualbox.org/virtualbox/4.2.4/virtualbox-4.2_4.2.4-81684~Ubuntu~quantal_amd64.deb && \
-        sudo apt-get install libqt4-opengl \
-        sudo dpkg -i virtualbox-4.2_4.2.4-81684~Ubuntu~quantal_amd64.deb
-    popd
-fi
-
+    valgrind \
+    virtualbox
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
