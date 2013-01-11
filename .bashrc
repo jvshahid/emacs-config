@@ -163,6 +163,7 @@ fi
     alias xclipc='xclip -selection clipboard'
     alias gen_tags="$HOME/Documents/generate_tags.sh"
     alias mosh="$MOSH_INSTALLATION/bin/mosh --client=$MOSH_INSTALLATION/bin/mosh-client --server='$MOSH_INSTALLATION/bin/mosh-server'"
+    alias mount_optimus="sudo mount -t cifs -o uid=jvshahid,gid=jvshahid,forceuid,user=,password=,rw,nounix,noperm //192.168.0.12/LG-NETWORKFOLDER /media/optimus/"
     export EDITOR='emacsclient'
 
     # Set CDPATH to my Documents directory
