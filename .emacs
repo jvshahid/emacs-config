@@ -12,6 +12,7 @@
 (load-file "~/.emacs.d/libs/haskell-mode/haskell-site-file.el")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'js-mode-hook 'subword-mode)
 
 ;; (load-file "~/.emacs.d/libs/git-commit/git-commit.el")
 ;; (load-file "~/.emacs.d/libs/fold-dwim/fold-dwim.el")
@@ -56,9 +57,11 @@
       (require 'color-theme)
       (require 'color-theme-solarized)
       (color-theme-initialize)
-      (color-theme-solarized-dark))
+      (color-theme-solarized-light))
   nil)
 (yas/global-mode 1)
+
+(desktop-save-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -187,6 +190,8 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
+(add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
+(add-to-list 'load-path "~/.emacs.d/libs/forml-mode")
 
 (require 'yaml-mode)
 (require 'haml-mode)
@@ -195,6 +200,12 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'confluence)
 (require 'pianobar)
 (setq pianobar-command "~/codez/pianobar/pianobar")
+
+(require 'forml-mode)
+(require 'coffee-mode)
+(add-hook 'coffee-mode-hook
+          (lambda()
+            (subword-mode)))
 
 (add-hook 'edit-server-start-hook
           (lambda ()
@@ -330,12 +341,8 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load-file "~/.emacs.d/libs/autopair/autopair.el")
-(load-file "~/.emacs.d/libs/cedet/common/cedet.el")
 (add-to-list 'load-path "~/.emacs.d/libs/google-c-style")
 (require 'google-c-style)
-
-;; (require 'semantic-ia)
-;; (require 'semantic-gcc)
 
 (defun c-c++-hook ()
   (autopair-mode)
@@ -344,29 +351,6 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (add-hook 'c-mode-hook 'c-c++-hook)
 (add-hook 'c++-mode-hook 'c-c++-hook)
-
-;; (semantic-load-enable-excessive-code-helpers)
-;; (setq semantic-symref-tool 'global)
-;; ;; (global-ede-mode t)
-;; (setq semantic-default-submodes
-;;       '(global-semantic-idle-scheduler-mode
-;;         global-semanticdb-minor-mode
-;;         global-semantic-idle-summary-mode
-;;         global-semantic-mru-bookmark-mode))
-;; (ede-cpp-root-project "Feedhandlers"
-;;                       :name "Feed handlers"
-;;                       :file "~/Documents/benchmark/feed-handlers/CMakeLists.txt"
-;;                       :include-path '("/include" "/schema/cpp")
-;;                       :system-include-path '("/usr/include/c++/4.4" "/usr/local/include"))
-;; (ede-cpp-root-project "Messaging"
-;;                       :name "Messaging"
-;;                       :file "~/Documents/benchmark/messaging/CMakeLists.txt"
-;;                       :include-path '("/cpp/include" "/schema/cpp")
-;;                       :system-include-path '("/usr/include/c++/4.4" "/usr/local/include" "/home/jvshahid/Downloads/jdk1.6.0_24/include/"
-;;                                              "/home/jvshahid/Downloads/jdk1.6.0_24/include/linux"))
-;; (ede-cpp-root-project "definetti"
-;;                       :name "definetii"
-;;                       :file "~/Documents/benchmark/definetti/.gitignore")
 
 (defun insert-newline-before-curlies (action pair pos-before)
   (progn
@@ -458,7 +442,6 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/libs/matlab-emacs")
 (load-library "matlab-load")
-(matlab-cedet-setup)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
