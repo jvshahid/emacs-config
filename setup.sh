@@ -25,6 +25,8 @@ add_repo ppa:cassou/emacs
 
 # add_repo ppa:ggreer/ag
 add_repo ppa:git-core/ppa
+add_repo ppa:webupd8team/java
+add_repo ppa:sun-java-community-team/sun-java6
 
 [ -a ~/.Xmodmap ] || ln -s $config_repo/`hostname`.xmodmap ~/.Xmodmap
 [ -d ~/.emacs.d ] || ln -s $config_repo ~/.emacs.d
@@ -116,7 +118,23 @@ sudo apt-get --ignore-missing install \
     apache2 \
     phantomjs \
     coffeescript \
-    vagrant
+    vagrant \
+    oracle-java7-installer \
+    ia32-sun-java6-bin \
+    cifs-utils \
+    valgrind
+
+# download virtual box
+if ! dpkg -l | grep ii | grep virtualbox > /dev/null 2>&1 ; then
+    echo "Installing virtual box"
+    pushd /tmp
+    rm virtualbox-4.2_4.2.4-81684~Ubuntu~quantal_amd64.deb
+    wget http://download.virtualbox.org/virtualbox/4.2.4/virtualbox-4.2_4.2.4-81684~Ubuntu~quantal_amd64.deb && \
+        sudo apt-get install libqt4-opengl \
+        sudo dpkg -i virtualbox-4.2_4.2.4-81684~Ubuntu~quantal_amd64.deb
+    popd
+fi
+
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
@@ -166,6 +184,22 @@ fi
 # setup the ensime git repo
 pushd $repos_dir
 [ -d ensime ] || git clone git@github.com:jvshahid/ensime.git
+[ -d coffee-mode ] || git clone git@github.com:jvshahid/coffee-mode.git
+pushd coffee-mode
+target=~/.emacs.d/libs/coffee-mode
+if [ ! -f $target/coffee-mode.el ]; then
+    mkdir -p $target
+    ln -s $PWD/coffee-mode.el $target/coffee-mode.el
+fi
+popd
+[ -d forml-mode ] || git clone git@github.com:jvshahid/forml-mode.git
+pushd forml-mode
+target=~/.emacs.d/libs/forml-mode
+if [ ! -f $target/forml-mode.el ]; then
+    mkdir -p $target
+    ln -s $PWD/forml-mode.el $target/forml-mode.el
+fi
+popd
 pushd ensime
 [ -f ./sbt ] || curl 'https://raw.github.com/paulp/sbt-extras/master/sbt' -o ./sbt
 chmod a+x ./sbt
