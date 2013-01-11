@@ -2,10 +2,10 @@
   email = jvshahid@gmail.com
   name = John Shahid
 [alias]
-  l  = log --decorate=short --graph
-  lw = log --decorate=short --graph -w
+  l  = log --decorate=short --graph -w
+  lw = log --decorate=short --graph --color-words -w
 
-  d = diff
+  d = diff -w
   dw = diff --color-words -w
 
 	prb = pull --rebase
