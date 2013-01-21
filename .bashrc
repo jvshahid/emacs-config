@@ -146,13 +146,18 @@ fi
         export PS1="${XTERM_PS1}${PS1}"
     fi
     export JAVA_FONTS=$HOME/.fonts/
-    export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$PATH:$HOME/Documents/:$HOME/bin:$HOME/bin/adt-bundle-linux/sdk/tools/:$HOME/bin/adt-bundle-linux/sdk/platform-tools:$HOME/bin/android-ndk/
+    export GOROOT=$HOME/bin/go
+    export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$PATH:$HOME/bin:$HOME/bin/android-ndk/
+    # android path
+    PATH="$PATH:$HOME/bin/adt-bundle-linux/sdk/tools/:$HOME/bin/adt-bundle-linux/sdk/platform-tools"
+    # go path
+    PATH="$PATH:$GOROOT/bin"
     export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
     export MOSH_INSTALLATION='$HOME/mosh-installation'
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
     alias sbt='java -Xmx512M -jar ~/Downloads/sbt-launch-0.7.7.jar'
     alias ec_internal='emacsclient --no-wait'
-    alias go='gnome-open'
+    alias gno='gnome-open'
     alias gst="git status"
     alias redis="~/Downloads/redis-2.4.5/src/redis-cli"
     alias be='bundle exec'
