@@ -185,6 +185,7 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Simple modes           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/libs/go")
 (add-to-list 'load-path "~/.emacs.d/libs/haml")
 (add-to-list 'load-path "~/.emacs.d/libs/protocol-buffers")
 (add-to-list 'load-path "~/.emacs.d/libs/cmake")
@@ -194,6 +195,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/forml-mode")
 
+(require 'go-mode-load)
 (require 'yaml-mode)
 (require 'haml-mode)
 (require 'cmake-mode)
