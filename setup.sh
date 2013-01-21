@@ -167,6 +167,9 @@ if [ ! -d $mosh_installation_dir ]; then
     popd
 fi
 
+# setup the go mode
+ln -s $HOME/bin/go/misc/emacs ~/.emacs.d/libs/go
+
 # setup the ensime git repo
 pushd $repos_dir
 [ -d ensime ] || git clone git@github.com:jvshahid/ensime.git
