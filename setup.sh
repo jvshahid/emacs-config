@@ -122,7 +122,9 @@ sudo apt-get --ignore-missing install \
     ia32-sun-java6-bin \
     cifs-utils \
     valgrind \
-    virtualbox
+    virtualbox \
+    cabal-install \
+    happy
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
