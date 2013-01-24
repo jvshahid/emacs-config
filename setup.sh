@@ -122,7 +122,6 @@ sudo apt-get --ignore-missing install \
     ia32-sun-java6-bin \
     cifs-utils \
     valgrind \
-    virtualbox \
     cabal-install \
     happy
 
@@ -132,6 +131,12 @@ curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 ln -s $PWD/generate_tags.sh ~/bin/
 ln -s $PWD/cleanup_shit.sh ~/bin/
+
+# download virtual box
+if ! dpkg -l | grep -v rc | grep virtualbox > /dev/null 2>&1; then
+    curl -L 'http://download.virtualbox.org/virtualbox/4.2.6/virtualbox-4.2_4.2.6-82870~Ubuntu~quantal_amd64.deb' > /tmp/virtualbox.deb
+    sudo dpkg -i /tmp/virtualbox.deb
+fi
 
 # download and install synergy
 if ! dpkg -l | grep synergy > /dev/null 2>&1; then
