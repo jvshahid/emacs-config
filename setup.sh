@@ -123,14 +123,15 @@ sudo apt-get --ignore-missing install \
     cifs-utils \
     valgrind \
     cabal-install \
-    happy
+    happy \
+    remmina
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
 curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
 chmod a+x ~/bin/repo
-ln -s $PWD/generate_tags.sh ~/bin/
-ln -s $PWD/cleanup_shit.sh ~/bin/
+ln -f -s $PWD/generate_tags.sh ~/bin/
+ln -f -s $PWD/cleanup_shit.sh ~/bin/
 
 # download virtual box
 if ! dpkg -l | grep -v rc | grep virtualbox > /dev/null 2>&1; then
