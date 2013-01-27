@@ -55,7 +55,6 @@ sudo apt-get --ignore-missing install \
     gnome-do \
     curl \
     ack-grep \
-    exuberant-ctags \
     htop \
     sysstat \
     dstat \
@@ -162,6 +161,15 @@ fi
 
 # this might fail on old distros
 sudo apt-get install openjdk-7-jdk openjdk-6-jdk
+
+# setup ctags-exuberant
+if [ ! -d $HOME/bin/ctags ]; then
+    pushd $repos_dir
+    [ -d ctags ] || git clone git@github.com:jvshahid/ctags-exuberant.git ctags
+    cd ctags-exuberant
+    autoreconf && ./configure --prefix=$HOME/bin/ctags && make -j4 && make install
+    popd
+fi
 
 # setup mosh
 mosh_installation_dir=$(eval "echo $MOSH_INSTALLATION")
