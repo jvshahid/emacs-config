@@ -76,7 +76,7 @@
  '(display-time-day-and-date t)
  '(display-time-mode t)
  '(erc-user-full-name "John Shahid")
- '(flymake-log-level 3)
+ '(flymake-log-level -1)
  '(forml-mode-flymake t)
  '(forml-mode-forml-path "/home/jvshahid/codez/forml/dist/build/forml/forml")
  '(ido-mode (quote both) nil (ido))
@@ -196,6 +196,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/forml-mode")
 
 (require 'go-mode-load)
+(add-hook 'go-mode-hook
+          (lambda ()
+            (subword-mode)))
+
 (require 'yaml-mode)
 (require 'haml-mode)
 (require 'cmake-mode)
