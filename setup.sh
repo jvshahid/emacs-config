@@ -48,7 +48,7 @@ if ! grep -R linux/chrome /etc/apt/sources.list.d/ > /dev/null 2>&1; then
     sudo apt-get update
 fi
 
-sudo apt-get --ignore-missing install \
+sudo apt-get install --ignore-missing \
     emacs-snapshot-el \
     emacs-snapshot-gtk \
     emacs-snapshot \
@@ -123,7 +123,9 @@ sudo apt-get --ignore-missing install \
     valgrind \
     cabal-install \
     happy \
-    remmina
+    remmina \
+    freetds-dev \
+    bzr
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
