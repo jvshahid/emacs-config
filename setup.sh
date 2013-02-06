@@ -127,7 +127,8 @@ sudo apt-get install --ignore-missing \
     freetds-dev \
     bzr \
     stunnel \
-    wdiff
+    wdiff \
+    traceroute
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
