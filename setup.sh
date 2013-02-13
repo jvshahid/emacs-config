@@ -133,7 +133,9 @@ sudo apt-get install --ignore-missing \
     bzr \
     stunnel \
     wdiff \
-    traceroute
+    traceroute \
+    zsh \
+    zsh-doc
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin

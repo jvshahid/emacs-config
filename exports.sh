@@ -1,4 +1,4 @@
-if [ "x$JAVA_HOME" == "x" ]; then
+if [[ "x$JAVA_HOME" == "x" ]]; then
     if which java > /dev/null 2>&1; then
         export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
     else

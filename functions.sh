@@ -16,12 +16,29 @@ CDPATH=.:$document_with_colons
 # disable terminal xon/xoff to be able to search forward
 stty -ixon
 
-function ec {
-    IFS=":" read -ra file_and_linenumber <<< "$@"
-    if [ ${#file_and_linenumber[@]} -eq 1 ]; then
-        ec_internal ${file_and_linenumber[0]}
+function is_zsh {
+    if [[ "x$(ps -p $$ | tail -n1 | awk '{print $4}')" == "xzsh" ]]; then
+        return 0
     else
-        ec_internal -e "(progn (find-file \"${file_and_linenumber[0]}\") (goto-line ${file_and_linenumber[1]}))"
+        return 1
+    fi
+}
+
+function ec {
+    args="-ra"
+    file_index=0
+    line_index=1
+    if is_zsh; then
+        args="-rA"
+        file_index=1
+        line_index=2
+    fi
+    IFS=":" read $args file_and_linenumber <<< "$@"
+    if [ ${#file_and_linenumber[@]} -eq 1 ]; then
+        ec_internal ${file_and_linenumber[$file_index]}
+    else
+        echo "${file_and_linenumber[$file_index]}"
+        ec_internal -e "(progn (find-file \"${file_and_linenumber[$file_index]}\") (goto-line ${file_and_linenumber[$line_index]}))"
     fi
 }
 
@@ -64,8 +81,12 @@ function print_header {
     done
 }
 
+function git_root_dir {
+    git rev-parse --show-toplevel
+}
+
 function repo_home {
-    cd $(dirname $(__gitdir))
+    cd $(git_root_dir)
 }
 
 function get_lvc_data() {
