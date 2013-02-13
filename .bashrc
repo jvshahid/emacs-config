@@ -109,157 +109,21 @@ if [ -n "$PS1" ]; then
     fi
 
 
+
     ####################################################################################################
     #####                                 These are my own modifications                           #####
     ####################################################################################################
 
-    PS1='$(
-if [[ -n "$(__git_ps1)" ]]; then
-    DIR_NAME=$(readlink -f $(dirname $(__gitdir)))
-    REPO=$(basename $DIR_NAME)
-    CWD=$PWD
-    git rev-parse --verify refs/stash > /dev/null 2>&1 && STATUS="S"
-    git diff --quiet --no-ext-diff || STATUS="$STATUS*"
-    git diff-index --cached --quiet --no-ext-diff HEAD > /dev/null 2>&1 || STATUS="$STATUS+"
-    if [[ -n $(git ls-files --others --exclude-standard) ]]; then STATUS="$STATUS%"; fi
-    if [[ -n "$STATUS" ]]; then STATUS=" $STATUS"; fi
-    if [[ "x$CWD" == "x$DIR_NAME" ]]; then
-       echo "\u@\h [\[\033[1;34m\]GIT $REPO\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS] \n\$ ";
-    else
-       echo "\u@\h [\[\033[1;34m\]GIT $REPO [${PWD##$DIR_NAME}]\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS] \n\$ ";
-    fi
-else
-    echo "\u@\h [\w] \n$ "
-fi
-   )'
-    if [ "x$JAVA_HOME" == "x" ]; then
-        if which java > /dev/null 2>&1; then
-            export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
-        else
-            export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
-        fi
-    fi
-    shift_to_titlebar='\[\e]0;'
-    shift_to_tty='\a\]'
-    export XTERM_PS1="${shift_to_titlebar}\h:\w${shift_to_tty}"
-    if [[ ${EMACS} != 't' ]] ; then
-        export PS1="${XTERM_PS1}${PS1}"
-    fi
-    export JAVA_FONTS=$HOME/.fonts/
-    export GOROOT=$HOME/bin/go
-    export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$PATH:$HOME/bin:$HOME/bin/android-ndk/
-    # android path
-    PATH="$PATH:$HOME/bin/adt-bundle-linux/sdk/tools/:$HOME/bin/adt-bundle-linux/sdk/platform-tools"
-    # go path
-    PATH="$PATH:$GOROOT/bin"
-    export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
-    export MOSH_INSTALLATION='$HOME/mosh-installation'
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-    alias sbt='java -Xmx512M -jar ~/Downloads/sbt-launch-0.7.7.jar'
-    alias ec_internal='emacsclient --no-wait'
-    alias gno='gnome-open'
-    alias gst="git status"
-    alias redis="~/Downloads/redis-2.4.5/src/redis-cli"
-    alias be='bundle exec'
-    alias bi='bundle install'
-    alias bu='bundle update'
-    alias ack=ack-grep
-    alias run_query=~/Documents/benchmark/one-tick-scripts/run_query.sh
-    alias xclipc='xclip -selection clipboard'
-    alias gen_tags="$HOME/Documents/generate_tags.sh"
-    alias mosh="$MOSH_INSTALLATION/bin/mosh --client=$MOSH_INSTALLATION/bin/mosh-client --server='$MOSH_INSTALLATION/bin/mosh-server'"
-    alias wdiff="wdiff -n -w $'\033[1;31m' -x $'\033[0m' -y $'\033[1;34m' -z $'\033[0m'"
-    export EDITOR='emacsclient'
-
-    function mount_optimus() {
-        if [ "$#" -ne 1 ]; then
-            echo "Usage: mount_optimus ip_address"
-            return 1;
-        fi
-        sudo mount -t cifs -o uid=jvshahid,gid=jvshahid,forceuid,user=,password=,rw,nounix,noperm //$1/LG-NETWORKFOLDER /media/optimus/
-    }
-    # Set CDPATH to my Documents directory
-    document=($HOME/codez)
-    IFS=':'
-    document_with_colons="${document[*]}"
-    unset IFS
-
-    CDPATH=.:$document_with_colons
-
-    # disable terminal xon/xoff to be able to search forward
-    stty -ixon
+    source $HOME/alias.sh
+    source $HOME/exports.sh
+    source $HOME/functions.sh
+    source $HOME/prompt.sh
 
     ####################################################################################################
     #####                                 End of my own modifications                           #####
     ####################################################################################################
+
 fi
-
-function ec {
-    IFS=":" read -ra file_and_linenumber <<< "$@"
-    if [ ${#file_and_linenumber[@]} -eq 1 ]; then
-        ec_internal ${file_and_linenumber[0]}
-    else
-        ec_internal -e "(progn (find-file \"${file_and_linenumber[0]}\") (goto-line ${file_and_linenumber[1]}))"
-    fi
-}
-
-function millis_to_date {
-    if [ $# -ne 1 ]; then
-        echo "Usage: millis_to_date <milliseconds since epoc>"
-        return 1
-    fi
-    millis=$(echo "$1 / 1000" | bc)
-    date -d @$millis
-    echo -n $(date -d @$millis) | xclipc
-}
-
-function date_to_millis {
-    if [ $# -ne 1 ]; then
-        echo "Usage: date_to_millis <YYYYMMDD [HH:[MM:[SS]]]>"
-        return 1
-    fi
-    seconds=$(date -d "$1" +"%s")
-    echo "${seconds}000"
-    echo -n "${seconds}000" | xclipc
-}
-
-function print_header {
-    screen_rows=$(tput lines)
-    read header
-    echo "$header"
-    if [[ $? -ne 0 ]]; then
-        echo "EOF reached while reading the header"
-        return 1
-    fi
-    count=2
-    while read line; do
-        if [[ "$count" -eq "$screen_rows" ]]; then
-            echo "$header"
-            count=2
-        fi
-        echo "$line"
-        count=$((count + 1))
-    done
-}
-
-function repo_home {
-    cd $(dirname $(__gitdir))
-}
-
-function get_lvc_data() {
-    pushd $HOME/Documents/benchmark/cache-loader-ruby
-    if [[ "$2" == "A_S_CDS" ]]; then product="ATTRIBUTION_SENSITIVITIES_CDS_CURVES"
-    elif [[ "$2" == "A_S" ]]; then product="ATTRIBUTION_SENSITIVITIES"
-    elif [[ "$2" == "A_S_IRS" ]]; then product="ATTRIBUTION_SENSITIVITIES_IRS"
-    elif [[ "$2" == "A_R" ]]; then product="ATTRIBUTION_REALTIME"
-    elif [[ "$2" == "A_R_IRS" ]]; then product="ATTRIBUTION_REALTIME_IRS"
-    elif [[ "$2" == "A_R_CDS" ]]; then product="ATTRIBUTION_REALTIME_CDS_CURVES"
-    else product=$2
-    fi
-    $HOME/Documents/benchmark/cache-loader-ruby/scripts/get_cached_values.rb $1 $product $3 $4
-    popd
-}
-alias get_url=$HOME/Documents/benchmark/cache-loader-ruby/scripts/convert_log_to_url.rb
 
 # Setup the less colors
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking

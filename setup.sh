@@ -37,6 +37,11 @@ if ! grep 'DO NOT REPLACE' ~/.bashrc > /dev/null 2>&1; then
     . ~/.bashrc
 fi
 
+ln -f -s $config_repo/alias.sh $HOME/
+ln -f -s $config_repo/exports.sh $HOME/
+ln -f -s $config_repo/functions.sh $HOME/
+ln -f -s $config_repo/prompt.sh $HOME/
+
 if [ ! -f ~/.ackrc ]; then
     ln -s $config_repo/.ackrc ~/.ackrc
 fi
