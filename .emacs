@@ -8,6 +8,8 @@
 (load-file "~/.emacs.d/libs/textile-mode/textile-mode.el")
 (load-file "~/.emacs.d/libs/crontab/crontab.el")
 
+(add-hook 'markdown-mode-hook 'turn-on-orgtbl)
+
 ;; load haskell mode
 (load-file "~/.emacs.d/libs/haskell-mode/haskell-site-file.el")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
