@@ -189,7 +189,6 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Simple modes           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/go")
 (add-to-list 'load-path "~/.emacs.d/libs/haml")
 (add-to-list 'load-path "~/.emacs.d/libs/protocol-buffers")
 (add-to-list 'load-path "~/.emacs.d/libs/cmake")
@@ -203,12 +202,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
-
-(require 'go-mode-load)
-(add-hook 'before-save-hook #'gofmt-before-save)
-(add-hook 'go-mode-hook
-          (lambda ()
-            (subword-mode)))
 
 (require 'yaml-mode)
 (require 'haml-mode)
@@ -239,6 +232,25 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setenv "GOROOT" (file-truename "~/bin/go"))
+(add-to-list 'load-path "~/.emacs.d/libs/go")
+
+(require 'go-mode-load)
+(add-hook 'before-save-hook #'gofmt-before-save)
+(add-hook 'after-save-hook
+          (lambda ()
+              (when (eq major-mode 'go-mode) (flymake-start-syntax-check))))
+(add-hook 'go-mode-hook
+          (lambda ()
+            (subword-mode)))
+
+(defun flymake-go-init ()
+  (list (file-truename "~/codez/nitro/flymake.sh") (list (file-relative-name buffer-file-name))))
+(push '(".+\\.go$" flymake-go-init) flymake-allowed-file-name-masks)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
