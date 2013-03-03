@@ -214,27 +214,36 @@ if [ ! -d $mosh_installation_dir ]; then
 fi
 
 # setup the go mode
-ln -s $HOME/bin/go/misc/emacs ~/.emacs.d/libs/go
+ln -f -s $HOME/bin/go/misc/emacs ~/.emacs.d/libs/go
 
 # setup the ensime git repo
 pushd $repos_dir
 [ -d ensime ] || git clone git@github.com:jvshahid/ensime.git
+# coffee mode
 [ -d coffee-mode ] || git clone git@github.com:jvshahid/coffee-mode.git
 pushd coffee-mode
+git pull --rebase
 target=~/.emacs.d/libs/coffee-mode
-if [ ! -f $target/coffee-mode.el ]; then
-    mkdir -p $target
-    ln -s $PWD/coffee-mode.el $target/coffee-mode.el
-fi
+[ -d $target ] || mkdir -p $target
+ln -s -f $PWD/coffee-mode.el $target/
 popd
+# lua mode
+[ -d lua-mode ] || git clone git://github.com/immerrr/lua-mode.git
+pushd lua-mode
+git pull --rebase
+target=~/.emacs.d/libs/lua-mode
+[ -d $target ] || mkdir -p $target
+ln -s -f $PWD/lua-mode.el $target/
+popd
+# forml mode
 [ -d forml-mode ] || git clone git@github.com:jvshahid/forml-mode.git
 pushd forml-mode
+git pull --rebase
 target=~/.emacs.d/libs/forml-mode
-if [ ! -f $target/forml-mode.el ]; then
-    mkdir -p $target
-    ln -s $PWD/forml-mode.el $target/forml-mode.el
-fi
+[ -d $target ] || mkdir -p $target
+ln -s -f $PWD/forml-mode.el $target/
 popd
+# ensime
 pushd ensime
 [ -f ./sbt ] || curl 'https://raw.github.com/paulp/sbt-extras/master/sbt' -o ./sbt
 chmod a+x ./sbt
