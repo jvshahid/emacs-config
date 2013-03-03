@@ -247,15 +247,34 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (require 'go-mode-load)
 (add-hook 'before-save-hook #'gofmt-before-save)
-(add-hook 'after-save-hook
-          (lambda ()
-              (when (eq major-mode 'go-mode) (flymake-start-syntax-check))))
+
+(defun go-mode-flymake-hook ()
+  (when (and go-flymake-script-path (eq major-mode 'go-mode))
+              (flymake-start-syntax-check)))
+(add-hook 'after-save-hook 'go-mode-flymake-hook)
+
+(defun find-go-flymake (filename)
+  (let ((dir (file-name-directory filename))
+        (filename nil))
+    (while (and (not (string= dir "/")) (not filename))
+      (let ((filename-temp (file-truename (concat dir "/flymake.sh"))))
+        (if (file-exists-p filename-temp)
+            (setq filename filename-temp)
+            (setq dir (file-truename (concat dir "/.."))))))
+    filename))
+
+(defun go-flymake-init ()
+  (let ((path (find-go-flymake buffer-file-name)))
+    (setq-local go-flymake-script-path path)))
+
 (add-hook 'go-mode-hook
           (lambda ()
+            (go-flymake-init)
+            (go-mode-flymake-hook)
             (subword-mode)))
 
 (defun flymake-go-init ()
-  (list (file-truename "~/codez/nitro/flymake.sh") (list (file-relative-name buffer-file-name))))
+  (list go-flymake-script-path (list (file-relative-name buffer-file-name))))
 (push '(".+\\.go$" flymake-go-init) flymake-allowed-file-name-masks)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
