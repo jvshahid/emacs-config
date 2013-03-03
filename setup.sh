@@ -36,6 +36,8 @@ if [ ! -d $repos_dir ]; then
     repos_dir="$PWD/.."
 fi
 
+# first things first, get rid of that avahi
+sudo apt-get remove avahi-daemon
 
 add_pg_repo
 add_repo ppa:cassou/emacs
@@ -153,7 +155,8 @@ sudo apt-get install --ignore-missing \
     wdiff \
     traceroute \
     zsh \
-    zsh-doc
+    zsh-doc \
+    redis-server
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
