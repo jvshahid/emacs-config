@@ -41,6 +41,7 @@
 ;; (require 'project-root)
 ;; (setq project-roots
 ;;       '(("Generic workspace" :root-contains-files (".workspace"))))
+(require 'flymake)
 (require 'edit-server)
 (setq edit-server-new-frame nil)
 (edit-server-start)
@@ -317,7 +318,6 @@ If DELTA was provided it will be added to the current line's indentation."
             (ruby-electric-mode t)
             (subword-mode)))
 
-(require 'flymake)
 (defun flymake-ruby-init ()
   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
                        'flymake-create-temp-inplace))
