@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# usage example: add_repo ppa:cassou/emacs
 function add_repo {
     if [ $# -ne 1 ]; then
         echo "You should pass exactly one arg to this function, the repo ppa:... to be added"
@@ -13,6 +14,21 @@ function add_repo {
     fi
 }
 
+# add the postgresql official ubuntu repo
+function add_pg_repo {
+    wget -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+    list_file=/etc/apt/sources.list.d/pg.list
+    [ -e $list_file ] || echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" | sudo tee $list_file
+    pref_file=/etc/apt/preferences.d/pgdg.pref
+    [ -e $pref_file ] || cat <<EOF | sudo tee $pref_file
+Package: *
+Pin: release o=apt.postgresql.org
+Pin-Priority: 500
+EOF
+    sudo apt-get update
+    sudo apt-get install pgdg-keyring
+}
+
 config_repo=$(readlink -f $(dirname $0))
 repos_dir="$HOME/codez"
 
@@ -20,6 +36,8 @@ if [ ! -d $repos_dir ]; then
     repos_dir="$PWD/.."
 fi
 
+
+add_pg_repo
 add_repo ppa:cassou/emacs
 # the following ppa doesn't seem to work, this is the ag (faster ack)
 
