@@ -30,6 +30,12 @@
 (global-set-key (kbd "C-c C-x u") 'windmove-up) ; move to left windnow
 (global-set-key (kbd "C-c C-x d") 'windmove-down) ; move to left windnow
 
+(defun find-grep-current-word ()
+  (interactive)
+  (let ((word (current-word)))
+    (grep-find (concat "ack-grep --color --no-group " (current-word)))))
+(global-set-key (kbd "C-c C-a") 'find-grep-current-word) ; move to left windnow
+
 (when
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
