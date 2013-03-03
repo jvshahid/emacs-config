@@ -14,3 +14,5 @@ tramp
 **/ensime_head
 url/cookies
 *desktop*
+libs/lua-mode/
+libs/forml-mode/
