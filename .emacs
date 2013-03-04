@@ -34,7 +34,7 @@
   (interactive)
   (let ((word (read-string "search for: " (current-word)))
         (directory (read-string "in: " (file-name-directory buffer-file-name))))
-    (grep-find (concat "ack-grep --color --no-group " (current-word) " " directory))))
+    (grep-find (concat "ack-grep --color --no-group " word " " directory))))
 (global-set-key (kbd "C-c C-a") 'find-grep-current-word) ; move to left windnow
 
 (when
