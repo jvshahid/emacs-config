@@ -33,8 +33,8 @@
 (defun find-grep-current-word ()
   (interactive)
   (let ((word (read-string "search for: " (current-word)))
-        (directory (read-string "in: " (file-name-directory buffer-file-name))))
-    (grep-find (concat "ack-grep --color --no-group " word " " directory))))
+        (directory (read-directory-name "in: " default-directory)))
+    (grep-find (concat "ack-grep --color --no-group '" word "' " directory))))
 (global-set-key (kbd "C-c C-a") 'find-grep-current-word) ; move to left windnow
 
 (when
@@ -87,7 +87,7 @@
  '(display-time-day-and-date t)
  '(display-time-mode t)
  '(erc-user-full-name "John Shahid")
- '(flymake-log-level -1)
+ '(flymake-log-level 3)
  '(forml-mode-flymake t)
  '(forml-mode-forml-path "/home/jvshahid/codez/forml/dist/build/forml/forml")
  '(ido-mode (quote both) nil (ido))
