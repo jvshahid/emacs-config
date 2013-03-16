@@ -156,7 +156,9 @@ sudo apt-get install --ignore-missing \
     traceroute \
     zsh \
     zsh-doc \
-    redis-server
+    iftop \
+    nethogs \
+    markdown
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
