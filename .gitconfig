@@ -21,7 +21,7 @@
 
   p  = push --tags
 [core]
-  editor = emacs -nw
+  editor = emacs -nw --no-desktop
 [diff]
   wordRegex = [^=.,()[:space:]\"]+
 [color]
