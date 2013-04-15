@@ -14,3 +14,5 @@ alias wdiff="wdiff -n -w $'\033[1;31m' -x $'\033[0m' -y $'\033[1;34m' -z $'\033[
 alias ll='ls -l -a --color'
 # dsh interactive, wait for new commands and execute them
 alias dshi="dsh -i -c -M"
+# if you want to filter by port number add 'port 80' to the end
+alias tcpdump_print="tcpdump -nnXSs 0"
