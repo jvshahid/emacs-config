@@ -158,7 +158,15 @@ sudo apt-get install --ignore-missing \
     zsh-doc \
     iftop \
     nethogs \
-    markdown
+    markdown \
+    clusterssh \
+    graphviz
+
+# setup gdb to save history
+cat >> $HOME/.gdbinit <<EOF
+set history filename ~/.gdb_history
+set history save
+EOF
 
 # download and setup repo (the android repo management script)
 [ -d ~/bin ] || mkdir ~/bin
