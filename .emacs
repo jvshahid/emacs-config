@@ -37,6 +37,17 @@
     (grep-find (concat "ack-grep --color --no-group '" word "' " directory))))
 (global-set-key (kbd "C-c C-g") 'find-grep-current-word) ; move to left windnow
 
+(defun refresh-tags ()
+  (interactive)
+  (let ((refresh-tags-sh (find-prog buffer-file-name "refresh_tags.sh")))
+    (if refresh-tags-sh
+        (progn
+          (unless (= 0 (call-process-shell-command refresh-tags-sh))
+            (error "process exit with non zero exit code"))))))
+
+(global-set-key (kbd "C-c C-t") 'refresh-tags) ; move to left windnow
+
+
 (when
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
@@ -258,10 +269,13 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'after-save-hook 'go-mode-flymake-hook)
 
 (defun find-go-flymake (filename)
+  (find-prog filename "flymake.sh"))
+
+(defun find-prog (filename program)
   (let ((dir (file-name-directory filename))
         (filename nil))
     (while (and (not (string= dir "/")) (not filename))
-      (let ((filename-temp (file-truename (concat dir "/flymake.sh"))))
+      (let ((filename-temp (file-truename (concat dir "/" program))))
         (if (file-exists-p filename-temp)
             (setq filename filename-temp)
             (setq dir (file-truename (concat dir "/.."))))))
