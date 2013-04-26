@@ -42,7 +42,8 @@
   (let ((refresh-tags-sh (find-prog buffer-file-name "refresh_tags.sh")))
     (if refresh-tags-sh
         (progn
-          (unless (= 0 (call-process-shell-command refresh-tags-sh))
+          (if (= 0 (call-process-shell-command refresh-tags-sh))
+              (message "finished refreshing the tags")
             (error "process exit with non zero exit code"))))))
 
 (global-set-key (kbd "C-c C-t") 'refresh-tags) ; move to left windnow
