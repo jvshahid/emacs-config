@@ -35,7 +35,7 @@
   (let ((word (read-string "search for: " (current-word)))
         (directory (read-directory-name "in: " default-directory)))
     (grep-find (concat "ack-grep --color --no-group '" word "' " directory))))
-(global-set-key (kbd "C-c C-g") 'find-grep-current-word) ; move to left windnow
+(global-set-key (kbd "C-c C-g") 'find-grep-current-word)
 
 (defun refresh-tags ()
   (interactive)
@@ -467,7 +467,7 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Clojure mode           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+(add-hook 'clojure-mode-hook 'subword-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         MaGit mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -523,3 +523,6 @@ If DELTA was provided it will be added to the current line's indentation."
   (interactive)
   (revert-buffer-with-coding-system 'us-ascii-dos))
 (put 'narrow-to-region 'disabled nil)
+
+(set-face-attribute 'flymake-errline nil :underline "red" :background nil)
+(set-face-attribute 'flymake-warnline nil :underline "blue" :background nil)
