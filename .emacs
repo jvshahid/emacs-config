@@ -44,11 +44,22 @@
         (progn
           (if (= 0 (call-process-shell-command refresh-tags-sh))
               (message "finished refreshing the tags")
-            (error "process exit with non zero exit code"))))
-    (error "Couldn't find refresh_tags.sh in any directory above %s" buffer-file-name)))
+            (error "process exit with non zero exit code")))
+      (error "Couldn't find refresh_tags.sh in any directory above %s" buffer-file-name))))
 
 (global-set-key (kbd "C-c C-t") 'refresh-tags) ; move to left windnow
 
+(defun my-ido-find-tag ()
+  "Find a tag using ido"
+  (interactive)
+  (tags-completion-table)
+  (let (tag-names)
+    (mapatoms (lambda (x)
+                (push (prin1-to-string x t) tag-names))
+              tags-completion-table)
+    (etags-select-find (ido-completing-read "Tag: " tag-names nil nil (current-word)))))
+
+(global-set-key (kbd "M-.") 'my-ido-find-tag)
 
 (when
     (load
