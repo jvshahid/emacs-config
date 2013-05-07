@@ -59,7 +59,8 @@
               tags-completion-table)
     (etags-select-find (ido-completing-read "Tag: " tag-names nil nil (current-word)))))
 
-(global-set-key (kbd "M-.") 'my-ido-find-tag)
+(global-set-key (kbd "M-.") 'etags-select-find-tag)
+(setq completion-ignore-case t)
 
 (when
     (load
@@ -112,6 +113,7 @@
  '(display-time-day-and-date t)
  '(display-time-mode t)
  '(erc-user-full-name "John Shahid")
+ '(etags-select-use-short-name-completion t)
  '(flymake-log-level 3)
  '(forml-mode-flymake t)
  '(forml-mode-forml-path "/home/jvshahid/codez/forml/dist/build/forml/forml")
@@ -126,6 +128,7 @@
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(tab-width 2)
+ '(tags-case-fold-search t)
  '(tool-bar-mode nil)
  '(x-select-enable-clipboard t))
 
