@@ -34,7 +34,7 @@
   (interactive)
   (let ((word (read-string "search for: " (current-word)))
         (directory (read-directory-name "in: " default-directory)))
-    (grep-find (concat "ack-grep --color --no-group '" word "' " directory))))
+    (grep-find (concat "ack-grep --color --no-group " (shell-quote-argument word) " " directory))))
 (global-set-key (kbd "C-c C-g") 'find-grep-current-word)
 
 (defun refresh-tags ()
