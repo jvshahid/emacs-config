@@ -11,17 +11,20 @@ function show_usage () {
     exit 1
 }
 
-if [ $# -ne 1 ]; then
+if [ $# -lt 1 ]; then
     show_usage
 fi
 
-case $1 in
-    Java|java) languages="Java,Ant";;
-    Ruby|ruby) languages="Ruby";;
-    C++|c++)   languages="C,C++";;
-    GO)        languages="GO,C,C++";;
-    *)         show_usage;;
-esac
+while [ $# -ge 1 ]; do
+    case $1 in
+        Java|java) languages="$languages,Java,Ant";;
+        Ruby|ruby) languages="$languages,Ruby";;
+        C++|c++)   languages="$languages,C,C++";;
+        GO)        languages="$languages,GO,C,C++";;
+        *)         show_usage;;
+    esac
+    shift
+done
 
 language_definitions="--langdef=scala --langmap=scala:.scala --langdef=otq --langmap=otq:.otq --langdef=xml --langmap=xml:.xml --langdef=properties --langmap=properties:.properties"
 
