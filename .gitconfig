@@ -4,6 +4,7 @@
 [alias]
   l  = log --decorate=short --graph -w
   lw = log --decorate=short --graph --color-words -w
+  ls = log --graph --decorate=short --pretty=\"format:[%Cred%h%Creset]%d %ar by %Cblue%an%Creset. %Cgreen%s%Creset\"
 
   d = diff -w
   dw = diff --color-words -w
