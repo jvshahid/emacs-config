@@ -160,7 +160,9 @@ sudo apt-get install --ignore-missing \
     nethogs \
     markdown \
     clusterssh \
-    graphviz
+    graphviz \
+    openconnect \
+    network-manager-openconnect
 
 # setup gdb to save history
 cat >> $HOME/.gdbinit <<EOF
