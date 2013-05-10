@@ -335,7 +335,7 @@ Use the C-u prefix to prevent the etags-select window from closing."
         (message "Please put the cursor on a line with the tag.")
       (setq tag-point (point))
       (setq overlay-arrow-position (point-marker))
-      (re-search-forward "\\]\\s-+\\(.+?\\)\\s-*$")
+      (re-search-forward "\\]\\s-+\\(.+?\\)\\s-*$" nil t)
       (setq text-to-search-for (regexp-quote (etags-select-match-string 1)))
       (goto-char tag-point)
       (re-search-backward "^In: \\(.*\\)$")
@@ -364,7 +364,7 @@ Use the C-u prefix to prevent the etags-select window from closing."
           (setq search-count 1))
         (setq search-count (1- search-count)))
       (beginning-of-line)
-      (re-search-forward tagname)
+      (re-search-forward tagname nil t)
       (goto-char (match-beginning 0))
       (when etags-select-highlight-tag-after-jump
         (etags-select-highlight (match-beginning 0) (match-end 0))))))
