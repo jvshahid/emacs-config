@@ -68,7 +68,6 @@ packages = [
             'phantomjs',
             'coffeescript',
             'oracle-java7-installer',
-            'ia32-sun-java6-bin',
             'cifs-utils',
             'valgrind',
             'cabal-install',
@@ -91,6 +90,10 @@ packages = [
             'openjdk-7-jdk',
             'openjdk-6-jdk'
            ]
+
+if arch = node['kernel']['machine'] =~ /x86_64/
+  packages << 'ia32-sun-java6-bin'
+end
 
 if node[:development][:lenovo]
   packages << "bumblebee"
