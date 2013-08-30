@@ -19,3 +19,4 @@ libs/forml-mode/
 swank/
 chef-client-running.pid
 chef-stacktrace.out
+remote_file/
