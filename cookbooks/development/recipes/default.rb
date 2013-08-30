@@ -22,6 +22,7 @@ include_recipe "development::synergy"
 include_recipe "development::packages"
 include_recipe "development::pianobar"
 include_recipe "development::quicktile"
+include_recipe "development::wireshark"
 
 # # run apt-get upgrade to get the latest packages
 # bash "upgrad" do
