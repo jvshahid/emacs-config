@@ -16,3 +16,5 @@ alias ll='ls -l -a --color'
 alias dshi="dsh -i -c -M"
 # if you want to filter by port number add 'port 80' to the end
 alias tcpdump_print="tcpdump -nnXSs 0"
+# show changes on this branch since it was forked from master
+alias gdbr="git diff $(git merge-base HEAD master)"
