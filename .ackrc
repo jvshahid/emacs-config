@@ -1,2 +1,3 @@
 # add coffescript
 --type-set=coffee=.coffee
+--type-set=haml=.haml
