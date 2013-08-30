@@ -6,7 +6,7 @@ end
 
 directory "#{ENV['HOME']}/bin"
 
-files = ['alias.sh', 'functions.sh', 'prompt.sh', '.ackrc', '.gdbinit', '.zshrc', 'bin/generate_tags.sh',
+files = ['alias.sh', 'functions.sh', 'exports.sh', 'prompt.sh', '.ackrc', '.gdbinit', '.zshrc', 'bin/generate_tags.sh',
          'bin/cleanup_shit.sh', '.emacs', '.gitconfig']
 files.each do |file|
   cookbook_file "#{ENV['HOME']}/#{file}"
