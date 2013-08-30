@@ -297,14 +297,6 @@ if [ ! -d $repos_dir/pianobar ]; then
     popd
 fi
 
-# create the generate tags script
-if [ ! -f ~/Documents/generate_tags.sh ]; then
-    cat > ~/Documents/generate_tags.sh <<EOF
-find . -print0 -name *.cpp -or -name *.java -or -name *.rb | xargs --null etags
-EOF
-    chmod a+x ~/Documents/generate_tags.sh
-fi
-
 # setup quicktile
 if [ ! -d $repos_dir/quicktile ]; then
     pushd $repos_dir
