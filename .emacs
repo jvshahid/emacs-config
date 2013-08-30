@@ -57,7 +57,7 @@
     (mapatoms (lambda (x)
                 (push (prin1-to-string x t) tag-names))
               tags-completion-table)
-    (etags-select-find (ido-completing-read "Tag: " tag-names nil nil (current-word)))))
+    (etags-select-find (ido-completing-read "Tag: " tag-names nil nil nil))))
 
 (global-set-key (kbd "M-.") 'etags-select-find-tag)
 (setq completion-ignore-case t)
@@ -235,6 +235,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
 (add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
+(add-to-list 'load-path "~/.emacs.d/libs/mo-git-blame")
 (add-to-list 'load-path "~/.emacs.d/libs/forml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/lua-mode")
 
@@ -252,6 +253,7 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (require 'forml-mode)
 (require 'coffee-mode)
+(require 'mo-git-blame)
 (add-hook 'coffee-mode-hook
           (lambda()
             (subword-mode)))
@@ -284,7 +286,9 @@ If DELTA was provided it will be added to the current line's indentation."
 (defun go-mode-flymake-hook ()
   (when (and (boundp 'go-flymake-script-path)
              go-flymake-script-path
-             (eq major-mode 'go-mode))
+             (or
+              (eq major-mode 'go-mode)
+              (eq major-mode 'java-mode)))
     (flymake-start-syntax-check)))
 (add-hook 'after-save-hook 'go-mode-flymake-hook)
 
@@ -429,7 +433,12 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-hook 'java-mode-hook
           (lambda ()
+            (subword-mode)
+            (go-flymake-init)
+            (go-mode-flymake-hook)
+            (fix-flymake-face)
             (setq c-basic-offset 2)))
+(push '(".+\\.java$" flymake-go-init) flymake-allowed-file-name-masks)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -480,11 +489,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'scala-mode-hook 'scala-electric-mode)
 (add-hook 'scala-mode-hook 'hs-minor-mode)
 (add-hook 'scala-mode-hook 'turn-on-hungry-delete-mode)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          Java mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-hook 'java-mode-hook 'subword-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Clojure mode           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
