@@ -1,0 +1,1 @@
+default[:development][:lenovo] = true
