@@ -28,7 +28,7 @@
 (global-set-key (kbd "C-c C-x l") 'windmove-left) ; move to left windnow
 (global-set-key (kbd "C-c C-x r") 'windmove-right) ; move to left windnow
 (global-set-key (kbd "C-c C-x u") 'windmove-up) ; move to left windnow
-(global-set-key (kbd "C-c C-x d") 'windmove-down) ; move to left windnow
+;; (global-set-key (kbd "C-c C-x d") 'windmove-down) ; move to left windnow
 
 (defun find-grep-current-word ()
   (interactive)
@@ -275,7 +275,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setenv "GOROOT" (file-truename "~/bin/go"))
 (add-to-list 'load-path "~/.emacs.d/libs/go")
@@ -319,6 +319,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (defun flymake-go-init ()
   (list go-flymake-script-path (list (file-relative-name buffer-file-name))))
 (push '(".+\\.go$" flymake-go-init) flymake-allowed-file-name-masks)
+(global-set-key (kbd "C-c C-x d") 'godoc)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
