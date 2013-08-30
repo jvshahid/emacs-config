@@ -17,3 +17,5 @@ url/cookies
 libs/lua-mode/
 libs/forml-mode/
 swank/
+chef-client-running.pid
+chef-stacktrace.out
