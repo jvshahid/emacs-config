@@ -176,6 +176,7 @@ curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
 chmod a+x ~/bin/repo
 ln -f -s $PWD/generate_tags.sh ~/bin/
 ln -f -s $PWD/cleanup_shit.sh ~/bin/
+ln -f -s $PWD/.zshrc ~/
 
 # download virtual box
 if ! dpkg -l | grep -v rc | grep virtualbox > /dev/null 2>&1; then
