@@ -282,6 +282,13 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (require 'go-mode-load)
 (add-hook 'before-save-hook #'gofmt-before-save)
+(defun go-remove-unused-imports-before-save ()
+  (interactive)
+  (when (eq major-mode 'go-mode)
+    (message "removing unused imports")
+    (go-remove-unused-imports nil)
+    (save-buffer)))
+(add-hook 'after-save-hook #'go-remove-unused-imports-before-save)
 
 (defun go-mode-flymake-hook ()
   (when (and (boundp 'go-flymake-script-path)
