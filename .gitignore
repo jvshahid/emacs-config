@@ -20,3 +20,4 @@ swank/
 chef-client-running.pid
 chef-stacktrace.out
 remote_file/
+emacs.d/libs/go-autocomplete/

@@ -20,6 +20,18 @@ modes.each_pair do |name, url|
   end
 end
 
+directory "#{ENV['HOME']}/.emacs.d/libs/go-autocomplete" do
+  owner "jvshahid"
+end
+
+remote_filename = "https://raw.github.com/nsf/gocode/master/emacs/go-autocomplete.el"
+filename = "#{ENV['HOME']}/.emacs.d/libs/go-autocomplete/go-autocomplete.el"
+remote_file filename do
+  backup false
+  source remote_filename
+  use_last_modified true
+end
+
 bash "build ensime" do
   # TODO: port this to ruby
 

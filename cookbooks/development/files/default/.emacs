@@ -280,6 +280,11 @@ If DELTA was provided it will be added to the current line's indentation."
 (setenv "GOROOT" (file-truename "~/bin/go"))
 (add-to-list 'load-path "~/.emacs.d/libs/go")
 
+(add-to-list 'load-path "~/.emacs.d/libs/go-autocomplete")
+(require 'go-autocomplete)
+(require 'auto-complete-config)
+(add-hook 'go-mode-hook 'go-eldoc-setup)
+
 (require 'go-mode-load)
 (add-hook 'before-save-hook #'gofmt-before-save)
 (defun go-remove-unused-imports-before-save ()
