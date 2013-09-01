@@ -284,6 +284,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'go-autocomplete)
 (require 'auto-complete-config)
 (add-hook 'go-mode-hook 'go-eldoc-setup)
+(add-hook 'go-mode-hook 'auto-complete-mode)
 
 (require 'go-mode-load)
 (add-hook 'before-save-hook #'gofmt-before-save)
