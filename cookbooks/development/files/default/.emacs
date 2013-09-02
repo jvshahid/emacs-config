@@ -106,10 +106,14 @@
  '(blink-cursor-mode nil)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "gnome-open")
- '(c-default-style (quote ((java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
+ '(c-default-style
+   (quote
+    ((java-mode . "java")
+     (awk-mode . "awk")
+     (other . "gnu"))))
  '(column-number-mode t)
  '(column-number-more t)
- '(debug-on-error t)
+ '(debug-on-error nil)
  '(display-time-day-and-date t)
  '(display-time-mode t)
  '(erc-user-full-name "John Shahid")
