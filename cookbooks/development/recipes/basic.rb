@@ -1,6 +1,7 @@
 cookbook_file "#{ENV['HOME']}/.Xmodmap" do
   hostname = `hostname`.strip
   source "#{hostname}.xmodmap"
+  mode 0444
   force_unlink true
 end
 
@@ -10,7 +11,11 @@ files = ['alias.sh', 'functions.sh', 'exports.sh', 'prompt.sh', '.ackrc', '.gdbi
          'bin/cleanup_shit.sh', 'bin/setup_go_project.sh', '.emacs', '.gitconfig']
 files.each do |file|
   cookbook_file "#{ENV['HOME']}/#{file}" do
-    mode 0544 if file =~ /bin/
+    if file =~ /bin/
+      mode 0544
+    else
+      mode 0444
+    end
     owner "jvshahid"
   end
 end
