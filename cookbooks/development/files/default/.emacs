@@ -298,7 +298,6 @@ If DELTA was provided it will be added to the current line's indentation."
     (message "removing unused imports")
     (go-remove-unused-imports nil)
     (save-buffer)))
-(add-hook 'after-save-hook #'go-remove-unused-imports-before-save)
 
 (defun go-mode-flymake-hook ()
   (when (and (boundp 'go-flymake-script-path)
@@ -307,7 +306,15 @@ If DELTA was provided it will be added to the current line's indentation."
               (eq major-mode 'go-mode)
               (eq major-mode 'java-mode)))
     (flymake-start-syntax-check)))
-(add-hook 'after-save-hook 'go-mode-flymake-hook)
+(add-hook 'after-save-hook
+          (lambda ()
+            (unless (local-variable-p 'after-save-is-running)
+              (setq-local after-save-is-running nil))
+            (unless after-save-is-running
+              (setq-local after-save-is-running t)
+              (go-remove-unused-imports-before-save)
+              (go-mode-flymake-hook)
+              (setq-local after-save-is-running nil))))
 
 (defun find-go-flymake (filename)
   (find-prog filename "flymake.sh"))

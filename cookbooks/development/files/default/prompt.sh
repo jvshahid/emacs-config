@@ -32,9 +32,9 @@ if is_zsh; then
             echo "%~"
         else
             if [[ "x$CWD" == "x$DIR_NAME" ]]; then
-                echo "%B%F{blue}GIT $REPO%f%F{black} $BRANCH%f%b$STATUS";
+                echo "%B%F{blue}GIT $REPO%f%F{grey} $BRANCH%f%b$STATUS";
             else
-                echo "%B%F{blue}GIT $REPO [${CWD##$DIR_NAME}]%f%F{black} $BRANCH%f%b$STATUS";
+                echo "%B%F{blue}GIT $REPO [${CWD##$DIR_NAME}]%f%F{grey} $BRANCH%f%b$STATUS";
             fi
         fi
     }
