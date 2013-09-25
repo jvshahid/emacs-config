@@ -30,11 +30,13 @@
 (global-set-key (kbd "C-c C-x u") 'windmove-up) ; move to left windnow
 ;; (global-set-key (kbd "C-c C-x d") 'windmove-down) ; move to left windnow
 
-(defun find-grep-current-word ()
-  (interactive)
-  (let ((word (read-string "search for: " (current-word)))
-        (directory (read-directory-name "in: " default-directory)))
-    (grep-find (concat "ack-grep --color --no-group " (shell-quote-argument word) " " directory))))
+(defun find-grep-current-word (ignore-case)
+  (interactive "P")
+  (let* ((extra-arg (if ignore-case "-i " ""))
+         (prompt (if ignore-case "search for (ignore case): " "search for: "))
+         (word (read-string prompt (current-word)))
+         (directory (read-directory-name "in: " default-directory)))
+    (grep-find (concat "ack-grep --color --no-group " extra-arg (shell-quote-argument word) " " directory))))
 (global-set-key (kbd "C-c C-g") 'find-grep-current-word)
 
 (defun refresh-tags ()
