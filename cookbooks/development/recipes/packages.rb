@@ -88,7 +88,11 @@ packages = [
             'openconnect',
             'network-manager-openconnect',
             'openjdk-7-jdk',
-            'openjdk-6-jdk'
+            'openjdk-6-jdk',
+            'gcc-multilib',
+            'g++-multilib',
+            'gcc-doc',
+            'bash-doc'
            ]
 
 if arch = node['kernel']['machine'] =~ /x86_64/
