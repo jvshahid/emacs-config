@@ -1,6 +1,6 @@
 bash "fix wireshark permissions" do
   code <<-EOF
-   dpkg-reconfigure wireshark-common
+   dpkg-reconfigure -u wireshark-common
   EOF
 end
 
