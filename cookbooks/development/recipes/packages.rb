@@ -92,7 +92,11 @@ packages = [
             'gcc-multilib',
             'g++-multilib',
             'gcc-doc',
-            'bash-doc'
+            'bash-doc',
+            'nasm',
+            'gnuplot',
+            'gnuplot-doc',
+            'tcl-doc'
            ]
 
 if arch = node['kernel']['machine'] =~ /x86_64/
