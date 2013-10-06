@@ -96,7 +96,11 @@ packages = [
             'nasm',
             'gnuplot',
             'gnuplot-doc',
-            'tcl-doc'
+            'tcl-doc',
+            'bison',
+            'bison-doc',
+            'flex',
+            'flex-doc'
            ]
 
 if arch = node['kernel']['machine'] =~ /x86_64/

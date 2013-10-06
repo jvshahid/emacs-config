@@ -18,3 +18,4 @@ alias dshi="dsh -i -c -M"
 alias tcpdump_print="tcpdump -nnXSs 0"
 # show changes on this branch since it was forked from master
 alias gdbr="git diff $(git merge-base HEAD master)"
+alias sshtor='ssh -o "ProxyCommand nc -X 5 -x 127.0.0.1:9050 %h %p"'
