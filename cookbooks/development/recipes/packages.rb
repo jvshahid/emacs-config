@@ -100,7 +100,8 @@ packages = [
             'bison',
             'bison-doc',
             'flex',
-            'flex-doc'
+            'flex-doc',
+            'python-wnck'       # used by quicktile
            ]
 
 if arch = node['kernel']['machine'] =~ /x86_64/
