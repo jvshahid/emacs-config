@@ -44,4 +44,4 @@ echo "Finished setting up the new machine, have fun hacking"
 sudo iptables -A OUTPUT -p tcp -d 1.2.3.4 --dport 80 -j REJECT --reject-with tcp-reset
 
 # finally clean up shit that I don't need
-sudo apt-get autoremove
+sudo apt-get -y autoremove
