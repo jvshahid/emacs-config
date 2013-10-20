@@ -287,7 +287,6 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setenv "GOROOT" (file-truename "~/bin/go"))
 (add-to-list 'load-path "~/.emacs.d/libs/go")
-(add-hook 'go-mode-hook 'turn-on-hungry-delete-mode)
 
 (add-to-list 'load-path "~/.emacs.d/libs/go-autocomplete")
 (require 'go-autocomplete)
