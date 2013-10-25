@@ -102,7 +102,7 @@ packages = [
             'flex',
             'flex-doc',
             'python-wnck',       # used by quicktile
-            'clang'
+            'cloc'
            ]
 
 if arch = node['kernel']['machine'] =~ /x86_64/
