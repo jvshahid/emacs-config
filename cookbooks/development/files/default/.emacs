@@ -243,7 +243,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
 (add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
-;; (add-to-list 'load-path "~/.emacs.d/libs/mo-git-blame")
+(add-to-list 'load-path "~/.emacs.d/libs/mo-git-blame")
 (add-to-list 'load-path "~/.emacs.d/libs/forml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/lua-mode")
 
@@ -261,7 +261,7 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (require 'forml-mode)
 (require 'coffee-mode)
-;; (require 'mo-git-blame)
+(require 'mo-git-blame)
 (add-hook 'coffee-mode-hook
           (lambda()
             (subword-mode)))
@@ -302,29 +302,8 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (require 'go-mode-load)
 (add-hook 'before-save-hook #'gofmt-before-save)
-(defun go-remove-unused-imports-before-save ()
-  (interactive)
-  (when (eq major-mode 'go-mode)
-    (message "removing unused imports")
-    (go-remove-unused-imports nil)
-    (save-buffer)))
 
-(defun go-mode-flymake-hook ()
-  (when (and (boundp 'go-flymake-script-path)
-             go-flymake-script-path
-             (or
-              (eq major-mode 'go-mode)
-              (eq major-mode 'java-mode)))
-    (flymake-start-syntax-check)))
-(add-hook 'after-save-hook
-          (lambda ()
-            (unless (local-variable-p 'after-save-is-running)
-              (setq-local after-save-is-running nil))
-            (unless after-save-is-running
-              (setq-local after-save-is-running t)
-              (go-remove-unused-imports-before-save)
-              (go-mode-flymake-hook)
-              (setq-local after-save-is-running nil))))
+(add-hook 'after-save-hook 'go-mode-flymake-hook)
 
 (defun find-go-flymake (filename)
   (find-prog filename "flymake.sh"))

@@ -8,6 +8,7 @@ end
 
 modes = {
   'forml-mode'  => 'git@github.com:jvshahid/forml-mode.git',
+  'mo-git-blame'  => 'git://github.com/mbunkus/mo-git-blame.git',
   'rust-mode'   => 'git@github.com:jvshahid/rust.git',
   'lua-mode'    => 'git://github.com/immerrr/lua-mode.git',
   'coffee-mode' => 'git@github.com:jvshahid/coffee-mode.git',
