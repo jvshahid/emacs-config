@@ -135,3 +135,6 @@ export LESS_TERMCAP_us=$'\E[01;92;5;146m' # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# added by travis gem
+[ -f /home/jvshahid/.travis/travis.sh ] && source /home/jvshahid/.travis/travis.sh
