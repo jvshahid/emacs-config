@@ -7,8 +7,9 @@ link "#{ENV['HOME']}/.emacs.d/libs/go" do
 end
 
 modes = {
+  'git-modes'   => 'https://github.com/magit/git-modes.git',
+  'magit-mode'  => 'https://github.com/magit/magit.git',
   'forml-mode'  => 'git@github.com:jvshahid/forml-mode.git',
-  'mo-git-blame'  => 'git://github.com/mbunkus/mo-git-blame.git',
   'rust-mode'   => 'git@github.com:jvshahid/rust.git',
   'lua-mode'    => 'git://github.com/immerrr/lua-mode.git',
   'coffee-mode' => 'git@github.com:jvshahid/coffee-mode.git',

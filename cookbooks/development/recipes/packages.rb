@@ -62,6 +62,7 @@ packages = [
             'gnome-disk-utility',
             'imagemagick',
             'git-svn',
+            'git-gui',
             'tofrodos',
             'libcurl4-gnutls-dev',
             'apache2',

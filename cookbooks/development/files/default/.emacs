@@ -243,7 +243,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
 (add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/mo-git-blame")
 (add-to-list 'load-path "~/.emacs.d/libs/forml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/lua-mode")
 
@@ -261,7 +260,6 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (require 'forml-mode)
 (require 'coffee-mode)
-(require 'mo-git-blame)
 (add-hook 'coffee-mode-hook
           (lambda()
             (subword-mode)))
@@ -516,7 +514,8 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         MaGit mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/magit")
+(add-to-list 'load-path "~/.emacs.d/libs/magit-mode")
+(add-to-list 'load-path "~/.emacs.d/libs/git-modes")
 (require 'magit)
 (define-key global-map (kbd "C-x g") 'magit-status)
 (add-hook 'magit-mode-hook '(lambda ()
