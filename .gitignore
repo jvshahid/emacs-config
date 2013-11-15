@@ -21,3 +21,6 @@ chef-client-running.pid
 chef-stacktrace.out
 remote_file/
 emacs.d/libs/go-autocomplete/
+emacs.d/libs/ensime-mode/
+emacs.d/libs/git-modes/
+emacs.d/libs/magit-mode/
