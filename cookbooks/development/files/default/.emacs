@@ -460,12 +460,10 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load-file "~/.emacs.d/libs/autopair/autopair.el")
 (add-to-list 'load-path "~/.emacs.d/libs/google-c-style")
 (require 'google-c-style)
 
 (defun c-c++-hook ()
-  (autopair-mode)
   (google-set-c-style)
   (subword-mode))
 
@@ -480,16 +478,6 @@ If DELTA was provided it will be added to the current line's indentation."
              (newline-and-indent))
            (indent-for-tab-command)))))
 
-(add-hook 'c++-mode-hook
-          #'(lambda ()
-              (setq autopair-handle-action-fns
-                    (list #'autopair-default-handle-action
-                          #'insert-newline-before-curlies))))
-(add-hook 'c-mode-hook
-          #'(lambda ()
-              (setq autopair-handle-action-fns
-                    (list #'autopair-default-handle-action
-                          #'insert-newline-before-curlies))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Scala mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
