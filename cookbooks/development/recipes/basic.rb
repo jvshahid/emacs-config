@@ -1,9 +1,9 @@
-hostname = `hostname`.strip
 cookbook_file "#{ENV['HOME']}/.Xmodmap" do
+  hostname = `hostname`.strip
   source "#{hostname}.xmodmap"
   mode 0444
   force_unlink true
-end if File.exists?("#{hostname}.xmodmap")
+end
 
 directory "#{ENV['HOME']}/bin"
 
