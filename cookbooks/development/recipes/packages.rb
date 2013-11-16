@@ -104,7 +104,6 @@ packages = [
             'flex-doc',
             'python-wnck',       # used by quicktile
             'cloc',
-            'python3.2',
             'python3.3'
            ]
 
