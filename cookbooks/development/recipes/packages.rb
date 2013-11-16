@@ -107,9 +107,9 @@ packages = [
             'python3.3'
            ]
 
-if arch = node['kernel']['machine'] =~ /x86_64/
-  packages << 'ia32-sun-java6-bin'
-end
+# if arch = node['kernel']['machine'] =~ /x86_64/
+#   packages << 'ia32-sun-java6-bin'
+# end
 
 if node[:development][:lenovo]
   packages << "bumblebee"
