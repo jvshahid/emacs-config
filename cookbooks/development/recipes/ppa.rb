@@ -1,4 +1,4 @@
-ppas = ['cassou/emacs', 'git-core/ppa', 'webupd8team/java', 'sun-java-community-team/sun-java6',
+ppas = ['cassou/emacs', 'git-core/ppa', 'webupd8team/java',
         'fingerprint/fingerprint-gui']
 
 if node[:development][:lenovo]
