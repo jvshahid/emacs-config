@@ -19,3 +19,9 @@ files.each do |file|
     owner "jvshahid"
   end
 end
+
+bash "fix auto raise" do
+  code <<-EOF
+     gsettings set org.gnome.desktop.wm.preferences auto-raise true
+  EOF
+end
