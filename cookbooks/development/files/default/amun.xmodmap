@@ -1,0 +1,15 @@
+clear control
+clear mod1
+clear mod4
+
+keycode 107 = Alt_R Meta_R Alt_R Meta_R
+keycode 218 = Alt_R Meta_R Alt_R Meta_R
+
+keycode 66 = Super_L NoSymbol Super_L
+keycode 64 = Control_L Control_L Control_L Control_L
+keycode 108 = Control_R Control_R Control_R Control_R
+keycode 133 = Alt_L Meta_L Alt_L Meta_L
+
+add control = Control_L Control_R
+add mod4 = Super_L
+add mod1 = Alt_L Alt_R
