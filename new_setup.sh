@@ -4,6 +4,9 @@ cd `pwd $0`
 
 set -e
 
+# install curl if it doesn't exist
+which curl > /dev/null 2>&1 || sudo apt-get install curl
+
 if ! which rvm > /dev/null 2>&1; then
     # install rvm
     curl -L https://get.rvm.io | bash -s stable

@@ -17,6 +17,7 @@ def add_ppa ppa
     code <<-EOF
       add-apt-repository -y ppa:#{ppa}
       apt-get -y update
+      grep -R #{ppa} /etc/apt/sources.list.d/ > /dev/null 2>&1 || exit 1
     EOF
     not_if "grep -R #{ppa} /etc/apt/sources.list.d/ > /dev/null 2>&1"
   end

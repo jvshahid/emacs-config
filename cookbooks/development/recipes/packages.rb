@@ -61,6 +61,7 @@ packages = [
             'openjdk-6-source',
             'gnome-disk-utility',
             'imagemagick',
+            'git-core',
             'git-svn',
             'git-gui',
             'tofrodos',
