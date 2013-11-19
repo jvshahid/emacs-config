@@ -95,7 +95,7 @@
       (require 'color-theme)
       (require 'color-theme-solarized)
       (color-theme-initialize)
-      (color-theme-solarized-dark))
+      (color-theme-solarized-light))
   nil)
 (yas/global-mode 1)
 
