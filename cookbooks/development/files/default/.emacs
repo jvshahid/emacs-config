@@ -8,6 +8,9 @@
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
 (load-file "~/.emacs.d/libs/textile-mode/textile-mode.el")
 (load-file "~/.emacs.d/libs/crontab/crontab.el")
+(package-initialize)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
 
@@ -64,14 +67,6 @@
 (global-set-key (kbd "M-.") 'etags-select-find-tag)
 (setq completion-ignore-case t)
 
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-
 ;; (require 'project-root)
 ;; (setq project-roots
 ;;       '(("Generic workspace" :root-contains-files (".workspace"))))
@@ -97,7 +92,7 @@
       (color-theme-initialize)
       (color-theme-solarized-light))
   nil)
-(yas/global-mode 1)
+(yas-global-mode 1)
 
 (desktop-save-mode 1)
 

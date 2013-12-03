@@ -7,9 +7,10 @@ ede-projects.el
 .\#*
 ac-comphist.dat
 session.*
-elpa/javascript-2.2.1/
 .org-id-locations
-elpa/archives/
+emacs.d/elpa/javascript-2.2.1/
+emacs.d/elpa/archives/
+emacs.d/elpa/yasnippet*
 tramp
 **/ensime_head
 url/cookies
