@@ -3,7 +3,9 @@
 # [ ! -f ./exports.sh ] && echo "Please create a exports.sh file" && exit 1
 # . ./exports.sh
 
+export PATH
 export GOPATH=`pwd`
+export GOROOT
 
 pkill -f gocode
 go get -u code.google.com/p/rog-go/exp/cmd/godef
