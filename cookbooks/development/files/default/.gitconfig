@@ -2,12 +2,12 @@
   email = jvshahid@gmail.com
   name = John Shahid
 [alias]
-  l  = log --decorate=short --graph -w
-  lw = log --decorate=short --graph --color-words -w
-  ls = log --graph --decorate=short --pretty=\"format:[%Cred%h%Creset]%d %ar by %Cblue%an%Creset. %Cgreen%s%Creset\"
+  l  = log --decorate=short --graph -w --find-renames=50%
+  lw = log --decorate=short --graph --color-words -w --find-renames=50%
+  ls = log --graph --decorate=short --pretty=\"format:[%Cred%h%Creset]%d %ar by %Cblue%an%Creset. %Cgreen%s%Creset\" --find-renames=50%
 
-  d = diff -w
-  dw = diff --color-words -w
+  d = diff -w --find-renames=50%
+  dw = diff --color-words -w --find-renames=50%
 
 	prb = pull --rebase
 
@@ -27,3 +27,5 @@
   wordRegex = [^=.,()[:space:]\"]+
 [color]
 	ui = auto
+[hub]
+	protocol = ssh
