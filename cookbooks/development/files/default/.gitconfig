@@ -11,6 +11,8 @@
 
 	prb = pull --rebase
 
+  r = rebase --autosquash
+
   s = stash save
   sp = stash pop
 

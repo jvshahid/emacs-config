@@ -23,9 +23,21 @@ def add_ppa ppa
   end
 end
 
+def add_postgres
+  bash "postgres" do
+    code <<-EOF
+     echo 'deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' > /etc/apt/sources.list.d/pgdg.list
+     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+     apt-get -y update
+EOF
+  end
+end
+
 
 # TODO: add the pg repo
 
 ppas.each do |ppa|
   add_ppa ppa
 end
+
+add_postgres
