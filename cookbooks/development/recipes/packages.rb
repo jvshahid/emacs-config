@@ -105,7 +105,9 @@ packages = [
             'flex-doc',
             'python-wnck',       # used by quicktile
             'cloc',
-            'python3.3'
+            'python3.3',
+            'nfs-common',
+            'nfs-kernel-server'
            ]
 
 if node[:development][:lenovo]

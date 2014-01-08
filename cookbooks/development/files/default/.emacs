@@ -114,6 +114,7 @@
  '(display-battery-mode t)
  '(display-time-day-and-date t)
  '(display-time-mode t)
+ '(electric-indent-mode nil)
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
  '(flymake-log-level 3)
