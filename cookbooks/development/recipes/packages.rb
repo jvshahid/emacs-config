@@ -107,7 +107,9 @@ packages = [
             'cloc',
             'python3.3',
             'nfs-common',
-            'nfs-kernel-server'
+            'nfs-kernel-server',
+            'libgoogle-perftools-dev',
+            'google-perftools'
            ]
 
 if node[:development][:lenovo]
