@@ -298,8 +298,8 @@ If DELTA was provided it will be added to the current line's indentation."
 (defun go-mode-flymake-hook ()
   (when (and (boundp 'go-flymake-script-path)
              go-flymake-script-path
-             (eq major-mode 'go-mode)))
-    (flymake-start-syntax-check))
+             (eq major-mode 'go-mode))
+    (flymake-start-syntax-check)))
 (add-hook 'after-save-hook 'go-mode-flymake-hook)
 
 (defun find-go-flymake (filename)
