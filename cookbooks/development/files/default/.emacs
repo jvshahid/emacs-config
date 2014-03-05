@@ -32,6 +32,10 @@
 (global-set-key (kbd "C-c C-x u") 'windmove-up) ; move to left windnow
 ;; (global-set-key (kbd "C-c C-x d") 'windmove-down) ; move to left windnow
 
+;; bind some useful flymake commands
+(global-set-key (kbd "C-x C-g d") 'flymake-display-err-menu-for-current-line)
+(global-set-key (kbd "C-x C-g n") 'flymake-goto-next-error)
+
 (defun find-grep-current-word (ignore-case)
   (interactive "P")
   (let* ((extra-arg (if ignore-case "-i " ""))
