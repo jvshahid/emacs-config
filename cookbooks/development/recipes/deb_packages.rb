@@ -2,8 +2,7 @@
 arch = node['kernel']['machine']
 
 files = [
-  'http://synergy.googlecode.com/files/synergy-1.4.10-Linux-{arch}.deb',
-  'http://download.virtualbox.org/virtualbox/4.2.18/virtualbox-4.2_4.2.18-88780~Ubuntu~precise_amd64.deb'
+  'http://synergy.googlecode.com/files/synergy-1.4.10-Linux-{arch}.deb'
 ]
 
 files.each do |file|

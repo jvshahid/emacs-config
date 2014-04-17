@@ -8,6 +8,7 @@ end
 
 bash "build_ctags" do
   action :nothing
+  cwd "#{repos_root}/ctags"
   code <<-EOF
     autoreconf && ./configure --prefix=$HOME/bin/ctags && make -j4 && make install
   EOF

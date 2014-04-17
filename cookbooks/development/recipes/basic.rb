@@ -1,10 +1,3 @@
-cookbook_file "#{ENV['HOME']}/.Xmodmap" do
-  hostname = `hostname`.strip
-  source "#{hostname}.xmodmap"
-  mode 0444
-  force_unlink true
-end
-
 directory "#{ENV['HOME']}/bin"
 
 files = ['alias.sh', 'functions.sh', 'exports.sh', 'prompt.sh', '.ackrc', '.gdbinit', '.zshrc', 'bin/generate_tags.sh',
@@ -20,8 +13,17 @@ files.each do |file|
   end
 end
 
-bash "fix auto raise" do
-  code <<-EOF
+unless `hostname`.strip == 'isis'
+  cookbook_file "#{ENV['HOME']}/.Xmodmap" do
+    hostname = `hostname`.strip
+    source "#{hostname}.xmodmap"
+    mode 0444
+    force_unlink true
+  end
+
+  bash "fix auto raise" do
+    code <<-EOF
      gsettings set org.gnome.desktop.wm.preferences auto-raise true
   EOF
+  end
 end

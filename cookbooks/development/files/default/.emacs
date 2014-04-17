@@ -95,7 +95,6 @@
       (color-theme-initialize)
       (color-theme-solarized-light))
   nil)
-(yas-global-mode 1)
 
 (desktop-save-mode 1)
 
@@ -122,8 +121,6 @@
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
  '(flymake-log-level 3)
- '(forml-mode-flymake t)
- '(forml-mode-forml-path "/home/jvshahid/codez/forml/dist/build/forml/forml")
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(menu-bar-mode nil)
@@ -242,7 +239,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
 (add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/forml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/lua-mode")
 
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
@@ -257,7 +253,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'pianobar)
 (setq pianobar-command "~/codez/pianobar/pianobar")
 
-(require 'forml-mode)
 (require 'coffee-mode)
 (add-hook 'coffee-mode-hook
           (lambda()
@@ -278,12 +273,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
-
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          Rust mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/rust-mode")
-(require 'rust-mode)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -477,22 +466,6 @@ If DELTA was provided it will be added to the current line's indentation."
              (newline-and-indent))
            (indent-for-tab-command)))))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Scala mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/scala")
-;;(add-to-list 'load-path "~/.emacs.d/libs/ensime/elisp/")
-(add-to-list 'load-path "~/.emacs.d/libs/ensime_head/elisp/")
-
-(require 'ensime)
-(require 'scala-mode-auto)
-
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-(add-hook 'scala-mode-hook 'subword-mode)
-(add-hook 'scala-mode-hook 'scala-electric-mode)
-(add-hook 'scala-mode-hook 'hs-minor-mode)
-(add-hook 'scala-mode-hook 'turn-on-hungry-delete-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Clojure mode           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

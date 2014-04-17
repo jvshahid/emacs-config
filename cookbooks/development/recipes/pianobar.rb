@@ -8,6 +8,7 @@ end
 
 bash "build_pianobar" do
   action :nothing
+  cwd "#{repos_root}/pianobar"
   code <<-EOF
     make
   EOF
