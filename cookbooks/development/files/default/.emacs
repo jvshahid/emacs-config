@@ -296,6 +296,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
 
+(setq gofmt-command "goimports")
 (require 'go-mode-load)
 (add-hook 'before-save-hook #'gofmt-before-save)
 
