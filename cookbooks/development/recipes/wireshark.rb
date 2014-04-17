@@ -5,13 +5,13 @@
 # end
 
 group "wireshark" do
-  action :modify
+  action :create
   members "jvshahid"
   append true
 end
 
 group "vboxusers" do
-  action :modify
+  action :create
   members "jvshahid"
   append true
 end
