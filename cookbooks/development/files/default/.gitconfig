@@ -18,7 +18,7 @@
 
   co = checkout
 
-  st = status
+  st = status -s -b
 
   c  = commit --verbose
 
@@ -31,3 +31,5 @@
 	ui = auto
 [hub]
 	protocol = ssh
+[grep]
+	lineNumber = true
