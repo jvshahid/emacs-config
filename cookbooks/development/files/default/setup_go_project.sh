@@ -10,6 +10,7 @@ export GOROOT
 pkill -f gocode
 go get code.google.com/p/go.tools/cmd/goimports
 go get -u code.google.com/p/rog-go/exp/cmd/godef
+go get -u code.google.com/p/go.tools/cmd/godoc
 go get -u github.com/nsf/gocode
 cp bin/godef ~/bin/
 cp bin/gocode ~/bin/
