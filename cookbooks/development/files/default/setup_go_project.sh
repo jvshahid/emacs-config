@@ -5,6 +5,7 @@
 
 export PATH
 export GOPATH=`pwd`
+export PATH=$PATH:`pwd`/bin
 export GOROOT
 
 pkill -f gocode
