@@ -1,7 +1,7 @@
 repos_root = File.expand_path "../../../../", File.dirname(__FILE__)
 
 git "#{repos_root}/ctags" do
-  repository "git@github.com:jvshahid/ctags-exuberant.git"
+  repository "https://github.com/jvshahid/ctags-exuberant.git"
   user "jvshahid"
   notifies :run, "bash[build_ctags]"
 end

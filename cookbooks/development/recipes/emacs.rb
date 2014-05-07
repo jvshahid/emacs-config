@@ -9,7 +9,7 @@ end
 modes = {
   'git-modes'   => 'https://github.com/magit/git-modes.git',
   'magit-mode'  => 'https://github.com/magit/magit.git',
-  'lua-mode'    => 'git://github.com/immerrr/lua-mode.git',
+  'lua-mode'    => 'https://github.com/immerrr/lua-mode.git',
   'coffee-mode' => 'git@github.com:jvshahid/coffee-mode.git',
 }
 
