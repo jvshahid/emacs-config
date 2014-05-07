@@ -13,11 +13,9 @@ files.each do |file|
   end
 end
 
-def hostname
-  `hostname`.strip
-end
+hostname = `hostname`.strip
 
-unless hostname == 'amun' || hostname == 'horus'
+if hostname == 'amun' || hostname == 'horus'
   cookbook_file "#{ENV['HOME']}/.Xmodmap" do
     source "#{hostname}.xmodmap"
     mode 0444
