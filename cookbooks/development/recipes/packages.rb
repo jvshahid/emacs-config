@@ -10,7 +10,6 @@ packages = [
             'dstat',
             'iotop',
             'ant',
-            'unrar',
             'gcc',
             'g++',
             'libtool',
