@@ -82,6 +82,7 @@
 
 (global-auto-revert-mode)
 (global-hl-line-mode)
+(make-variable-buffer-local 'global-hl-line-mode)
 (setq magit-revert-item-confirm t)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
@@ -489,6 +490,8 @@ If DELTA was provided it will be added to the current line's indentation."
                                (setq show-trailing-whitespace nil)))
 (add-hook 'term-mode-hook '(lambda ()
                               (setq show-trailing-whitespace nil)))
+(add-hook 'term-mode-hook '(lambda ()
+                             (setq global-hl-line-mode nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C#/F# mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
