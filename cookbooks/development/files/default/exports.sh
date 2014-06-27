@@ -27,7 +27,8 @@ export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
 export MOSH_INSTALLATION='$HOME/mosh-installation'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 export EDITOR='emacsclient'
-
 # added by travis gem
+
 [ -f /home/jvshahid/.travis/travis.sh ] && source /home/jvshahid/.travis/travis.sh
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+export GOPATH=$HOME/codez/gocodez

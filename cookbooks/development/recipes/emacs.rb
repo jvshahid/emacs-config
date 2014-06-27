@@ -11,6 +11,7 @@ modes = {
   'magit-mode'  => 'https://github.com/magit/magit.git',
   'lua-mode'    => 'https://github.com/immerrr/lua-mode.git',
   'coffee-mode' => 'https://github.com/jvshahid/coffee-mode.git',
+  'arduino-mode' => 'https://github.com/bookest/arduino-mode'
 }
 
 modes.each_pair do |name, url|

@@ -241,6 +241,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
 (add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/lua-mode")
+(add-to-list 'load-path "~/.emacs.d/libs/arduino-mode")
 
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
@@ -252,6 +253,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'protobuf-mode)
 (require 'confluence)
 (require 'pianobar)
+(require 'arduino-mode)
 (setq pianobar-command "~/codez/pianobar/pianobar")
 
 (require 'coffee-mode)
