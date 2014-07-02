@@ -2,7 +2,7 @@ repos_root = File.expand_path "../../../../", File.dirname(__FILE__)
 
 git "#{repos_root}/pianobar" do
   repository "https://github.com/PromyLOPh/pianobar.git"
-  user "jvshahid"
+  user ENV['USER']
   notifies :run, "bash[build_pianobar]"
 end
 

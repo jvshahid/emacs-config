@@ -17,12 +17,12 @@ modes = {
 modes.each_pair do |name, url|
   git "#{ENV['HOME']}/.emacs.d/libs/#{name}" do
     repository url
-    user "jvshahid"
+    user ENV['USER']
   end
 end
 
 directory "#{ENV['HOME']}/.emacs.d/libs/go-autocomplete" do
-  owner "jvshahid"
+  owner ENV['USER']
 end
 
 remote_filename = "https://raw.github.com/nsf/gocode/master/emacs/go-autocomplete.el"
