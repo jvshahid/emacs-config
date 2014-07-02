@@ -16,7 +16,7 @@ if ! which rvm > /dev/null 2>&1; then
 fi
 
 bundle install
-rvmsudo chef-solo -c solo.rb -j solo.json
+rvmsudo -E chef-solo -c solo.rb -j solo.json
 echo "==========================================================================================="
 echo "IMPORTANT: You will have to logout and log back in for wireshark permissions to take effect"
 echo "==========================================================================================="
