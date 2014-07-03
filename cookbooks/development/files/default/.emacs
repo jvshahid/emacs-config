@@ -254,6 +254,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'confluence)
 (require 'pianobar)
 (require 'arduino-mode)
+(add-hook 'arduino-mode-hook
+          (lambda ()
+            (subword-mode)))
+
 (setq pianobar-command "~/codez/pianobar/pianobar")
 
 (require 'coffee-mode)
