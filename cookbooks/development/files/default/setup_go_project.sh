@@ -3,8 +3,7 @@
 # [ ! -f ./exports.sh ] && echo "Please create a exports.sh file" && exit 1
 # . ./exports.sh
 
-export PATH:$GOPATH/bin
-export PATH=$PATH:`pwd`/bin
+export PATH=$PATH:$GOPATH/bin
 export GOROOT
 
 pkill -f gocode
