@@ -8,6 +8,7 @@
 
   d = diff -w --find-renames=50%
   dw = diff --color-words -w --find-renames=50%
+  dmb = "!base() { git diff $* $(git merge-base HEAD origin/master); }; base"
 
 	prb = pull --rebase
 
