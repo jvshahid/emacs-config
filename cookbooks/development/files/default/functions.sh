@@ -6,7 +6,7 @@ function mount_optimus() {
     sudo mount -t cifs -o uid=jvshahid,gid=jvshahid,forceuid,user=,password=,rw,nounix,noperm //$1/LG-NETWORKFOLDER /media/optimus/
 }
 # Set CDPATH to my Documents directory
-document=($HOME/codez)
+document=($HOME/codez $HOME/codez/gocodez/src/github.com/influxdb)
 IFS=':'
 document_with_colons="${document[*]}"
 unset IFS
