@@ -50,6 +50,7 @@
   (let ((refresh-tags-sh (find-prog buffer-file-name "refresh_tags.sh")))
     (if refresh-tags-sh
         (progn
+          (message "refreshing tags using %s" refresh-tags-sh)
           (if (= 0 (call-process-shell-command refresh-tags-sh))
               (progn
                 (message "finished refreshing the tags")
@@ -283,6 +284,9 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
 
+(setq c++fmt-command "astyle")
+(setq c++fmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4"))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -295,8 +299,25 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'go-mode-hook 'auto-complete-mode)
 
 (setq gofmt-command "goimports")
+(setq gofmt-command "/home/jvshahid/.gvm/gos/go1.4beta1/bin/gofmt")
+(setq gofmt-args (list "-w"))
+
+(defun get-symbol-value (&rest names)
+  (eval (intern (apply 'concat names))))
+
+(defun fmt-before-save ()
+  "Add this to .emacs to format the current buffer when saving:
+ (add-hook 'before-save-hook 'fmt-before-save)."
+
+  (interactive)
+  (let* ((mode (first (split-string (symbol-name major-mode) "-")))
+         (fmt-command (get-symbol-value mode "fmt-command"))
+         (fmt-args (get-symbol-value mode "fmt-args")))
+    (if (and fmt-command fmt-args)
+        (fmt fmt-command fmt-args))))
+
 (require 'go-mode-load)
-(add-hook 'before-save-hook #'gofmt-before-save)
+(add-hook 'before-save-hook #'fmt-before-save)
 
 (defun go-mode-flymake-hook ()
   (when (and (boundp 'go-flymake-script-path)
@@ -540,3 +561,114 @@ If DELTA was provided it will be added to the current line's indentation."
   (interactive)
   (revert-buffer-with-coding-system 'us-ascii-dos))
 (put 'narrow-to-region 'disabled nil)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         formatting functions        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; the following formatting functions are inspired by the go-mode
+;; formatting functions. the functions takes two args, the format
+;; command and it's arguments. the command is assumed to take the
+;; filename as the last argument and do the formatting in place
+(defun fmt (fmt-command fmt-args)
+  "Formats the current buffer according to the major mode tool."
+
+  (interactive)
+  (let* ((filename (buffer-file-name))
+         (ext (file-name-extension filename))
+         (tmpfile (make-temp-file "fmt" nil ext))
+         (patchbuf (get-buffer-create "*fmt patch*"))
+         (errbuf (get-buffer-create "*fmt Errors*"))
+         (coding-system-for-read 'utf-8)
+         (coding-system-for-write 'utf-8))
+
+    (with-current-buffer errbuf
+      (setq buffer-read-only nil)
+      (erase-buffer))
+    (with-current-buffer patchbuf
+      (erase-buffer))
+
+    (write-region nil nil tmpfile)
+
+    ;; We're using errbuf for the mixed stdout and stderr output. This
+    ;; is not an issue because gofmt -w does not produce any stdout
+    ;; output in case of success.
+    (if (zerop (apply 'call-process fmt-command nil errbuf nil `(,@fmt-args ,tmpfile)))
+        (if (zerop (call-process-region (point-min) (point-max) "diff" nil patchbuf nil "-n" "-" tmpfile))
+            ;; if diff exit code is 0 then there are no changes
+            (progn
+              (kill-buffer errbuf)
+              (message "Buffer is already formatted"))
+          (fmt-apply-rcs-patch patchbuf)
+          (kill-buffer errbuf)
+          (message "Applied formatting"))
+      (message "Could not format. Check errors for details")
+      (display-buffer errbuf))
+
+    (kill-buffer patchbuf)
+    (delete-file tmpfile)))
+
+(defalias 'modified-kill-whole-line
+  (if (fboundp 'kill-whole-line)
+      #'kill-whole-line
+    #'kill-entire-line))
+
+;; Delete the current line without putting it in the kill-ring.
+(defun delete-whole-line (&optional arg)
+  ;; Emacs uses both kill-region and kill-new, Xemacs only uses
+  ;; kill-region. In both cases we turn them into operations that do
+  ;; not modify the kill ring. This solution does depend on the
+  ;; implementation of kill-line, but it's the only viable solution
+  ;; that does not require to write kill-line from scratch.
+  (cl-flet ((kill-region (beg end)
+                      (delete-region beg end))
+         (kill-new (s) ()))
+    (modified-kill-whole-line arg)))
+
+(defun goto-line (line)
+  (goto-char (point-min))
+  (forward-line (1- line)))
+
+(defun fmt-apply-rcs-patch (patch-buffer)
+  "Apply an RCS-formatted diff from PATCH-BUFFER to the current
+buffer."
+  (let ((target-buffer (current-buffer))
+        ;; Relative offset between buffer line numbers and line numbers
+        ;; in patch.
+        ;;
+        ;; Line numbers in the patch are based on the source file, so
+        ;; we have to keep an offset when making changes to the
+        ;; buffer.
+        ;;
+        ;; Appending lines decrements the offset (possibly making it
+        ;; negative), deleting lines increments it. This order
+        ;; simplifies the forward-line invocations.
+        (line-offset 0))
+    (save-excursion
+      (with-current-buffer patch-buffer
+        (goto-char (point-min))
+        (while (not (eobp))
+          (unless (looking-at "^\\([ad]\\)\\([0-9]+\\) \\([0-9]+\\)")
+            (error "invalid rcs patch or internal error in go--apply-rcs-patch"))
+          (forward-line)
+          (let ((action (match-string 1))
+                (from (string-to-number (match-string 2)))
+                (len  (string-to-number (match-string 3))))
+            (cond
+             ((equal action "a")
+              (let ((start (point)))
+                (forward-line len)
+                (let ((text (buffer-substring start (point))))
+                  (with-current-buffer target-buffer
+                    (decf line-offset len)
+                    (goto-char (point-min))
+                    (forward-line (- from len line-offset))
+                    (insert text)))))
+             ((equal action "d")
+              (with-current-buffer target-buffer
+                (goto-line (- from line-offset))
+                (incf line-offset len)
+                (delete-whole-line len)))
+             (t
+              (error "invalid rcs patch or internal error in go--apply-rcs-patch")))))))))
