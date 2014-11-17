@@ -1,8 +1,10 @@
-if [[ "x$JAVA_HOME" == "x" ]]; then
-    if which java > /dev/null 2>&1; then
-        export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
-    else
-        export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
+if which javac 2>&1 >/dev/null; then
+    if [[ "x$JAVA_HOME" == "x" ]]; then
+        if which java > /dev/null 2>&1; then
+            export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+        else
+            export JAVA_HOME=$HOME/Downloads/jdk1.6.0_24
+        fi
     fi
 fi
 shift_to_titlebar='\[\e]0;'
