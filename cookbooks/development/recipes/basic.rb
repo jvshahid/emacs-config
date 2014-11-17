@@ -9,7 +9,7 @@ files.each do |file|
     else
       mode 0444
     end
-    owner ENV['USER']
+    owner "jvshahid"
   end
 end
 
