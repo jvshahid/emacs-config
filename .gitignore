@@ -29,5 +29,6 @@ emacs.d/libs/coffee-mode/
 emacs.d/libs/lua-mode/
 emacs.d/libs/rust-mode/
 emacs.d/libs/forml-mode/
+emacs.d/libs/arduino-mode/
 *.deb
 emacs.d/ido.last
