@@ -303,21 +303,13 @@ If DELTA was provided it will be added to the current line's indentation."
 (setq gofmt-args (list "-w"))
 
 (defun get-symbol-value (&rest names)
-  (eval (intern (apply 'concat names))))
-
-(defun fmt-before-save ()
-  "Add this to .emacs to format the current buffer when saving:
- (add-hook 'before-save-hook 'fmt-before-save)."
-
-  (interactive)
-  (let* ((mode (first (split-string (symbol-name major-mode) "-")))
-         (fmt-command (get-symbol-value mode "fmt-command"))
-         (fmt-args (get-symbol-value mode "fmt-args")))
-    (if (and fmt-command fmt-args)
-        (fmt fmt-command fmt-args))))
+  "return the value of the variable whose name is given by concatenating
+   all the given arguments or nil if the variable isn't set."
+  (let ((s (intern (apply 'concat names))))
+    (if (boundp s)
+        (eval s))))
 
 (require 'go-mode-load)
-(add-hook 'before-save-hook #'fmt-before-save)
 
 (defun go-mode-flymake-hook ()
   (when (and (boundp 'go-flymake-script-path)
@@ -567,12 +559,25 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         formatting functions        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun fmt-before-save ()
+  "Add this to .emacs to format the current buffer when saving:
+ (add-hook 'before-save-hook 'fmt-before-save)."
+
+  (interactive)
+  (let* ((mode (first (split-string (symbol-name major-mode) "-")))
+         (fmt-command (get-symbol-value mode "fmt-command"))
+         (fmt-args (get-symbol-value mode "fmt-args")))
+    (if (and fmt-command fmt-args)
+        (fmt fmt-command fmt-args))))
+
+(add-hook 'before-save-hook #'fmt-before-save)
+
 ;; the following formatting functions are inspired by the go-mode
-;; formatting functions. the functions takes two args, the format
-;; command and it's arguments. the command is assumed to take the
-;; filename as the last argument and do the formatting in place
+;; formatting functions.
 (defun fmt (fmt-command fmt-args)
-  "Formats the current buffer according to the major mode tool."
+  "The functions takes two args, the format command and it's arguments.
+   the command is assumed to take the filename as the last argument and
+   do the formatting in place"
 
   (interactive)
   (let* ((filename (buffer-file-name))
@@ -614,8 +619,8 @@ If DELTA was provided it will be added to the current line's indentation."
       #'kill-whole-line
     #'kill-entire-line))
 
-;; Delete the current line without putting it in the kill-ring.
 (defun delete-whole-line (&optional arg)
+  "Delete the current line without putting it in the kill-ring."
   ;; Emacs uses both kill-region and kill-new, Xemacs only uses
   ;; kill-region. In both cases we turn them into operations that do
   ;; not modify the kill ring. This solution does depend on the
