@@ -11,11 +11,9 @@ bash "remove avahi" do
     sudo apt-get -y remove avahi-daemon
   EOF
 end
-include_recipe "development::ppa"
 include_recipe "development::chrome"
 include_recipe "development::basic"
 include_recipe "development::packages"
-include_recipe "development::deb_packages"
 include_recipe "development::pianobar"
 include_recipe "development::ctags"
 include_recipe "development::emacs"
