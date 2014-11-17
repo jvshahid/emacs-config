@@ -96,7 +96,8 @@ packages = [
             'libgoogle-perftools-dev',
             'google-perftools',
             'libavfilter-dev',
-            'libavformat-dev'
+            'libavformat-dev',
+            'astyle'
            ]
 
 if node[:development][:lenovo]
