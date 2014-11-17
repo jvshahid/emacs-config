@@ -18,7 +18,6 @@ include_recipe "development::pianobar"
 include_recipe "development::ctags"
 include_recipe "development::emacs"
 include_recipe "development::go"
-include_recipe "development::pianobar"
 include_recipe "development::quicktile"
 include_recipe "development::wireshark"
 
