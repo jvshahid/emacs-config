@@ -1,7 +1,6 @@
 packages = [
-            'emacs-snapshot-el',
-            'emacs-snapshot-gtk',
-            'emacs-snapshot',
+            'emacs24-el',
+            'emacs24',
             'python-serial',
             'arduino-mk',
             'arduino',
@@ -46,20 +45,11 @@ packages = [
             'libprotobuf-dev',
             'libncurses5-dev',
             'libio-pty-perl',
-            'chmsee',
-            'ghc',
-            'ghc-doc',
-            'postgresql',
-            'postgresql-client',
-            'postgresql-server-dev-all',
-            'postgresql-contrib',
             'google-chrome-stable',
             'wireshark',
             'irssi',
             'libyaml-dev',
             'nmap',
-            'openjdk-7-source',
-            'openjdk-6-source',
             'gnome-disk-utility',
             'imagemagick',
             'git-core',
@@ -89,8 +79,6 @@ packages = [
             'graphviz',
             'openconnect',
             'network-manager-openconnect',
-            'openjdk-7-jdk',
-            'openjdk-6-jdk',
             'gcc-multilib',
             'g++-multilib',
             'gcc-doc',
@@ -105,11 +93,10 @@ packages = [
             'flex-doc',
             'python-wnck',       # used by quicktile
             'cloc',
-            'python3.3',
-            'nfs-common',
-            'nfs-kernel-server',
             'libgoogle-perftools-dev',
-            'google-perftools'
+            'google-perftools',
+            'libavfilter-dev',
+            'libavformat-dev'
            ]
 
 if node[:development][:lenovo]
