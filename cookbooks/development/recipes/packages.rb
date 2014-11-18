@@ -97,7 +97,10 @@ packages = [
             'google-perftools',
             'libavfilter-dev',
             'libavformat-dev',
-            'astyle'
+            'astyle',
+            'openjdk-7-jdk',
+            'openjdk-7-doc',
+            'openjdk-7-source'
            ]
 
 if node[:development][:lenovo]
