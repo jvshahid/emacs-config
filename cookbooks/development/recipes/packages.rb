@@ -1,4 +1,5 @@
 packages = [
+            'dropbox',
             'emacs24-el',
             'emacs24',
             'python-serial',
