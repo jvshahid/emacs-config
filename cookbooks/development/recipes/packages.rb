@@ -83,6 +83,7 @@ packages = [
             'gcc-multilib',
             'g++-multilib',
             'gcc-doc',
+            'glibc-doc',
             'bash-doc',
             'nasm',
             'gnuplot',

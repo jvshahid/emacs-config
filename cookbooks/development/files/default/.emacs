@@ -286,6 +286,8 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (setq c++fmt-command "astyle")
 (setq c++fmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4"))
+(setq cfmt-command "astyle")
+(setq cfmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4"))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
