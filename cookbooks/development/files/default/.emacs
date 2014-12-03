@@ -45,6 +45,10 @@
     (grep-find (concat "ack-grep --color --no-group " extra-arg (shell-quote-argument word) " " directory))))
 (global-set-key (kbd "C-c C-g") 'find-grep-current-word)
 
+(defun clear-tags-table ()
+  (interactive)
+  (setq tags-completion-table nil))
+
 (defun refresh-tags ()
   (interactive)
   (let ((refresh-tags-sh (find-prog buffer-file-name "refresh_tags.sh")))
@@ -54,7 +58,7 @@
           (if (= 0 (call-process-shell-command refresh-tags-sh))
               (progn
                 (message "finished refreshing the tags")
-                (setq tags-completion-table nil))
+                (clear-tags-table))
             (error "process exit with non zero exit code")))
       (error "Couldn't find refresh_tags.sh in any directory above %s" buffer-file-name))))
 
