@@ -127,6 +127,7 @@
  '(flymake-log-level 3)
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
+ '(c-basic-offset 4)
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
  '(perl-indent-level 2)
@@ -285,9 +286,9 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
 
 (setq c++fmt-command "astyle")
-(setq c++fmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4"))
+(setq c++fmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4" "-U" "-p" "-c" "-k3" "-Y"))
 (setq cfmt-command "astyle")
-(setq cfmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4"))
+(setq cfmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4" "-p" "-U" "-c" "-k3" "-Y"))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -472,8 +473,8 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/google-c-style")
-(require 'google-c-style)
+;; (add-to-list 'load-path "~/.emacs.d/libs/google-c-style")
+;; (require 'google-c-style)
 
 (defun c-c++-hook ()
   (google-set-c-style)
@@ -632,10 +633,6 @@ If DELTA was provided it will be added to the current line's indentation."
                       (delete-region beg end))
          (kill-new (s) ()))
     (modified-kill-whole-line arg)))
-
-(defun goto-line (line)
-  (goto-char (point-min))
-  (forward-line (1- line)))
 
 (defun fmt-apply-rcs-patch (patch-buffer)
   "Apply an RCS-formatted diff from PATCH-BUFFER to the current
