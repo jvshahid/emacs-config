@@ -87,7 +87,7 @@
 (require 'hungry-delete)
 (require 'crontab-mode)
 
-(global-auto-revert-mode)
+(global-auto-revert-mode 1)
 (global-hl-line-mode)
 (make-variable-buffer-local 'global-hl-line-mode)
 (setq magit-revert-item-confirm t)
@@ -193,7 +193,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight normal :height 113 :width normal :family "Ubuntu Mono" :foundry "unknown")))))
+ '(default ((t (:slant normal :weight normal :height 100 :width normal :family "Ubuntu Mono" :foundry "unknown")))))
 
 ;; Adding automatic untabify and delete trailing whitespaces (very useful)
 ;; (add-hook 'local-write-file-hooks
@@ -237,6 +237,13 @@ If DELTA was provided it will be added to the current line's indentation."
 (defun fix-flymake-face ()
   (set-face-attribute 'flymake-errline nil :underline "red" :background nil)
   (set-face-attribute 'flymake-warnline nil :underline "blue" :background nil))
+
+;; add the ace-window mode
+(add-to-list 'load-path "~/.emacs.d/libs/ace-jump-mode")
+(add-to-list 'load-path "~/.emacs.d/libs/ace-window")
+(require 'ace-window)
+(global-set-key "\M-ss" 'ace-jump-mode)
+(global-set-key "\C-xo" 'ace-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Simple modes           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -291,8 +298,12 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (setq c++fmt-command "astyle")
 (setq c++fmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4" "-U" "-p" "-c" "-k3" "-Y"))
+(setq arduinofmt-command "astyle")
+(setq arduinofmt-args c++fmt-args)
 (setq cfmt-command "astyle")
-(setq cfmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4" "-p" "-U" "-c" "-k3" "-Y"))
+(setq cfmt-args c++fmt-args)
+(setq javafmt-command "astyle")
+(setq javafmt-args (list "--suffix=none" "--style=java" "-j" "-s2" "-U" "-p" "-c" "-Y"))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
