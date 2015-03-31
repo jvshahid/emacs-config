@@ -49,6 +49,16 @@
   (interactive)
   (setq tags-completion-table nil))
 
+(defun find-prog (filename program)
+  (let ((dir (file-name-directory filename))
+        (filename nil))
+    (while (and (not (string= dir "/")) (not filename))
+      (let ((filename-temp (file-truename (concat dir "/" program))))
+        (if (file-exists-p filename-temp)
+            (setq filename filename-temp)
+            (setq dir (file-truename (concat dir "/.."))))))
+    filename))
+
 (defun refresh-tags ()
   (interactive)
   (let ((refresh-tags-sh (find-prog buffer-file-name "refresh_tags.sh")))
@@ -309,60 +319,58 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/libs/go")
-
 (add-to-list 'load-path "~/.emacs.d/libs/go-autocomplete")
 (require 'go-autocomplete)
 (require 'auto-complete-config)
-(add-hook 'go-mode-hook 'go-eldoc-setup)
-(add-hook 'go-mode-hook 'auto-complete-mode)
-
-(setq gofmt-command "goimports")
-(setq gofmt-command "/home/jvshahid/.gvm/gos/go1.4beta1/bin/gofmt")
-(setq gofmt-args (list "-w"))
-
-(defun get-symbol-value (&rest names)
-  "return the value of the variable whose name is given by concatenating
-   all the given arguments or nil if the variable isn't set."
-  (let ((s (intern (apply 'concat names))))
-    (if (boundp s)
-        (eval s))))
-
 (require 'go-mode-load)
 
-(defun go-mode-flymake-hook ()
-  (when (and (boundp 'go-flymake-script-path)
-             go-flymake-script-path
-             (eq major-mode 'go-mode))
-    (flymake-start-syntax-check)))
-(add-hook 'after-save-hook 'go-mode-flymake-hook)
+(add-hook 'go-mode-hook 'go-eldoc-setup)
+(add-hook 'go-mode-hook 'auto-complete-mode)
+(add-hook 'go-mode-hook 'subword-mode)
 
-(defun find-go-flymake (filename)
-  (find-prog filename "flymake.sh"))
+    ;; (setenv "PATH" (concat gobin ":$PATH") t)
 
-(defun find-prog (filename program)
-  (let ((dir (file-name-directory filename))
-        (filename nil))
-    (while (and (not (string= dir "/")) (not filename))
-      (let ((filename-temp (file-truename (concat dir "/" program))))
-        (if (file-exists-p filename-temp)
-            (setq filename filename-temp)
-            (setq dir (file-truename (concat dir "/.."))))))
-    filename))
+    ;; (setenv "PATH" (concat gopathbin ":$PATH") t)
 
-(defun go-flymake-init ()
-  (let ((path (find-go-flymake buffer-file-name)))
-    (setq-local go-flymake-script-path path)))
+(defun find-go ()
+  (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
+         (gobin (concat goroot "/bin")))
+    (setq exec-path (cons gobin exec-path))
+    (setenv "GOROOT" goroot)))
 
-(add-hook 'go-mode-hook
-          (lambda ()
-            (go-flymake-init)
-            (go-mode-flymake-hook)
-            (fix-flymake-face)
-            (subword-mode)))
+(defun setup-go-path ()
+  (let* ((gopath (expand-file-name (read-directory-name "GOPATH")))
+         (gopathbin (concat gopath "/bin")))
+    (setenv "GOPATH" gopath)
+    (setq exec-path (cons gopathbin exec-path))))
 
-(defun flymake-go-init ()
-  (list go-flymake-script-path (list (file-relative-name buffer-file-name))))
-(push '(".+\\.go$" flymake-go-init) flymake-allowed-file-name-masks)
+;; go get code.google.com/p/go.tools/cmd/goimports
+;; go get -u code.google.com/p/rog-go/exp/cmd/godef
+;; go get -u golang.org/x/tools/cmd/godoc
+;; go get -u github.com/nsf/gocode
+(defun setup-go-env ()
+  "Setup the golang environment, this function will install
+   goimports, godef, godoc and gocode"
+  (interactive)
+  (let ((go-cmd (locate-file "go" exec-path)))
+
+    ;; ask the user for the path of go if we can't find it
+    (if (not go-cmd) (find-go))
+
+    (setup-go-path)
+
+    ;; install goimports, godef, godoc and gocode
+    (dolist (url '("code.google.com/p/go.tools/cmd/goimports"
+                   "code.google.com/p/rog-go/exp/cmd/godef"
+                   "golang.org/x/tools/cmd/godoc"
+                   "github.com/nsf/gocode"))
+      (message "Running 'go get %s" url)
+      (if (/= 0(call-process "go" nil "*Messages*" nil "get" url))
+          (error "Cannot run go get")))))
+
+(setq gofmt-command "goimports")
+(setq gofmt-args (list "-w"))
+
 (global-set-key (kbd "C-c C-x d") 'godoc)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -576,6 +584,13 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         formatting functions        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun get-symbol-value (&rest names)
+  "return the value of the variable whose name is given by concatenating
+   all the given arguments or nil if the variable isn't set."
+  (let ((s (intern (apply 'concat names))))
+    (if (boundp s)
+        (eval s))))
 
 (defun fmt-before-save ()
   "Add this to .emacs to format the current buffer when saving:
