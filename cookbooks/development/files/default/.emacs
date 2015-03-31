@@ -36,13 +36,21 @@
 (global-set-key (kbd "C-x C-g d") 'flymake-display-err-menu-for-current-line)
 (global-set-key (kbd "C-x C-g n") 'flymake-goto-next-error)
 
+(defun on-linux? ()
+  (eq system-type 'gnu/linux))
+
 (defun find-grep-current-word (ignore-case)
+  "interactive way to grep for the word under the cursor using
+   ack-grep on linux or ag on macos"
   (interactive "P")
   (let* ((extra-arg (if ignore-case "-i " ""))
+         (grep-cmd (if (on-linux?) "ack-grep --color --no-group " "ag --color "))
          (prompt (if ignore-case "search for (ignore case): " "search for: "))
          (word (read-string prompt (current-word)))
          (directory (read-directory-name "in: " default-directory)))
-    (grep-find (concat "ack-grep --color --no-group " extra-arg (shell-quote-argument word) " " directory))))
+    (grep-find (concat grep-cmd extra-arg (shell-quote-argument word) " " directory))))
+
+;; assign a key to find-grep-current-word
 (global-set-key (kbd "C-c C-g") 'find-grep-current-word)
 
 (defun clear-tags-table ()
@@ -198,12 +206,19 @@
 
 (global-linum-mode 1)
 (setq linum-format "%d ")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight normal :height 100 :width normal :family "Ubuntu Mono" :foundry "unknown")))))
+
+(if (on-linux?)
+    (custom-set-faces
+     ;; custom-set-faces was added by Custom.
+     ;; If you edit it by hand, you could mess it up, so be careful.
+     ;; Your init file should contain only one such instance.
+     ;; If there is more than one, they won't work right.
+     '(default ((t (:slant normal
+                           :weight normal
+                           :height 100
+                           :width normal
+                           :family "Ubuntu Mono"
+                           :foundry "unknown"))))))
 
 ;; Adding automatic untabify and delete trailing whitespaces (very useful)
 ;; (add-hook 'local-write-file-hooks
@@ -258,6 +273,7 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Simple modes           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/libs/yasnippet")
 (add-to-list 'load-path "~/.emacs.d/libs/haml")
 (add-to-list 'load-path "~/.emacs.d/libs/protocol-buffers")
 (add-to-list 'load-path "~/.emacs.d/libs/cmake")
@@ -272,6 +288,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
+(require 'yasnippet)
 (require 'yaml-mode)
 (require 'haml-mode)
 (require 'cmake-mode)
@@ -283,7 +300,7 @@ If DELTA was provided it will be added to the current line's indentation."
           (lambda ()
             (subword-mode)))
 
-(setq pianobar-command "~/codez/pianobar/pianobar")
+;; (setq pianobar-command "~/codez/pianobar/pianobar")
 
 (require 'coffee-mode)
 (add-hook 'coffee-mode-hook
@@ -318,29 +335,34 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/go")
-(add-to-list 'load-path "~/.emacs.d/libs/go-autocomplete")
-(require 'go-autocomplete)
+(add-to-list 'load-path "~/.emacs.d/libs/popup")
+(add-to-list 'load-path "~/.emacs.d/libs/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/libs/go-mode")
+(add-to-list 'load-path "~/.emacs.d/libs/go-eldoc")
+(add-to-list 'load-path "~/.emacs.d/libs/gocode/emacs")
+(require 'auto-complete)
 (require 'auto-complete-config)
-(require 'go-mode-load)
+(ac-config-default)
+(require 'go-eldoc)
+(require 'go-autocomplete)
+(require 'go-mode-autoloads)
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
 (add-hook 'go-mode-hook 'subword-mode)
-
-    ;; (setenv "PATH" (concat gobin ":$PATH") t)
-
-    ;; (setenv "PATH" (concat gopathbin ":$PATH") t)
+(add-hook 'go-mode-hook 'yas-minor-mode)
 
 (defun find-go ()
   (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
          (gobin (concat goroot "/bin")))
+    (setenv "PATH" (concat gobin ":$PATH") t)
     (setq exec-path (cons gobin exec-path))
     (setenv "GOROOT" goroot)))
 
 (defun setup-go-path ()
   (let* ((gopath (expand-file-name (read-directory-name "GOPATH")))
          (gopathbin (concat gopath "/bin")))
+    (setenv "PATH" (concat gopathbin ":$PATH") t)
     (setenv "GOPATH" gopath)
     (setq exec-path (cons gopathbin exec-path))))
 
@@ -364,7 +386,7 @@ If DELTA was provided it will be added to the current line's indentation."
                    "code.google.com/p/rog-go/exp/cmd/godef"
                    "golang.org/x/tools/cmd/godoc"
                    "github.com/nsf/gocode"))
-      (message "Running 'go get %s" url)
+      (message "Running 'go get -u %s" url)
       (if (/= 0(call-process "go" nil "*Messages*" nil "get" url))
           (error "Cannot run go get")))))
 
@@ -516,9 +538,6 @@ If DELTA was provided it will be added to the current line's indentation."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Clojure mode           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-hook 'clojure-mode-hook 'subword-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         MaGit mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

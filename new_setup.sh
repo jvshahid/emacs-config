@@ -15,6 +15,10 @@ if ! which rvm > /dev/null 2>&1; then
     source .rvmrc
 fi
 
+if ! which bundle; then
+    gem install bundler
+fi
+
 bundle install
 rvmsudo -E chef-solo -c solo.rb -j solo.json
 echo "==========================================================================================="
