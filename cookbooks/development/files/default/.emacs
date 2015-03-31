@@ -42,7 +42,7 @@
          (prompt (if ignore-case "search for (ignore case): " "search for: "))
          (word (read-string prompt (current-word)))
          (directory (read-directory-name "in: " default-directory)))
-    (grep-find (concat "ack-grep --color --no-group " extra-arg (shell-quote-argument word) " " directory))))
+    (grep-find (concat "ag --color " extra-arg (shell-quote-argument word) " " directory))))
 (global-set-key (kbd "C-c C-g") 'find-grep-current-word)
 
 (defun clear-tags-table ()
@@ -198,12 +198,6 @@
 
 (global-linum-mode 1)
 (setq linum-format "%d ")
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight normal :height 100 :width normal :family "Ubuntu Mono" :foundry "unknown")))))
 
 ;; Adding automatic untabify and delete trailing whitespaces (very useful)
 ;; (add-hook 'local-write-file-hooks
@@ -264,31 +258,32 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
 (add-to-list 'load-path "~/.emacs.d/libs/pianobar")
-(add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
+;; (add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/lua-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/arduino-mode")
+;; (add-to-list 'load-path "~/.emacs.d/libs/arduino-mode")
 
-(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
-(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+;; (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+;; (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+;; (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
+(require 'auto-complete)
 (require 'yaml-mode)
 (require 'haml-mode)
 (require 'cmake-mode)
 (require 'protobuf-mode)
 (require 'confluence)
 (require 'pianobar)
-(require 'arduino-mode)
-(add-hook 'arduino-mode-hook
-          (lambda ()
-            (subword-mode)))
+;; (require 'arduino-mode)
+;; (add-hook 'arduino-mode-hook
+;;           (lambda ()
+;;             (subword-mode)))
 
-(setq pianobar-command "~/codez/pianobar/pianobar")
+;; (setq pianobar-command "~/codez/pianobar/pianobar")
 
-(require 'coffee-mode)
-(add-hook 'coffee-mode-hook
-          (lambda()
-            (subword-mode)))
+;; (require 'coffee-mode)
+;; (add-hook 'coffee-mode-hook
+;;           (lambda()
+;;             (subword-mode)))
 
 (add-hook 'edit-server-start-hook
           (lambda ()
@@ -513,21 +508,6 @@ If DELTA was provided it will be added to the current line's indentation."
            (save-excursion
              (newline-and-indent))
            (indent-for-tab-command)))))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Clojure mode           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-hook 'clojure-mode-hook 'subword-mode)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         MaGit mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/magit-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/git-modes")
-(require 'magit)
-(define-key global-map (kbd "C-x g") 'magit-status)
-(add-hook 'magit-mode-hook '(lambda ()
-                              (setq show-trailing-whitespace nil)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
