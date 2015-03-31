@@ -10,5 +10,6 @@ pkill -f gocode
 go get code.google.com/p/go.tools/cmd/goimports
 go get -u code.google.com/p/rog-go/exp/cmd/godef
 go get -u code.google.com/p/go.tools/cmd/godoc
+go get -u github.com/jstemmer/gotags
 go get -u github.com/nsf/gocode
 emacs-snapshot --no-desktop &
