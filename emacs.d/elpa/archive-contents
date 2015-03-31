@@ -82,13 +82,6 @@
  (htmlize .
 	  [(1 37)
 	   nil "Convert buffer text and decorations to HTML." single])
- (swank-clojure .
-		[(1 1 0)
-		 ((slime-repl
-		   (20091016))
-		  (clojure-mode
-		   (1 6)))
-		 "slime adapter for clojure" single])
  (slime-repl .
 	     [(20100404)
 	      ((slime
@@ -153,16 +146,6 @@
  (guess-style .
 	      [(0 1)
 	       nil "automatic setting of code style variables" single])
- (clojure-test-mode .
-		    [(1 4)
-		     ((slime
-		       (20091016))
-		      (clojure-mode
-		       (1 7)))
-		     "Minor mode for Clojure tests" single])
- (clojure-mode .
-	       [(1 7 1)
-		nil "Major mode for Clojure code" single])
  (magit .
 	[(0 8 1)
 	 nil "control Git from Emacs." single])
