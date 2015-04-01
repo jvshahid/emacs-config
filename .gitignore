@@ -21,9 +21,20 @@ swank/
 chef-client-running.pid
 chef-stacktrace.out
 remote_file/
-emacs.d/libs/go-autocomplete/
 emacs.d/libs/ensime-mode/
 emacs.d/libs/rust-mode/
 emacs.d/libs/forml-mode/
 *.deb
 emacs.d/ido.last
+
+# shell history
+emacs.d/eshell/
+# url cookies
+emacs.d/url/
+
+# i'm not sure i need the following
+emacs.d/elpa/cider-0.8.2/
+emacs.d/elpa/dash-2.10.0/
+emacs.d/elpa/epl-0.7/
+emacs.d/elpa/pkg-info-0.5/
+emacs.d/elpa/queue-0.1.1/
