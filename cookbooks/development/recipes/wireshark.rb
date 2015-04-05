@@ -15,6 +15,3 @@ group "vboxusers" do
   members "jvshahid"
   append true
 end
-
-puts "                 *** IMPORTANT ***                        "
-puts "Don't forget to run 'dpkg-reconfigure -u wireshark-common'"

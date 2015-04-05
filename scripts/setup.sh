@@ -32,8 +32,6 @@ echo "don't forgot to make the following changes by hand (they aren't automated 
 
 # TODO: change the capslock to control programatically
 echo "* change the capslock to control or disable it"
-# TODO: change the window focus to follow the mouse programatically
-echo "* change the window focus to follow the mouse"
 # TODO: change the terminal key shortcuts programatically
 echo "* change the terminal key shortcuts"
 # gconftool-2 /apps/metacity/global_keybinndings/run_command_terminal -s '<Ctrl><Alt>t' -t string

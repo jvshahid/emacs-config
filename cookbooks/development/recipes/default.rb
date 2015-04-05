@@ -6,18 +6,19 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-bash "remove avahi" do
-  code <<-EOF
-    sudo apt-get -y remove avahi-daemon
-  EOF
-end
+
+include_recipe "development::emacs"
+
+# exit early if we're not on linux
+return if node[:os] != 'linux'
+
+include_recipe "development::remove_avahi"
 include_recipe "development::chrome"
 include_recipe "development::basic"
+include_recipe "development::autoraise"
 include_recipe "development::packages"
 include_recipe "development::pianobar"
 include_recipe "development::ctags"
-include_recipe "development::emacs"
-include_recipe "development::go"
 include_recipe "development::quicktile"
 include_recipe "development::wireshark"
 
