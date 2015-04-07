@@ -44,7 +44,7 @@
    ack-grep on linux or ag on macos"
   (interactive "P")
   (let* ((extra-arg (if ignore-case "-i " ""))
-         (grep-cmd (if (on-linux?) "ack-grep --color --no-group " "ag --color "))
+         (grep-cmd (if (on-linux?) "ack-grep --color --no-group " "ag --color --nogroup "))
          (prompt (if ignore-case "search for (ignore case): " "search for: "))
          (word (read-string prompt (current-word)))
          (directory (read-directory-name "in: " default-directory)))
