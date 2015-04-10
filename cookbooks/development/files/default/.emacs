@@ -4,7 +4,7 @@
 (defun submodule-update (dir)
   (interactive "D")
   (let ((default-directory dir))
-    (call-process-shell-command "git" nil nil nil "submodule" "update" "--init" "--recursive")))
+    (call-process "git" nil "*Messages*" nil "submodule" "update" "--init" "--recursive")))
 
 (defun enable-auto-save ()
   (interactive)
