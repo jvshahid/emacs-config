@@ -21,7 +21,6 @@ chef-client-running.pid
 chef-stacktrace.out
 remote_file/
 emacs.d/libs/ensime-mode/
-emacs.d/libs/rust-mode/
 emacs.d/libs/forml-mode/
 *.deb
 emacs.d/ido.last
