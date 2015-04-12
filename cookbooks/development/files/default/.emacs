@@ -227,7 +227,7 @@
      ;; If there is more than one, they won't work right.
      '(default ((t (:slant normal
                            :weight normal
-                           :height 100
+                           :height 120
                            :width normal
                            :family "Ubuntu Mono"
                            :foundry "unknown"))))))
