@@ -31,3 +31,6 @@
 [submodule "emacs.d/libs/popup"]
 	path = emacs.d/libs/popup
 	url = https://github.com/auto-complete/popup-el
+[submodule "emacs.d/libs/go-flymake"]
+	path = emacs.d/libs/go-flymake
+	url = https://github.com/dougm/goflymake.git

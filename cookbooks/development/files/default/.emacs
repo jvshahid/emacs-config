@@ -2,17 +2,34 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         GLOBAL SETTINGS        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun submodule-update (dir)
+  "Run `git submodule update --init --recursive' in the given directory"
   (interactive "D")
   (let ((default-directory dir))
     (message "Updating submodules")
     (call-process "git" nil "*Messages*" nil "submodule" "update" "--init" "--recursive")
     (message "Finished updating submodules")))
 
+;; TODO: make sure that this function works properly
 (defun enable-auto-save ()
   (interactive)
+  (global-auto-revert-mode 1)
+  (setq auto-save-timeout 1)
   (setq auto-save-visited-file-name t)
-  (setq auto-save-interval 1)
-  (setq auto-save-timeout 1))
+
+
+  ;;  move autosave files somewhere out of the directory path
+  ;;  http://amitp.blogspot.com/2007/03/emacs-move-autosave-and-backup-files.html
+  (defvar user-temporary-file-directory "~/.emacs.d/auto-save")
+  (make-directory user-temporary-file-directory t)
+  (setq backup-by-copying t)
+  (setq backup-directory-alist
+        `(("." . ,user-temporary-file-directory)
+          (,tramp-file-name-regexp nil)))
+  (setq auto-save-list-file-prefix
+        (concat user-temporary-file-directory ".auto-saves-"))
+  (setq auto-save-file-name-transforms
+        `((".*" ,user-temporary-file-directory t))))
+
 (setq tooltip-mode nil)
 (add-to-list 'load-path "~/.emacs.d/libs/project-root")
 (add-to-list 'load-path "~/.emacs.d/libs/edit-emacs-server")
@@ -158,7 +175,6 @@
  '(electric-indent-mode nil)
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
- '(flymake-log-level 3)
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(c-basic-offset 4)
@@ -352,17 +368,21 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/go-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/go-eldoc")
 (add-to-list 'load-path "~/.emacs.d/libs/gocode/emacs")
+(add-to-list 'load-path "~/.emacs.d/libs/go-flymake")
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
 (require 'go-eldoc)
 (require 'go-autocomplete)
 (require 'go-mode-autoloads)
+(require 'go-flymake)
+(require 'go-flycheck)
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
 (add-hook 'go-mode-hook 'subword-mode)
 (add-hook 'go-mode-hook 'yas-minor-mode)
+(add-hook 'go-mode-hook 'fix-flymake-face)
 
 (defun find-go ()
   (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
@@ -397,7 +417,8 @@ If DELTA was provided it will be added to the current line's indentation."
     (dolist (url '("code.google.com/p/go.tools/cmd/goimports"
                    "code.google.com/p/rog-go/exp/cmd/godef"
                    "golang.org/x/tools/cmd/godoc"
-                   "github.com/nsf/gocode"))
+                   "github.com/nsf/gocode"
+                   "github.com/dougm/goflymake"))
       (message "Running 'go get -u %s" url)
       (if (/= 0(call-process "go" nil "*Messages*" nil "get" url))
           (error "Cannot run go get")))))
