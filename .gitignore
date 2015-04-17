@@ -9,7 +9,6 @@ ac-comphist.dat
 session.*
 .org-id-locations
 emacs.d/elpa/javascript-2.2.1/
-emacs.d/elpa/archives/
 emacs.d/elpa/yasnippet*
 tramp
 **/ensime_head
@@ -31,9 +30,3 @@ emacs.d/ido.last
 emacs.d/eshell/
 # url cookies
 emacs.d/url/
-
-# i'm not sure i need the following
-emacs.d/elpa/cider-0.8.2/
-emacs.d/elpa/dash-2.10.0/
-emacs.d/elpa/epl-0.7/
-emacs.d/elpa/queue-0.1.1/
