@@ -3,6 +3,7 @@ packages = [
             'emacs24-el',
             'emacs24',
             'python-serial',
+            'python-xlib',
             'arduino-mk',
             'arduino',
             'gnome-do',
