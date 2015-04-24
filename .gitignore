@@ -10,6 +10,8 @@ session.*
 .org-id-locations
 emacs.d/elpa/javascript-2.2.1/
 emacs.d/elpa/yasnippet*
+emacs.d/elpa/cider-0.8.2/
+emacs.d/elpa/queue-0.1.1/
 tramp
 **/ensime_head
 url/cookies
