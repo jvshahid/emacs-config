@@ -16,7 +16,10 @@ fi
 export JAVA_FONTS=$HOME/.fonts/
 # go language path
 export GOROOT=$HOME/bin/go
+# rust language path
 export RUSTROOT=$HOME/bin/rust
+export RUSTCROOT=$RUSTROOT/rustc
+export CARGOROOT=$RUSTROOT/cargo
 # android sdk and ndk
 export SDK=~/bin/adt-bundle-linux/sdk/
 export NDK=~/bin/android-ndk/
@@ -24,7 +27,8 @@ export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$
 # android path
 PATH="$PATH:$SDK/tools/:$SDK/platform-tools"
 # go path
-PATH="$PATH:$GOROOT/bin:$RUSTROOT/bin"
+PATH="$PATH:$GOROOT/bin:$RUSTCROOT/bin:$CARGOROOT/bin"
+export LD_LIBRARY_PATH="$RUSTCROOT/lib:$LD_LIBRARY_PATH"
 export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
 export MOSH_INSTALLATION='$HOME/mosh-installation'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
