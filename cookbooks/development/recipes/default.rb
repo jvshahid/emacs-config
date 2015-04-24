@@ -14,6 +14,7 @@ return if node[:os] != 'linux'
 
 include_recipe "development::remove_avahi"
 include_recipe "development::chrome"
+include_recipe "development::arduino"
 include_recipe "development::basic"
 include_recipe "development::autoraise"
 include_recipe "development::packages"
