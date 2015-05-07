@@ -328,7 +328,7 @@ If DELTA was provided it will be added to the current line's indentation."
           (lambda ()
             (subword-mode)))
 
-;; (setq pianobar-command "~/codez/pianobar/pianobar")
+(setq pianobar-command "~/codez/pianobar/pianobar")
 
 (require 'coffee-mode)
 (add-hook 'coffee-mode-hook
