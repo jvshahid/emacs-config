@@ -24,6 +24,9 @@
   c  = commit --verbose
 
   p  = push --tags
+
+  su = submodule update --init --recursive
+
 [core]
   editor = emacs -nw --no-desktop
 [diff]
