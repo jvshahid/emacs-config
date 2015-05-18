@@ -19,4 +19,4 @@ alias tcpdump_print="tcpdump -nnXSs 0"
 # show changes on this branch since it was forked from master
 alias gdbr="git d \$(git merge-base HEAD master)"
 alias sshtor='ssh -o "ProxyCommand nc -X 5 -x 127.0.0.1:9050 %h %p"'
-alias RD="rdesktop ${HOST} -u Administrator -p '${PASS}' -r clipboard:CLIPBOARD -f -D -0 -g 1360x768 -x l -a 16
+alias RD="rdesktop ${HOST} -u Administrator -p '${PASS}' -r clipboard:CLIPBOARD -f -D -0 -g 1360x768 -x l -a 16"
