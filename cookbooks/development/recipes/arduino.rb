@@ -16,4 +16,5 @@ end
 git "#{node[:arduino_dir]}/Arduino-Makefile" do
   repository "https://github.com/sudar/Arduino-Makefile"
   user 'jvshahid'
+  group 'jvshahid'
 end
