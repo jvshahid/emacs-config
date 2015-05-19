@@ -161,11 +161,8 @@
  '(blink-cursor-mode nil)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "gnome-open")
- '(c-default-style
-   (quote
-    ((java-mode . "java")
-     (awk-mode . "awk")
-     (other . "gnu"))))
+ '(c-basic-offset 4)
+ '(c-default-style (quote ((java-mode . "java") (awk-mode . "awk") (other . "gnu"))))
  '(column-number-mode t)
  '(column-number-more t)
  '(debug-on-error nil)
@@ -177,7 +174,6 @@
  '(etags-select-use-short-name-completion t)
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
- '(c-basic-offset 4)
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
  '(perl-indent-level 2)
@@ -351,11 +347,12 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
 
-(setq c++fmt-command "astyle")
-(setq c++fmt-args (list "--suffix=none" "--style=stroustrup" "-j" "-s4" "-U" "-p" "-c" "-k3" "-Y"))
-(setq arduinofmt-command "astyle")
+(setq c++fmt-command "clang-format-3.6")
+(setq c++fmt-args (lambda (filename)
+                    (list (format "-assume-filename=%s" filename) "-style=file")))
+(setq arduinofmt-command c++fmt-command)
 (setq arduinofmt-args c++fmt-args)
-(setq cfmt-command "astyle")
+(setq cfmt-command c++fmt-command)
 (setq cfmt-args c++fmt-args)
 (setq javafmt-command "astyle")
 (setq javafmt-args (list "--suffix=none" "--style=java" "-j" "-s2" "-U" "-p" "-c" "-Y"))
@@ -424,7 +421,7 @@ If DELTA was provided it will be added to the current line's indentation."
           (error "Cannot run go get")))))
 
 (setq gofmt-command "goimports")
-(setq gofmt-args (list "-w"))
+(setq gofmt-args nil)
 
 (global-set-key (kbd "C-c C-x d") 'godoc)
 
@@ -562,7 +559,6 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; (require 'google-c-style)
 
 (defun c-c++-hook ()
-  (google-set-c-style)
   (subword-mode))
 
 (add-hook 'c-mode-hook 'c-c++-hook)
@@ -659,7 +655,7 @@ If DELTA was provided it will be added to the current line's indentation."
   (let* ((mode (first (split-string (symbol-name major-mode) "-")))
          (fmt-command (get-symbol-value mode "fmt-command"))
          (fmt-args (get-symbol-value mode "fmt-args")))
-    (if (and fmt-command fmt-args)
+    (if (and fmt-command)
         (fmt fmt-command fmt-args))))
 
 (add-hook 'before-save-hook #'fmt-before-save)
@@ -672,13 +668,18 @@ If DELTA was provided it will be added to the current line's indentation."
    do the formatting in place"
 
   (interactive)
+
   (let* ((filename (buffer-file-name))
          (ext (file-name-extension filename))
          (tmpfile (make-temp-file "fmt" nil ext))
          (patchbuf (get-buffer-create "*fmt patch*"))
          (errbuf (get-buffer-create "*fmt Errors*"))
          (coding-system-for-read 'utf-8)
-         (coding-system-for-write 'utf-8))
+         (coding-system-for-write 'utf-8)
+         (fmt-arg (if (functionp fmt-args)
+                       (funcall fmt-args filename)
+                     fmt-args)))
+
 
     (with-current-buffer errbuf
       (setq buffer-read-only nil)
@@ -691,7 +692,7 @@ If DELTA was provided it will be added to the current line's indentation."
     ;; We're using errbuf for the mixed stdout and stderr output. This
     ;; is not an issue because gofmt -w does not produce any stdout
     ;; output in case of success.
-    (if (zerop (apply 'call-process fmt-command nil errbuf nil `(,@fmt-args ,tmpfile)))
+    (if (zerop (apply 'call-process-region (point-min) (point-max) fmt-command nil `((:file ,tmpfile) nil) nil fmt-arg))
         (if (zerop (call-process-region (point-min) (point-max) "diff" nil patchbuf nil "-n" "-" tmpfile))
             ;; if diff exit code is 0 then there are no changes
             (progn
@@ -765,3 +766,9 @@ buffer."
                 (delete-whole-line len)))
              (t
               (error "invalid rcs patch or internal error in go--apply-rcs-patch")))))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:slant normal :weight normal :height 120 :width normal :family "Ubuntu Mono" :foundry "unknown")))))
