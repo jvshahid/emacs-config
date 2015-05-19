@@ -239,7 +239,7 @@
      ;; If there is more than one, they won't work right.
      '(default ((t (:slant normal
                            :weight normal
-                           :height 120
+                           :height 130
                            :width normal
                            :family "Ubuntu Mono"
                            :foundry "unknown"))))))
@@ -766,9 +766,3 @@ buffer."
                 (delete-whole-line len)))
              (t
               (error "invalid rcs patch or internal error in go--apply-rcs-patch")))))))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight normal :height 120 :width normal :family "Ubuntu Mono" :foundry "unknown")))))
