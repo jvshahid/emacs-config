@@ -61,10 +61,6 @@
 (global-set-key (kbd "C-c C-x u") 'windmove-up) ; move to left windnow
 ;; (global-set-key (kbd "C-c C-x d") 'windmove-down) ; move to left windnow
 
-;; bind some useful flymake commands
-(global-set-key (kbd "C-x C-g d") 'flymake-display-err-menu-for-current-line)
-(global-set-key (kbd "C-x C-g n") 'flymake-goto-next-error)
-
 (defun on-linux? ()
   (eq system-type 'gnu/linux))
 
@@ -127,7 +123,7 @@
 ;; (require 'project-root)
 ;; (setq project-roots
 ;;       '(("Generic workspace" :root-contains-files (".workspace"))))
-(require 'flymake)
+(require 'flycheck)
 (require 'edit-server)
 (setq edit-server-new-frame nil)
 (edit-server-start)
@@ -231,18 +227,17 @@
 (global-linum-mode 1)
 (setq linum-format "%d ")
 
-(if (on-linux?)
-    (custom-set-faces
-     ;; custom-set-faces was added by Custom.
-     ;; If you edit it by hand, you could mess it up, so be careful.
-     ;; Your init file should contain only one such instance.
-     ;; If there is more than one, they won't work right.
-     '(default ((t (:slant normal
-                           :weight normal
-                           :height 130
-                           :width normal
-                           :family "Ubuntu Mono"
-                           :foundry "unknown"))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:slant normal
+                       :weight normal
+                       :height 130
+                       :width normal
+                       :family "Ubuntu Mono"
+                       :foundry "unknown")))))
 
 ;; Adding automatic untabify and delete trailing whitespaces (very useful)
 ;; (add-hook 'local-write-file-hooks
@@ -279,13 +274,9 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'after-change-major-mode-hook 'add-todo-font-locking-to-mode)
 
 ;; Omit emacs files from the Dired
-;; (dired-omit-mode 1)
-;; (setq dired-omit-files
-;;       (concat dired-omit-files ".*~$"))
-
-(defun fix-flymake-face ()
-  (set-face-attribute 'flymake-errline nil :underline "red" :background nil)
-  (set-face-attribute 'flymake-warnline nil :underline "blue" :background nil))
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
+(setq dired-omit-files
+      (concat dired-omit-files ".*~$"))
 
 ;; add the ace-window mode
 (add-to-list 'load-path "~/.emacs.d/libs/ace-jump-mode")
@@ -372,14 +363,12 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'go-eldoc)
 (require 'go-autocomplete)
 (require 'go-mode-autoloads)
-(require 'go-flymake)
 (require 'go-flycheck)
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
 (add-hook 'go-mode-hook 'subword-mode)
 (add-hook 'go-mode-hook 'yas-minor-mode)
-(add-hook 'go-mode-hook 'fix-flymake-face)
 
 (defun find-go ()
   (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
@@ -510,17 +499,6 @@ If DELTA was provided it will be added to the current line's indentation."
             (ruby-electric-mode t)
             (subword-mode)))
 
-(defun flymake-ruby-init ()
-  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-         (local-file  (file-relative-name
-                       temp-file
-                       (file-name-directory buffer-file-name))))
-    (list (file-truename "~/.emacs.d/check_ruby_script.sh") (list local-file))))
-(push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
-(push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
-(push '("^\\([^:]*\\):\\([0-9]+\\):?\\(?:[0-9]+:\\)?\\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
-
 (add-hook 'ruby-mode-hook
           (function
            (lambda ()
@@ -536,8 +514,7 @@ If DELTA was provided it will be added to the current line's indentation."
              ;; Don't want flymake mode for ruby regions in rhtml files and also on read only files
              (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
                  (progn
-                   (flymake-mode)
-                   (fix-flymake-face)))
+                   (flycheck-mode)))
              )))
 (add-hook 'ruby-mode-hook 'turn-on-hungry-delete-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -546,11 +523,8 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'java-mode-hook
           (lambda ()
             (subword-mode)
-            (go-flymake-init)
-            (go-mode-flymake-hook)
-            (fix-flymake-face)
+            (flycheck-init)
             (setq c-basic-offset 2)))
-(push '(".+\\.java$" flymake-go-init) flymake-allowed-file-name-masks)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -673,7 +647,6 @@ If DELTA was provided it will be added to the current line's indentation."
          (ext (file-name-extension filename))
          (tmpfile (make-temp-file "fmt" nil ext))
          (patchbuf (get-buffer-create "*fmt patch*"))
-         (errbuf (get-buffer-create "*fmt Errors*"))
          (coding-system-for-read 'utf-8)
          (coding-system-for-write 'utf-8)
          (fmt-arg (if (functionp fmt-args)
@@ -681,9 +654,6 @@ If DELTA was provided it will be added to the current line's indentation."
                      fmt-args)))
 
 
-    (with-current-buffer errbuf
-      (setq buffer-read-only nil)
-      (erase-buffer))
     (with-current-buffer patchbuf
       (erase-buffer))
 
@@ -692,17 +662,15 @@ If DELTA was provided it will be added to the current line's indentation."
     ;; We're using errbuf for the mixed stdout and stderr output. This
     ;; is not an issue because gofmt -w does not produce any stdout
     ;; output in case of success.
-    (if (zerop (apply 'call-process-region (point-min) (point-max) fmt-command nil `((:file ,tmpfile) nil) nil fmt-arg))
+    (if (zerop (apply 'call-process-region (point-min) (point-max) fmt-command nil `((:file ,tmpfile) ,tmpfile) nil fmt-arg))
         (if (zerop (call-process-region (point-min) (point-max) "diff" nil patchbuf nil "-n" "-" tmpfile))
             ;; if diff exit code is 0 then there are no changes
             (progn
-              (kill-buffer errbuf)
               (message "Buffer is already formatted"))
           (fmt-apply-rcs-patch patchbuf)
-          (kill-buffer errbuf)
           (message "Applied formatting"))
       (message "Could not format. Check errors for details")
-      (display-buffer errbuf))
+      (find-file tmpfile))
 
     (kill-buffer patchbuf)
     (delete-file tmpfile)))
