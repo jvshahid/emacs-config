@@ -136,7 +136,7 @@
 (setq magit-revert-item-confirm t)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
-(if window-system
+(if (display-graphic-p)
     (progn
       (server-start)
       (add-to-list 'load-path "~/.emacs.d/libs/color-theme")
@@ -144,7 +144,7 @@
       (require 'color-theme)
       (require 'color-theme-solarized)
       (color-theme-initialize)
-      (color-theme-solarized-light))
+      (color-theme-solarized-dark))
   nil)
 
 (desktop-save-mode 1)
@@ -234,7 +234,7 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:slant normal
                        :weight normal
-                       :height 130
+                       :height 200
                        :width normal
                        :family "Ubuntu Mono"
                        :foundry "unknown")))))
@@ -386,10 +386,6 @@ If DELTA was provided it will be added to the current line's indentation."
     (setenv "GOPATH" gopath)
     (setq exec-path (cons gopathbin exec-path))))
 
-;; go get code.google.com/p/go.tools/cmd/goimports
-;; go get -u code.google.com/p/rog-go/exp/cmd/godef
-;; go get -u golang.org/x/tools/cmd/godoc
-;; go get -u github.com/nsf/gocode
 (defun setup-go-env ()
   "Setup the golang environment, this function will install
    goimports, godef, godoc and gocode"
@@ -402,13 +398,13 @@ If DELTA was provided it will be added to the current line's indentation."
     (setup-go-path)
 
     ;; install goimports, godef, godoc and gocode
-    (dolist (url '("code.google.com/p/go.tools/cmd/goimports"
-                   "code.google.com/p/rog-go/exp/cmd/godef"
+    (dolist (url '("golang.org/x/tools/cmd/goimports"
+                   "github.com/rogpeppe/godef"
                    "golang.org/x/tools/cmd/godoc"
                    "github.com/nsf/gocode"
                    "github.com/dougm/goflymake"))
       (message "Running 'go get -u %s" url)
-      (if (/= 0(call-process "go" nil "*Messages*" nil "get" url))
+      (if (/= 0(call-process "go" nil "*go-get*" nil "get" url))
           (error "Cannot run go get")))))
 
 (setq gofmt-command "goimports")
