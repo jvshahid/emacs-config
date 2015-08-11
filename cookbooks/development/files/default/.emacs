@@ -371,6 +371,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'go-mode-hook 'auto-complete-mode)
 (add-hook 'go-mode-hook 'subword-mode)
 (add-hook 'go-mode-hook 'yas-minor-mode)
+(add-hook 'go-mode-hook 'flycheck-mode)
 
 (defun find-go ()
   (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
