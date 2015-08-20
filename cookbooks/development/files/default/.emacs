@@ -147,7 +147,7 @@
       (color-theme-solarized-dark))
   nil)
 
-(desktop-save-mode 1)
+;; (desktop-save-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -234,7 +234,7 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:slant normal
                        :weight normal
-                       :height 200
+                       :height 130
                        :width normal
                        :family "Ubuntu Mono"
                        :foundry "unknown")))))
