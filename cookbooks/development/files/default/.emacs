@@ -234,7 +234,7 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:slant normal
                        :weight normal
-                       :height 130
+                       :height 110
                        :width normal
                        :family "Ubuntu Mono"
                        :foundry "unknown")))))
@@ -356,6 +356,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/popup")
 (add-to-list 'load-path "~/.emacs.d/libs/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/libs/go-mode")
+(add-to-list 'load-path "~/.emacs.d/libs/go-rename")
 (add-to-list 'load-path "~/.emacs.d/libs/go-eldoc")
 (add-to-list 'load-path "~/.emacs.d/libs/gocode/emacs")
 (add-to-list 'load-path "~/.emacs.d/libs/go-flymake")
@@ -366,6 +367,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'go-autocomplete)
 (require 'go-mode-autoloads)
 (require 'go-flycheck)
+(require 'go-rename)
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
@@ -403,7 +405,8 @@ If DELTA was provided it will be added to the current line's indentation."
                    "github.com/rogpeppe/godef"
                    "golang.org/x/tools/cmd/godoc"
                    "github.com/nsf/gocode"
-                   "github.com/dougm/goflymake"))
+                   "github.com/dougm/goflymake"
+                   "golang.org/x/tools/cmd/gorename"))
       (message "Running 'go get -u %s" url)
       (if (/= 0(call-process "go" nil "*go-get*" nil "get" url))
           (error "Cannot run go get")))))
