@@ -16,10 +16,8 @@ files.each do |file|
   end
 end
 
-return if node[:development][:xmodmap].nil?
-
-cookbook_file node[:development][:xmodmap] do
-  path "#{ENV['HOME']}/.Xmodmap"
-  mode 0444
+cookbook_file "remap_keys" do
+  path "/etc/init.d/remap_keys"
+  mode 0644
   action :create
 end
