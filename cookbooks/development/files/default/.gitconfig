@@ -6,9 +6,9 @@
   lw = log --decorate=short --graph --color-words -w --find-renames=50%
   ls = log --graph --decorate=short --pretty=\"format:[%Cred%h%Creset]%d %ar by %Cblue%an%Creset. %Cgreen%s%Creset\" --find-renames=50%
 
-  d = diff -w --find-renames=50%
-  dw = diff --color-words -w --find-renames=50%
-  dmb = "!base() { git diff $* $(git merge-base HEAD origin/master); }; base"
+  d = diff --stat -p -w --find-renames=50%
+  dw = diff --stat -p --color-words -w --find-renames=50%
+  dmb = "!base() { git diff --stat -p $* $(git merge-base HEAD origin/master); }; base"
 
 	prb = pull --rebase
 
