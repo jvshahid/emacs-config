@@ -7,8 +7,8 @@
 # left ctrl 1d - 9d
 # caps lock 3a - ba
 # right alt e038 - e0b8
-# right prtscreen e01d (or e037) - e09d ??
-# right ctrl e01d - e19d ??
+# right ctrl e01d - e19d
+# right prtscreen e037 ??????
 #
 # keycodes:
 # windows: 125
@@ -16,6 +16,14 @@
 # left alt: 56
 # right ctrl: 97
 # right alt: 100
+
+# right prt scr should be right alt
+# set prtsc to alt
+sudo setkeycodes e037 100
+# set alt-prtsc to be alt
+sudo setkeycodes 54 100
+# disable sysrq key
+sudo setkeycodes e02a 0
 
 # left alt should be left ctrl
 sudo setkeycodes 38 29
@@ -25,5 +33,3 @@ sudo setkeycodes e05b 56
 sudo setkeycodes 3a 125
 # right alt should be right ctrl
 sudo setkeycodes e038 97
-# right prt scr should be right alt
-sudo setkeycodes e037 100

@@ -18,6 +18,6 @@ end
 
 cookbook_file "remap_keys" do
   path "/etc/init.d/remap_keys"
-  mode 0644
+  mode 0755
   action :create
 end
