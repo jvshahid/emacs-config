@@ -386,6 +386,7 @@ If DELTA was provided it will be added to the current line's indentation."
          (gopathbin (concat gopath "/bin")))
     (setenv "PATH" (concat gopathbin ":$PATH") t)
     (setenv "GOPATH" gopath)
+    (setenv "GOBIN" gopathbin)
     (setq exec-path (cons gopathbin exec-path))))
 
 (defun setup-go-env ()
