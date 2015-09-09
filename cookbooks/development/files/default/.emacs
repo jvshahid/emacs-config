@@ -354,6 +354,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/libs/go-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/go-rename")
+(add-to-list 'load-path "~/.emacs.d/libs/go-oracle")
 (add-to-list 'load-path "~/.emacs.d/libs/go-eldoc")
 (add-to-list 'load-path "~/.emacs.d/libs/gocode/emacs")
 (add-to-list 'load-path "~/.emacs.d/libs/go-flymake")
@@ -365,6 +366,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'go-mode-autoloads)
 (require 'go-flycheck)
 (require 'go-rename)
+(require 'go-oracle)
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
@@ -403,7 +405,8 @@ If DELTA was provided it will be added to the current line's indentation."
                    "golang.org/x/tools/cmd/godoc"
                    "github.com/nsf/gocode"
                    "github.com/dougm/goflymake"
-                   "golang.org/x/tools/cmd/gorename"))
+                   "golang.org/x/tools/cmd/gorename"
+                   "golang.org/x/tools/cmd/oracle"))
       (message "Running 'go get -u %s" url)
       (if (/= 0(call-process "go" nil "*go-get*" nil "get" url))
           (error "Cannot run go get")))))
