@@ -162,6 +162,7 @@
  '(column-number-mode t)
  '(column-number-more t)
  '(debug-on-error nil)
+ '(dired-omit-files "^\\.?#\\|^\\.$\\|^\\.\\.$.*~$\\|\\.test")
  '(display-battery-mode t)
  '(display-time-day-and-date t)
  '(display-time-mode t)
