@@ -31,11 +31,9 @@ PATH="$PATH:$GOROOT/bin:$RUSTCROOT/bin:$CARGOROOT/bin"
 export LD_LIBRARY_PATH="$RUSTCROOT/lib:$LD_LIBRARY_PATH"
 export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
 export MOSH_INSTALLATION='$HOME/mosh-installation'
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-export EDITOR='emacsclient'
-# added by travis gem
-
-[ -f /home/jvshahid/.travis/travis.sh ] && source /home/jvshahid/.travis/travis.sh
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+export EDITOR='emacsclient'
+[ -f /home/jvshahid/.travis/travis.sh ] && source /home/jvshahid/.travis/travis.sh
 export GOPATH=$HOME/codez/gocodez
 export PATH=$PATH:$GOPATH/bin
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

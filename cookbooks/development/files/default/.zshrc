@@ -55,4 +55,4 @@ function copy-command-to-clipboard {
 
 zle -N copy-command-to-clipboard
 bindkey '^[C' copy-command-to-clipboard
-PATH=$HOME/bin:$PATH
+PATH=$PATH:$HOME/bin
