@@ -131,7 +131,7 @@
 (require 'crontab-mode)
 
 (global-auto-revert-mode 1)
-(global-hl-line-mode)
+;; (global-hl-line-mode)
 (make-variable-buffer-local 'global-hl-line-mode)
 (setq magit-revert-item-confirm t)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
