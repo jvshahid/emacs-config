@@ -372,7 +372,9 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
 (add-hook 'go-mode-hook 'subword-mode)
-(add-hook 'go-mode-hook 'yas-minor-mode)
+(add-hook 'go-mode-hook (lambda ()
+                          (yas-minor-mode)
+                          (yas-reload-all)))
 (add-hook 'go-mode-hook 'flycheck-mode)
 
 (defun find-go ()

@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: if-err-return
+# key: iferr
+# binding: direct-keybinding
+# --
+if ${1:err} != nil {
+   return $0$1
+}
