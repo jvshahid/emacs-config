@@ -34,3 +34,6 @@
 [submodule "emacs.d/libs/go-flymake"]
 	path = emacs.d/libs/go-flymake
 	url = https://github.com/dougm/goflymake.git
+[submodule "emacs.d/libs/dockerfile-mode"]
+	path = emacs.d/libs/dockerfile-mode
+	url = https://github.com/spotify/dockerfile-mode

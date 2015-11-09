@@ -36,6 +36,7 @@
 (load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
 (load-file "~/.emacs.d/libs/textile-mode/textile-mode.el")
 (load-file "~/.emacs.d/libs/crontab/crontab.el")
+(load-file "~/.emacs.d/libs/dockerfile-mode/dockerfile-mode.el")
 (package-initialize)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
