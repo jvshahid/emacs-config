@@ -21,7 +21,7 @@
 
   st = status -s -b
 
-  c  = commit --verbose
+  ci = commit --verbose
 
   p  = push --tags
 
