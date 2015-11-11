@@ -103,7 +103,9 @@ packages = [
             'astyle',
             'openjdk-7-jdk',
             'openjdk-7-doc',
-            'openjdk-7-source'
+            'openjdk-7-source',
+            'texlive-latex-base',
+            'texlive-fonts-recommended'
            ]
 
 if node[:development][:lenovo]

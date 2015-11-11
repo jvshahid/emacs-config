@@ -1,8 +1,8 @@
 # add coffescript
---type-set=coffee=.coffee
+--type-set=coffee:ext:coffee
 
 # add haml
---type-set=haml=.haml
+--type-set=haml:ext:haml
 
 # add rust
---type-set=rust=.rs,rc
+--type-set=rust:ext:rs,rc
