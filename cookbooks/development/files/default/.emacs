@@ -234,7 +234,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight normal :height 110 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
+ '(default ((t (:slant normal :weight normal :height 113 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
  '(ido-first-match ((t (:foreground "yellow4" :weight bold))))
  '(ido-only-match ((t (:foreground "yellow4")))))
 
@@ -339,7 +339,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
 
-(setq c++fmt-command "clang-format-3.6")
+(setq c++fmt-command "clang-format-3.8")
 (setq c++fmt-args (lambda (filename)
                     (list (format "-assume-filename=%s" filename) "-style=file")))
 (setq arduinofmt-command c++fmt-command)
