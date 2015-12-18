@@ -106,7 +106,8 @@ packages = [
             'openjdk-7-source',
             'texlive-latex-base',
             'texlive-fonts-recommended',
-            'clang-format-3.8'
+            'clang-format-3.8',
+            'ant-optional'
            ]
 
 if node[:development][:lenovo]

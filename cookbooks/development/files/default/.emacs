@@ -170,6 +170,7 @@
  '(electric-indent-mode nil)
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
+ '(fill-column 79)
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(menu-bar-mode nil)
