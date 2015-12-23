@@ -433,7 +433,10 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/libs/rvm")
+(add-to-list 'load-path "~/.emacs.d/libs/emacs-rails-reloaded")
+(add-to-list 'load-path "~/.emacs.d/libs/inf-ruby")
 (require 'rvm)
+(require 'rails-autoload)
 (rvm-use-default)
 
 (defun ruby-insert-end ()
