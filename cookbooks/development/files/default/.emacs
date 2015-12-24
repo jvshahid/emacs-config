@@ -449,33 +449,36 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'rails-autoload)
 (rvm-use-default)
 
-(defun ruby-insert-end ()
-  (interactive)
-  (insert "end")
-  (ruby-indent-line t)
-  (end-of-line))
+;; (defun ruby-insert-end ()
+;;   (interactive)
+;;   (insert "end")
+;;   (ruby-indent-line t)
+;;   (end-of-line))
 
 (defun ruby-brace-to-do-end ()
+  "convert a {-} block into a do-end block"
   (when (looking-at "{")
-    (let ((orig (point)) (end (progn (ruby-forward-sexp) (point))))
+    (let ((orig (point))
+          (end  (progn
+                  (ruby-forward-sexp)
+                  (set-mark (point))
+                  (point))))
       (when (eq (char-before) ?\})
         (delete-char -1)
-        (if (eq (char-syntax (char-before)) ?w)
-            (insert " "))
-        (insert "end")
-        (if (eq (char-syntax (char-after)) ?w)
-            (insert " "))
+        (insert "\nend")
         (goto-char orig)
         (delete-char 1)
-        (if (eq (char-syntax (char-before)) ?w)
-            (insert " "))
         (insert "do")
-        (when (looking-at "\\sw\\||")
-          (insert " ")
-          (backward-char))
+        (when (looking-at ".*\\s |.*|")
+          (message "found args")
+          (goto-char (match-end 0)))
+        (insert "\n")
+        (indent-region orig (+ (mark) 2))
+        (delete-trailing-whitespace orig (+ (mark) 2))
         t))))
 
 (defun ruby-do-end-to-brace ()
+  "opposite of ruby-brace-to-do-end"
   (when (and (or (bolp)
                  (not (memq (char-syntax (char-before)) '(?w ?_))))
              (looking-at "\\<do\\(\\s \\|$\\)"))
@@ -492,52 +495,24 @@ If DELTA was provided it will be added to the current line's indentation."
         t))))
 
 (defun ruby-toggle-block ()
+  "toggle block mode do-end -> {} or {} -> do-end"
   (interactive)
   (or (ruby-brace-to-do-end)
       (ruby-do-end-to-brace)))
 
-
-
-(load-file "~/.emacs.d/libs/ruby/ruby-electric.el")
-;; (load-file "~/.emacs.d/libs/ruby/ruby-mode.el")
-
-;; Add hide show support for ruby
-(add-to-list 'hs-special-modes-alist
-             '(ruby-mode
-               "\\(def\\|class\\|module\\|do\\|{\\)" "\\(end\\|end\\|}\\)" "#"
-               (lambda (arg) (ruby-end-of-block)) nil))
+(add-to-list 'load-path "~/.emacs.d/libs/enhanced-ruby-mode")
 
 ;; (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
-(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile.*" . ruby-mode))
-(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+(require 'enh-ruby-mode)
+(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile.*" . enh-ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 ;; Enable ruby electric when ruby-mode is activated
-(add-hook 'ruby-mode-hook
+(add-hook 'enh-ruby-mode-hook
           (lambda()
-            (hs-minor-mode)
-            (imenu-add-to-menubar "IMENU")
-            (require 'ruby-electric)
-            (ruby-electric-mode t)
             (subword-mode)))
+(remove-hook 'enh-ruby-mode-hook 'erm-define-faces)
 
-(add-hook 'ruby-mode-hook
-          (function
-           (lambda ()
-             ;; (fset 'my-ruby-comment
-             ;;       [?\C-o tab escape ?1 ?0 ?# return tab ?# ?  ?  return tab escape ?1 ?0 ?# ?\C-p])
-             ;; (fset 'my-ruby-comment2
-             ;;       [?\C-o tab ?# return tab ?# ?  ?  return tab ?# ?\C-p ?\C-e])
-             ;; (local-set-key "\C-cc" 'my-ruby-comment)
-             ;; (local-set-key "\C-cv" 'my-ruby-comment2)
-             ;; (setq case-fold-search t) ;; this should be in ruby-mode, imho.
-             ;; (local-set-key "\t" 'indent-for-tab-command) ;; this should be in ruby-mode, imho.
-             ;; (setq ruby-deep-indent-paren nil)
-             ;; Don't want flymake mode for ruby regions in rhtml files and also on read only files
-             (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-                 (progn
-                   (flycheck-mode)))
-             )))
-(add-hook 'ruby-mode-hook 'turn-on-hungry-delete-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Java mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

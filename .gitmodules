@@ -45,4 +45,4 @@
 	url = https://github.com/nonsequitur/inf-ruby
 [submodule "emacs.d/libs/enhanced-ruby-mode"]
 	path = emacs.d/libs/enhanced-ruby-mode
-	url = git@github.com:jvshahid/enhanced-ruby-mode.git
+	url = https://github.com/jvshahid/enhanced-ruby-mode
