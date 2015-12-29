@@ -405,7 +405,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'enh-ruby-mode)
 (require 'ruby-electric)
 (require 'rvm)
-(require 'rails-autoload)
 (rvm-use-default)
 
 ;; (defun ruby-insert-end ()
