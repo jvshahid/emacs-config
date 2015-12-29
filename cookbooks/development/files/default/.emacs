@@ -344,20 +344,24 @@ If DELTA was provided it will be added to the current line's indentation."
                           (yas-reload-all)))
 (add-hook 'go-mode-hook 'flycheck-mode)
 
+(defun add-to-path (path)
+  (setq exec-path (cons path exec-path))
+  (setenv "PATH" (concat path ":$PATH") t))
+
+(add-to-path "/usr/local/bin")
+
 (defun find-go ()
   (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
          (gobin (concat goroot "/bin")))
-    (setenv "PATH" (concat gobin ":$PATH") t)
-    (setq exec-path (cons gobin exec-path))
+    (add-to-path gobin)
     (setenv "GOROOT" goroot)))
 
 (defun setup-go-path ()
   (let* ((gopath (expand-file-name (read-directory-name "GOPATH")))
          (gopathbin (concat gopath "/bin")))
-    (setenv "PATH" (concat gopathbin ":$PATH") t)
+    (add-to-path gopathbin)
     (setenv "GOPATH" gopath)
-    (setenv "GOBIN" gopathbin)
-    (setq exec-path (cons gopathbin exec-path))))
+    (setenv "GOBIN" gopathbin)))
 
 (defun setup-go-env ()
   "Setup the golang environment, this function will install
