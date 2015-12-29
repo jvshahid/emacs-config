@@ -37,9 +37,6 @@
 [submodule "emacs.d/libs/dockerfile-mode"]
 	path = emacs.d/libs/dockerfile-mode
 	url = https://github.com/spotify/dockerfile-mode
-[submodule "emacs.d/libs/emacs-rails-reloaded"]
-	path = emacs.d/libs/emacs-rails-reloaded
-	url = https://github.com/dmexe/emacs-rails-reloaded
 [submodule "emacs.d/libs/inf-ruby"]
 	path = emacs.d/libs/inf-ruby
 	url = https://github.com/nonsequitur/inf-ruby

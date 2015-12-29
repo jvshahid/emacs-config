@@ -59,19 +59,6 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'js-mode-hook 'subword-mode)
 
-;; (load-file "~/.emacs.d/libs/git-commit/git-commit.el")
-;; (load-file "~/.emacs.d/libs/fold-dwim/fold-dwim.el")
-;; (require 'fold-dwim)
-;; (setq fold-dwim-outline-style-default 'nested)
-;; (global-set-key (kbd "C-c t") 'fold-dwim-toggle)
-;; (global-set-key (kbd "C-c e") 'fold-dwim-hide-all)
-;; (global-set-key (kbd "C-c s") 'fold-dwim-show-all)
-
-(global-set-key (kbd "C-c C-x l") 'windmove-left) ; move to left windnow
-(global-set-key (kbd "C-c C-x r") 'windmove-right) ; move to left windnow
-(global-set-key (kbd "C-c C-x u") 'windmove-up) ; move to left windnow
-;; (global-set-key (kbd "C-c C-x d") 'windmove-down) ; move to left windnow
-
 (defun on-linux? ()
   (eq system-type 'gnu/linux))
 
@@ -198,47 +185,14 @@
 
 (display-time)
 
-(defun my-ido-project-files ()
-  "Use ido to select a file from the project."
-  (interactive)
-  (let (my-project-root project-files tbl)
-    (unless project-details (project-root-fetch))
-    (setq my-project-root (cdr project-details))
-    ;; get project files
-    (setq project-files
-          (split-string
-           (shell-command-to-string
-            (concat "find "
-                    my-project-root
-                    " \\( -name \"*.svn\" -o -name \"*.git\" \\) -prune -o -type f -print | grep -E -v \"\.(pyc)$\""
-                    )) "\n"))
-    ;; populate hash table (display repr => path)
-    (setq tbl (make-hash-table :test 'equal))
-    (let (ido-list)
-      (mapc (lambda (path)
-              ;; format path for display in ido list
-              (setq key (replace-regexp-in-string "\\(.*?\\)\\([^/]+?\\)$" "\\2|\\1" path))
-              ;; strip project root
-              (setq key (replace-regexp-in-string my-project-root "" key))
-              ;; remove trailing | or /
-              (setq key (replace-regexp-in-string "\\(|\\|/\\)$" "" key))
-              (puthash key path tbl)
-              (push key ido-list)
-              )
-            project-files
-            )
-      (find-file (gethash (ido-completing-read "project-files: " ido-list) tbl)))))
-
-(define-key global-map [f6] 'my-ido-project-files)
-;;(define-key global-map (kbd "C-x C-a") 'hs-toggle-hiding)
 (define-key global-map (kbd "C-;") 'comment-or-uncomment-region)
 (define-key global-map (kbd "C-x C-r") 'query-replace)
-(define-key global-map (kbd "C-x C-e") 'query-replace-regexp)
+
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
 
 (global-linum-mode 1)
-(setq linum-format "%d ")
+(setq linum-format "%d ") ;adds an extra space after line number
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -294,7 +248,8 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/ace-jump-mode")
 (add-to-list 'load-path "~/.emacs.d/libs/ace-window")
 (require 'ace-window)
-(global-set-key "\M-ss" 'ace-jump-mode)
+
+(global-set-key (kbd "C-'") 'ace-jump-mode)
 (global-set-key "\C-xo" 'ace-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -443,8 +398,12 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/libs/rvm")
-(add-to-list 'load-path "~/.emacs.d/libs/emacs-rails-reloaded")
 (add-to-list 'load-path "~/.emacs.d/libs/inf-ruby")
+(add-to-list 'load-path "~/.emacs.d/libs/ruby")
+(add-to-list 'load-path "~/.emacs.d/libs/enhanced-ruby-mode")
+
+(require 'enh-ruby-mode)
+(require 'ruby-electric)
 (require 'rvm)
 (require 'rails-autoload)
 (rvm-use-default)
@@ -500,16 +459,16 @@ If DELTA was provided it will be added to the current line's indentation."
   (or (ruby-brace-to-do-end)
       (ruby-do-end-to-brace)))
 
-(add-to-list 'load-path "~/.emacs.d/libs/enhanced-ruby-mode")
 
 ;; (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
-(require 'enh-ruby-mode)
 (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile.*" . enh-ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
 ;; Enable ruby electric when ruby-mode is activated
 (add-hook 'enh-ruby-mode-hook
           (lambda()
+            (ruby-electric-mode)
             (subword-mode)))
 (remove-hook 'enh-ruby-mode-hook 'erm-define-faces)
 
@@ -553,7 +512,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (define-key global-map (kbd "C-x g") 'magit-status)
 (add-hook 'magit-mode-hook '(lambda ()
                               (setq show-trailing-whitespace nil)))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Shell mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
