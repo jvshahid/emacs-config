@@ -4,6 +4,14 @@ cd `pwd $0`
 
 set -e
 
+# TODO: add-apt-repository doesn't seem to work without standard input attached
+# to a tty, e.g. `add-apt-repository -y ppa:git-core/ppa </dev/null` doesn't
+# work
+if ! grep -R git /etc/apt/sources.list.d/ > /dev/null 2>&1; then
+    sudo add-apt-repository -y ppa:git-core/ppa
+    sudo apt-get update
+fi
+
 # install curl if it doesn't exist
 which curl > /dev/null 2>&1 || sudo apt-get install curl
 
