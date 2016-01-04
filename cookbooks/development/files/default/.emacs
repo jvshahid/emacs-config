@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun replace-last-sexp ()
@@ -7,6 +7,24 @@
   (let ((value (eval (preceding-sexp))))
     (kill-sexp -1)
     (insert (format "%S" value))))
+
+
+(defun shahid/flatten (x)
+  "return a sequence that is the concatentation of all the
+sequences in `x'. The returned sequence is the same type as the first
+element in X."
+  (let ((first (car x)))
+    (cond ((stringp first) (apply 'concat x))
+          ((listp first) (apply 'append x)))))
+
+(defun shahid/permutations (X k)
+  "Given a list X and a number k, returns a list of all
+k-length permutations of elements in X."
+  (if (= k 1)
+      X
+    (let ((newX (foo X (- k 1))))
+      (flatten
+       (mapcar (apply-partially 'append-x newX) X)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         GLOBAL SETTINGS        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
