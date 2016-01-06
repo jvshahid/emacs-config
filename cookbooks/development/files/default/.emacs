@@ -9,6 +9,8 @@
     (insert (format "%S" value))))
 
 
+(defalias 'shahid/range (symbol-function 'number-sequence))
+
 (defun shahid/flatten (x)
   "return a sequence that is the concatentation of all the
 sequences in `x'. The returned sequence is the same type as the first
@@ -22,8 +24,8 @@ element in X."
 k-length permutations of elements in X."
   (if (= k 1)
       X
-    (let ((newX (foo X (- k 1))))
-      (flatten
+    (let ((newX (shahid/permutations X (- k 1))))
+      (shahid/flatten
        (mapcar (apply-partially 'append-x newX) X)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
