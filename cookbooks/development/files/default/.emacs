@@ -9,6 +9,42 @@
     (insert (format "%S" value))))
 
 
+(defun Y (f)
+  "Y combinator in elisp. You can call it like this
+
+(defun fact (f x)
+  (if (= x 1) 1
+    (* x (funcall f (- x 1)))))
+(funcall (Y 'fact) 10)
+
+or
+
+(funcall (Y (lambda (f x)
+              (if (= x 1) 1
+                (* x (funcall f (- x 1))))))
+         3)
+"
+  ;; lexical-let is required here since elisp doesn't allow lexical binding,
+  ;; i.e. closure (up to version 24.1)
+  (lexical-let ((fun f))
+    ((lambda (x) (funcall x x))
+     (lambda (y)
+       (lexical-let ((funy y))
+         (lambda (&rest args)
+           (apply fun (funcall funy funy) args)))))))
+
+(defun fact (f x)
+  (if (= x 1)
+      1
+    (* x (funcall f (- x 1)))))
+
+(defun fib (f x)
+  (cond
+   ((= x 1) 1)
+   ((= x 2) 1)
+    (t (+ (funcall f (- x 1))
+          (funcall f (- x 2))))))
+
 (defalias 'shahid/range (symbol-function 'number-sequence))
 
 (defun shahid/flatten (x)
