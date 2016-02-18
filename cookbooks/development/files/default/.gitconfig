@@ -29,6 +29,7 @@
 
 [core]
   editor = emacs -nw --no-desktop
+	excludesfile = /home/jvshahid/.gitignore_global
 [diff]
   wordRegex = [^=.,()[:space:]\"]+
 [color]
