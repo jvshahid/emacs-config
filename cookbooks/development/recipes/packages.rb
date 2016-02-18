@@ -109,7 +109,9 @@ packages = [
             'qemu-kvm', # the next 4 dependencies are for faster android emulation
             'libvirt-bin',
             'ubuntu-vm-builder',
-            'bridge-utils'
+            'bridge-utils',
+            'python2.7',
+            'npm'
            ]
 
 if node[:development][:lenovo]
