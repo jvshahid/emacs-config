@@ -368,8 +368,8 @@ If DELTA was provided it will be added to the current line's indentation."
 (setq arduinofmt-args c++fmt-args)
 (setq cfmt-command c++fmt-command)
 (setq cfmt-args c++fmt-args)
-(setq javafmt-command "astyle")
-(setq javafmt-args (list "--suffix=none" "--style=java" "-j" "-s2" "-U" "-p" "-c" "-Y"))
+(setq javafmt-command c++fmt-command)
+(setq javafmt-args c++fmt-args)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
