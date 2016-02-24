@@ -460,9 +460,8 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/rvm")
 (add-to-list 'load-path "~/.emacs.d/libs/inf-ruby")
 (add-to-list 'load-path "~/.emacs.d/libs/ruby")
-(add-to-list 'load-path "~/.emacs.d/libs/enhanced-ruby-mode")
 
-(require 'enh-ruby-mode)
+(require 'ruby-mode)
 (require 'ruby-electric)
 (require 'rvm)
 (rvm-use-default)
@@ -520,18 +519,17 @@ If DELTA was provided it will be added to the current line's indentation."
 
 
 ;; (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
-(add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake$" . enh-ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile.*" . enh-ruby-mode))
-(add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile.*" . ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 ;; Enable ruby electric when ruby-mode is activated
-(add-hook 'enh-ruby-mode-hook
+(add-hook 'ruby-mode-hook
           (lambda()
             (ruby-electric-mode)
             (subword-mode)))
-(remove-hook 'enh-ruby-mode-hook 'erm-define-faces)
 
-(setq enh-ruby-deep-indent-paren nil)
+(setq ruby-deep-indent-paren nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Java mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
