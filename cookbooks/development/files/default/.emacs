@@ -193,12 +193,9 @@ k-length permutations of elements in X."
 (if (display-graphic-p)
     (progn
       (server-start)
-      (add-to-list 'load-path "~/.emacs.d/libs/color-theme")
-      (add-to-list 'load-path "~/.emacs.d/libs/color-theme-solarized")
-      (require 'color-theme)
-      (require 'color-theme-solarized)
-      (color-theme-initialize)
-      (color-theme-solarized-dark))
+      (setq frame-background-mode 'dark)
+      (add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
+      (load-theme 'solarized t))
   nil)
 
 ;; (desktop-save-mode 1)
