@@ -43,3 +43,6 @@
 [submodule "emacs.d/libs/color-theme-solarized"]
 	path = emacs.d/libs/color-theme-solarized
 	url = https://github.com/sellout/emacs-color-theme-solarized
+[submodule "emacs.d/libs/ruby-electric"]
+	path = emacs.d/libs/ruby-electric
+	url = https://github.com/qoobaa/ruby-electric
