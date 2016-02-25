@@ -58,11 +58,11 @@ element in X."
 (defun shahid/permutations (X k)
   "Given a list X and a number k, returns a list of all
 k-length permutations of elements in X."
-  (if (= k 1)
-      X
+  (if (= k 0)
+      '(nil)
     (let ((newX (shahid/permutations X (- k 1))))
       (shahid/flatten
-       (mapcar (apply-partially 'append-x newX) X)))))
+       (mapcar (lambda (x) (mapcar (apply-partially 'cons x) newX)) X)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         GLOBAL SETTINGS        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
