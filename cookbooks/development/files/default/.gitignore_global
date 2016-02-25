@@ -1,3 +1,5 @@
 *~
 refresh_tags.sh
 TAGS
+.clang_format
+todo.org
