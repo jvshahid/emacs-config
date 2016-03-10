@@ -37,9 +37,6 @@
 [submodule "emacs.d/libs/dockerfile-mode"]
 	path = emacs.d/libs/dockerfile-mode
 	url = https://github.com/spotify/dockerfile-mode
-[submodule "emacs.d/libs/inf-ruby"]
-	path = emacs.d/libs/inf-ruby
-	url = https://github.com/nonsequitur/inf-ruby
 [submodule "emacs.d/libs/color-theme-solarized"]
 	path = emacs.d/libs/color-theme-solarized
 	url = https://github.com/sellout/emacs-color-theme-solarized

@@ -455,7 +455,6 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/libs/rvm")
-(add-to-list 'load-path "~/.emacs.d/libs/inf-ruby")
 (add-to-list 'load-path "~/.emacs.d/libs/ruby-electric")
 
 (require 'ruby-mode)
