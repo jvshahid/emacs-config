@@ -190,13 +190,6 @@ k-length permutations of elements in X."
 (setq magit-revert-item-confirm t)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
-(if (display-graphic-p)
-    (progn
-      (server-start)
-      (setq frame-background-mode 'dark)
-      (add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
-      (load-theme 'solarized t))
-  nil)
 
 ;; (desktop-save-mode 1)
 
@@ -235,6 +228,14 @@ k-length permutations of elements in X."
  '(tags-case-fold-search t)
  '(tool-bar-mode nil)
  '(x-select-enable-clipboard t))
+
+(if (display-graphic-p)
+    (progn
+      (server-start)
+      (setq frame-background-mode 'light)
+      (add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
+      (load-theme 'solarized t))
+  nil)
 
 (display-time)
 
