@@ -15,7 +15,6 @@ if [[ ${EMACS} != 't' ]] ; then
 fi
 export JAVA_FONTS=$HOME/.fonts/
 # go language path
-export GOROOT=$HOME/bin/go
 # rust language path
 export RUSTROOT=$HOME/bin/rust
 export RUSTCROOT=$RUSTROOT/rustc
