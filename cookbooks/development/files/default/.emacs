@@ -107,7 +107,6 @@ k-length permutations of elements in X."
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 
-(add-hook 'markdown-mode-hook 'turn-on-orgtbl)
 
 ;; load haskell mode
 (load-file "~/.emacs.d/libs/haskell-mode/haskell-site-file.el")
@@ -232,7 +231,7 @@ k-length permutations of elements in X."
 (if (display-graphic-p)
     (progn
       (server-start)
-      (setq frame-background-mode 'light)
+      (setq frame-background-mode 'dark)
       (add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
       (load-theme 'solarized t))
   nil)
@@ -355,6 +354,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.scaml\\'" . haml-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-hook 'markdown-mode-hook 'turn-on-orgtbl)
+(add-hook 'markdown-mode-hook 'turn-on-orgstruct)
+(setq markdown-command "~/bin/flavor")
+;; (add-hook 'markdown-mode-hook 'turn-on-orgstruct++)
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 (add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
