@@ -43,3 +43,6 @@
 [submodule "emacs.d/libs/ruby-electric"]
 	path = emacs.d/libs/ruby-electric
 	url = https://github.com/qoobaa/ruby-electric
+[submodule "emacs.d/libs/markdown-mode"]
+	path = emacs.d/libs/markdown-mode
+	url = git@github.com:jrblevin/markdown-mode.git
