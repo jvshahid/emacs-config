@@ -353,7 +353,7 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.scaml\\'" . haml-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
 (add-hook 'markdown-mode-hook 'turn-on-orgstruct)
 (setq markdown-command "~/bin/flavor")
