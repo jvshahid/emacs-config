@@ -1,6 +1,3 @@
-[submodule "emacs.d/libs/git-modes"]
-	path = emacs.d/libs/git-modes
-	url = https://github.com/magit/git-modes.git
 [submodule "emacs.d/libs/magit-mode"]
 	path = emacs.d/libs/magit-mode
 	url = https://github.com/magit/magit.git
@@ -46,3 +43,9 @@
 [submodule "emacs.d/libs/markdown-mode"]
 	path = emacs.d/libs/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode.git
+[submodule "emacs.d/libs/with-editor"]
+	path = emacs.d/libs/with-editor
+	url = https://github.com/magit/with-editor
+[submodule "emacs.d/libs/dash"]
+	path = emacs.d/libs/dash
+	url = https://github.com/magnars/dash.el
