@@ -46,3 +46,9 @@
 [submodule "emacs.d/libs/markdown-mode"]
 	path = emacs.d/libs/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode.git
+[submodule "emacs.d/libs/with-editor"]
+	path = emacs.d/libs/with-editor
+	url = https://github.com/magit/with-editor
+[submodule "emacs.d/libs/dash"]
+	path = emacs.d/libs/dash
+	url = https://github.com/magnars/dash.el

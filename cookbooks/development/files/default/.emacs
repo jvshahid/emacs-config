@@ -570,8 +570,10 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         MaGit mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/magit-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/git-modes")
+(load-file "~/.emacs.d/libs/dash/dash.el")
+(add-to-list 'load-path "~/.emacs.d/libs/with-editor")
+(add-to-list 'load-path "~/.emacs.d/libs/magit-mode/lisp")
+;;(add-to-list 'load-path "~/.emacs.d/libs/git-modes")
 (require 'magit)
 (define-key global-map (kbd "C-x g") 'magit-status)
 (add-hook 'magit-mode-hook '(lambda ()
