@@ -228,12 +228,13 @@ k-length permutations of elements in X."
  '(tool-bar-mode nil)
  '(x-select-enable-clipboard t))
 
+(add-to-list 'load-path "~/.emacs.d/libs/solarized-emacs")
 (if (display-graphic-p)
     (progn
       (server-start)
       (setq frame-background-mode 'dark)
-      (add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
-      (load-theme 'solarized t))
+      (add-to-list 'custom-theme-load-path "~/.emacs.d/libs/solarized-emacs")
+      (load-theme 'solarized-dark t))
   nil)
 
 (display-time)

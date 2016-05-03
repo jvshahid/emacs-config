@@ -52,3 +52,6 @@
 [submodule "emacs.d/libs/dash"]
 	path = emacs.d/libs/dash
 	url = https://github.com/magnars/dash.el
+[submodule "emacs.d/libs/solarized-emacs"]
+	path = emacs.d/libs/solarized-emacs
+	url = https://github.com/bbatsov/solarized-emacs
