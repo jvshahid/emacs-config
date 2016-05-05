@@ -583,6 +583,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'magit-mode-hook '(lambda ()
                               (font-lock-mode 0)
                               (setq show-trailing-whitespace nil)))
+(with-eval-after-load 'info
+  (info-initialize)
+  (add-to-list 'Info-directory-list
+	       "~/.emacs.d/libs/magit-mode/Documentation/"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Shell mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
