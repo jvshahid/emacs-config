@@ -159,6 +159,7 @@ k-length permutations of elements in X."
       (error "Couldn't find refresh_tags.sh in any directory above %s" buffer-file-name))))
 
 (global-set-key (kbd "C-c C-t") 'refresh-tags) ; move to left windnow
+(global-set-key (kbd "C-q") 'set-mark-command) ; alternative set mark command for use inside tmux
 
 (defun my-ido-find-tag ()
   "Find a tag using ido"
