@@ -39,5 +39,7 @@
 	protocol = ssh
 [grep]
 	lineNumber = true
+[push]
+  recurseSubmodules=check
 [commit]
 	gpgSign = true
