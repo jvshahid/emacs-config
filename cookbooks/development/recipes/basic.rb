@@ -16,8 +16,15 @@ files.each do |file|
   end
 end
 
-cookbook_file "remap_keys" do
-  path "/etc/init.d/remap_keys"
-  mode 0755
+cookbook_file "90-keyboard.hwdb" do
+  path "/lib/udev/hwdb.d/90-keyboard.hwdb"
+  mode 0644
   action :create
+  notifies :run, "bash[rebuild_hwdb]"
+end
+
+bash "rebuild_hwdb" do
+  code <<-EOF
+   udevadm hwdb --update
+EOF
 end
