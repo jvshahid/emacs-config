@@ -8,9 +8,18 @@ keyboard:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
  KEYBOARD_KEY_54=rightalt       # disable sysrq
 
 keyboard:usb:v04D9p2011*
- KEYBOARD_KEY_700e2=leftctrl       # disable sysrq
- KEYBOARD_KEY_700e3=leftalt       # disable sysrq
- KEYBOARD_KEY_70039=leftmeta       # disable sysrq
- KEYBOARD_KEY_700e6=rightctrl     # disable sysrq
- KEYBOARD_KEY_700e7=rightalt      # disable sysrq
- KEYBOARD_KEY_70065=rightmeta     # disable sysrq
+ KEYBOARD_KEY_700e2=leftctrl
+ KEYBOARD_KEY_700e3=leftalt
+ KEYBOARD_KEY_70039=leftmeta
+ KEYBOARD_KEY_700e6=rightctrl
+ KEYBOARD_KEY_700e7=rightalt
+ KEYBOARD_KEY_70065=rightmeta
+
+
+keyboard:usb:v17EFp6047*
+ KEYBOARD_KEY_700e2=leftctrl
+ KEYBOARD_KEY_700e3=leftalt
+ KEYBOARD_KEY_70039=leftmeta
+ KEYBOARD_KEY_700e6=rightctrl
+ KEYBOARD_KEY_70046=rightalt
+ KEYBOARD_KEY_700e4=rightmeta
