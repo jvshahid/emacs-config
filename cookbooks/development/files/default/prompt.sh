@@ -7,7 +7,7 @@ function git_repo_info {
     REPO=""
     STATUS=""
     if git status > /dev/null 2>&1; then
-        DIR_NAME=$(git_root_dir)
+        DIR_NAME=$(git rev-parse --show-toplevel)
         REPO=$(basename $DIR_NAME)
         CWD=$PWD
         BRANCH=$(git branch | grep '*' | head -n1 | cut -c3-)
