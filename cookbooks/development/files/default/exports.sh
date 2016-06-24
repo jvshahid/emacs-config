@@ -36,3 +36,4 @@ export EDITOR='emacsclient'
 export GOPATH=$HOME/codez/gocodez
 export PATH=$PATH:$GOPATH/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s $HOME/.z.sh ]] && source $HOME/.z.sh
