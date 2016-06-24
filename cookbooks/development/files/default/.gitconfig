@@ -29,7 +29,7 @@
   su = submodule update --init --recursive
 
 [core]
-  editor = emacs -nw --no-desktop
+  editor = ~/bin/emacs-24.5/bin/emacs -nw -q -l ~/.magit.emacs
 	excludesfile = /home/jvshahid/.gitignore_global
 [diff]
   wordRegex = [^=.,()[:space:]\"]+

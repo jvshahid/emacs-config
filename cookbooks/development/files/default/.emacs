@@ -187,7 +187,6 @@ k-length permutations of elements in X."
 (global-auto-revert-mode 1)
 ;; (global-hl-line-mode)
 (make-variable-buffer-local 'global-hl-line-mode)
-(setq magit-revert-item-confirm t)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
 
@@ -570,24 +569,7 @@ If DELTA was provided it will be added to the current line's indentation."
              (newline-and-indent))
            (indent-for-tab-command)))))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         MaGit mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load-file "~/.emacs.d/libs/dash/dash.el")
-(add-to-list 'load-path "~/.emacs.d/libs/with-editor")
-(add-to-list 'load-path "~/.emacs.d/libs/magit-mode/lisp")
-;;(add-to-list 'load-path "~/.emacs.d/libs/git-modes")
-(require 'magit)
-(define-key global-map (kbd "C-x g") 'magit-status)
-(add-hook 'magit-mode-hook '(lambda ()
-                              (font-lock-mode 0)
-                              (setq show-trailing-whitespace nil)))
-(with-eval-after-load 'info
-  (info-initialize)
-  (add-to-list 'Info-directory-list
-	       "~/.emacs.d/libs/magit-mode/Documentation/"))
+(load-file "~/.magit.emacs")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Shell mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
