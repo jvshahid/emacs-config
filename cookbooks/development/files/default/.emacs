@@ -392,14 +392,12 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-to-list 'load-path "~/.emacs.d/libs/go-oracle")
 (add-to-list 'load-path "~/.emacs.d/libs/go-eldoc")
 (add-to-list 'load-path "~/.emacs.d/libs/gocode/emacs")
-(add-to-list 'load-path "~/.emacs.d/libs/go-flymake")
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
 (require 'go-eldoc)
 (require 'go-autocomplete)
 (require 'go-mode-autoloads)
-(require 'go-flycheck)
 (require 'go-rename)
 (require 'go-oracle)
 
@@ -448,6 +446,9 @@ If DELTA was provided it will be added to the current line's indentation."
                    "github.com/nsf/gocode"
                    "github.com/dougm/goflymake"
                    "golang.org/x/tools/cmd/gorename"
+                   "github.com/golang/lint"
+                   "github.com/kisielk/errcheck"
+                   "github.com/mdempsky/unconvert"
                    "golang.org/x/tools/cmd/oracle"))
       (message "Running 'go get -u %s" url)
       (if (/= 0(call-process "go" nil "*go-get*" nil "get" url))

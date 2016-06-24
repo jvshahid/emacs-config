@@ -1,6 +1,3 @@
-[submodule "emacs.d/libs/magit-mode"]
-	path = emacs.d/libs/magit-mode
-	url = https://github.com/magit/magit.git
 [submodule "emacs.d/libs/coffee-mode"]
 	path = emacs.d/libs/coffee-mode
 	url = https://github.com/jvshahid/coffee-mode.git
@@ -28,9 +25,6 @@
 [submodule "emacs.d/libs/popup"]
 	path = emacs.d/libs/popup
 	url = https://github.com/auto-complete/popup-el
-[submodule "emacs.d/libs/go-flymake"]
-	path = emacs.d/libs/go-flymake
-	url = https://github.com/dougm/goflymake.git
 [submodule "emacs.d/libs/dockerfile-mode"]
 	path = emacs.d/libs/dockerfile-mode
 	url = https://github.com/spotify/dockerfile-mode
@@ -43,9 +37,3 @@
 [submodule "emacs.d/libs/markdown-mode"]
 	path = emacs.d/libs/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode.git
-[submodule "emacs.d/libs/with-editor"]
-	path = emacs.d/libs/with-editor
-	url = https://github.com/magit/with-editor
-[submodule "emacs.d/libs/dash"]
-	path = emacs.d/libs/dash
-	url = https://github.com/magnars/dash.el
