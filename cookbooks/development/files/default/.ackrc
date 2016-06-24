@@ -6,3 +6,7 @@
 
 # add rust
 --type-set=rust:ext:rs,rc
+
+# add golang
+--type-set=go:match:^((?!_test).)*\.go$
+--type-set=allgo:ext:go
