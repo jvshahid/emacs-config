@@ -142,14 +142,14 @@ With a prefix argument amend to the commit at HEAD instead.
                    (list (cons "--amend" (magit-commit-arguments)))
                  (list (magit-commit-arguments))))
   (when (setq args (magit-commit-assert args))
-    (magit-run-git-with-editor "commit" args)))
+    (magit-run-git-with-editor "ci" args)))
 
 ;;;###autoload
 (defun magit-commit-amend (&optional args)
   "Amend the last commit.
 \n(git commit --amend ARGS)"
   (interactive (list (magit-commit-arguments)))
-  (magit-run-git-with-editor "commit" "--amend" args))
+  (magit-run-git-with-editor "ci" "--amend" args))
 
 ;;;###autoload
 (defun magit-commit-extend (&optional args override-date)
@@ -167,7 +167,7 @@ to inverse the meaning of the prefix argument.  \n(git commit
     (let ((process-environment process-environment))
       (unless override-date
         (setenv "GIT_COMMITTER_DATE" (magit-rev-format "%cD")))
-      (magit-run-git-with-editor "commit" "--amend" "--no-edit" args))))
+      (magit-run-git-with-editor "ci" "--amend" "--no-edit" args))))
 
 ;;;###autoload
 (defun magit-commit-reword (&optional args override-date)
@@ -187,7 +187,7 @@ and ignore the option.
   (let ((process-environment process-environment))
     (unless override-date
       (setenv "GIT_COMMITTER_DATE" (magit-rev-format "%cD")))
-    (magit-run-git-with-editor "commit" "--amend" "--only" args)))
+    (magit-run-git-with-editor "ci" "--amend" "--only" args)))
 
 ;;;###autoload
 (defun magit-commit-fixup (&optional commit args)
@@ -245,7 +245,7 @@ depending on the value of option `magit-commit-squash-confirm'."
                           current-prefix-arg
                           magit-commit-squash-confirm))))
         (let ((magit-commit-show-diff nil))
-          (magit-run-git-with-editor "commit"
+          (magit-run-git-with-editor "ci"
                                      (unless edit "--no-edit")
                                      (concat option "=" commit)
                                      args))
