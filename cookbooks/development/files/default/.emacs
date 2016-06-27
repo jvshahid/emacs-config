@@ -219,6 +219,8 @@ k-length permutations of elements in X."
  '(fill-column 79)
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-go-build-install-deps t)
+ '(godoc-command "godoc")
+ '(godoc-use-completing-read t)
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(menu-bar-mode nil)
@@ -444,7 +446,6 @@ If DELTA was provided it will be added to the current line's indentation."
     ;; install goimports, godef, godoc and gocode
     (dolist (url '("golang.org/x/tools/cmd/goimports"
                    "github.com/rogpeppe/godef"
-                   "golang.org/x/tools/cmd/godoc"
                    "github.com/nsf/gocode"
                    "github.com/dougm/goflymake"
                    "golang.org/x/tools/cmd/gorename"
