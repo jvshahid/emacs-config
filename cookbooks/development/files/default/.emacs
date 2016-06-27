@@ -217,6 +217,8 @@ k-length permutations of elements in X."
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
  '(fill-column 79)
+ '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
+ '(flycheck-go-build-install-deps t)
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(menu-bar-mode nil)
@@ -447,7 +449,6 @@ If DELTA was provided it will be added to the current line's indentation."
                    "github.com/dougm/goflymake"
                    "golang.org/x/tools/cmd/gorename"
                    "github.com/golang/lint"
-                   "github.com/kisielk/errcheck"
                    "github.com/mdempsky/unconvert"
                    "golang.org/x/tools/cmd/oracle"))
       (message "Running 'go get -u %s" url)
