@@ -6747,7 +6747,7 @@ See URL `http://golang.org/cmd/go'."
   ;; `temporary-file-name'.
   ;; TODO: Switch to `null-device'` when < Go 1.6 support is removed.
   ;; See: https://github.com/flycheck/flycheck/issues/838
-  :command ("go" "test" "-c" "-o" temporary-file-name)
+  :command ("go" "test" (option-flag "-i" flycheck-go-build-install-deps) "-c" "-o" temporary-file-name)
   :error-patterns
   ((error line-start (file-name) ":" line ": "
           (message (one-or-more not-newline)
