@@ -219,6 +219,7 @@ k-length permutations of elements in X."
  '(fill-column 79)
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-go-build-install-deps t)
+ '(gnus-select-method (quote (nnmaildir "GMAIL" (directory "~/Maildir/"))))
  '(godoc-command "godoc")
  '(godoc-use-completing-read t)
  '(ido-mode (quote both) nil (ido))
@@ -229,11 +230,13 @@ k-length permutations of elements in X."
  '(scala-mode-feature:electric-newline-before-closing-bracket t)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
+ '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(tab-width 2)
  '(tags-case-fold-search t)
  '(tool-bar-mode nil)
+ '(user-mail-address "jvshahid@gmail.com                      ")
  '(x-select-enable-clipboard t))
 
 (if (display-graphic-p)
@@ -446,6 +449,7 @@ If DELTA was provided it will be added to the current line's indentation."
     ;; install goimports, godef, godoc and gocode
     (dolist (url '("golang.org/x/tools/cmd/goimports"
                    "github.com/rogpeppe/godef"
+                   "golang.org/x/tools/cmd/godoc"
                    "github.com/nsf/gocode"
                    "github.com/dougm/goflymake"
                    "golang.org/x/tools/cmd/gorename"
@@ -749,3 +753,7 @@ buffer."
                 (delete-whole-line len)))
              (t
               (error "invalid rcs patch or internal error in go--apply-rcs-patch")))))))))
+
+(setenv "EMAIL" "jvshahid@gmail.com")
+(setenv "NAME" "John Shahid")
+(setenv "SMTPSERVER" "smtp.gmail.com")
