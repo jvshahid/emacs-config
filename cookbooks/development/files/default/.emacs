@@ -453,6 +453,7 @@ If DELTA was provided it will be added to the current line's indentation."
                    "github.com/nsf/gocode"
                    "github.com/dougm/goflymake"
                    "golang.org/x/tools/cmd/gorename"
+                   "golang.org/x/tools/cmd/godoc"
                    "github.com/golang/lint"
                    "github.com/mdempsky/unconvert"
                    "golang.org/x/tools/cmd/oracle"))
