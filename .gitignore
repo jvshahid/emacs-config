@@ -31,3 +31,6 @@ emacs.d/ido.last
 emacs.d/eshell/
 # url cookies
 emacs.d/url/
+
+# cask
+.cask/
