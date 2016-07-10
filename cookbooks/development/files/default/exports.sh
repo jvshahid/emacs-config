@@ -34,6 +34,6 @@ export MOSH_INSTALLATION='$HOME/mosh-installation'
 export EDITOR='emacsclient'
 [ -f /home/jvshahid/.travis/travis.sh ] && source /home/jvshahid/.travis/travis.sh
 export GOPATH=$HOME/codez/gocodez
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin:/home/jvshahid/.cask/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s $HOME/.z.sh ]] && source $HOME/.z.sh
