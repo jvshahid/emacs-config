@@ -1,6 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: ginkgo-expect-error
-# key: experr
-# binding: direct-keybinding
-# --
-Expect(${1:err}).NotTo(HaveOccurred())

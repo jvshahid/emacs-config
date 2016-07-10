@@ -2,6 +2,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'cask)
+
 (defun replace-last-sexp ()
   (interactive)
   (let ((value (eval (preceding-sexp))))
@@ -97,22 +99,6 @@ k-length permutations of elements in X."
         `((".*" ,user-temporary-file-directory t))))
 
 (setq tooltip-mode nil)
-(add-to-list 'load-path "~/.emacs.d/libs/project-root")
-(add-to-list 'load-path "~/.emacs.d/libs/edit-emacs-server")
-(load-file "~/.emacs.d/libs/markdown-mode/markdown-mode.el")
-(load-file "~/.emacs.d/libs/textile-mode/textile-mode.el")
-(load-file "~/.emacs.d/libs/crontab/crontab.el")
-(load-file "~/.emacs.d/libs/dockerfile-mode/dockerfile-mode.el")
-(package-initialize)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-
-
-;; load haskell mode
-(load-file "~/.emacs.d/libs/haskell-mode/haskell-site-file.el")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'js-mode-hook 'subword-mode)
 
 (defun on-linux? ()
   (eq system-type 'gnu/linux))
@@ -174,15 +160,7 @@ k-length permutations of elements in X."
 (global-set-key (kbd "M-.") 'etags-select-find-tag)
 (setq completion-ignore-case t)
 
-;; (require 'project-root)
-;; (setq project-roots
-;;       '(("Generic workspace" :root-contains-files (".workspace"))))
 (require 'flycheck)
-(require 'edit-server)
-(setq edit-server-new-frame nil)
-(edit-server-start)
-(require 'hungry-delete)
-(require 'crontab-mode)
 
 (global-auto-revert-mode 1)
 ;; (global-hl-line-mode)
@@ -227,7 +205,6 @@ k-length permutations of elements in X."
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
  '(perl-indent-level 2)
- '(scala-mode-feature:electric-newline-before-closing-bracket t)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
  '(send-mail-function (quote smtpmail-send-it))
@@ -309,8 +286,6 @@ If DELTA was provided it will be added to the current line's indentation."
       (concat dired-omit-files ".*~$"))
 
 ;; add the ace-window mode
-(add-to-list 'load-path "~/.emacs.d/libs/ace-jump-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/ace-window")
 (require 'ace-window)
 
 (global-set-key (kbd "C-'") 'ace-jump-mode)
@@ -319,27 +294,13 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Simple modes           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/yasnippet")
-(add-to-list 'load-path "~/.emacs.d/libs/haml")
-(add-to-list 'load-path "~/.emacs.d/libs/protocol-buffers")
-(add-to-list 'load-path "~/.emacs.d/libs/cmake")
-(add-to-list 'load-path "~/.emacs.d/libs/yaml-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/confluence-el")
-(add-to-list 'load-path "~/.emacs.d/libs/pianobar")
-(add-to-list 'load-path "~/.emacs.d/libs/coffee-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/lua-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/arduino-mode")
-
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
 (require 'yasnippet)
 (require 'yaml-mode)
-(require 'haml-mode)
-(require 'cmake-mode)
 (require 'protobuf-mode)
-(require 'confluence)
 (require 'pianobar)
 (require 'arduino-mode)
 (add-hook 'arduino-mode-hook
@@ -348,22 +309,14 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (setq pianobar-command "~/codez/pianobar/pianobar")
 
-(require 'coffee-mode)
-(add-hook 'coffee-mode-hook
-          (lambda()
-            (subword-mode)))
-
 (add-hook 'edit-server-start-hook
           (lambda ()
             (if (string-match "wiki*" (buffer-name))
                 (progn
-                  (confluence-edit-mode)
-                  (local-set-key "\C-c\C-o" 'confluence-get-page-at-point)
                   (outline-minor-mode)
                   (setq outline-regexp "h1\\|h2\\.\\|h3\\. ")))))
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.scaml\\'" . haml-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
 (add-hook 'markdown-mode-hook 'turn-on-orgstruct)
@@ -376,7 +329,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (setq markdown-command "~/bin/flavor")
 ;; (add-hook 'markdown-mode-hook 'turn-on-orgstruct++)
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
-(add-to-list 'auto-mode-alist '("CMakeLists.txt" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
 
 (setq c++fmt-command "clang-format-3.8")
@@ -392,13 +344,7 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/popup")
-(add-to-list 'load-path "~/.emacs.d/libs/auto-complete")
-(add-to-list 'load-path "~/.emacs.d/libs/go-mode")
-(add-to-list 'load-path "~/.emacs.d/libs/go-rename")
 (add-to-list 'load-path "~/.emacs.d/libs/go-oracle")
-(add-to-list 'load-path "~/.emacs.d/libs/go-eldoc")
-(add-to-list 'load-path "~/.emacs.d/libs/gocode/emacs")
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
@@ -466,21 +412,11 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (global-set-key (kbd "C-c C-x d") 'godoc)
 
-
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Rust mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/rust-mode")
-(require 'rust-mode)
-
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/rvm")
-(add-to-list 'load-path "~/.emacs.d/libs/ruby-electric")
 
 (require 'ruby-mode)
-(require 'ruby-electric)
 (require 'rvm)
 (rvm-use-default)
 
@@ -544,7 +480,6 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; Enable ruby electric when ruby-mode is activated
 (add-hook 'ruby-mode-hook
           (lambda()
-            (ruby-electric-mode)
             (subword-mode)))
 
 (setq ruby-deep-indent-paren nil)
@@ -560,8 +495,6 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (add-to-list 'load-path "~/.emacs.d/libs/google-c-style")
-;; (require 'google-c-style)
 
 (defun c-c++-hook ()
   (subword-mode))
@@ -588,38 +521,6 @@ If DELTA was provided it will be added to the current line's indentation."
                               (setq show-trailing-whitespace nil)))
 (add-hook 'term-mode-hook '(lambda ()
                              (setq global-hl-line-mode nil)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C#/F# mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/fsharp/")
-(add-to-list 'auto-mode-alist '("\\.fs[iylx]?$" . fsharp-mode))
-(autoload 'fsharp-mode "fsharp" "Major mode for editing F# code." t)
-(autoload 'run-fsharp "inf-fsharp" "Run an inferior F# process." t)
-
-(setq inferior-fsharp-program "~/Downloads/FSharp-2.0.0.0/bin/fsi.exe --readline-")
-(setq fsharp-compiler "~/Downloads/FSharp-2.0.0.0/bin/fsc.exe")
-
-(add-hook 'fsharp-mode-hook 'subword-mode)
-
-;; C#
-
-(add-to-list 'load-path "~/.emacs.d/libs/csharp/")
-(autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
-(add-to-list 'auto-mode-alist '("\\.cs$" . csharp-mode))
-
-(defun my-csharp-mode-fn ()
-  "function that runs when csharp-mode is initialized for a buffer."
-  (yas/minor-mode-on))
-(add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
-(add-hook 'fsharp-mode-hook 'subword-mode)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Matlab mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/matlab-emacs")
-(load-library "matlab-load")
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         useful functions        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
