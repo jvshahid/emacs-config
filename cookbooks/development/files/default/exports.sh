@@ -22,7 +22,7 @@ export CARGOROOT=$RUSTROOT/cargo
 # android sdk and ndk
 export SDK=~/Android/Sdk/
 export NDK=$SDK/ndk-bundle
-export PATH=/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$PATH:$HOME/bin:$NDK/
+export PATH=$HOME/bin:/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$PATH:$NDK/
 # android path
 PATH="$PATH:$SDK/tools/:$SDK/platform-tools"
 # go path
