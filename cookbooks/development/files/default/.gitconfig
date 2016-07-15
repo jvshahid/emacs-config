@@ -29,14 +29,12 @@
   su = submodule update --init --recursive
 
 [core]
-  editor = ~/bin/emacs-24.5/bin/emacs -nw -q -l ~/.magit.emacs
-	excludesfile = /home/jvshahid/.gitignore_global
+  editor = cd ~/.emacs.d && cask emacs -nw -q --eval \"(require 'cask)\" --eval \"(require 'magit)\"
+	excludesfile = $HOME/.gitignore_global
 [diff]
   wordRegex = [^=.,()[:space:]\"]+
 [color]
 	ui = auto
-[hub]
-	protocol = ssh
 [grep]
 	lineNumber = true
 [push]
