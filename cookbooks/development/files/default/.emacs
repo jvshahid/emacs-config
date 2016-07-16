@@ -216,6 +216,8 @@ k-length permutations of elements in X."
  '(user-mail-address "jvshahid@gmail.com                      ")
  '(x-select-enable-clipboard t))
 
+(require 'color-theme)
+(require 'color-theme-solarized)
 (if (display-graphic-p)
     (progn
       (server-start)
