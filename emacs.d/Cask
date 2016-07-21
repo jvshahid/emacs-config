@@ -49,6 +49,7 @@
 (depends-on "crontab-mode")
 (depends-on "haskell-mode")
 (depends-on "go-rename")
+(depends-on "livedown" :git "https://github.com/shime/emacs-livedown.git")
 ;; oracle failed to install because the file doesn't include the standard emacs
 ;; library header, see https://github.com/cask/cask/issues/216 and
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Library-Headers.html

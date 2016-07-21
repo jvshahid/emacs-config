@@ -332,6 +332,7 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; (add-hook 'markdown-mode-hook 'turn-on-orgstruct++)
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
 (add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
+(require 'livedown)
 
 (setq c++fmt-command "clang-format-3.8")
 (setq c++fmt-args (lambda (filename)
