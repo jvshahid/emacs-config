@@ -31,6 +31,7 @@
 
 ;; my dependencies
 (depends-on "rvm")
+(depends-on "etags-select")
 (depends-on "pianobar")
 (depends-on "yaml-mode")
 (depends-on "go-mode")
