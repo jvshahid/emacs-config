@@ -1,7 +1,5 @@
 packages = [
             'dropbox',
-            'emacs24-el',
-            'emacs24',
             'python-serial',
             'python-xlib',
             'arduino-mk',
@@ -111,7 +109,10 @@ packages = [
             'ubuntu-vm-builder',
             'bridge-utils',
             'python2.7',
-            'npm'
+            'npm',
+            'dconf-cli',
+            'gconf2',
+            'diodon'
            ]
 
 if node[:development][:lenovo]

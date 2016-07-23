@@ -25,6 +25,7 @@ include_recipe "development::cask"
 include_recipe "development::ctags"
 include_recipe "development::quicktile"
 include_recipe "development::wireshark"
+include_recipe "development::setup_keybindings"
 
 # # run apt-get upgrade to get the latest packages
 # bash "upgrad" do
