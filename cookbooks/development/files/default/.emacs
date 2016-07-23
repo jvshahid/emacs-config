@@ -306,6 +306,13 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'protobuf-mode)
 (require 'pianobar)
 (require 'arduino-mode)
+(require 'clojure-mode)
+(require 'cider)
+(require 'flycheck-clojure)
+(eval-after-load 'flycheck '(flycheck-clojure-setup))
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'clojure-mode-hook 'paredit-mode)
+
 (add-hook 'arduino-mode-hook
           (lambda ()
             (subword-mode)))
