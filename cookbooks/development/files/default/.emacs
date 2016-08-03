@@ -160,8 +160,6 @@ k-length permutations of elements in X."
 (global-set-key (kbd "M-.") 'etags-select-find-tag)
 (setq completion-ignore-case t)
 
-(require 'flycheck)
-
 (global-auto-revert-mode 1)
 ;; (global-hl-line-mode)
 (make-variable-buffer-local 'global-hl-line-mode)
@@ -216,6 +214,8 @@ k-length permutations of elements in X."
  '(tool-bar-mode nil)
  '(user-mail-address "jvshahid@gmail.com                      ")
  '(x-select-enable-clipboard t))
+
+(require 'flycheck)
 
 (set-quit-char ?q)
 (require 'color-theme)
