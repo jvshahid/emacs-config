@@ -69,6 +69,7 @@ k-length permutations of elements in X."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         GLOBAL SETTINGS        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'helm)
 (defun submodule-update (dir)
   "Run `git submodule update --init --recursive' in the given directory"
   (interactive "D")
@@ -183,6 +184,7 @@ k-length permutations of elements in X."
     ((java-mode . "java")
      (awk-mode . "awk")
      (other . "gnu"))))
+ '(helm-findutils-search-full-path t)
  '(column-number-mode t)
  '(column-number-more t)
  '(debug-on-error nil)
@@ -421,6 +423,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (setq gofmt-args nil)
 
 (global-set-key (kbd "C-c C-x d") 'godoc)
+(global-set-key (kbd "C-x C-p") 'helm-find)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
