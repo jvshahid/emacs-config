@@ -311,6 +311,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'clojure-mode)
 (require 'cider)
 (require 'flycheck-clojure)
+(require 'markdown-mode)
 (eval-after-load 'flycheck '(flycheck-clojure-setup))
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
