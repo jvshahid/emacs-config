@@ -70,6 +70,7 @@ k-length permutations of elements in X."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         GLOBAL SETTINGS        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'helm)
+(require 'helm-files)
 (defun submodule-update (dir)
   "Run `git submodule update --init --recursive' in the given directory"
   (interactive "D")
