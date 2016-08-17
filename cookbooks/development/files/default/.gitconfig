@@ -30,7 +30,7 @@
 
 [core]
   editor = cd ~/.emacs.d && cask emacs -nw -q --eval \"(require 'cask)\" --eval \"(require 'magit)\"
-	excludesfile = $HOME/.gitignore_global
+	excludesfile = /home/jvshahid/.gitignore_global
 [diff]
   wordRegex = [^=.,()[:space:]\"]+
 [color]
