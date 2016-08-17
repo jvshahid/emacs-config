@@ -2,6 +2,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(winner-mode)
+(global-set-key (kbd "C-c |") 'split-window-horizontally)
+(global-set-key (kbd "C-c -") 'split-window-vertically)
+(global-set-key (kbd "C-c l") 'windmove-right)
+(global-set-key (kbd "C-c h") 'windmove-left)
+(global-set-key (kbd "C-c i") 'windmove-up)
+(global-set-key (kbd "C-c k") 'windmove-down)
+
 (require 'cask)
 
 (defun replace-last-sexp ()
@@ -312,6 +320,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'cider)
 (require 'flycheck-clojure)
 (require 'markdown-mode)
+(require 'paredit)
 (eval-after-load 'flycheck '(flycheck-clojure-setup))
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
@@ -671,6 +680,4 @@ buffer."
              (t
               (error "invalid rcs patch or internal error in go--apply-rcs-patch")))))))))
 
-(setenv "EMAIL" "jvshahid@gmail.com")
-(setenv "NAME" "John Shahid")
-(setenv "SMTPSERVER" "smtp.gmail.com")
+(put 'scroll-left 'disabled nil)
