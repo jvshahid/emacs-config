@@ -7,8 +7,8 @@
 (global-set-key (kbd "C-c -") 'split-window-vertically)
 (global-set-key (kbd "C-c l") 'windmove-right)
 (global-set-key (kbd "C-c h") 'windmove-left)
-(global-set-key (kbd "C-c i") 'windmove-up)
-(global-set-key (kbd "C-c k") 'windmove-down)
+(global-set-key (kbd "C-c j") 'windmove-down)
+(global-set-key (kbd "C-c k") 'windmove-up)
 
 (require 'cask)
 
