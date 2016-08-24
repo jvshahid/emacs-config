@@ -191,7 +191,6 @@ k-length permutations of elements in X."
     ((java-mode . "java")
      (awk-mode . "awk")
      (other . "gnu"))))
- '(helm-findutils-search-full-path t)
  '(column-number-mode t)
  '(column-number-more t)
  '(debug-on-error nil)
@@ -208,6 +207,7 @@ k-length permutations of elements in X."
  '(gnus-select-method (quote (nnmaildir "GMAIL" (directory "~/Maildir/"))))
  '(godoc-command "godoc")
  '(godoc-use-completing-read t)
+ '(helm-findutils-search-full-path t)
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(menu-bar-mode nil)
@@ -222,9 +222,11 @@ k-length permutations of elements in X."
  '(tags-case-fold-search t)
  '(tool-bar-mode nil)
  '(user-mail-address "jvshahid@gmail.com                      ")
+ '(windmove-wrap-around t)
  '(x-select-enable-clipboard t))
 
 (require 'flycheck)
+(setq-default flycheck-disabled-checkers '(go-errcheck))
 
 (set-quit-char ?q)
 (require 'color-theme)
