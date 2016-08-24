@@ -32,7 +32,7 @@
 ;; my dependencies
 (depends-on "rvm")
 (depends-on "etags-select")
-(depends-on "pianobar")
+(depends-on "pianobar" :git "https://github.com/jvshahid/pianobar.el")
 (depends-on "yaml-mode")
 (depends-on "go-mode")
 (depends-on "markdown-mode")
