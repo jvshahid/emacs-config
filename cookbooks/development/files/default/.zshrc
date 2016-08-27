@@ -43,6 +43,9 @@ source $HOME/functions.sh
 source $HOME/exports.sh
 source $HOME/prompt.sh
 
+# install direnv
+eval "$(direnv hook zsh)"
+
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 bindkey \^U backward-kill-line
