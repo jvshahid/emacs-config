@@ -38,8 +38,6 @@ echo
 echo "===================================================================================="
 echo "don't forgot to make the following changes by hand (they aren't automated yet)"
 
-# TODO: change the terminal key shortcuts programatically
-echo "* change the terminal key shortcuts"
 # TODO: setup dropbox programatically
 echo "* setup dropbox"
 
