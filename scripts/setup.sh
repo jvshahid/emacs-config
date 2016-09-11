@@ -28,7 +28,7 @@ if ! which bundle; then
 fi
 
 bundle install
-rvmsudo -E chef-solo -c solo.rb -j solo.json
+rvmsudo -E bundle exec chef-solo -c solo.rb -j solo.json
 echo "==========================================================================================="
 echo "IMPORTANT: You will have to logout and log back in for wireshark permissions to take effect"
 echo "==========================================================================================="
