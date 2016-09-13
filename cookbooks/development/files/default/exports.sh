@@ -23,6 +23,8 @@ export CARGOROOT=$RUSTROOT/cargo
 export SDK=~/Android/Sdk/
 export NDK=$SDK/ndk-bundle
 export PATH=$HOME/bin:/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$PATH:$NDK/
+# custom emacs build
+export PATH=$HOME/bin/emacs*/bin:$PATH
 # android path
 PATH="$PATH:$SDK/tools/:$SDK/platform-tools"
 # go path

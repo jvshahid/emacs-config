@@ -1,5 +1,5 @@
 alias sbt='java -Xmx512M -jar ~/Downloads/sbt-launch-0.7.7.jar'
-alias ec_internal='emacsclient --no-wait'
+alias ec_internal='emacsclient -t'
 alias gno='gnome-open'
 alias gst="git status"
 alias be='bundle exec'

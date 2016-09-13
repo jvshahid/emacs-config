@@ -544,9 +544,8 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'eshell-mode-hook '(lambda ()
                                (setq show-trailing-whitespace nil)))
 (add-hook 'term-mode-hook '(lambda ()
-                              (setq show-trailing-whitespace nil)))
-(add-hook 'term-mode-hook '(lambda ()
-                             (setq global-hl-line-mode nil)))
+                             (setq show-trailing-whitespace nil)
+                             (linum-mode 0)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         useful functions        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
