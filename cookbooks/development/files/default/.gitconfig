@@ -29,7 +29,7 @@
   su = submodule update --init --recursive
 
 [core]
-  editor = cd ~/.emacs.d && cask emacs -nw -q --eval \"(require 'cask)\" --eval \"(require 'magit)\"
+  editor = emacsclient -t
 	excludesfile = /home/jvshahid/.gitignore_global
 [diff]
   wordRegex = [^=.,()[:space:]\"]+
