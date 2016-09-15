@@ -536,7 +536,13 @@ If DELTA was provided it will be added to the current line's indentation."
              (newline-and-indent))
            (indent-for-tab-command)))))
 
-(load-file "~/.magit.emacs")
+(require 'magit)
+(define-key global-map (kbd "C-x g") 'magit-status)
+(add-hook 'magit-mode-hook '(lambda ()
+                              (font-lock-mode 0)
+                              (setq show-trailing-whitespace nil)))
+
+(setq magit-revert-item-confirm t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Shell mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
