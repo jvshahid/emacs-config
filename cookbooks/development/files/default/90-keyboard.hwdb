@@ -7,6 +7,9 @@ keyboard:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
  KEYBOARD_KEY_3a=leftmeta       # capslock -> leftsuper or leftmeta
  KEYBOARD_KEY_54=rightalt       # disable sysrq
 
+Input device ID: bus 0x11 vendor 0x1 product 0x1 version 0xab54
+Input device ID: bus 0x19 vendor 0x17aa product 0x5054 version 0x4101
+
 keyboard:usb:v04D9p2011*
  KEYBOARD_KEY_700e2=leftctrl
  KEYBOARD_KEY_700e3=leftalt
@@ -15,7 +18,6 @@ keyboard:usb:v04D9p2011*
  KEYBOARD_KEY_700e7=rightalt
  KEYBOARD_KEY_70065=rightmeta
 
-
 keyboard:usb:v17EFp6047*
  KEYBOARD_KEY_700e2=leftctrl
  KEYBOARD_KEY_700e3=leftalt
@@ -23,3 +25,4 @@ keyboard:usb:v17EFp6047*
  KEYBOARD_KEY_700e6=rightctrl
  KEYBOARD_KEY_70046=rightalt
  KEYBOARD_KEY_700e4=rightmeta
+ KEYBOARD_KEY_ffa000f1=f20
