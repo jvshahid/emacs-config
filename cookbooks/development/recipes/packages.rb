@@ -112,7 +112,8 @@ packages = [
             'npm',
             'dconf-cli',
             'gconf2',
-            'diodon'
+            'diodon',
+            'ghc'
            ]
 
 if node[:development][:lenovo]

@@ -311,8 +311,10 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+(add-to-list 'auto-mode-alist '("\\.glj$" . clojure-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
+(require 'haskell-mode)
 (require 'yasnippet)
 (require 'yaml-mode)
 (require 'protobuf-mode)
