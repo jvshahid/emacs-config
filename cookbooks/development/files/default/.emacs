@@ -12,6 +12,9 @@
 
 (require 'cask)
 
+(defun time-to-string (seconds)
+  (format-time-string "%m/%d/%Y %H:%M:%S %z" (seconds-to-time seconds)))
+
 (defun replace-last-sexp ()
   (interactive)
   (let ((value (eval (preceding-sexp))))
