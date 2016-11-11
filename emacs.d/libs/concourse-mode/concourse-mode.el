@@ -77,7 +77,7 @@ DURATION-LIMIT seconds"
           (cons 'failed    (count-for-status 'failed data))
           (cons 'hanging   (count-for-status 'hanging data)))))
 
-(defvar concourse-pipeline-color)
+(defvar concourse-pipeline-color nil)
 (defvar concourse-url "diego.ci.cf-app.com")
 (defvar concourse-pipeline "main")
 (defvar concourse-team "main")
@@ -110,7 +110,7 @@ DURATION-LIMIT seconds"
    ((> (assoc-default 'hanging status) 0) (setq concourse-pipeline-color "orange"))
    ((> (assoc-default 'failed status) 0) (setq concourse-pipeline-color "red"))
    (t (setq concourse-pipeline-color "green")))
-  (force-mode-line-update))
+  (force-mode-line-update t))
 
 (defun concourse-update-mode-line ()
   (concourse-get-url
@@ -128,7 +128,7 @@ DURATION-LIMIT seconds"
 (defun concourse-update-mode-line-bg ()
   (add-to-list 'mode-line-modes '(:eval (concourse-mode-line)) t)
   (setq concourse-timer (run-at-time 1 60 'concourse-update-mode-line))
-  (force-mode-line-update))
+  (force-mode-line-update t))
 
 (defun concourse-stop-updating-mode-line ()
   (delete '(:eval (concourse-mode-line)) mode-line-modes)
