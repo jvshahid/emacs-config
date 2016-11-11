@@ -91,12 +91,6 @@ DURATION-LIMIT seconds"
    (apply-partially 'concourse-jobs-status concourse-duration-limit)
    'concourse-pipeline-summary-from-status))
 
-(defun print-pipeline-summary (data)
-  (message "%d,%d,%d"
-           (assoc-default 'succeeded data)
-           (assoc-default 'failed data)
-           (assoc-default 'hanging data)))
-
 ;;; Emacs mode line update
 (defun concourse-mode-line ()
   (concat
@@ -120,7 +114,6 @@ DURATION-LIMIT seconds"
            concourse-pipeline)
    (concourse-bind
     (concourse-pipeline-summary concourse-group)
-    (lambda (data) (progn (message "Updating mode line using %S" data) data))
     'concourse-update-mode-line-from-status)))
 
 (defvar concourse-timer nil)
