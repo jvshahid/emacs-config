@@ -24,6 +24,8 @@
     (url-retrieve url callback nil t)))
 
 (defun concourse-parse-response (status)
+  (if (plist-get status :error)
+      (apply 'signal status))
   (goto-char (point-min))
   (search-forward "\n\n")
   (let ((data (json-read)))
