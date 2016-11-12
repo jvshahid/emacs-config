@@ -79,12 +79,31 @@ DURATION-LIMIT seconds"
           (cons 'failed    (count-for-status 'failed data))
           (cons 'hanging   (count-for-status 'hanging data)))))
 
+(defgroup concourse-mode-configuration nil
+  "Customization variables for concourse-mode")
+(defcustom concourse-url "diego.ci.cf-app.com"
+  "url of the concourse CI"
+  :type 'string
+  :group 'concourse-mode-configuration)
+(defcustom concourse-pipeline "main"
+  "concourse pipeline name"
+  :type 'string
+  :group 'concourse-mode-configuration)
+(defcustom concourse-team "main"
+  "concourse team"
+  :type 'string
+  :group 'concourse-mode-configuration)
+(defcustom concourse-group "diego"
+  "concourse group"
+  :type 'string
+  :group 'concourse-mode-configuration)
+(defcustom concourse-duration-limit (* 60 60)
+  "duration limit. any job that has been running for
+longer than this value is considered hanging"
+  :type 'integer
+  :group 'concourse-mode-configuration)
+
 (defvar concourse-pipeline-color nil)
-(defvar concourse-url "diego.ci.cf-app.com")
-(defvar concourse-pipeline "main")
-(defvar concourse-team "main")
-(defvar concourse-group "diego")
-(defvar concourse-duration-limit (* 60 60))
 
 (defun concourse-pipeline-summary (group)
   (concourse-bind
