@@ -17,20 +17,22 @@
 (defun concourse-get-url (url callback)
   "Depending on the value of `noninteractive' calls either
 `url-retrieve' or `url-retrieve-synchronously'"
-  (if noninteractive
-      (let ((buffer (url-retrieve-synchronously url t)))
-        (with-current-buffer buffer
-          (funcall callback nil)))
-    (url-retrieve url callback nil t)))
+  (let ((buffer (url-retrieve-synchronously url t)))
+    (with-current-buffer buffer
+      (funcall callback nil))))
 
 (defun concourse-parse-response (status)
-  (if (plist-get status :error)
-      (apply 'signal status))
-  (goto-char (point-min))
-  (search-forward "\n\n")
-  (let ((data (json-read)))
-    (kill-buffer)
-    data))
+  (unwind-protect
+      (progn
+       (when (= 0 (buffer-size))
+         (error "empty buffer, WTF!!!"))
+       (if (plist-get status :error)
+           (apply 'signal status))
+       (goto-char (point-min))
+       (search-forward "\n\n")
+       (let ((data (json-read)))
+         data))
+    (kill-buffer)))
 
 (defun concourse-filter-jobs-by-group (group jobs)
   "Remove JOBS that don't belong to the given GROUP."
