@@ -381,7 +381,6 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/libs/go-oracle")
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
@@ -389,7 +388,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'go-autocomplete)
 (require 'go-mode-autoloads)
 (require 'go-rename)
-(require 'go-oracle)
+(require 'go-guru)
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
@@ -439,8 +438,8 @@ If DELTA was provided it will be added to the current line's indentation."
                    "golang.org/x/tools/cmd/godoc"
                    "github.com/golang/lint"
                    "github.com/mdempsky/unconvert"
-                   "golang.org/x/tools/cmd/oracle"))
-      (message "Running 'go get -u %s" url)
+                   "golang.org/x/tools/cmd/guru"))
+      (message "Running 'go get -u %s'" url)
       (if (/= 0(call-process "go" nil "*go-get*" nil "get" url))
           (error "Cannot run go get")))))
 

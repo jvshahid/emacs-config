@@ -35,6 +35,7 @@
 (depends-on "pianobar" :git "https://github.com/jvshahid/pianobar.el")
 (depends-on "yaml-mode")
 (depends-on "go-mode")
+(depends-on "go-guru")
 (depends-on "markdown-mode")
 (depends-on "protobuf-mode")
 (depends-on "go-eldoc")
