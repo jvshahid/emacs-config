@@ -17,9 +17,11 @@
 (defun concourse-get-url (url callback)
   "Depending on the value of `noninteractive' calls either
 `url-retrieve' or `url-retrieve-synchronously'"
-  (let ((buffer (url-retrieve-synchronously url t)))
-    (with-current-buffer buffer
-      (funcall callback nil))))
+  (if noninteractive
+      (let ((buffer (url-retrieve-synchronously url t)))
+        (with-current-buffer buffer
+          (funcall callback nil)))
+    (url-retrieve url callback nil t)))
 
 (defun concourse-parse-response (status)
   (unwind-protect
