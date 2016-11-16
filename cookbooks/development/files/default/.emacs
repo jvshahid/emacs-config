@@ -393,7 +393,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (ac-config-default)
 (require 'go-eldoc)
 (require 'go-autocomplete)
-;; (require 'go-mode-autoloads)
 (require 'go-rename)
 (require 'go-guru)
 
