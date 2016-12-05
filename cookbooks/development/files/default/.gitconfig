@@ -30,6 +30,7 @@
 
 [core]
   editor = emacsclient -t
+  pager = diff-highlight | less -r
 	excludesfile = /home/jvshahid/.gitignore_global
 [diff]
   wordRegex = [^=.,()[:space:]\"]+
