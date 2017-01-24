@@ -67,9 +67,9 @@ DURATION-LIMIT seconds"
                                        '(status . pending))
                                    ;; otherwise, check the previous build
                                    (let ((status (assoc-default 'status previous-build)))
-                                     (if (string-equal status "succeeded")
+                                     (if (or (not status) (string-equal status "succeeded"))
                                          '(status . succeeded)
-                                       '(status . failed))))))
+                                         '(status . failed))))))
       (list (status-from-job job) name))))
 
 (defun concourse-jobs-status (duration-limit jobs)
