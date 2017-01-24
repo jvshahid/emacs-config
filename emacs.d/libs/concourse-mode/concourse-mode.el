@@ -102,7 +102,7 @@ DURATION-LIMIT seconds"
   :type 'string
   :group 'concourse-mode-configuration)
 (defcustom concourse-duration-limit (* 60 60)
-  "duration limit. any job that has been running for
+  "duration limit in seconds. any job that has been running for
 longer than this value is considered hanging"
   :type 'integer
   :group 'concourse-mode-configuration)
