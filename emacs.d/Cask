@@ -53,6 +53,7 @@
 (depends-on "livedown" :git "https://github.com/shime/emacs-livedown.git")
 (depends-on "clojure-mode")
 (depends-on "cider")
+(depends-on "matlab-mode")
 (depends-on "flycheck-clojure")
 (depends-on "paredit")
 (depends-on "clojure-cheatsheet")
