@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: experr
+# key: experr
+# --
+Expect(${1:err}).${2:NotTo}(HaveOccurred())$0
