@@ -26,14 +26,14 @@
 (defun concourse-parse-response (status)
   (unwind-protect
       (progn
-       (when (= 0 (buffer-size))
-         (error "empty buffer, WTF!!!"))
-       (if (plist-get status :error)
-           (apply 'signal status))
-       (goto-char (point-min))
-       (search-forward "\n\n")
-       (let ((data (json-read)))
-         data))
+        (when (= 0 (buffer-size))
+          (error "empty buffer, WTF!!!"))
+        (if (plist-get status :error)
+            (apply 'signal status))
+        (goto-char (point-min))
+        (search-forward "\n\n")
+        (let ((data (json-read)))
+          data))
     (kill-buffer)))
 
 (defun concourse-filter-jobs-by-group (group jobs)
@@ -69,7 +69,7 @@ DURATION-LIMIT seconds"
                                    (let ((status (assoc-default 'status previous-build)))
                                      (if (or (not status) (string-equal status "succeeded"))
                                          '(status . succeeded)
-                                         '(status . failed))))))
+                                       '(status . failed))))))
       (list (status-from-job job) name))))
 
 (defun concourse-jobs-status (duration-limit jobs)
@@ -140,6 +140,20 @@ longer than this value is considered hanging"
    (concourse-bind
     (concourse-pipeline-summary concourse-group)
     'concourse-update-mode-line-from-status)))
+
+(defun concourse-print-pipeline-summary ()
+  "Display the status of the concourse pipeline"
+  (interactive)
+  (concourse-get-url
+   (format "https://%s/api/v1/teams/%s/pipelines/%s/jobs"
+           concourse-url
+           concourse-team
+           concourse-pipeline)
+   (concourse-bind
+    'concourse-parse-response
+    (apply-partially 'concourse-filter-jobs-by-group concourse-group)
+    (apply-partially 'concourse-jobs-status concourse-duration-limit)
+    (apply-partially 'message "status: %S"))))
 
 (defvar concourse-timer nil)
 
