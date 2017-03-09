@@ -409,6 +409,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'go-rename)
 (require 'go-guru)
 
+(defun disable-auto-completion ()
+  (setq-local ac-auto-start nil)
+  (local-set-key "\M-/" 'ac-start))
+
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
 (add-hook 'go-mode-hook 'subword-mode)
@@ -416,6 +420,7 @@ If DELTA was provided it will be added to the current line's indentation."
                           (yas-minor-mode)
                           (yas-reload-all)))
 (add-hook 'go-mode-hook 'flycheck-mode)
+(add-hook 'go-mode-hook 'disable-auto-completion)
 
 (defun add-to-path (path)
   (setq exec-path (cons path exec-path))
