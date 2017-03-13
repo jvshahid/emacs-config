@@ -411,7 +411,7 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (defun disable-auto-completion ()
   (setq-local ac-auto-start nil)
-  (local-set-key "\M-/" 'ac-start))
+  (local-set-key "\M-." 'ac-start))
 
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 (add-hook 'go-mode-hook 'auto-complete-mode)
