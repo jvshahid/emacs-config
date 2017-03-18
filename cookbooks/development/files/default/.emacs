@@ -552,6 +552,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'yas-reload-all)
 (add-hook 'java-mode-hook 'subword-mode)
+(require 'eclim)
+(custom-set-variables
+ '(eclim-eclipse-dirs '("~/bin/eclipse"))
+ '(eclim-executable "~/bin/eclipse/eclim"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
