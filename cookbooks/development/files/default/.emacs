@@ -556,7 +556,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (custom-set-variables
  '(eclim-eclipse-dirs '("~/bin/eclipse"))
  '(eclim-executable "~/bin/eclipse/eclim"))
-
+(require 'auto-complete-config)
+(ac-config-default)
+(require 'ac-emacs-eclim)
+(ac-emacs-eclim-config)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
