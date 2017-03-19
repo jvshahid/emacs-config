@@ -5,6 +5,7 @@ gconftool --type string --set /apps/gnome-terminal/keybindings/move_tab_left '<P
 gconftool --type string --set /apps/gnome-terminal/keybindings/move_tab_right '<Primary>braceright'
 gconftool --type string --set /apps/gnome-terminal/keybindings/next_tab '<Primary>bracketright'
 gconftool --type string --set /apps/gnome-terminal/keybindings/prev_tab '<Primary>bracketleft'
+gconftool --type string --set /apps/gnome-terminal/profiles/Default/background_type '"solid"'
 
 # setup custom keybindings to paste using diodon
 dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0']"
