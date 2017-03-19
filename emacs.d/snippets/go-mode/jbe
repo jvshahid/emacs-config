@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: jbe
+# key: jbe
+# --
+JustBeforeEach(func() {
+  $0
+})

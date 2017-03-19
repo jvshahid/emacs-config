@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: be
+# key: be
+# --
+BeforeEach(func() {
+  $0
+})

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ae
+# key: ae
+# --
+AfterEach(func() {
+  $0
+})
