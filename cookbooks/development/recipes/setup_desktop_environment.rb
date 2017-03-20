@@ -21,6 +21,8 @@ dconf write /org/cinnamon/desktop/keybindings/wm/switch-to-workspace-right "['<S
 dconf write /org/cinnamon/desktop/keybindings/looking-glass-keybinding '[""]'
 
 # disable sound effects
+dconf write /org/cinnamon/desktop/sound/volume-sound-enabled false
+dconf write /org/cinnamon/desktop/sound/event-sounds false
 dconf write /org/cinnamon/sounds/login-enabled false
 dconf write /org/cinnamon/sounds/logout-enabled false
 dconf write /org/cinnamon/sounds/unplug-enabled false
