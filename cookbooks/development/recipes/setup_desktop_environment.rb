@@ -28,5 +28,13 @@ dconf write /org/cinnamon/sounds/tile-enabled false
 dconf write /org/cinnamon/sounds/plug-enabled false
 dconf write /org/cinnamon/sounds/switch-enabled false
 
+# enable mouse focus
+dconf write /org/cinnamon/desktop/wm/preferences/auto-raise true
+dconf write /org/cinnamon/desktop/wm/preferences/focus-mode '"mouse"'
+dconf write /org/cinnamon/prevent-focus-stealing true
+
+# disable touchpad
+dconf write /org/cinnamon/settings-daemon/peripherals/touchpad/touchpad-enabled false
+
 EOF
 end
