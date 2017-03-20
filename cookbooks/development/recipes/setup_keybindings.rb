@@ -11,7 +11,7 @@ gconftool --type string --set /apps/gnome-terminal/profiles/Default/background_t
 dconf write /org/cinnamon/desktop/keybindings/custom-list "['custom0']"
 dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name "'diodon'"
 dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command "'/usr/bin/diodon'"
-dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Primary><Shift>V']"
+dconf write /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding "['<Primary><Shift>v']"
 
 # setup keybindings
 dconf write /org/cinnamon/desktop/keybindings/wm/move-to-workspace-right "['<Super>semicolon']"
