@@ -33,6 +33,7 @@ dconf write /org/cinnamon/sounds/switch-enabled false
 # enable mouse focus
 dconf write /org/cinnamon/desktop/wm/preferences/auto-raise true
 dconf write /org/cinnamon/desktop/wm/preferences/focus-mode '"mouse"'
+dconf write /org/cinnamon/desktop/keybindings/wm/toggle-maximized '<Primary><Super>k'
 dconf write /org/cinnamon/prevent-focus-stealing true
 
 # disable touchpad
