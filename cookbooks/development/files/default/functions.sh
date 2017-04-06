@@ -104,5 +104,5 @@ function get_lvc_data() {
 }
 
 function firefox32() {
-    docker run -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0 jvshahid/firefox32 "$@"
+    docker run "$@" -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0 jvshahid/firefox32
 }
