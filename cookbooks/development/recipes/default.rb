@@ -12,6 +12,7 @@ include_recipe "development::emacs"
 # exit early if we're not on linux
 return if node[:os] != 'linux'
 
+include_recipe "development::tmux"
 include_recipe "development::setup_desktop_environment"
 include_recipe "development::remove_avahi"
 include_recipe "development::chrome"
