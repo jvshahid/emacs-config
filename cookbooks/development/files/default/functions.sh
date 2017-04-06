@@ -102,3 +102,7 @@ function get_lvc_data() {
     $HOME/Documents/benchmark/cache-loader-ruby/scripts/get_cached_values.rb $1 $product $3 $4
     popd
 }
+
+function firefox32() {
+    docker run -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0 jvshahid/firefox32 "$@"
+}
