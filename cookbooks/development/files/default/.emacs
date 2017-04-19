@@ -213,6 +213,8 @@ k-length permutations of elements in X."
  '(display-battery-mode t)
  '(display-time-day-and-date t)
  '(display-time-mode t)
+ '(eclim-eclipse-dirs (quote ("~/bin/eclipse")))
+ '(eclim-executable "~/bin/eclipse/eclim")
  '(electric-indent-mode nil)
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
@@ -230,6 +232,7 @@ k-length permutations of elements in X."
  '(perl-indent-level 2)
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
+ '(select-enable-clipboard t)
  '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
@@ -237,8 +240,7 @@ k-length permutations of elements in X."
  '(tags-case-fold-search t)
  '(tool-bar-mode nil)
  '(user-mail-address "jvshahid@gmail.com                      ")
- '(windmove-wrap-around t)
- '(x-select-enable-clipboard t))
+ '(windmove-wrap-around t))
 
 (require 'flycheck)
 (setq-default flycheck-disabled-checkers '(go-errcheck))
@@ -559,9 +561,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'java-mode-hook 'yas-reload-all)
 (add-hook 'java-mode-hook 'subword-mode)
 (require 'eclim)
-(custom-set-variables
- '(eclim-eclipse-dirs '("~/bin/eclipse"))
- '(eclim-executable "~/bin/eclipse/eclim"))
+
 (require 'auto-complete-config)
 (ac-config-default)
 (require 'ac-emacs-eclim)
