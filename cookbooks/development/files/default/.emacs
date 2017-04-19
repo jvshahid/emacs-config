@@ -421,6 +421,7 @@ If DELTA was provided it will be added to the current line's indentation."
                           (yas-reload-all)))
 (add-hook 'go-mode-hook 'flycheck-mode)
 (add-hook 'go-mode-hook 'disable-auto-completion)
+(add-hook 'go-mode-hook 'hs-minor-mode)
 
 (defun add-to-path (path)
   (setq exec-path (cons path exec-path))
