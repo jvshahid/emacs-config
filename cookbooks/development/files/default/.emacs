@@ -22,6 +22,11 @@
 (defun time-to-string (seconds)
   (format-time-string "%m/%d/%Y %H:%M:%S %z" (seconds-to-time seconds)))
 
+(defun unix-time ()
+  (let ((time (current-time)))
+   (+ (ash (car time) 16)
+      (cadr time))))
+
 (defun replace-last-sexp ()
   (interactive)
   (let ((value (eval (preceding-sexp))))
