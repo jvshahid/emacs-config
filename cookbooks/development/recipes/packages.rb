@@ -109,7 +109,8 @@ packages = [
             'npm',
             'dconf-cli',
             'gconf2',
-            'diodon',
+            'parcellite',
+            'xdotool',
             'ghc'
            ]
 
