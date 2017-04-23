@@ -40,6 +40,7 @@ export EDITOR='emacsclient'
 export GOPATH=$HOME/codez/gocodez
 export PATH=$PATH:$GOPATH/bin:/home/jvshahid/.cask/bin
 export PATH=/home/jvshahid/bin/java/bin:/home/jvshahid/bin/eclipse:$PATH
+export MANPATH=$HOME/bin/emacs-25/share/man:$MANPATH
 export JAVA_HOME=$HOME/bin/java
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"

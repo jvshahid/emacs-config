@@ -111,7 +111,8 @@ packages = [
             'gconf2',
             'parcellite',
             'xdotool',
-            'ghc'
+            'ghc',
+            'texinfo'           # needed to build emacs from source
            ]
 
 if node[:development][:lenovo]
