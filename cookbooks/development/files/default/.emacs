@@ -71,6 +71,7 @@ or
           (funcall f (- x 2))))))
 
 (defalias 'shahid/range (symbol-function 'number-sequence))
+(defalias 'find-and-replace-in-marked 'dired-do-find-regexp-and-replace)
 
 (defun shahid/flatten (x)
   "return a sequence that is the concatentation of all the
@@ -199,7 +200,7 @@ k-length permutations of elements in X."
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
  '(browse-url-browser-function (quote browse-url-generic))
- '(browse-url-generic-program "gnome-open")
+ '(browse-url-generic-program "xdg-open")
  '(c-basic-offset 4)
  '(c-default-style
    (quote
