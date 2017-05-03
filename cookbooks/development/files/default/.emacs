@@ -247,15 +247,13 @@ k-length permutations of elements in X."
 (setq-default flycheck-disabled-checkers '(go-errcheck))
 
 (set-quit-char ?q)
-(require 'color-theme)
-(require 'color-theme-solarized)
-(if (display-graphic-p)
-    (progn
-      (server-start)
-      (setq frame-background-mode 'dark)
-      (add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
-      (load-theme 'solarized t))
-  nil)
+(when (display-graphic-p)
+	(require 'color-theme)
+	(require 'color-theme-solarized)
+	(server-start)
+	(setq frame-background-mode 'dark)
+	(add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
+	(load-theme 'solarized t))
 
 (display-time)
 
