@@ -8,6 +8,16 @@ gconftool --type string --set /apps/gnome-terminal/keybindings/prev_tab '<Primar
 gconftool --type string --set /apps/gnome-terminal/profiles/Default/background_type '"solid"'
 
 # setup keybindings
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-1  "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-2  "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-3  "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-4  "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-5  "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-6  "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-7  "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-8  "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-9  "'disabled'"
+dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-10 "'disabled'"
 dconf write /org/cinnamon/desktop/keybindings/wm/move-to-workspace-right "['<Super>semicolon']"
 dconf write /org/cinnamon/desktop/keybindings/wm/move-to-workspace-left "['<Super>l']"
 dconf write /org/cinnamon/desktop/keybindings/wm/switch-to-workspace-left "['<Super>j']"
