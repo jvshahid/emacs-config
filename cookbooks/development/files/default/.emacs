@@ -19,11 +19,14 @@
 
 (require 'cask)
 
-(defun time-to-string (seconds)
+(defun epoch-to-string (seconds)
   (format-time-string "%m/%d/%Y %H:%M:%S %z" (seconds-to-time seconds)))
 
-(defun unix-time ()
-  (let ((time (current-time)))
+(defun string-to-epoch (str)
+  (unix-time (apply 'encode-time (parse-time-string str))))
+
+(defun unix-time (&optional optional-time)
+  (let ((time (if optional-time optional-time (current-time))))
    (+ (ash (car time) 16)
       (cadr time))))
 
