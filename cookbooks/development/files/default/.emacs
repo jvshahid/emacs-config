@@ -385,8 +385,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (setq arduinofmt-args c++fmt-args)
 (setq cfmt-command c++fmt-command)
 (setq cfmt-args c++fmt-args)
-(setq javafmt-command c++fmt-command)
-(setq javafmt-args c++fmt-args)
 
 (defun apply-to-rectangle (b e f)
   "For the rectangle defined by [B,E] apply the function F to each line with start/end set to the start and end columns."
@@ -562,6 +560,8 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'yas-reload-all)
 (add-hook 'java-mode-hook 'subword-mode)
+(add-hook 'java-mode-hook 'eclim-mode)
+(add-hook 'java-mode-hook 'disable-auto-completion) ; manually start auto-complete
 (require 'eclim)
 
 (require 'auto-complete-config)
