@@ -42,6 +42,12 @@ function ec {
     fi
 }
 
+function ed {
+    pushd $HOME/.emacs.d
+      cask emacs --daemon
+    popd
+}
+
 function millis_to_date {
     if [ $# -ne 1 ]; then
         echo "Usage: millis_to_date <milliseconds since epoc>"
