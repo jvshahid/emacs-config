@@ -185,7 +185,7 @@ k-length permutations of elements in X."
               tags-completion-table)
     (etags-select-find (ido-completing-read "Tag: " tag-names nil nil nil))))
 
-(global-set-key (kbd "M-.") 'etags-select-find-tag)
+(global-set-key (kbd "M-.") 'xref-find-references)
 (setq completion-ignore-case t)
 
 (global-auto-revert-mode 1)
