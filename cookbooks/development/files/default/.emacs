@@ -345,6 +345,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'flycheck-clojure)
 (require 'markdown-mode)
 (require 'paredit)
+(require 'wgrep)
 (eval-after-load 'flycheck '(flycheck-clojure-setup))
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'clojure-mode-hook 'paredit-mode)
@@ -416,6 +417,25 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'go-autocomplete)
 (require 'go-rename)
 (require 'go-guru)
+(require 'ginkgo-mode)
+
+(defun show-ginkgo-setup-for-container ()
+  (interactive)
+  (save-excursion
+    (let ((location (point)))
+      (hs-hide-all)
+      (while (hs-already-hidden-p)
+        (hs-show-block)
+        (hs-hide-level 1)
+        (goto-char location))
+      (goto-char (point-min))
+      (while (search-forward-regexp "^\t+\\(\\(Just\\)?BeforeEach\\|AfterEach\\)")
+        (let ((overlay (hs-already-hidden-p)))
+          (unless (and (< (overlay-start overlay) (point))
+                       (> (overlay-end overlay) (point)))
+            (hs-show-block)))))))
+
+(setq ginkgo-use-pwd-as-test-dir t)
 
 (defun disable-auto-completion ()
   (setq-local ac-auto-start nil)
