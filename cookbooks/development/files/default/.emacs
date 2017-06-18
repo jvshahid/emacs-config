@@ -417,6 +417,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (require 'go-autocomplete)
 (require 'go-rename)
 (require 'go-guru)
+
+(setq ginkgo-use-pwd-as-test-dir t)
+(setq ginkgo-use-default-keys t)
+
 (require 'ginkgo-mode)
 
 (defun show-ginkgo-setup-for-container ()
@@ -435,8 +439,6 @@ If DELTA was provided it will be added to the current line's indentation."
                        (> (overlay-end overlay) (point)))
             (hs-show-block)))))))
 
-(setq ginkgo-use-pwd-as-test-dir t)
-
 (defun disable-auto-completion ()
   (setq-local ac-auto-start nil)
   (local-set-key "\M-." 'ac-start))
@@ -450,6 +452,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'go-mode-hook 'flycheck-mode)
 (add-hook 'go-mode-hook 'disable-auto-completion)
 (add-hook 'go-mode-hook 'hs-minor-mode)
+(add-hook 'go-mode-hook 'ginkgo-mode)
 
 (defun add-to-path (path)
   (setq exec-path (cons path exec-path))
