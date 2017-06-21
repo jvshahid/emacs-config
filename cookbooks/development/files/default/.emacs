@@ -16,6 +16,7 @@
 (global-set-key (kbd "C-c h") 'windmove-left)
 (global-set-key (kbd "C-c j") 'windmove-down)
 (global-set-key (kbd "C-c k") 'windmove-up)
+(global-set-key (kbd "C-c C-r") 'ff-find-related-file)
 
 (require 'cask)
 (require 'cl)
@@ -187,7 +188,6 @@ k-length permutations of elements in X."
     (etags-select-find (ido-completing-read "Tag: " tag-names nil nil nil))))
 
 (global-set-key (kbd "M-.") 'xref-find-references)
-(global-set-key (kbd "C-x C-a") 'ff-find-related-file)
 (setq completion-ignore-case t)
 
 (global-auto-revert-mode 1)
