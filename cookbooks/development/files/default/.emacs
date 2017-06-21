@@ -18,6 +18,7 @@
 (global-set-key (kbd "C-c k") 'windmove-up)
 
 (require 'cask)
+(require 'cl)
 
 (defun epoch-to-string (seconds)
   (format-time-string "%m/%d/%Y %H:%M:%S %z" (seconds-to-time seconds)))
