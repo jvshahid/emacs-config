@@ -19,7 +19,6 @@
 (global-set-key (kbd "C-c C-r") 'ff-find-related-file)
 
 (require 'cask)
-(require 'cl)
 
 (defun epoch-to-string (seconds)
   (format-time-string "%m/%d/%Y %H:%M:%S %z" (seconds-to-time seconds)))
@@ -654,7 +653,7 @@ If DELTA was provided it will be added to the current line's indentation."
  (add-hook 'before-save-hook 'fmt-before-save)."
 
   (interactive)
-  (let* ((mode (first (split-string (symbol-name major-mode) "-")))
+  (let* ((mode (cl-first (split-string (symbol-name major-mode) "-")))
          (fmt-command (get-symbol-value mode "fmt-command"))
          (fmt-args (get-symbol-value mode "fmt-args")))
     (if (and fmt-command)
@@ -751,14 +750,16 @@ buffer."
                 (forward-line len)
                 (let ((text (buffer-substring start (point))))
                   (with-current-buffer target-buffer
-                    (decf line-offset len)
+                    (cl-decf line-offset len)
                     (goto-char (point-min))
                     (forward-line (- from len line-offset))
                     (insert text)))))
              ((equal action "d")
               (with-current-buffer target-buffer
                 (goto-line (- from line-offset))
-                (incf line-offset len)
+                (message "offset: %d" line-offset)
+                (cl-incf line-offset len)
+                (message "offset: %d" line-offset)
                 (delete-whole-line len)))
              (t
               (error "invalid rcs patch or internal error in go--apply-rcs-patch")))))))))
