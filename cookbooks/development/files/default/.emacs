@@ -2,6 +2,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'cask)
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -18,7 +19,116 @@
 (global-set-key (kbd "C-c k") 'windmove-up)
 (global-set-key (kbd "C-c C-r") 'ff-find-related-file)
 
-(require 'cask)
+;;; setup autoload for all libraries
+
+(load "magit-autoloads")
+(define-key global-map (kbd "C-x g") 'magit-status)
+(with-eval-after-load 'magit
+  (add-hook 'magit-mode-hook '(lambda ()
+                                (font-lock-mode 0)
+                                (setq show-trailing-whitespace nil)))
+  (setq magit-revert-item-confirm t))
+
+(load "helm-core-autoloads")
+(load "helm-autoloads")
+(with-eval-after-load 'helm
+  (setq helm-findutils-search-full-path t))
+(global-set-key (kbd "C-x C-p") 'helm-find)
+
+(load "flycheck-autoloads")
+(load "flycheck-clojure-autoloads")
+(with-eval-after-load 'flycheck
+  (setq flycheck-disabled-checkers '(go-errcheck))
+  (setq flycheck-check-syntax-automatically (quote (save mode-enabled)))
+  (setq flycheck-go-build-install-deps t))
+(add-hook 'java-mode-hook 'flycheck-mode)
+(add-hook 'go-mode-hook 'flycheck-mode)
+
+(load "ace-window-autoloads")
+(global-set-key (kbd "C-'") 'ace-jump-mode)
+(global-set-key (kbd "C-x o") 'ace-window)
+
+(load "paredit-autoloads")
+(load "clojure-mode-autoloads")
+(with-eval-after-load 'clojure-mode
+  (add-hook 'clojure-mode-hook 'paredit-mode)
+  (add-hook 'clojure-mode-hook 'flycheck-mode)
+  (add-hook 'clojure-mode-hook 'flycheck-clojure-setup))
+(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+
+(load "yaml-mode-autoloads")
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+(load "markdown-mode-autoloads")
+(with-eval-after-load 'markdown-mode
+  (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
+  (add-hook 'markdown-mode-hook 'turn-on-orgstruct)
+  (add-hook 'markdown-mode-hook 'setup-org-keybindings)
+  (add-hook 'gfm-mode-hook 'setup-org-keybindings)
+  (setq-default markdown-command "~/bin/flavor"))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
+
+(load "cider-autoloads")
+(load "haskell-mode-autoloads")
+(load "yasnippet-autoloads")
+(load "protobuf-mode-autoloads")
+(load "pianobar-autoloads")
+(with-eval-after-load 'pianobar
+  (setq pianobar-command "~/codez/pianobar/pianobar"))
+
+(load "arduino-mode-autoloads")
+(with-eval-after-load 'arduino-mode
+  (add-hook 'arduino-mode-hook
+            'subword-mode))
+(load "wgrep-autoloads")
+(load "livedown-autoloads")
+
+(load "auto-complete-autoloads")
+
+(load "go-mode-autoloads")
+(with-eval-after-load 'go-mode
+ (ac-config-default)
+ (require 'go-eldoc)
+ (require 'go-autocomplete)
+ (require 'go-rename)
+ (require 'go-guru)
+ (setq ginkgo-use-pwd-as-test-dir t)
+ (setq ginkgo-use-default-keys t)
+ (require 'ginkgo-mode)
+ (add-hook 'go-mode-hook 'go-eldoc-setup)
+ (add-hook 'go-mode-hook 'auto-complete-mode)
+ (add-hook 'go-mode-hook 'subword-mode)
+ (add-hook 'go-mode-hook (lambda ()
+                           (yas-minor-mode)
+                           (yas-reload-all)))
+ (add-hook 'go-mode-hook 'disable-auto-completion)
+ (add-hook 'go-mode-hook 'hs-minor-mode)
+ (add-hook 'go-mode-hook 'ginkgo-mode))
+
+(defun disable-auto-completion ()
+  (setq-local ac-auto-start nil)
+  (local-set-key "\M-." 'ac-start))
+
+(load "rvm-autoloads")
+(with-eval-after-load 'ruby-mode
+  (rvm-use-default))
+
+(load "eclim-autoloads")
+(load "ac-emacs-eclim-autoloads")
+(add-hook 'java-mode-hook 'disable-auto-completion)
+(add-hook 'java-mode-hook 'yas-minor-mode)
+(add-hook 'java-mode-hook 'yas-reload-all)
+(add-hook 'java-mode-hook 'subword-mode)
+(add-hook 'java-mode-hook 'eclim-mode)
+(add-hook 'java-mode-hook 'ac-emacs-eclim-config)
+
+;;; end of modes
+
+;;; miscellaneous functions
+
+(defun omg-this-is-a-dos-file ()
+  (interactive)
+  (revert-buffer-with-coding-system 'us-ascii-dos))
 
 (defun epoch-to-string (seconds)
   (format-time-string "%m/%d/%Y %H:%M:%S %z" (seconds-to-time seconds)))
@@ -37,68 +147,8 @@
     (kill-sexp -1)
     (insert (format "%S" value))))
 
-
-(defun Y (f)
-  "Y combinator in elisp. You can call it like this
-
-(defun fact (f x)
-  (if (= x 1) 1
-    (* x (funcall f (- x 1)))))
-(funcall (Y 'fact) 10)
-
-or
-
-(funcall (Y (lambda (f x)
-              (if (= x 1) 1
-                (* x (funcall f (- x 1))))))
-         3)
-"
-  ;; lexical-let is required here since elisp doesn't allow lexical binding,
-  ;; i.e. closure (up to version 24.1)
-  (lexical-let ((fun f))
-    ((lambda (x) (funcall x x))
-     (lambda (y)
-       (lexical-let ((funy y))
-         (lambda (&rest args)
-           (apply fun (funcall funy funy) args)))))))
-
-(defun fact (f x)
-  (if (= x 1)
-      1
-    (* x (funcall f (- x 1)))))
-
-(defun fib (f x)
-  (cond
-   ((= x 1) 1)
-   ((= x 2) 1)
-    (t (+ (funcall f (- x 1))
-          (funcall f (- x 2))))))
-
 (defalias 'shahid/range (symbol-function 'number-sequence))
-(defalias 'find-and-replace-in-marked 'dired-do-find-regexp-and-replace)
 
-(defun shahid/flatten (x)
-  "return a sequence that is the concatentation of all the
-sequences in `x'. The returned sequence is the same type as the first
-element in X."
-  (let ((first (car x)))
-    (cond ((stringp first) (apply 'concat x))
-          ((listp first) (apply 'append x)))))
-
-(defun shahid/permutations (X k)
-  "Given a list X and a number k, returns a list of all
-k-length permutations of elements in X."
-  (if (= k 0)
-      '(nil)
-    (let ((newX (shahid/permutations X (- k 1))))
-      (shahid/flatten
-       (mapcar (lambda (x) (mapcar (apply-partially 'cons x) newX)) X)))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         GLOBAL SETTINGS        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'helm)
-(require 'helm-files)
 (defun submodule-update (dir)
   "Run `git submodule update --init --recursive' in the given directory"
   (interactive "D")
@@ -106,29 +156,6 @@ k-length permutations of elements in X."
     (message "Updating submodules")
     (call-process "git" nil "*Messages*" nil "submodule" "update" "--init" "--recursive")
     (message "Finished updating submodules")))
-
-;; TODO: make sure that this function works properly
-(defun enable-auto-save ()
-  (interactive)
-  (global-auto-revert-mode 1)
-  (setq auto-save-timeout 1)
-  (setq auto-save-visited-file-name t)
-
-
-  ;;  move autosave files somewhere out of the directory path
-  ;;  http://amitp.blogspot.com/2007/03/emacs-move-autosave-and-backup-files.html
-  (defvar user-temporary-file-directory "~/.emacs.d/auto-save")
-  (make-directory user-temporary-file-directory t)
-  (setq backup-by-copying t)
-  (setq backup-directory-alist
-        `(("." . ,user-temporary-file-directory)
-          (,tramp-file-name-regexp nil)))
-  (setq auto-save-list-file-prefix
-        (concat user-temporary-file-directory ".auto-saves-"))
-  (setq auto-save-file-name-transforms
-        `((".*" ,user-temporary-file-directory t))))
-
-(setq tooltip-mode nil)
 
 (defun on-linux? ()
   (eq system-type 'gnu/linux))
@@ -225,12 +252,9 @@ k-length permutations of elements in X."
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
  '(fill-column 79)
- '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
- '(flycheck-go-build-install-deps t)
  '(gnus-select-method (quote (nnmaildir "GMAIL" (directory "~/Maildir/"))))
  '(godoc-command "godoc")
  '(godoc-use-completing-read t)
- '(helm-findutils-search-full-path t)
  '(ido-mode (quote both) nil (ido))
  '(js-indent-level 2)
  '(menu-bar-mode nil)
@@ -244,12 +268,8 @@ k-length permutations of elements in X."
  '(show-trailing-whitespace t)
  '(tab-width 2)
  '(tags-case-fold-search t)
- '(tool-bar-mode nil)
- '(user-mail-address "jvshahid@gmail.com                      ")
+ '(user-mail-address "jvshahid@gmail.com")
  '(windmove-wrap-around t))
-
-(require 'flycheck)
-(setq-default flycheck-disabled-checkers '(go-errcheck))
 
 (set-quit-char ?q)
 (when (display-graphic-p)
@@ -322,64 +342,16 @@ If DELTA was provided it will be added to the current line's indentation."
       (concat dired-omit-files ".*~$"))
 
 ;; add the ace-window mode
-(require 'ace-window)
-
-(global-set-key (kbd "C-'") 'ace-jump-mode)
-(global-set-key "\C-xo" 'ace-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Simple modes           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
-(add-to-list 'auto-mode-alist '("\\.glj$" . clojure-mode))
-(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
-(require 'haskell-mode)
-(require 'yasnippet)
-(require 'yaml-mode)
-(require 'protobuf-mode)
-(require 'pianobar)
-(require 'arduino-mode)
-(require 'clojure-mode)
-(require 'cider)
-(require 'flycheck-clojure)
-(require 'markdown-mode)
-(require 'paredit)
-(require 'wgrep)
-(eval-after-load 'flycheck '(flycheck-clojure-setup))
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'clojure-mode-hook 'paredit-mode)
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
-(add-hook 'arduino-mode-hook
-          (lambda ()
-            (subword-mode)))
-
-(setq pianobar-command "~/codez/pianobar/pianobar")
-
-(add-hook 'edit-server-start-hook
-          (lambda ()
-            (if (string-match "wiki*" (buffer-name))
-                (progn
-                  (outline-minor-mode)
-                  (setq outline-regexp "h1\\|h2\\.\\|h3\\. ")))))
-
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
-(add-hook 'markdown-mode-hook 'turn-on-orgtbl)
-(add-hook 'markdown-mode-hook 'turn-on-orgstruct)
 (defun setup-org-keybindings ()
   (local-set-key "\M-p" 'org-metaup)
   (local-set-key "\M-n" 'org-metadown))
 (add-hook 'org-mode-hook 'setup-org-keybindings)
-(add-hook 'gfm-mode-hook 'setup-org-keybindings)
-(add-hook 'markdown-mode-hook 'setup-org-keybindings)
-(setq markdown-command "~/bin/flavor")
-;; (add-hook 'markdown-mode-hook 'turn-on-orgstruct++)
-(add-to-list 'auto-mode-alist '("\\.proto\\'" . protobuf-mode))
-(add-to-list 'auto-mode-alist '("\\.xaml$" . xml-mode))
-(require 'livedown)
 
 (setq c++fmt-command "clang-format-3.8")
 (setq c++fmt-args (lambda (filename)
@@ -411,55 +383,10 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
-(require 'go-eldoc)
-(require 'go-autocomplete)
-(require 'go-rename)
-(require 'go-guru)
-
-(setq ginkgo-use-pwd-as-test-dir t)
-(setq ginkgo-use-default-keys t)
-
-(require 'ginkgo-mode)
-
-(defun show-ginkgo-setup-for-container ()
-  (interactive)
-  (save-excursion
-    (let ((location (point)))
-      (hs-hide-all)
-      (while (hs-already-hidden-p)
-        (hs-show-block)
-        (hs-hide-level 1)
-        (goto-char location))
-      (goto-char (point-min))
-      (while (search-forward-regexp "^\t+\\(\\(Just\\)?BeforeEach\\|AfterEach\\)")
-        (let ((overlay (hs-already-hidden-p)))
-          (unless (and (< (overlay-start overlay) (point))
-                       (> (overlay-end overlay) (point)))
-            (hs-show-block)))))))
-
-(defun disable-auto-completion ()
-  (setq-local ac-auto-start nil)
-  (local-set-key "\M-." 'ac-start))
-
-(add-hook 'go-mode-hook 'go-eldoc-setup)
-(add-hook 'go-mode-hook 'auto-complete-mode)
-(add-hook 'go-mode-hook 'subword-mode)
-(add-hook 'go-mode-hook (lambda ()
-                          (yas-minor-mode)
-                          (yas-reload-all)))
-(add-hook 'go-mode-hook 'flycheck-mode)
-(add-hook 'go-mode-hook 'disable-auto-completion)
-(add-hook 'go-mode-hook 'hs-minor-mode)
-(add-hook 'go-mode-hook 'ginkgo-mode)
 
 (defun add-to-path (path)
   (setq exec-path (cons path exec-path))
   (setenv "PATH" (concat path ":$PATH") t))
-
-(add-to-path "/usr/local/bin")
 
 (defun find-go ()
   (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
@@ -504,15 +431,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (setq gofmt-args nil)
 
 (global-set-key (kbd "C-c C-x d") 'godoc)
-(global-set-key (kbd "C-x C-p") 'helm-find)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Ruby mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'ruby-mode)
-(require 'rvm)
-(rvm-use-default)
 
 ;; (defun ruby-insert-end ()
 ;;   (interactive)
@@ -579,21 +501,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (setq ruby-deep-indent-paren nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Java mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-hook 'java-mode-hook 'flycheck-init)
-(add-hook 'java-mode-hook 'disable-auto-completion)
-(add-hook 'java-mode-hook 'yas-minor-mode)
-(add-hook 'java-mode-hook 'yas-reload-all)
-(add-hook 'java-mode-hook 'subword-mode)
-(add-hook 'java-mode-hook 'eclim-mode)
-(require 'eclim)
-
-(require 'auto-complete-config)
-(ac-config-default)
-(require 'ac-emacs-eclim)
-(ac-emacs-eclim-config)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -611,31 +518,11 @@ If DELTA was provided it will be added to the current line's indentation."
              (newline-and-indent))
            (indent-for-tab-command)))))
 
-(require 'magit)
-(define-key global-map (kbd "C-x g") 'magit-status)
-(add-hook 'magit-mode-hook '(lambda ()
-                              (font-lock-mode 0)
-                              (setq show-trailing-whitespace nil)))
-
-(setq magit-revert-item-confirm t)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         Shell mode             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-hook 'eshell-mode-hook '(lambda ()
-                               (setq show-trailing-whitespace nil)))
-(add-hook 'term-mode-hook '(lambda ()
-                             (setq show-trailing-whitespace nil)
-                             (linum-mode 0)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         useful functions        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun omg-this-is-a-dos-file ()
-  (interactive)
-  (revert-buffer-with-coding-system 'us-ascii-dos))
 (put 'narrow-to-region 'disabled nil)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         formatting functions        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
