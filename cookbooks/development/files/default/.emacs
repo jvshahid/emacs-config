@@ -252,7 +252,6 @@
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
  '(fill-column 79)
- '(gnus-select-method (quote (nnmaildir "GMAIL" (directory "~/Maildir/"))))
  '(godoc-command "godoc")
  '(godoc-use-completing-read t)
  '(ido-mode (quote both) nil (ido))
