@@ -44,7 +44,7 @@ function ec {
 
 function ed {
     pushd $HOME/.emacs.d
-      cask emacs --daemon
+      emacs --daemon
     popd
 }
 
