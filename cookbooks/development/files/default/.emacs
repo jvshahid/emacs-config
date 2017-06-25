@@ -123,6 +123,7 @@
 (add-hook 'java-mode-hook 'subword-mode)
 (add-hook 'java-mode-hook 'eclim-mode)
 (add-hook 'java-mode-hook 'ac-emacs-eclim-config)
+(add-hook 'java-mode-hook 'auto-complete-mode)
 
 ;;; end of modes
 
@@ -362,12 +363,14 @@ If DELTA was provided it will be added to the current line's indentation."
 (setq cfmt-command c++fmt-command)
 (setq cfmt-args c++fmt-args)
 
+(require 'rect)
+
 (defun apply-to-rectangle (b e f)
   "For the rectangle defined by [B,E] apply the function F to each line with start/end set to the start and end columns."
   (interactive "r\naFunction name to apply: ")
-  (apply-on-rectangle 'apply-rectangle-line f b e))
+  (apply-on-rectangle 'apply-rectangle-line b e f))
 
-(defun apply-rectangle-line (f startcol endcol)
+(defun apply-rectangle-line (startcol endcol f)
   "Apply F to the region defined by [STARTCOL, ENDCOL]"
   (when (= (move-to-column startcol) startcol)
     (funcall f
