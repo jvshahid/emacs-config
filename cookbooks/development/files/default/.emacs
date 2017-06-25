@@ -72,7 +72,7 @@
 (load "haskell-mode-autoloads")
 (load "yasnippet-autoloads")
 (load "protobuf-mode-autoloads")
-(load "pianobar-autoloads")
+(autoload 'pianobar "pianobar" "pianobar pandora mode" t)
 (with-eval-after-load 'pianobar
   (setq pianobar-command "~/codez/pianobar/pianobar"))
 
