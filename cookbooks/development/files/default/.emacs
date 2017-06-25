@@ -71,6 +71,19 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 
 (load "cider-autoloads")
+(load "ac-cider-autoloads")
+(defun cider-autocomplete-setup ()
+  (auto-complete-mode)
+  (ac-cider-setup)
+  (local-set-key (kbd "C-c C-j") 'cider-find-var)
+  (define-key cider-mode-map (kbd "M-.") 'ac-start))
+(add-hook 'cider-mode-hook 'cider-autocomplete-setup)
+(add-hook 'cider-repl-mode-hook 'cider-autocomplete-setup)
+(eval-after-load "auto-complete"
+  '(progn
+     (add-to-list 'ac-modes 'cider-mode)
+     (add-to-list 'ac-modes 'cider-repl-mode)))
+
 (load "haskell-mode-autoloads")
 (load "yasnippet-autoloads")
 (load "protobuf-mode-autoloads")
@@ -103,7 +116,6 @@
  (add-hook 'go-mode-hook (lambda ()
                            (yas-minor-mode)
                            (yas-reload-all)))
- (add-hook 'go-mode-hook 'disable-auto-completion)
  (add-hook 'go-mode-hook 'hs-minor-mode)
  (add-hook 'go-mode-hook 'ginkgo-mode))
 
@@ -111,13 +123,14 @@
   (setq-local ac-auto-start nil)
   (local-set-key "\M-." 'ac-start))
 
+(add-hook 'auto-complete-mode-hook 'disable-auto-completion)
+
 (load "rvm-autoloads")
 (with-eval-after-load 'ruby-mode
   (rvm-use-default))
 
 (load "eclim-autoloads")
 (load "ac-emacs-eclim-autoloads")
-(add-hook 'java-mode-hook 'disable-auto-completion)
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'yas-reload-all)
 (add-hook 'java-mode-hook 'subword-mode)

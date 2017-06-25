@@ -63,6 +63,7 @@
 (depends-on "request")
 (depends-on "eclim")
 (depends-on "ac-emacs-eclim")
+(depends-on "ac-cider")
 (depends-on "wgrep")
 (depends-on "ginkgo-mode" :git "https://github.com/jvshahid/ginkgo-mode" :branch "ginkgo-focus")
 ;; oracle failed to install because the file doesn't include the standard emacs
