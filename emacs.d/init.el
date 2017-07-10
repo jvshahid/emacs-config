@@ -52,10 +52,13 @@
 
 (load "paredit-autoloads")
 (load "clojure-mode-autoloads")
+(load "clj-refactor-autoloads")
 (with-eval-after-load 'clojure-mode
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'flycheck-mode)
-  (add-hook 'clojure-mode-hook 'flycheck-clojure-setup))
+  (add-hook 'clojure-mode-hook 'flycheck-clojure-setup)
+  (add-hook 'clojure-mode-hook 'clj-refactor-mode)
+  (add-hook 'clojure-mode-hook 'yas-minor-mode))
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
 (load "yaml-mode-autoloads")
@@ -275,6 +278,9 @@
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
  '(perl-indent-level 2)
+ '(projectile-project-root-files-functions
+   (quote
+    (projectile-root-local projectile-root-top-down projectile-root-bottom-up projectile-root-top-down-recurring)))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
  '(select-enable-clipboard t)

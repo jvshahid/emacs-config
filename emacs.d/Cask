@@ -58,6 +58,7 @@
 (depends-on "flycheck-clojure")
 (depends-on "paredit")
 (depends-on "clojure-cheatsheet")
+(depends-on "clj-refactor")
 (depends-on "helm")
 (depends-on "haskell-mode")
 (depends-on "request")
