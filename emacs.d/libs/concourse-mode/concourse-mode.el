@@ -5,15 +5,6 @@
 
 ;;; Code:
 
-(defun concourse-bind (f &rest fs)
-  (if fs
-      (let ((g (car fs)))
-        (apply 'concourse-bind
-               (lambda (x)
-                 (funcall g (funcall f x)))
-               (cdr fs)))
-    f))
-
 (defun concourse-get-url (url callback)
   "Depending on the value of `noninteractive' calls either
 `url-retrieve' or `url-retrieve-synchronously'"
@@ -109,12 +100,27 @@ longer than this value is considered hanging"
 
 (defvar concourse-pipeline-color nil)
 
-(defun concourse-pipeline-summary (group)
-  (concourse-bind
-   'concourse-parse-response
-   (apply-partially 'concourse-filter-jobs-by-group group)
-   (apply-partially 'concourse-jobs-status concourse-duration-limit)
-   'concourse-pipeline-summary-from-status))
+(defun concourse-expand-second (x fs)
+  (if (seq-empty-p fs)
+      x
+    (let ((f (car fs)))
+      (if (sequencep f)
+          (concourse-expand-second `(,(car f) ,x ,@(cdr f)) (cdr fs))
+          (concourse-expand-second `(,f ,x) (cdr fs))))))
+
+(defun concourse-expand-last (x fs)
+  (if (seq-empty-p fs)
+      x
+    (let ((f (car fs)))
+      (if (sequencep f)
+          (concourse-expand-last `(,@f ,x) (cdr fs))
+          (concourse-expand-last `(,f ,x) (cdr fs))))))
+
+(defmacro concourse->> (x &rest fs)
+  (concourse-expand-last x fs))
+
+(defmacro concourse-> (x &rest fs)
+  (concourse-expand-second x fs))
 
 ;;; Emacs mode line update
 (defun concourse-mode-line ()
@@ -137,23 +143,14 @@ longer than this value is considered hanging"
            concourse-url
            concourse-team
            concourse-pipeline)
-   (concourse-bind
-    (concourse-pipeline-summary concourse-group)
-    'concourse-update-mode-line-from-status)))
-
-(defun concourse-print-pipeline-summary ()
-  "Display the status of the concourse pipeline"
-  (interactive)
-  (concourse-get-url
-   (format "https://%s/api/v1/teams/%s/pipelines/%s/jobs"
-           concourse-url
-           concourse-team
-           concourse-pipeline)
-   (concourse-bind
-    'concourse-parse-response
-    (apply-partially 'concourse-filter-jobs-by-group concourse-group)
-    (apply-partially 'concourse-jobs-status concourse-duration-limit)
-    (apply-partially 'message "status: %S"))))
+   (lambda (x)
+     (concourse->>
+      x
+      concourse-parse-response
+      (concourse-filter-jobs-by-group concourse-group)
+      (concourse-jobs-status concourse-duration-limit)
+      concourse-pipeline-summary-from-status
+      concourse-update-mode-line-from-status))))
 
 (defvar concourse-timer nil)
 
@@ -174,12 +171,6 @@ longer than this value is considered hanging"
         (append-to-foo (apply-partially 'append '("foo"))))
     (should (eql (funcall second '(foo bar baz)) 'bar))
     (should (equal (funcall append-to-foo '("bar")) '("foo" "bar")))))
-
-(ert-deftest concourse-test-binding ()
-  (let ((noop (concourse-bind
-               (apply-partially 'cons "foo")
-               'cdr)))
-    (should (equal (funcall noop '("bar")) '("bar")))))
 
 (defun construct-successful-job ()
   '((name . "successful") (groups . ["diego"]) (finished_build (status . "succeeded"))))
