@@ -168,14 +168,6 @@
 
 (defalias 'shahid/range (symbol-function 'number-sequence))
 
-(defun submodule-update (dir)
-  "Run `git submodule update --init --recursive' in the given directory"
-  (interactive "D")
-  (let ((default-directory dir))
-    (message "Updating submodules")
-    (call-process "git" nil "*Messages*" nil "submodule" "update" "--init" "--recursive")
-    (message "Finished updating submodules")))
-
 (defun on-linux? ()
   (eq system-type 'gnu/linux))
 
