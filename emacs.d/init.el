@@ -13,7 +13,7 @@
 ;; (package-initialize)
 
 (winner-mode)
-(global-set-key (kbd "C-c |") 'split-window-horizontally)
+(global-set-key (kbd "C-c \\") 'split-window-horizontally)
 (global-set-key (kbd "C-c -") 'split-window-vertically)
 (global-set-key (kbd "C-c l") 'windmove-right)
 (global-set-key (kbd "C-c h") 'windmove-left)
