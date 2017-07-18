@@ -59,6 +59,9 @@
   (add-hook 'clojure-mode-hook 'flycheck-clojure-setup)
   (add-hook 'clojure-mode-hook 'clj-refactor-mode)
   (add-hook 'clojure-mode-hook 'yas-minor-mode))
+(with-eval-after-load 'paredit-mode
+  (add-hook 'paredit-mode-hook (lambda ()
+                                 (local-set-key (kbd "C-c C-w") 'paredit-backward-kill-word))))
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
 (load "yaml-mode-autoloads")
