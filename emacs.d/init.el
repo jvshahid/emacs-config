@@ -23,6 +23,9 @@
 
 ;;; setup autoload for all libraries
 
+(require 'edit-server)
+(edit-server-start)
+
 (load "magit-autoloads")
 (define-key global-map (kbd "C-x g") 'magit-status)
 (with-eval-after-load 'magit

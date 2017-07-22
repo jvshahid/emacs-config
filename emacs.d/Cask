@@ -39,6 +39,7 @@
 (depends-on "go-guru")
 (depends-on "markdown-mode")
 (depends-on "protobuf-mode")
+(depends-on "edit-server")
 (depends-on "go-eldoc")
 (depends-on "auto-complete")
 (depends-on "go-autocomplete")
