@@ -1,4 +1,4 @@
-;; -*- lisp -*-
+;; -*- emacs-lisp -*-
 
 (source gnu)
 (source melpa)
@@ -40,6 +40,7 @@
 (depends-on "markdown-mode")
 (depends-on "protobuf-mode")
 (depends-on "edit-server")
+(depends-on "edit-server-htmlize")
 (depends-on "go-eldoc")
 (depends-on "auto-complete")
 (depends-on "go-autocomplete")
@@ -68,6 +69,7 @@
 (depends-on "ac-cider")
 (depends-on "wgrep")
 (depends-on "ginkgo-mode" :git "https://github.com/jvshahid/ginkgo-mode" :branch "ginkgo-focus")
+(depends-on "undo-tree")
 ;; oracle failed to install because the file doesn't include the standard emacs
 ;; library header, see https://github.com/cask/cask/issues/216 and
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Library-Headers.html
