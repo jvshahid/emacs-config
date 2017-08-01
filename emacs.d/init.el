@@ -56,8 +56,25 @@
 (add-hook 'go-mode-hook 'flycheck-mode)
 
 (load "ace-window-autoloads")
+(defun swap-next-window (n)
+  "swap the buffer of the current window with the next window obtained using 'next-window"
+  (interactive "p")
+  (let ((fun (if (< n 0) 'previous-window 'next-window))
+        (n (cond
+            ((> n 0) n)
+            ((< n 0) (- n)))))
+    (dotimes (_ n)
+     (aw-swap-window (funcall fun)))))
+
+(defun swap-previous-window (n)
+  "swap the buffer of the current window with the previous window obtained using 'previous-window"
+  (interactive "p")
+  (swap-next-window (- n)))
+
 (global-set-key (kbd "C-'") 'ace-jump-mode)
 (global-set-key (kbd "C-x o") 'ace-window)
+(global-set-key (kbd "C-c [") 'swap-next-window)
+(global-set-key (kbd "C-c ]") 'swap-previous-window)
 
 (load "paredit-autoloads")
 (load "clojure-mode-autoloads")
