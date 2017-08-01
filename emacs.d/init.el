@@ -23,9 +23,6 @@
 
 ;;; setup autoload for all libraries
 
-(require 'undo-tree)
-(global-undo-tree-mode)
-
 (require 'edit-server)
 (require 'edit-server-htmlize)
 (add-hook 'edit-server-start-hook 'edit-server-dehtmlize-buffer)
