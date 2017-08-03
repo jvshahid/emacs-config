@@ -70,7 +70,4 @@
 (depends-on "wgrep")
 (depends-on "ginkgo-mode" :git "https://github.com/jvshahid/ginkgo-mode" :branch "ginkgo-focus")
 (depends-on "undo-tree")
-;; oracle failed to install because the file doesn't include the standard emacs
-;; library header, see https://github.com/cask/cask/issues/216 and
-;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Library-Headers.html
-;; (depends-on "oracle" :git "https://github.com/golang/tools" :branch "master" :files ("cmd/oracle/*.el"))
+
