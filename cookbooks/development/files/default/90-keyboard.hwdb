@@ -6,6 +6,7 @@ evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
  KEYBOARD_KEY_2a=leftalt
  KEYBOARD_KEY_36=rightalt
  KEYBOARD_KEY_1d=leftmeta
+ KEYBOARD_KEY_9d=rightshift
 
 evdev:input:b0003v17EFp6047*
  KEYBOARD_KEY_700e2=leftctrl
