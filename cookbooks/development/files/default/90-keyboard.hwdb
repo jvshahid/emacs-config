@@ -1,19 +1,20 @@
 # -*- conf -*-
 evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
- KEYBOARD_KEY_3a=leftshift
  KEYBOARD_KEY_38=leftctrl
  KEYBOARD_KEY_b8=rightctrl
  KEYBOARD_KEY_2a=leftalt
  KEYBOARD_KEY_36=rightalt
- KEYBOARD_KEY_1d=leftmeta
+ KEYBOARD_KEY_3a=leftshift
  KEYBOARD_KEY_9d=rightshift
+ KEYBOARD_KEY_1d=leftmeta
 
 evdev:input:b0003v17EFp6047*
  KEYBOARD_KEY_700e2=leftctrl
- KEYBOARD_KEY_700e3=leftalt
- KEYBOARD_KEY_70039=leftmeta
  KEYBOARD_KEY_700e6=rightctrl
- KEYBOARD_KEY_70046=rightalt
- KEYBOARD_KEY_700e4=rightmeta
+ KEYBOARD_KEY_700e1=leftalt
+ KEYBOARD_KEY_700e5=rightalt
+ KEYBOARD_KEY_70039=leftshift
+ KEYBOARD_KEY_700e4=rightshift
+ KEYBOARD_KEY_700e0=leftmeta
  KEYBOARD_KEY_ffa000f1=f20
 
