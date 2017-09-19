@@ -57,10 +57,8 @@
 (defun swap-next-window (n)
   "swap the buffer of the current window with the next window obtained using 'next-window"
   (interactive "p")
-  (let ((fun (if (< n 0) 'previous-window 'next-window))
-        (n (cond
-            ((> n 0) n)
-            ((< n 0) (- n)))))
+  (let ((fun  (if (< n 0) 'previous-window 'next-window))
+        (n    (abs n)))
     (dotimes (_ n)
      (aw-swap-window (funcall fun)))))
 
