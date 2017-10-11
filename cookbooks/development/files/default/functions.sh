@@ -16,6 +16,11 @@ CDPATH=.:$document_with_colons
 # disable terminal xon/xoff to be able to search forward
 stty -ixon
 
+function pullify {
+    git config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*'
+    git fetch origin
+}
+
 function is_zsh {
     if [[ "x$(ps -p $$ | tail -n1 | awk '{print $4}')" == "xzsh" ]]; then
         return 0
