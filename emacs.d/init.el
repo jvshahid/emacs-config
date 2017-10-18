@@ -302,6 +302,7 @@
  '(projectile-project-root-files-functions
    (quote
     (projectile-root-local projectile-root-top-down projectile-root-bottom-up projectile-root-top-down-recurring)))
+ '(safe-local-variable-values (quote ((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)"))))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
  '(select-enable-clipboard t)
@@ -468,7 +469,7 @@ If DELTA was provided it will be added to the current line's indentation."
                    "github.com/mdempsky/unconvert"
                    "golang.org/x/tools/cmd/guru"))
       (message "Running 'go get -u %s'" url)
-      (if (/= 0(call-process "go" nil "*go-get*" nil "get" url))
+      (if (/= 0(call-process "go" nil "*go-get*" nil "get" "-u" url))
           (error "Cannot run go get")))))
 
 (setq gofmt-command "goimports")
