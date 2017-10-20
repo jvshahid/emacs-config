@@ -24,7 +24,7 @@ export SDK=~/Android/Sdk/
 export NDK=$SDK/ndk-bundle
 export PATH=$HOME/bin:/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$PATH:$NDK/
 # custom emacs build
-emacs_installation=$(ls -1d $HOME/bin/emacs*)
+emacs_installation=$HOME/bin/emacs-25
 export PATH=${emacs_installation}/bin:$PATH
 export TERM=screen-256color
 # android path
@@ -40,7 +40,7 @@ export EDITOR='emacsclient'
 export GOPATH=$HOME/codez/gocodez
 export PATH=$PATH:$GOPATH/bin:/home/jvshahid/.cask/bin
 export PATH=/home/jvshahid/bin/java/bin:/home/jvshahid/bin/eclipse:$PATH
-export MANPATH=$HOME/bin/emacs-25/share/man:$MANPATH
+export MANPATH=$emacs_installation/share/man:$MANPATH
 export JAVA_HOME=$HOME/bin/java
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"

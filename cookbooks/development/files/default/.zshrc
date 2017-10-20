@@ -42,6 +42,7 @@ source $HOME/alias.sh
 source $HOME/functions.sh
 source $HOME/exports.sh
 source $HOME/prompt.sh
+source $HOME/.fzf.zsh
 
 # install direnv
 eval "$(direnv hook zsh)"
