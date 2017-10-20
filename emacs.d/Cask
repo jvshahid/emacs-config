@@ -50,7 +50,6 @@
 (depends-on "color-theme-solarized")
 (depends-on "ace-jump-mode")
 (depends-on "ace-window")
-(depends-on "crontab-mode")
 (depends-on "haskell-mode")
 (depends-on "go-rename")
 (depends-on "livedown" :git "https://github.com/shime/emacs-livedown.git")
