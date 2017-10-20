@@ -41,7 +41,12 @@
 (load "helm-autoloads")
 (with-eval-after-load 'helm
   (setq helm-findutils-search-full-path t))
-(global-set-key (kbd "C-x C-p") 'helm-find)
+(load "helm-fzf-autoloads")
+;;; override the default fzf find command
+(setenv "FZF_DEFAULT_COMMAND" "command find -L . -mindepth 1 -type f -o -type d -o -type l 2> /dev/null | cut -b3-")
+(global-set-key (kbd "C-x C-p") (lambda ()
+                                  (interactive)
+                                  (helm-fzf default-directory)))
 
 (load "flycheck-autoloads")
 (load "flycheck-clojure-autoloads")
