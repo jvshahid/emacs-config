@@ -380,7 +380,6 @@ If DELTA was provided it will be added to the current line's indentation."
 
 ;; Omit emacs files from the Dired
 (require 'dired-x)
-(dired-omit-mode 1)
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
 (setq dired-omit-files
       (concat dired-omit-files ".*~$"))
