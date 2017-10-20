@@ -65,3 +65,7 @@ PATH=$PATH:$HOME/bin
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
+bindkey -r fzf-cd-widget
+bindkey -r fzf-file-widget
+# bindkey '\eq' fzf-cd-widget
+bindkey '\ea' fzf-file-widget
