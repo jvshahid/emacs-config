@@ -43,6 +43,7 @@ source $HOME/functions.sh
 source $HOME/exports.sh
 source $HOME/prompt.sh
 source $HOME/.fzf.zsh
+source $HOME/.fzf/shell/key-bindings.zsh
 
 # install direnv
 eval "$(direnv hook zsh)"
@@ -65,7 +66,7 @@ PATH=$PATH:$HOME/bin
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
-bindkey -r fzf-cd-widget
-bindkey -r fzf-file-widget
+bindkey -r '^t'
+bindkey -r '\et'
 # bindkey '\eq' fzf-cd-widget
 bindkey '\ea' fzf-file-widget
