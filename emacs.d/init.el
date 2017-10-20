@@ -168,7 +168,8 @@
 (add-hook 'java-mode-hook 'ac-emacs-eclim-config)
 (add-hook 'java-mode-hook 'auto-complete-mode)
 (add-hook 'java-mode-hook (lambda ()
-                            (local-set-key (kbd "C-c C-j") 'eclim-java-find-declaration)))
+                            (local-set-key (kbd "C-c C-j") 'eclim-java-find-declaration)
+                            (local-set-key (kbd "C-c C-d") 'eclim-java-show-documentation-for-current-element)))
 
 ;;; end of modes
 
