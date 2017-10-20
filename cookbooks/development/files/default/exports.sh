@@ -35,7 +35,7 @@ export LD_LIBRARY_PATH="$RUSTCROOT/lib:$LD_LIBRARY_PATH"
 export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
 export MOSH_INSTALLATION='$HOME/mosh-installation'
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-export EDITOR='emacsclient'
+export EDITOR=ec
 [ -f /home/jvshahid/.travis/travis.sh ] && source /home/jvshahid/.travis/travis.sh
 export GOPATH=$HOME/codez/gocodez
 export PATH=$PATH:$GOPATH/bin:/home/jvshahid/.cask/bin

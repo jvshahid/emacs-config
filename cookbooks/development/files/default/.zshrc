@@ -60,3 +60,8 @@ function copy-command-to-clipboard {
 zle -N copy-command-to-clipboard
 bindkey '^[C' copy-command-to-clipboard
 PATH=$PATH:$HOME/bin
+
+# turn on command line editing
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
