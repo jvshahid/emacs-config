@@ -1,13 +1,14 @@
 bash "setup_keybinding" do
   user 'jvshahid'
   code <<EOF
-gconftool --type string --set /apps/gnome-terminal/keybindings/move_tab_left '<Primary>braceleft'
-gconftool --type string --set /apps/gnome-terminal/keybindings/move_tab_right '<Primary>braceright'
-gconftool --type string --set /apps/gnome-terminal/keybindings/next_tab '<Primary>bracketright'
-gconftool --type string --set /apps/gnome-terminal/keybindings/prev_tab '<Primary>bracketleft'
-gconftool --type string --set /apps/gnome-terminal/profiles/Default/background_type '"solid"'
 
 # setup keybindings
+dconf write /org/gnome/terminal/legacy/keybindings/move-tab-left "'<Primary>braceleft'"
+dconf write /org/gnome/terminal/legacy/keybindings/move-tab-right "'<Primary>braceright'"
+dconf write /org/gnome/terminal/legacy/keybindings/next-tab "'<Primary>bracketright'"
+dconf write /org/gnome/terminal/legacy/keybindings/prev-tab "'<Primary>bracketleft'"
+dconf write /org/gnome/terminal/legacy/profiles/Default/background_type '"solid"'
+
 dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-1  "'disabled'"
 dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-2  "'disabled'"
 dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-3  "'disabled'"
