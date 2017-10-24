@@ -7,7 +7,9 @@ dconf write /org/gnome/terminal/legacy/keybindings/move-tab-left "'<Primary>brac
 dconf write /org/gnome/terminal/legacy/keybindings/move-tab-right "'<Primary>braceright'"
 dconf write /org/gnome/terminal/legacy/keybindings/next-tab "'<Primary>bracketright'"
 dconf write /org/gnome/terminal/legacy/keybindings/prev-tab "'<Primary>bracketleft'"
-dconf write /org/gnome/terminal/legacy/profiles/Default/background_type '"solid"'
+
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-theme-transparency "false"
+dconf write /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-transparent-background "false"
 
 dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-1  "'disabled'"
 dconf write /org/gnome/terminal/legacy/keybindings/switch-to-tab-2  "'disabled'"
