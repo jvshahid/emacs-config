@@ -24,7 +24,7 @@ export SDK=~/Android/Sdk/
 export NDK=$SDK/ndk-bundle
 export PATH=$HOME/bin:/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$PATH:$NDK/
 # custom emacs build
-emacs_installation=$HOME/bin/emacs-26
+emacs_installation=$HOME/bin/emacs-25
 export PATH=${emacs_installation}/bin:$PATH
 export TERM=screen-256color
 # android path
