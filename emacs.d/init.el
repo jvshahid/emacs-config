@@ -81,6 +81,7 @@
 (load "clojure-mode-autoloads")
 (load "clj-refactor-autoloads")
 (with-eval-after-load 'clojure-mode
+  (add-hook 'clojure-mode-hook 'projectile-mode)
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'flycheck-mode)
   (add-hook 'clojure-mode-hook 'flycheck-clojure-setup)
@@ -458,7 +459,7 @@ If DELTA was provided it will be added to the current line's indentation."
   (let ((go-cmd (locate-file "go" exec-path)))
 
     ;; ask the user for the path of go if we can't find it
-    (if (not go-cmd) (find-go))
+    (unless go-cmd (find-go))
 
     (setup-go-path)
 
@@ -474,7 +475,7 @@ If DELTA was provided it will be added to the current line's indentation."
                    "github.com/mdempsky/unconvert"
                    "golang.org/x/tools/cmd/guru"))
       (message "Running 'go get -u %s'" url)
-      (if (/= 0(call-process "go" nil "*go-get*" nil "get" "-u" url))
+      (if (/= 0 (call-process "go" nil "*go-get*" nil "get" "-u" url))
           (error "Cannot run go get")))))
 
 (setq gofmt-command "goimports")
@@ -519,7 +520,8 @@ If DELTA was provided it will be added to the current line's indentation."
   (when (and (or (bolp)
                  (not (memq (char-syntax (char-before)) '(?w ?_))))
              (looking-at "\\<do\\(\\s \\|$\\)"))
-    (let ((orig (point)) (end (progn (ruby-forward-sexp) (point))))
+    (let ((orig (point))
+          (end (progn (ruby-forward-sexp) (point))))
       (backward-char 3)
       (when (looking-at ruby-block-end-re)
         (delete-char 3)
@@ -537,18 +539,13 @@ If DELTA was provided it will be added to the current line's indentation."
   (or (ruby-brace-to-do-end)
       (ruby-do-end-to-brace)))
 
-
 ;; (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile.*" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
 ;; Enable ruby electric when ruby-mode is activated
-(add-hook 'ruby-mode-hook
-          (lambda()
-            (subword-mode)))
-
-(setq ruby-deep-indent-paren nil)
+(add-hook 'ruby-mode-hook 'subword-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         C/C++mode              ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -559,15 +556,6 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (add-hook 'c-mode-hook 'c-c++-hook)
 (add-hook 'c++-mode-hook 'c-c++-hook)
-
-(defun insert-newline-before-curlies (action pair pos-before)
-  (progn
-    (cond ((eq pair ?})
-           (newline-and-indent)
-           (save-excursion
-             (newline-and-indent))
-           (indent-for-tab-command)))))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;         useful functions        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
