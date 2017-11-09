@@ -1,0 +1,4 @@
+# key: event
+# name: event
+# --
+Eventually($1).${2:$$(yas-choose-value '("Should" "ShouldNot"))}($3)$0
