@@ -67,7 +67,8 @@ DURATION-LIMIT seconds"
   (cl-map 'list (apply-partially 'concourse-job-status duration-limit) jobs))
 
 (defun concourse-pipeline-summary-from-status (data)
-  (cl-labels ((has-status (status) (lambda (x) (eq status (assoc-default 'status x))))
+  (cl-labels ((has-status (status) (lambda (x) (eq status
+                                                   (assoc-default 'status x))))
               (count-for-status (status list)
                                 (length (cl-remove-if-not (has-status status) list))))
     (list (cons 'succeeded (count-for-status 'succeeded data))
@@ -146,11 +147,11 @@ longer than this value is considered hanging"
    (lambda (x)
      (concourse->>
       x
-      concourse-parse-response
+      (concourse-parse-response)
       (concourse-filter-jobs-by-group concourse-group)
       (concourse-jobs-status concourse-duration-limit)
-      concourse-pipeline-summary-from-status
-      concourse-update-mode-line-from-status))))
+      (concourse-pipeline-summary-from-status)
+      (concourse-update-mode-line-from-status)))))
 
 (defvar concourse-timer nil)
 
