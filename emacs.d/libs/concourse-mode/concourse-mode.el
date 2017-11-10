@@ -132,8 +132,8 @@ longer than this value is considered hanging"
 
 (defun concourse-update-mode-line-from-status (status)
   (cond
-   ((> (assoc-default 'hanging status) 0) (setq concourse-pipeline-color "orange"))
    ((> (assoc-default 'failed status) 0) (setq concourse-pipeline-color "red"))
+   ((> (assoc-default 'hanging status) 0) (setq concourse-pipeline-color "orange"))
    (t (setq concourse-pipeline-color "green")))
   (force-mode-line-update t))
 
