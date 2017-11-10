@@ -1,6 +1,9 @@
+;;; -*- lexical-binding: t; -*-
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 (require 'cask "~/.cask/cask.el")
 
@@ -19,6 +22,24 @@
 (global-set-key (kbd "C-c h") 'windmove-left)
 (global-set-key (kbd "C-c j") 'windmove-down)
 (global-set-key (kbd "C-c k") 'windmove-up)
+
+(defun define-repeatable-key (keyseq key cmd)
+  "define a repeatable key sequence. KEYSEQ is the initial key
+sequence invoking the command. KEY is the key sequence to invoke
+the command again. CMD is the command to run"
+  (global-set-key keyseq
+                  (lambda ()
+                    (interactive)
+                    (funcall cmd)
+                    (set-transient-map
+                     (let ((map (make-sparse-keymap)))
+                       (define-key map key 'repeat)
+                       map)))))
+
+(define-repeatable-key (kbd "C-c M-=") (kbd "M-=") (lambda () (interactive) (enlarge-window 4)))
+(define-repeatable-key (kbd "C-c M--") (kbd "M--") (lambda () (interactive) (shrink-window 4)))
+(define-repeatable-key (kbd "C-c M-.") (kbd "M-.") (lambda () (interactive) (enlarge-window-horizontally 4)))
+(define-repeatable-key (kbd "C-c M-,") (kbd "M-,") (lambda () (interactive) (shrink-window-horizontally 4)))
 (global-set-key (kbd "C-c C-r") 'ff-find-related-file)
 
 ;;; setup autoload for all libraries
