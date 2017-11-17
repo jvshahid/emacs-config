@@ -207,7 +207,7 @@ the command again. CMD is the command to run"
   (revert-buffer-with-coding-system 'us-ascii-dos))
 
 (defun epoch-to-string (seconds)
-  (format-time-string "%m/%d/%Y %H:%M:%S %z" (seconds-to-time seconds)))
+  (format-time-string "%d %b %Y %H:%M:%S %Z" (seconds-to-time seconds)))
 
 (defun string-to-epoch (str)
   (unix-time (apply 'encode-time (parse-time-string str))))
