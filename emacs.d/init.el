@@ -473,6 +473,7 @@ If DELTA was provided it will be added to the current line's indentation."
     (setenv "GOPATH" gopath)
     (setenv "GOBIN" gopathbin)))
 
+(autoload 'ff-basename "find-file" "Return the basename of pathname STRING.")
 (defun setup-go-env ()
   "Setup the golang environment, this function will install
    goimports, godef, godoc and gocode"
