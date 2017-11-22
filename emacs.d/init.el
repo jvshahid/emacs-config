@@ -487,7 +487,6 @@ If DELTA was provided it will be added to the current line's indentation."
     ;; install goimports, godef, godoc and gocode
     (dolist (url '("golang.org/x/tools/cmd/goimports"
                    "github.com/rogpeppe/godef"
-                   "golang.org/x/tools/cmd/godoc"
                    "github.com/nsf/gocode"
                    "github.com/dougm/goflymake"
                    "golang.org/x/tools/cmd/gorename"
@@ -496,8 +495,8 @@ If DELTA was provided it will be added to the current line's indentation."
                    "github.com/mdempsky/unconvert"
                    "golang.org/x/tools/cmd/guru"))
       (message "Running 'go get -u %s'" url)
-      (if (/= 0 (call-process "go" nil "*go-get*" nil "get" "-u" url))
-          (error "Cannot run go get")))))
+      (start-process (format "go-get-%s" (ff-basename url))
+                     "*go-get*" "go" "get" "-u" url))))
 
 (setq gofmt-command "goimports")
 (setq gofmt-args nil)
