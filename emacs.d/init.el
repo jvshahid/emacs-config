@@ -422,6 +422,8 @@ If DELTA was provided it will be added to the current line's indentation."
   (local-set-key "\M-p" 'org-metaup)
   (local-set-key "\M-n" 'org-metadown))
 (add-hook 'org-mode-hook 'setup-org-keybindings)
+(add-hook 'org-mode-hook 'org-indent-mode)
+(add-hook 'org-mode-hook 'visual-line-mode)
 
 (setq c++fmt-command "clang-format-3.8")
 (setq c++fmt-args (lambda (filename)
