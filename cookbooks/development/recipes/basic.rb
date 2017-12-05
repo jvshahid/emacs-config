@@ -17,15 +17,3 @@ files.each do |file|
   end
 end
 
-cookbook_file "90-keyboard.hwdb" do
-  path "/lib/udev/hwdb.d/90-keyboard.hwdb"
-  mode 0644
-  action :create
-  notifies :run, "bash[rebuild_hwdb]"
-end
-
-bash "rebuild_hwdb" do
-  code <<-EOF
-   udevadm hwdb --update
-EOF
-end

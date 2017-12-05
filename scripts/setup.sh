@@ -15,12 +15,13 @@ fi
 # install curl if it doesn't exist
 which curl > /dev/null 2>&1 || sudo apt-get install curl
 
+ruby_version=2.2.3
 if ! which rvm > /dev/null 2>&1; then
     # install rvm
     curl -L https://get.rvm.io | bash -s stable
     source ~/.rvm/scripts/rvm
-    rvm install 1.9.3
-    source .rvmrc
+    rvm install $ruby_version
+    rvm use $ruby_version
 fi
 
 if ! which bundle; then

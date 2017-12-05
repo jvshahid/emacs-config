@@ -1,5 +1,5 @@
 bash "setup_keybinding" do
-  user 'jvshahid'
+  user ENV['SUDO_USER']
   code <<EOF
 
 # setup keybindings
@@ -48,3 +48,15 @@ dconf write /org/cinnamon/settings-daemon/peripherals/touchpad/touchpad-enabled 
 
 EOF
 end
+
+cookbook_file "90-keyboard.hwdb" do
+  path "/lib/udev/hwdb.d/90-keyboard.hwdb"
+  mode 0644
+  action :create
+  notifies :run, "bash[rebuild_hwdb]"
+end
+
+bash "rebuild_hwdb" do
+  code <<-EOF
+   udevadm hwdb --update
+EOF
