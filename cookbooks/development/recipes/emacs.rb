@@ -17,6 +17,6 @@ bash "build_emacs" do
   code <<-EOF
     autoreconf -i
     ./configure --prefix=$HOME/bin/emacs-26 --without-x
-    make -j4 install
+    make install
   EOF
 end

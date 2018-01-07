@@ -326,6 +326,9 @@ the command again. CMD is the command to run"
  '(js-indent-level 2)
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
+ '(package-selected-packages
+   (quote
+    (yaml-mode wgrep web-mode use-package undo-tree smex smartparens rvm request protobuf-mode projectile prodigy popwin pianobar pallet nyan-mode matlab-mode markdown-mode magit livedown json-navigator idle-highlight-mode htmlize helm-fzf haskell-mode go-rename go-guru go-eldoc go-autocomplete ginkgo-mode flycheck-clojure flycheck-cask expand-region exec-path-from-shell etags-select edit-server-htmlize drag-stuff dockerfile-mode color-theme-solarized clojure-cheatsheet clj-refactor arduino-mode ace-window ace-jump-mode ac-emacs-eclim ac-cider)))
  '(perl-indent-level 2)
  '(projectile-project-root-files-functions
    (quote
@@ -418,6 +421,8 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+;;; disable org toc
+(setq org-export-with-toc nil)
 (defun setup-org-keybindings ()
   (local-set-key "\M-p" 'org-metaup)
   (local-set-key "\M-n" 'org-metadown))
@@ -713,3 +718,41 @@ buffer."
               (error "invalid rcs patch or internal error in go--apply-rcs-patch")))))))))
 
 (put 'scroll-left 'disabled nil)
+
+;;; email
+
+(add-to-list 'load-path "~/bin/mu/share/emacs/site-lisp/mu4e")
+(autoload 'mu4e "mu4e" "start mu4e" t)
+
+(with-eval-after-load 'mu4e
+  (setq mu4e-get-mail-command (expand-file-name "~/bin/isync/bin/mbsync gmail")
+        mu4e-html2text-command "w3m -dump -T text/html"
+        mu4e-update-interval nil          ;do not auto update
+        mu4e-headers-auto-update t
+        mu4e-compose-signature-auto-include nil
+        mu4e-mu-binary (expand-file-name "~/bin/mu/bin/mu")
+        mu4e-maildir (expand-file-name "~/Maildir/gmail")
+        mu4e-drafts-folder "/[Gmail]/Drafts"
+        mu4e-sent-folder   "/[Gmail]/Sent Mail"
+        mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum
+        mu4e-maildir-shortcuts '(("/INBOX" . ?i)
+                                 ("/[Gmail]/Sent Mail" . ?s)
+                                 ("/[Gmail]/Drafts" . ?d)
+                                 ("/[Gmail]/All Mail" . ?a)))
+
+  (add-hook 'mu4e-view-mode-hook (lambda ()  (setq show-trailing-whitespace nil)))
+
+  (require 'org-mu4e)
+  (setq org-mu4e-convert-to-html t)
+
+  (add-hook 'mu4e-compose-mode-hook 'flyspell-mode)
+
+  (require 'smtpmail)
+  (setq message-send-mail-function 'smtpmail-send-it
+        smtpmail-starttls-credentials
+        '(("smtp.gmail.com" 587 nil nil))
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587
+        smtpmail-debug-info t))
+

@@ -112,7 +112,11 @@ packages = [
             'parcellite',
             'xdotool',
             'ghc',
-            'texinfo'           # needed to build emacs from source
+            'texinfo',          # needed to build emacs from source,
+            'libdb-dev',        # for mbsync
+            'libsasl2-dev',     # for mbsync
+            'libgmime-2.6-dev', # for mu
+            'libxapian-dev'     # for mu
            ]
 
 if node[:development][:lenovo]

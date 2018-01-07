@@ -4,6 +4,11 @@ cd `pwd $0`
 
 set -e
 
+if [ "x$MAKEFLAGS" == "x" ]; then
+    echo "setting MAKEFLAGS to -j4"
+    export MAKEFLAGS="-j4"
+fi
+
 # TODO: add-apt-repository doesn't seem to work without standard input attached
 # to a tty, e.g. `add-apt-repository -y ppa:git-core/ppa </dev/null` doesn't
 # work

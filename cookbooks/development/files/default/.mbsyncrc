@@ -1,0 +1,28 @@
+IMAPAccount gmail
+Host imap.gmail.com
+User jvshahid@gmail.com
+PassCmd "gpg2 --decrypt ~/.mbsyncpass.gpg" # created with gpg2 -c --output ~/.mbsyncpass.gpg ~/.mbsyncpass
+Port 993
+SSLType IMAPS
+AuthMechs Login
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/Maildir/gmail/
+Inbox ~/Maildir/gmail/INBOX
+Subfolders Verbatim
+AltMap yes
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns "INBOX" "[Gmail]/Sent Mail" "[Gmail]/All Mail" "[Gmail]/Drafts" "[Gmail]/Spam"
+Create Slave
+MaxMessages 100
+Sync All
+Expunge None
+ExpireUnread yes
+SyncState *

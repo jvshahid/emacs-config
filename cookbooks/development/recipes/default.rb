@@ -28,6 +28,7 @@ include_recipe "development::arduino"
 include_recipe "development::autoraise"
 include_recipe "development::pianobar"
 include_recipe "development::ctags"
+include_recipe "development::mbsync"
 include_recipe "development::wireshark"
 
 # # run apt-get upgrade to get the latest packages
