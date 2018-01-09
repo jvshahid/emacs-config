@@ -1,7 +1,7 @@
 IMAPAccount gmail
 Host imap.gmail.com
 User jvshahid@gmail.com
-PassCmd "gpg2 --decrypt ~/.mbsyncpass.gpg" # created with gpg2 -c --output ~/.mbsyncpass.gpg ~/.mbsyncpass
+PassCmd ~/bin/read-password-emacs
 Port 993
 SSLType IMAPS
 AuthMechs Login
