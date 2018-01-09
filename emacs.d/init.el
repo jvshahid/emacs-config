@@ -141,6 +141,7 @@ the command again. CMD is the command to run"
 
 (load "haskell-mode-autoloads")
 (load "yasnippet-autoloads")
+(load "yasnippet-snippets-autoloads")
 (load "protobuf-mode-autoloads")
 (with-eval-after-load 'protobuf-mode
   (add-hook 'protobuf-mode-hook 'subword-mode))
@@ -170,9 +171,7 @@ the command again. CMD is the command to run"
  (add-hook 'go-mode-hook 'go-eldoc-setup)
  (add-hook 'go-mode-hook 'auto-complete-mode)
  (add-hook 'go-mode-hook 'subword-mode)
- (add-hook 'go-mode-hook (lambda ()
-                           (yas-minor-mode)
-                           (yas-reload-all)))
+ (add-hook 'go-mode-hook 'yas-minor-mode)
  (add-hook 'go-mode-hook 'hs-minor-mode)
  (add-hook 'go-mode-hook 'ginkgo-mode))
 
@@ -189,7 +188,6 @@ the command again. CMD is the command to run"
 (load "eclim-autoloads")
 (load "ac-emacs-eclim-autoloads")
 (add-hook 'java-mode-hook 'yas-minor-mode)
-(add-hook 'java-mode-hook 'yas-reload-all)
 (add-hook 'java-mode-hook 'subword-mode)
 (add-hook 'java-mode-hook 'eclim-mode)
 (add-hook 'java-mode-hook 'ac-emacs-eclim-config)

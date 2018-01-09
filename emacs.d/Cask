@@ -45,6 +45,7 @@
 (depends-on "auto-complete")
 (depends-on "go-autocomplete")
 (depends-on "yasnippet")
+(depends-on "yasnippet-snippets")
 (depends-on "arduino-mode")
 (depends-on "dockerfile-mode")
 (depends-on "color-theme-solarized")
