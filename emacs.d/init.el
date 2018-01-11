@@ -296,6 +296,7 @@ the command again. CMD is the command to run"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-use-menu-map t)
+ '(auth-source-save-behavior nil)
  '(blink-cursor-mode nil)
  '(browse-url-browser-function (quote browse-url-generic))
  '(browse-url-generic-program "xdg-open")
@@ -724,21 +725,52 @@ buffer."
 
 (with-eval-after-load 'mu4e
   (setq mu4e-get-mail-command (expand-file-name "~/bin/isync/bin/mbsync gmail")
-        mu4e-html2text-command "w3m -dump -T text/html"
+        mu4e-html2text-comma 'mu4e-shr2text ; nd "w3m -dump -T text/html"
         mu4e-update-interval nil          ;do not auto update
         mu4e-headers-auto-update t
         mu4e-compose-signature-auto-include nil
         mu4e-mu-binary (expand-file-name "~/bin/mu/bin/mu")
         mu4e-maildir (expand-file-name "~/Maildir/gmail")
         mu4e-drafts-folder "/[Gmail]/Drafts"
-        mu4e-sent-folder   "/[Gmail]/Sent Mail"
+        mu4e-sent-folder "/[Gmail]/Sent Mail"
+        mu4e-sent-message-behavior 'delete
+        mu4e-view-show-addresses t
         mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum
         mu4e-maildir-shortcuts '(("/INBOX" . ?i)
                                  ("/[Gmail]/Sent Mail" . ?s)
                                  ("/[Gmail]/Drafts" . ?d)
                                  ("/[Gmail]/All Mail" . ?a)))
 
-  (add-hook 'mu4e-view-mode-hook (lambda ()  (setq show-trailing-whitespace nil)))
+  (add-to-list 'mu4e-headers-actions
+               '("Mute thread" . (lambda (msg)
+                                   (mu4e-action-retag-message msg "+muted")
+                                   (mu4e-headers-rerun-search)))
+               t)
+
+  (defvar mu4e~muted-threads nil "Keep track of muted threads in the current headers view")
+
+
+  (add-hook 'mu4e-headers-found-hook
+            (lambda ()
+              (setq mu4e~muted-threads nil)
+              (mu4e-headers-for-each
+               (lambda (msg)
+                 (let ((tid (mu4e~headers-get-thread-info msg 'thread-id))
+                       (muted (member "muted" (mu4e-message-field msg :tags))))
+                   (and muted
+                        (cl-pushnew tid mu4e~muted-threads)))))))
+
+  (add-to-list 'mu4e-headers-custom-markers
+               '("Muted thread"
+                 (lambda (msg _)
+                   (member (mu4e~headers-get-thread-info msg 'thread-id) mu4e~muted-threads)))
+               t)
+
+  (add-hook 'mu4e-view-mode-hook
+            (lambda ()
+              (setq show-trailing-whitespace nil)
+              (local-set-key (kbd "<tab>") 'shr-next-link)
+              (local-set-key (kbd "<backtab>") 'shr-previous-link)))
 
   (require 'org-mu4e)
   (setq org-mu4e-convert-to-html t)
