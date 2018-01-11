@@ -44,11 +44,6 @@ the command again. CMD is the command to run"
 
 ;;; setup autoload for all libraries
 
-(require 'edit-server)
-(require 'edit-server-htmlize)
-(add-hook 'edit-server-start-hook 'edit-server-dehtmlize-buffer)
-(add-hook 'edit-server-done-hook  'edit-server-htmlize-buffer)
-(edit-server-start)
 
 (define-key global-map (kbd "C-x g") 'magit-status)
 (with-eval-after-load 'magit
