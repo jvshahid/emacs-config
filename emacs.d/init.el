@@ -44,6 +44,7 @@ the command again. CMD is the command to run"
 
 ;;; setup autoload for all libraries
 
+(pinentry-start)
 
 (define-key global-map (kbd "C-x g") 'magit-status)
 (with-eval-after-load 'magit

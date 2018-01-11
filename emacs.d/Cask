@@ -71,3 +71,4 @@
 (depends-on "ginkgo-mode" :git "https://github.com/jvshahid/ginkgo-mode" :branch "ginkgo-focus")
 (depends-on "undo-tree")
 (depends-on "helm-fzf" :git "https://github.com/jvshahid/helm-fzf" :branch "add-package-header")
+(depends-on "pinentry")
