@@ -50,7 +50,6 @@ the command again. CMD is the command to run"
 (add-hook 'edit-server-done-hook  'edit-server-htmlize-buffer)
 (edit-server-start)
 
-(load "magit-autoloads")
 (define-key global-map (kbd "C-x g") 'magit-status)
 (with-eval-after-load 'magit
   (add-hook 'magit-mode-hook '(lambda ()
@@ -58,19 +57,14 @@ the command again. CMD is the command to run"
                                 (setq show-trailing-whitespace nil)))
   (setq magit-revert-item-confirm t))
 
-(load "helm-core-autoloads")
-(load "helm-autoloads")
 (with-eval-after-load 'helm
   (setq helm-findutils-search-full-path t))
-(load "helm-fzf-autoloads")
 ;;; override the default fzf find command
 (setenv "FZF_DEFAULT_COMMAND" "command find -L . -mindepth 1 -type f -o -type d -o -type l 2> /dev/null | cut -b3-")
 (global-set-key (kbd "C-x C-p") (lambda ()
                                   (interactive)
                                   (helm-fzf default-directory)))
 
-(load "flycheck-autoloads")
-(load "flycheck-clojure-autoloads")
 (with-eval-after-load 'flycheck
   (setq flycheck-disabled-checkers '(go-errcheck))
   (setq flycheck-check-syntax-automatically (quote (save mode-enabled)))
@@ -78,7 +72,6 @@ the command again. CMD is the command to run"
 (add-hook 'java-mode-hook 'flycheck-mode)
 (add-hook 'go-mode-hook 'flycheck-mode)
 
-(load "ace-window-autoloads")
 (autoload 'aw-swap-window "ace-window")
 (defun swap-next-window (n)
   "swap the buffer of the current window with the next window obtained using 'next-window"
@@ -98,9 +91,6 @@ the command again. CMD is the command to run"
 (global-set-key (kbd "C-c ]") 'swap-next-window)
 (global-set-key (kbd "C-c [") 'swap-previous-window)
 
-(load "paredit-autoloads")
-(load "clojure-mode-autoloads")
-(load "clj-refactor-autoloads")
 (with-eval-after-load 'clojure-mode
   (add-hook 'clojure-mode-hook 'projectile-mode)
   (add-hook 'clojure-mode-hook 'paredit-mode)
@@ -113,10 +103,9 @@ the command again. CMD is the command to run"
                                  (local-set-key (kbd "C-c C-w") 'paredit-backward-kill-word))))
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
-(load "yaml-mode-autoloads")
+
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
-(load "markdown-mode-autoloads")
 (with-eval-after-load 'markdown-mode
   (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
   (add-hook 'markdown-mode-hook 'turn-on-orgstruct)
@@ -125,8 +114,6 @@ the command again. CMD is the command to run"
   (setq-default markdown-command "~/bin/flavor"))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 
-(load "cider-autoloads")
-(load "ac-cider-autoloads")
 (defun cider-autocomplete-setup ()
   (auto-complete-mode)
   (ac-cider-setup)
@@ -139,26 +126,17 @@ the command again. CMD is the command to run"
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
 
-(load "haskell-mode-autoloads")
-(load "yasnippet-autoloads")
-(load "yasnippet-snippets-autoloads")
-(load "protobuf-mode-autoloads")
 (with-eval-after-load 'protobuf-mode
   (add-hook 'protobuf-mode-hook 'subword-mode))
 (autoload 'pianobar "pianobar" "pianobar pandora mode" t)
 (with-eval-after-load 'pianobar
   (setq pianobar-command "~/codez/pianobar/pianobar"))
 
-(load "arduino-mode-autoloads")
 (with-eval-after-load 'arduino-mode
   (add-hook 'arduino-mode-hook
             'subword-mode))
-(load "wgrep-autoloads")
-(load "livedown-autoloads")
 
-(load "auto-complete-autoloads")
 
-(load "go-mode-autoloads")
 (with-eval-after-load 'go-mode
  (ac-config-default)
  (require 'go-eldoc)
@@ -181,12 +159,9 @@ the command again. CMD is the command to run"
 
 (add-hook 'auto-complete-mode-hook 'disable-auto-completion)
 
-(load "rvm-autoloads")
 (with-eval-after-load 'ruby-mode
   (rvm-use-default))
 
-(load "eclim-autoloads")
-(load "ac-emacs-eclim-autoloads")
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'subword-mode)
 (add-hook 'java-mode-hook 'eclim-mode)
