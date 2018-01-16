@@ -712,10 +712,13 @@ buffer."
                                  ("/[Gmail]/Drafts" . ?d)
                                  ("/[Gmail]/All Mail" . ?a)))
 
+  (defun mu4e~toggle-mute-thread (msg)
+    (if (member "muted" (mu4e-message-field msg :tags))
+        (mu4e-action-retag-message msg "-muted")
+      (mu4e-action-retag-message msg "+muted")))
+
   (add-to-list 'mu4e-headers-actions
-               '("Mute thread" . (lambda (msg)
-                                   (mu4e-action-retag-message msg "+muted")
-                                   (mu4e-headers-rerun-search)))
+               '("Mute thread" . mu4e~toggle-mute-thread)
                t)
 
   (defvar mu4e~muted-threads nil "Keep track of muted threads in the current headers view")
