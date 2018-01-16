@@ -116,7 +116,8 @@ packages = [
             'libdb-dev',        # for mbsync
             'libsasl2-dev',     # for mbsync
             'libgmime-2.6-dev', # for mu
-            'libxapian-dev'     # for mu
+            'libxapian-dev',    # for mu
+            'scdaemon'          # for gpg ssh support
            ]
 
 if node[:development][:lenovo]
