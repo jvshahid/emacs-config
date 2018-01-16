@@ -1,7 +1,7 @@
 [user]
   email = jvshahid@gmail.com
   name = John Shahid
-	signingkey = 5E4CA8B8!
+	signingkey = 8936C63D!
 [alias]
   l  = log --decorate=short --graph -w --find-renames=50%
   lw = log --decorate=short --graph --color-words -w --find-renames=50%
