@@ -49,7 +49,6 @@ the command again. CMD is the command to run"
 (define-key global-map (kbd "C-x g") 'magit-status)
 (with-eval-after-load 'magit
   (add-hook 'magit-mode-hook '(lambda ()
-                                (font-lock-mode 0)
                                 (setq show-trailing-whitespace nil)))
   (setq magit-revert-item-confirm t))
 
@@ -375,7 +374,9 @@ If DELTA was provided it will be added to the current line's indentation."
   :group 'todo-faces)
 (defvar todo-face "todo-face")
 (defun add-todo-font-locking-to-mode ()
-  (font-lock-add-keywords nil (list (cons "\\(TODO\\|FIXME\\):" (list 1 'todo-face 'prepend))) nil))
+  "highlight TODO and FIXME only if font-lock-defaults is set"
+  (if font-lock-defaults
+      (font-lock-add-keywords nil '(("\\(TODO\\|FIXME\\):" 1 'todo-face prepend)) t)))
 (add-hook 'after-change-major-mode-hook 'add-todo-font-locking-to-mode)
 
 ;; Omit emacs files from the Dired
