@@ -33,3 +33,5 @@ emacs.d/url/
 
 # cask
 .cask/
+straight/
+elpa/
