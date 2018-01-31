@@ -5,15 +5,61 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(require 'cask "~/.cask/cask.el")
+(let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
+      (bootstrap-version 3))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(cask-initialize)
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-;; (package-initialize)
+(straight-use-package 'projectile)
+(straight-use-package 'magit)
+(straight-use-package 'rvm)
+(straight-use-package 'etags-select)
+(straight-use-package 'yaml-mode)
+(straight-use-package 'go-mode)
+(straight-use-package 'go-guru)
+(straight-use-package 'markdown-mode)
+(straight-use-package 'protobuf-mode)
+(straight-use-package 'edit-server)
+(straight-use-package 'edit-server-htmlize)
+(straight-use-package 'go-eldoc)
+(straight-use-package 'auto-complete)
+(straight-use-package 'go-autocomplete)
+(straight-use-package 'yasnippet)
+(straight-use-package 'yasnippet-snippets)
+(straight-use-package 'arduino-mode)
+(straight-use-package 'dockerfile-mode)
+(straight-use-package 'color-theme-solarized)
+(straight-use-package 'ace-jump-mode)
+(straight-use-package 'ace-window)
+(straight-use-package 'haskell-mode)
+(straight-use-package 'go-rename)
+(straight-use-package 'clojure-mode)
+(straight-use-package 'matlab-mode)
+(straight-use-package 'cider)
+(straight-use-package 'flycheck)
+(straight-use-package 'flycheck-clojure)
+(straight-use-package 'paredit)
+(straight-use-package 'clojure-cheatsheet)
+(straight-use-package 'clj-refactor)
+(straight-use-package 'helm)
+(straight-use-package 'haskell-mode)
+(straight-use-package 'request)
+(straight-use-package 'eclim)
+(straight-use-package 'ac-emacs-eclim)
+(straight-use-package 'ac-cider)
+(straight-use-package 'wgrep)
+(straight-use-package 'undo-tree)
+(straight-use-package 'pinentry)
+(straight-use-package '(pianobar :type git :host github :repo "jvshahid/pianobar.el"))
+(straight-use-package '(livedown :type git :host github :repo "shime/emacs-livedown"))
+(straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
+(straight-use-package '(helm-fzf :type git :host github :repo "jvshahid/helm-fzf" :branch "add-package-header"))
 
 (with-eval-after-load 'yasnippet-snippets
   (yas-reload-all))
