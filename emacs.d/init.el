@@ -16,7 +16,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(straight-use-package '(straight :type git :files ("straight.el") :host github :repo "jvshahid/straight.el" :branch "fix-rebuilding" :upstream (:repo "raxod502/straight.el")))
 (straight-use-package 'projectile)
 (straight-use-package 'magit)
 (straight-use-package 'rvm)
