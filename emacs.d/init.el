@@ -56,10 +56,15 @@
 (straight-use-package 'wgrep)
 (straight-use-package 'undo-tree)
 (straight-use-package 'pinentry)
-(straight-use-package '(pianobar :type git :host github :repo "jvshahid/pianobar.el"))
+(straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
 (straight-use-package '(livedown :type git :host github :repo "shime/emacs-livedown"))
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
-(straight-use-package '(helm-fzf :type git :host github :repo "jvshahid/helm-fzf" :branch "add-package-header"))
+(straight-use-package '(helm-fzf :type git
+                                 :host github
+                                 :repo "jvshahid/helm-fzf"
+                                 :branch "add-dash-require"
+                                 :upstream (:host github
+                                                  :repo "ibmandura/helm-fzf")))
 
 (with-eval-after-load 'yasnippet-snippets
   (yas-reload-all))
