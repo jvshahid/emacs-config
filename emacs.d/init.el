@@ -56,6 +56,7 @@
 (straight-use-package 'wgrep)
 (straight-use-package 'undo-tree)
 (straight-use-package 'pinentry)
+(straight-use-package 'parinfer)
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
 (straight-use-package '(livedown :type git :host github :repo "shime/emacs-livedown"))
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
@@ -65,6 +66,14 @@
                                  :branch "add-dash-require"
                                  :upstream (:host github
                                                   :repo "ibmandura/helm-fzf")))
+
+(with-eval-after-load 'parinfer
+  (require 'paredit)
+  (setq parinfer-extensions
+        '(defaults
+           pretty-parens
+           smart-tab
+           paredit)))
 
 (with-eval-after-load 'yasnippet-snippets
   (yas-reload-all))
@@ -142,15 +151,12 @@ the command again. CMD is the command to run"
 
 (with-eval-after-load 'clojure-mode
   (add-hook 'clojure-mode-hook 'projectile-mode)
-  (add-hook 'clojure-mode-hook 'paredit-mode)
+  (add-hook 'clojure-mode-hook 'parinfer-mode)
   (add-hook 'clojure-mode-hook 'flycheck-mode)
   (add-hook 'clojure-mode-hook 'flycheck-clojure-setup)
   (add-hook 'clojure-mode-hook 'clj-refactor-mode)
   (add-hook 'clojure-mode-hook 'yas-minor-mode))
-(with-eval-after-load 'paredit-mode
-  (add-hook 'paredit-mode-hook (lambda ()
-                                 (local-set-key (kbd "C-c C-w") 'paredit-backward-kill-word))))
-(add-hook 'emacs-lisp-mode-hook 'paredit-mode)
+(add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
