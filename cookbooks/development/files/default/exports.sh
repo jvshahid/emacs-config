@@ -41,7 +41,6 @@ export GOPATH=$HOME/codez/gocodez
 export PATH=$PATH:$GOPATH/bin:/home/jvshahid/.cask/bin
 export PATH=/home/jvshahid/bin/java/bin:/home/jvshahid/bin/eclipse:$PATH
 export MANPATH=$emacs_installation/share/man:$MANPATH
-export JAVA_HOME=$HOME/bin/java
 export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
