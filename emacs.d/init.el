@@ -1,4 +1,4 @@
-;;; -*- lexical-binding: t; -*-
+;; -*- lexical-binding: t; -*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -370,12 +370,12 @@ the command again. CMD is the command to run"
 
 (set-quit-char ?q)
 (when (display-graphic-p)
-	(require 'color-theme)
-	(require 'color-theme-solarized)
-	(server-start)
-	(setq frame-background-mode 'dark)
-	(add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
-	(load-theme 'solarized t))
+  (require 'color-theme)
+  (require 'color-theme-solarized)
+  (server-start)
+  (setq frame-background-mode 'dark)
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
+  (load-theme 'solarized t))
 
 (display-time)
 
@@ -654,8 +654,8 @@ If DELTA was provided it will be added to the current line's indentation."
          (patchbuf (get-buffer-create "*fmt patch*"))
          (coding-system-for-read 'utf-8)
          (coding-system-for-write 'utf-8)
-         (fmt-arg (if (functionp fmt-args)
-                       (funcall fmt-args filename)
+         (fmt-arg (if (functionp fmt-args
+                       (funcall fmt-args filename))
                      fmt-args)))
 
 
@@ -693,8 +693,8 @@ If DELTA was provided it will be added to the current line's indentation."
   ;; implementation of kill-line, but it's the only viable solution
   ;; that does not require to write kill-line from scratch.
   (cl-flet ((kill-region (beg end)
-                      (delete-region beg end))
-         (kill-new (s) ()))
+                      (delete-region beg end)))
+         (kill-new (s) ())
     (modified-kill-whole-line arg)))
 
 (defun fmt-apply-rcs-patch (patch-buffer)
@@ -749,6 +749,7 @@ buffer."
 (add-to-list 'load-path "~/bin/mu/share/emacs/site-lisp/mu4e")
 (autoload 'mu4e "mu4e" "start mu4e" t)
 
+
 (with-eval-after-load 'mu4e
   (setq mu4e-get-mail-command (expand-file-name "~/bin/isync/bin/mbsync gmail")
         mu4e-html2text-comma 'mu4e-shr2text ; nd "w3m -dump -T text/html"
@@ -786,4 +787,3 @@ buffer."
         smtpmail-smtp-server "smtp.gmail.com"
         smtpmail-smtp-service 587
         smtpmail-debug-info t))
-
