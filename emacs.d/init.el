@@ -56,7 +56,6 @@
 (straight-use-package 'wgrep)
 (straight-use-package 'undo-tree)
 (straight-use-package 'pinentry)
-(straight-use-package 'parinfer)
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
 (straight-use-package '(livedown :type git :host github :repo "shime/emacs-livedown"))
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
@@ -65,7 +64,12 @@
                                  :repo "jvshahid/helm-fzf"
                                  :branch "add-dash-require"
                                  :upstream (:host github
-                                                  :repo "ibmandura/helm-fzf")))
+                                            :repo "ibmandura/helm-fzf")))
+(straight-use-package '(parinfer :type git
+                                 :host github
+                                 :repo "jvshahid/parinfer-mode"
+                                 :upstream (:host github
+                                            :repo "DogLooksGood/parinfer-mode")))
 
 (with-eval-after-load 'parinfer
   (require 'paredit)
