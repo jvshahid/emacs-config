@@ -649,7 +649,7 @@ If DELTA was provided it will be added to the current line's indentation."
   (let* ((mode (cl-first (split-string (symbol-name major-mode) "-")))
          (fmt-command (get-symbol-value mode "fmt-command"))
          (fmt-args (get-symbol-value mode "fmt-args")))
-    (if (and fmt-command)
+    (if fmt-command
         (fmt fmt-command fmt-args))))
 
 (add-hook 'before-save-hook #'fmt-before-save)
@@ -669,8 +669,8 @@ If DELTA was provided it will be added to the current line's indentation."
          (patchbuf (get-buffer-create "*fmt patch*"))
          (coding-system-for-read 'utf-8)
          (coding-system-for-write 'utf-8)
-         (fmt-arg (if (functionp fmt-args
-                       (funcall fmt-args filename))
+         (fmt-arg (if (functionp fmt-args)
+                      (funcall fmt-args filename)
                      fmt-args)))
 
 
@@ -708,8 +708,8 @@ If DELTA was provided it will be added to the current line's indentation."
   ;; implementation of kill-line, but it's the only viable solution
   ;; that does not require to write kill-line from scratch.
   (cl-flet ((kill-region (beg end)
-                      (delete-region beg end)))
-         (kill-new (s) ())
+                         (delete-region beg end))
+            (kill-new (s) ()))
     (modified-kill-whole-line arg)))
 
 (defun fmt-apply-rcs-patch (patch-buffer)
