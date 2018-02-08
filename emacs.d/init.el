@@ -56,6 +56,7 @@
 (straight-use-package 'wgrep)
 (straight-use-package 'undo-tree)
 (straight-use-package 'pinentry)
+(straight-use-package 'multiple-cursors)
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
 (straight-use-package '(livedown :type git :host github :repo "shime/emacs-livedown"))
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
@@ -96,18 +97,20 @@
 sequence invoking the command. KEY is the key sequence to invoke
 the command again. CMD is the command to run"
   (global-set-key keyseq
-                  (lambda ()
-                    (interactive)
-                    (funcall cmd)
-                    (set-transient-map
-                     (let ((map (make-sparse-keymap)))
-                       (define-key map key 'repeat)
-                       map)))))
+                  (cl-labels ((f ()
+                                 (interactive)
+                                 (funcall cmd)
+                                 (set-transient-map
+                                  (let ((map (make-sparse-keymap)))
+                                    (define-key map key (function f))
+                                    map))))
+                    (function f))))
 
 (define-repeatable-key (kbd "C-c M-=") (kbd "M-=") (lambda () (interactive) (enlarge-window 4)))
 (define-repeatable-key (kbd "C-c M--") (kbd "M--") (lambda () (interactive) (shrink-window 4)))
 (define-repeatable-key (kbd "C-c M-.") (kbd "M-.") (lambda () (interactive) (enlarge-window-horizontally 4)))
 (define-repeatable-key (kbd "C-c M-,") (kbd "M-,") (lambda () (interactive) (shrink-window-horizontally 4)))
+(define-repeatable-key (kbd "C-c >") (kbd ">") (lambda () (interactive) (message "################ WTF") (mc/mark-next-like-this 1)))
 (global-set-key (kbd "C-c C-r") 'ff-find-related-file)
 
 ;;; setup autoload for all libraries
