@@ -177,6 +177,8 @@ the command again. CMD is the command to run"
   (local-set-key (kbd "C-c C-j") 'cider-find-var)
   (define-key cider-mode-map (kbd "M-.") 'ac-start))
 (add-hook 'cider-mode-hook 'cider-autocomplete-setup)
+(add-hook 'cider-mode-hook (lambda ()
+                             (define-key cider-mode-map (kbd "C-c M-.") nil)))
 (add-hook 'cider-repl-mode-hook 'cider-autocomplete-setup)
 (eval-after-load "auto-complete"
   '(progn
