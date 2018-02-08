@@ -68,8 +68,9 @@
 (straight-use-package '(parinfer :type git
                                  :host github
                                  :repo "jvshahid/parinfer-mode"
+                                 :branch "dont-assume-package-el"
                                  :upstream (:host github
-                                            :repo "DogLooksGood/parinfer-mode")))
+                                                  :repo "DogLooksGood/parinfer-mode")))
 
 (with-eval-after-load 'parinfer
   (require 'paredit)
