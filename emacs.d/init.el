@@ -155,7 +155,9 @@ the command again. CMD is the command to run"
   (add-hook 'clojure-mode-hook 'flycheck-mode)
   (add-hook 'clojure-mode-hook 'flycheck-clojure-setup)
   (add-hook 'clojure-mode-hook 'clj-refactor-mode)
-  (add-hook 'clojure-mode-hook 'yas-minor-mode))
+  (add-hook 'clojure-mode-hook 'yas-minor-mode)
+  (add-hook 'clojure-mode-hook (lambda ()
+                                 (push 'clojure-cider-typed flycheck-disabled-checkers))))
 (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 
 
