@@ -1,4 +1,4 @@
-;; -*- lexical-binding: t; -*-
+;;; -*- lexical-binding: t; -*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -64,7 +64,7 @@
                                  :repo "jvshahid/helm-fzf"
                                  :branch "add-dash-require"
                                  :upstream (:host github
-                                            :repo "ibmandura/helm-fzf")))
+                                                  :repo "ibmandura/helm-fzf")))
 (straight-use-package '(parinfer :type git
                                  :host github
                                  :repo "jvshahid/parinfer-mode"
@@ -142,7 +142,7 @@ the command again. CMD is the command to run"
   (let ((fun  (if (< n 0) 'previous-window 'next-window))
         (n    (abs n)))
     (dotimes (_ n)
-     (aw-swap-window (funcall fun)))))
+      (aw-swap-window (funcall fun)))))
 
 (defun swap-previous-window (n)
   "swap the buffer of the current window with the previous window obtained using 'previous-window"
@@ -202,20 +202,20 @@ the command again. CMD is the command to run"
 
 
 (with-eval-after-load 'go-mode
- (ac-config-default)
- (require 'go-eldoc)
- (require 'go-autocomplete)
- (require 'go-rename)
- (require 'go-guru)
- (setq ginkgo-use-pwd-as-test-dir t)
- (setq ginkgo-use-default-keys t)
- (require 'ginkgo-mode)
- (add-hook 'go-mode-hook 'go-eldoc-setup)
- (add-hook 'go-mode-hook 'auto-complete-mode)
- (add-hook 'go-mode-hook 'subword-mode)
- (add-hook 'go-mode-hook 'yas-minor-mode)
- (add-hook 'go-mode-hook 'hs-minor-mode)
- (add-hook 'go-mode-hook 'ginkgo-mode))
+  (ac-config-default)
+  (require 'go-eldoc)
+  (require 'go-autocomplete)
+  (require 'go-rename)
+  (require 'go-guru)
+  (setq ginkgo-use-pwd-as-test-dir t)
+  (setq ginkgo-use-default-keys t)
+  (require 'ginkgo-mode)
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
+  (add-hook 'go-mode-hook 'auto-complete-mode)
+  (add-hook 'go-mode-hook 'subword-mode)
+  (add-hook 'go-mode-hook 'yas-minor-mode)
+  (add-hook 'go-mode-hook 'hs-minor-mode)
+  (add-hook 'go-mode-hook 'ginkgo-mode))
 
 (defun disable-auto-completion ()
   (setq-local ac-auto-start nil)
@@ -251,8 +251,8 @@ the command again. CMD is the command to run"
 
 (defun unix-time (&optional optional-time)
   (let ((time (if optional-time optional-time (current-time))))
-   (+ (ash (car time) 16)
-      (cadr time))))
+    (+ (ash (car time) 16)
+       (cadr time))))
 
 (defun replace-last-sexp ()
   (interactive)
@@ -290,7 +290,7 @@ the command again. CMD is the command to run"
       (let ((filename-temp (file-truename (concat dir "/" program))))
         (if (file-exists-p filename-temp)
             (setq filename filename-temp)
-            (setq dir (file-truename (concat dir "/.."))))))
+          (setq dir (file-truename (concat dir "/.."))))))
     filename))
 
 (defun refresh-tags ()
@@ -489,9 +489,9 @@ If DELTA was provided it will be added to the current line's indentation."
   "Apply F to the region defined by [STARTCOL, ENDCOL]"
   (when (= (move-to-column startcol) startcol)
     (funcall f
-           (point)
-           (progn (move-to-column endcol 'coerce)
-                  (point)))))
+             (point)
+             (progn (move-to-column endcol 'coerce)
+                    (point)))))
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          Concourse mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -671,7 +671,7 @@ If DELTA was provided it will be added to the current line's indentation."
          (coding-system-for-write 'utf-8)
          (fmt-arg (if (functionp fmt-args)
                       (funcall fmt-args filename)
-                     fmt-args)))
+                    fmt-args)))
 
 
     (with-current-buffer patchbuf
@@ -764,7 +764,6 @@ buffer."
 (add-to-list 'load-path "~/bin/mu/share/emacs/site-lisp/mu4e")
 (autoload 'mu4e "mu4e" "start mu4e" t)
 
-
 (with-eval-after-load 'mu4e
   (setq mu4e-get-mail-command (expand-file-name "~/bin/isync/bin/mbsync gmail")
         mu4e-html2text-comma 'mu4e-shr2text ; nd "w3m -dump -T text/html"
@@ -802,3 +801,4 @@ buffer."
         smtpmail-smtp-server "smtp.gmail.com"
         smtpmail-smtp-service 587
         smtpmail-debug-info t))
+
