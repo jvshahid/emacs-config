@@ -68,7 +68,7 @@
 (straight-use-package '(parinfer :type git
                                  :host github
                                  :repo "jvshahid/parinfer-mode"
-                                 :branch "dont-assume-package-el"
+                                 :branch "master"
                                  :upstream (:host github
                                                   :repo "DogLooksGood/parinfer-mode")))
 
