@@ -111,8 +111,6 @@ the command again. CMD is the command to run"
 (define-repeatable-key (kbd "C-c M-,") (kbd "M-,") (lambda () (shrink-window-horizontally 4)))
 (global-set-key (kbd "C-c C-r") 'ff-find-related-file)
 
-;;; setup autoload for all libraries
-
 (pinentry-start)
 
 (define-key global-map (kbd "C-x g") 'magit-status)
