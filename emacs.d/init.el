@@ -105,10 +105,10 @@ the command again. CMD is the command to run"
                        (define-key map key 'repeat)
                        map)))))
 
-(define-repeatable-key (kbd "C-c M-=") (kbd "M-=") (lambda () (interactive) (enlarge-window 4)))
-(define-repeatable-key (kbd "C-c M--") (kbd "M--") (lambda () (interactive) (shrink-window 4)))
-(define-repeatable-key (kbd "C-c M-.") (kbd "M-.") (lambda () (interactive) (enlarge-window-horizontally 4)))
-(define-repeatable-key (kbd "C-c M-,") (kbd "M-,") (lambda () (interactive) (shrink-window-horizontally 4)))
+(define-repeatable-key (kbd "C-c M-=") (kbd "M-=") (lambda () (enlarge-window 4)))
+(define-repeatable-key (kbd "C-c M--") (kbd "M--") (lambda () (shrink-window 4)))
+(define-repeatable-key (kbd "C-c M-.") (kbd "M-.") (lambda () (enlarge-window-horizontally 4)))
+(define-repeatable-key (kbd "C-c M-,") (kbd "M-,") (lambda () (shrink-window-horizontally 4)))
 (global-set-key (kbd "C-c C-r") 'ff-find-related-file)
 
 ;;; setup autoload for all libraries
