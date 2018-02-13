@@ -161,7 +161,11 @@ the command again. CMD is the command to run"
   (add-hook 'clojure-mode-hook 'clj-refactor-mode)
   (add-hook 'clojure-mode-hook 'yas-minor-mode)
   (add-hook 'clojure-mode-hook (lambda ()
-                                 (push 'clojure-cider-typed flycheck-disabled-checkers))))
+                                 (push 'clojure-cider-typed flycheck-disabled-checkers)))
+  (add-hook 'clojure-mode-hook (lambda ()
+                                 (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
+  (add-hook 'clojure-mode-hook (lambda ()
+                                   (local-set-key (kbd "C-c C-r") 'projectile-toggle-between-implementation-and-test))))
 (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 
 
