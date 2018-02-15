@@ -68,10 +68,8 @@
                                                   :repo "ibmandura/helm-fzf")))
 (straight-use-package '(parinfer :type git
                                  :host github
-                                 :repo "jvshahid/parinfer-mode"
-                                 :branch "master"
-                                 :upstream (:host github
-                                                  :repo "DogLooksGood/parinfer-mode")))
+                                 :repo  "DogLooksGood/parinfer-mode"
+                                 :branch "master"))
 
 (with-eval-after-load 'parinfer
   (require 'paredit)
