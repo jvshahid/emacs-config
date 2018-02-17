@@ -68,5 +68,7 @@ zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 bindkey -r '^t'
 bindkey -r '\et'
-# bindkey '\eq' fzf-cd-widget
+bindkey '\et' transpose-words
+bindkey '^t' transpose-chars
+bindkey '\eq' fzf-cd-widget
 bindkey '\ea' fzf-file-widget
