@@ -124,7 +124,7 @@ the command again. CMD is the command to run"
 (with-eval-after-load 'helm
   (setq helm-findutils-search-full-path t))
 ;;; override the default fzf find command
-(setenv "FZF_DEFAULT_COMMAND" "command find -L . -mindepth 1 -type f -o -type d -o -type l 2> /dev/null | cut -b3-")
+(setenv "FZF_DEFAULT_COMMAND" "ag -g \"\"")
 (global-set-key (kbd "C-x C-p") (lambda ()
                                   (interactive)
                                   (helm-fzf default-directory)))
@@ -275,7 +275,7 @@ the command again. CMD is the command to run"
    ack-grep on linux or ag on macos"
   (interactive "P")
   (let* ((extra-arg (if ignore-case "-i " ""))
-         (grep-cmd (if (on-linux?) "ack-grep --color --no-group " "ag --color --nogroup "))
+         (grep-cmd "ag --color --nogroup ")
          (prompt (if ignore-case "search for (ignore case): " "search for: "))
          (word (read-string prompt (current-word)))
          (directory (read-directory-name "in: " default-directory)))
