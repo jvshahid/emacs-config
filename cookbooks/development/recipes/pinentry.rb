@@ -1,7 +1,7 @@
 repos_root = "#{ENV['HOME']}/codez"
 
 git "#{repos_root}/pinentry" do
-  repository "git@github.com:gpg/pinentry.git"
+  repository "https://github.com/gpg/pinentry.git"
   user ENV['SUDO_USER']
   branch "pinentry-1.1.0"
   notifies :run, "bash[build_pinentry]"
