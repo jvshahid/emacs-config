@@ -8,6 +8,6 @@ bash "install_fzf" do
   action :nothing
   cwd "#{ENV["HOME"]}/.fzf"
   code <<-EOF
-    ./install --no-key-bindings || true
+    ./install --key-bindings --completion --no-update-rc
   EOF
 end
