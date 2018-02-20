@@ -441,8 +441,7 @@ If DELTA was provided it will be added to the current line's indentation."
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 (global-set-key [f11] 'toggle-fullscreen)
-                                        ; TODO: for some reason highlighting doesn't work in JavaDoc comments
-                                        ; that start with /**
+
 (defface todo-face '((t :background "red" :foreground "grey"))
   "The face used to mark TODO"
   :group 'todo-faces)
