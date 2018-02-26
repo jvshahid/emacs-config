@@ -57,7 +57,6 @@
 (straight-use-package 'ac-emacs-eclim)
 (straight-use-package 'ac-cider)
 (straight-use-package 'wgrep)
-(straight-use-package 'undo-tree)
 (straight-use-package 'pinentry)
 (straight-use-package 'multiple-cursors)
 (straight-use-package 'flx-ido)
@@ -374,9 +373,6 @@ the command again. CMD is the command to run"
  '(js-indent-level 2)
  '(menu-bar-mode nil)
  '(ns-command-modifier (quote control))
- '(package-selected-packages
-   (quote
-    (yaml-mode wgrep web-mode use-package undo-tree smex smartparens rvm request protobuf-mode projectile prodigy popwin pianobar pallet nyan-mode matlab-mode markdown-mode magit livedown json-navigator idle-highlight-mode htmlize helm-fzf haskell-mode go-rename go-guru go-eldoc go-autocomplete ginkgo-mode flycheck-clojure flycheck-cask expand-region exec-path-from-shell etags-select edit-server-htmlize drag-stuff dockerfile-mode color-theme-solarized clojure-cheatsheet clj-refactor arduino-mode ace-window ace-jump-mode ac-emacs-eclim ac-cider)))
  '(perl-indent-level 2)
  '(projectile-project-root-files-functions
    (quote
