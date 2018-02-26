@@ -21,7 +21,6 @@ Master :gmail-remote:
 Slave :gmail-local:
 Patterns "INBOX" "[Gmail]/Sent Mail" "[Gmail]/All Mail" "[Gmail]/Drafts"
 Create Slave
-MaxMessages 1000
 Sync All
 Expunge Slave
 ExpireUnread yes
