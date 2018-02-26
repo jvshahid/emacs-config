@@ -772,6 +772,11 @@ buffer."
 (add-to-list 'load-path "~/bin/mu/share/emacs/site-lisp/mu4e")
 (autoload 'mu4e "mu4e" "start mu4e" t)
 
+(add-hook 'term-mode-hook (lambda ()
+                            (setq show-trailing-whitespace nil)
+                            (push (lambda () (linum-mode 0))
+                                  delayed-after-hook-functions)))
+
 (with-eval-after-load 'mu4e
   (setq mu4e-get-mail-command (expand-file-name "~/bin/isync/bin/mbsync gmail")
         mu4e-html2text-comma 'mu4e-shr2text ; nd "w3m -dump -T text/html"
@@ -790,11 +795,19 @@ buffer."
                                  ("/[Gmail]/Drafts" . ?d)
                                  ("/[Gmail]/All Mail" . ?a)))
 
+  (add-hook 'mu4e-headers-mode-hook
+            (lambda ()
+              (push (lambda () (linum-mode 0))
+                  delayed-after-hook-functions)))
+
+
   (add-hook 'mu4e-view-mode-hook
             (lambda ()
               (setq show-trailing-whitespace nil)
               (local-set-key (kbd "<tab>") 'shr-next-link)
-              (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+              (local-set-key (kbd "<backtab>") 'shr-previous-link)
+              (push (lambda () (linum-mode 0))
+                    delayed-after-hook-functions)))
 
   (require 'org-mu4e)
   (setq org-mu4e-convert-to-html t)
