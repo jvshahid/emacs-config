@@ -172,7 +172,6 @@ the command again. CMD is the command to run"
                                    (local-set-key (kbd "C-c C-r") 'projectile-toggle-between-implementation-and-test))))
 (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete)
-(add-hook 'emacs-lisp-mode-hook 'ac-config-default)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
 
@@ -213,7 +212,6 @@ the command again. CMD is the command to run"
 
 
 (with-eval-after-load 'go-mode
-  (ac-config-default)
   (require 'go-eldoc)
   (require 'go-autocomplete)
   (require 'go-rename)
