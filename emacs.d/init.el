@@ -174,8 +174,7 @@ the command again. CMD is the command to run"
 (add-hook 'emacs-lisp-mode-hook 'auto-complete)
 (add-hook 'emacs-lisp-mode-hook 'ac-config-default)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
-                                 (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
-
+                                  (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
@@ -195,11 +194,12 @@ the command again. CMD is the command to run"
 (add-hook 'cider-mode-hook 'cider-autocomplete-setup)
 (add-hook 'cider-mode-hook (lambda ()
                              (define-key cider-mode-map (kbd "C-c M-.") nil)))
+
 (add-hook 'cider-repl-mode-hook 'cider-autocomplete-setup)
-(eval-after-load "auto-complete"
-  '(progn
-     (add-to-list 'ac-modes 'cider-mode)
-     (add-to-list 'ac-modes 'cider-repl-mode)))
+(with-eval-after-load 'auto-complete-mode
+  (ac-config-default)
+  (add-to-list 'ac-modes 'cider-mode)
+  (add-to-list 'ac-modes 'cider-repl-mode))
 
 (with-eval-after-load 'protobuf-mode
   (add-hook 'protobuf-mode-hook 'subword-mode))
@@ -221,8 +221,8 @@ the command again. CMD is the command to run"
   (setq ginkgo-use-pwd-as-test-dir t)
   (setq ginkgo-use-default-keys t)
   (require 'ginkgo-mode)
-  (add-hook 'go-mode-hook 'go-eldoc-setup)
   (add-hook 'go-mode-hook 'auto-complete-mode)
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
   (add-hook 'go-mode-hook 'subword-mode)
   (add-hook 'go-mode-hook 'yas-minor-mode)
   (add-hook 'go-mode-hook 'hs-minor-mode)
