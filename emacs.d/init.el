@@ -43,7 +43,6 @@
 (straight-use-package 'haskell-mode)
 (straight-use-package 'go-rename)
 (straight-use-package 'clojure-mode)
-(straight-use-package 'matlab-mode)
 (straight-use-package 'cider)
 (straight-use-package 'flycheck)
 (straight-use-package 'flycheck-clojure)
