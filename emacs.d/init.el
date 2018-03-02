@@ -171,7 +171,7 @@ the command again. CMD is the command to run"
   (add-hook 'clojure-mode-hook (lambda ()
                                    (local-set-key (kbd "C-c C-r") 'projectile-toggle-between-implementation-and-test))))
 (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
-(add-hook 'emacs-lisp-mode-hook 'auto-complete)
+(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
 
@@ -195,7 +195,7 @@ the command again. CMD is the command to run"
                              (define-key cider-mode-map (kbd "C-c M-.") nil)))
 
 (add-hook 'cider-repl-mode-hook 'cider-autocomplete-setup)
-(with-eval-after-load 'auto-complete-mode
+(with-eval-after-load 'auto-complete
   (ac-config-default)
   (add-to-list 'ac-modes 'cider-mode)
   (add-to-list 'ac-modes 'cider-repl-mode))
