@@ -174,6 +174,8 @@ the command again. CMD is the command to run"
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
+(add-hook 'emacs-lisp-mode-hook (lambda ()
+                                  (local-set-key (kbd "C-c C-j") 'xref-find-definitions)))
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
