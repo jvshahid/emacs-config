@@ -7,7 +7,7 @@ repos_root = "#{ENV['HOME']}/codez"
 git "#{repos_root}/emacs" do
   repository "https://github.com/emacs-mirror/emacs.git"
   user ENV['SUDO_USER']
-  branch "emacs-26"
+  branch "master"
   notifies :run, "bash[build_emacs]"
 end
 
@@ -16,7 +16,7 @@ bash "build_emacs" do
   cwd "#{repos_root}/emacs"
   code <<-EOF
     autoreconf -i
-    ./configure --prefix=$HOME/bin/emacs-26 --without-x
+    ./configure --prefix=$HOME/bin/emacs-27 --without-x
     make install
   EOF
 end

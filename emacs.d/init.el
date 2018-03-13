@@ -19,6 +19,8 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(setq search-exit-option 'move)
+
 (straight-use-package 'projectile)
 (straight-use-package 'magit)
 (straight-use-package 'rvm)
