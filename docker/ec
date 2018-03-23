@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ $# -gt 0 ]; then
+    args=$PWD/$1
+fi
+
+exec docker exec -it emacs bash -c "stty cols $(tput cols) && stty rows $(tput lines) && emacsclient -t $args"
