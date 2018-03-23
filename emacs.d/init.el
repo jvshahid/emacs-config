@@ -74,6 +74,7 @@
                                  :host github
                                  :repo  "DogLooksGood/parinfer-mode"
                                  :branch "master"))
+(straight-use-package 'edit-indirect)
 
 (with-eval-after-load 'parinfer
   (require 'paredit)
@@ -381,6 +382,7 @@ the command again. CMD is the command to run"
  '(projectile-project-root-files-functions
    (quote
     (projectile-root-local projectile-root-top-down projectile-root-bottom-up projectile-root-top-down-recurring)))
+ '(safe-local-variable-values (quote ((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)"))))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
  '(select-enable-clipboard t)
@@ -823,3 +825,4 @@ buffer."
         smtpmail-smtp-service 587
         smtpmail-debug-info t))
 
+(server-start)
