@@ -394,7 +394,6 @@ the command again. CMD is the command to run"
  '(user-mail-address "jvshahid@gmail.com")
  '(windmove-wrap-around t))
 
-(set-quit-char ?q)
 (when (display-graphic-p)
   (require 'color-theme)
   (require 'color-theme-solarized)
