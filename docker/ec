@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-if [ $# -gt 0 ]; then
-    args=$PWD/$1
+if [[ $# > 0 ]]; then
+    if [[ $1 == /* ]]; then
+        args=$1
+    else
+        args=$PWD/$1
+    fi
 fi
 
 exec docker exec -it emacs bash -c "stty cols $(tput cols) && stty rows $(tput lines) && emacsclient -t $args"
