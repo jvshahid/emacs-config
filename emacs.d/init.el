@@ -405,6 +405,7 @@ the command again. CMD is the command to run"
 (when (display-graphic-p)
   (require 'color-theme)
   (require 'color-theme-solarized)
+  (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
   (server-start)
   (setq frame-background-mode 'dark)
   (add-to-list 'custom-theme-load-path "~/.emacs.d/libs/color-theme-solarized")
