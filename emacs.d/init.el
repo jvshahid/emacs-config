@@ -387,9 +387,6 @@ the command again. CMD is the command to run"
  '(menu-bar-mode nil)
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
- '(projectile-project-root-files-functions
-   (quote
-    (projectile-root-local projectile-root-top-down projectile-root-bottom-up projectile-root-top-down-recurring)))
  '(safe-local-variable-values (quote ((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)"))))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
