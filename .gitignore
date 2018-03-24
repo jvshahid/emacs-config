@@ -35,3 +35,7 @@ emacs.d/url/
 .cask/
 straight/
 elpa/
+
+# emacs
+emacs.d/games/
+emacs.d/projectile-bookmarks.eld
