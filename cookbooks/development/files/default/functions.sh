@@ -29,30 +29,6 @@ function is_zsh {
     fi
 }
 
-function ec {
-    args="-ra"
-    file_index=0
-    line_index=1
-    if is_zsh; then
-        args="-rA"
-        file_index=1
-        line_index=2
-    fi
-    IFS=":" read $args file_and_linenumber <<< "$@"
-    if [ ${#file_and_linenumber[@]} -eq 1 ]; then
-        ec_internal ${file_and_linenumber[$file_index]}
-    else
-        echo "${file_and_linenumber[$file_index]}"
-        ec_internal -e "(progn (find-file \"${file_and_linenumber[$file_index]}\") (goto-line ${file_and_linenumber[$line_index]}))"
-    fi
-}
-
-function ed {
-    pushd $HOME/.emacs.d
-      emacs --daemon
-    popd
-}
-
 function millis_to_date {
     if [ $# -ne 1 ]; then
         echo "Usage: millis_to_date <milliseconds since epoc>"
