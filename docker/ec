@@ -8,4 +8,4 @@ if [[ $# > 0 ]]; then
     fi
 fi
 
-exec docker exec -it emacs bash -c "stty cols $(tput cols) && stty rows $(tput lines) && emacsclient -t $args"
+exec docker exec --detach-keys 'ctrl-z' -it emacs bash -c "stty cols $(tput cols) && stty rows $(tput lines) && emacsclient -t $args"

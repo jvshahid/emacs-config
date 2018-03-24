@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 docker pull jvshahid/emacs:latest
-docker run -d --rm --name emacs -e PATH=$PATH -e HOME=$HOME -e TERM=screen-256color -v /dev:/dev -v /tmp:/tmp -v $HOME:$HOME --user $UID:$UID -it jvshahid/emacs /usr/local/bin/emacs
+docker run -d --detach-keys 'ctrl-z' --rm --name emacs -e PATH=$PATH -e HOME=$HOME -e TERM=screen-256color -v /dev:/dev -v /tmp:/tmp -v $HOME:$HOME --user $UID:$UID -it jvshahid/emacs /usr/local/bin/emacs
