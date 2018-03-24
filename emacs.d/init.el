@@ -179,6 +179,18 @@ the command again. CMD is the command to run"
                                   (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (local-set-key (kbd "C-c C-j") 'xref-find-definitions)))
+(defun show-all-buffers ()
+  (interactive)
+  (display-buffer (list-buffers-noselect nil (buffer-list))))
+
+(add-hook 'Buffer-menu-mode-hook '(lambda ()
+                                    (setq show-trailing-whitespace nil)))
+
+(defun align-elisp-let (begin end)
+  (interactive "r")
+  (align-regexp begin
+                end
+                "[a-z]\\(\\s-+\\)\\((\\|[a-z]\\)"))
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
