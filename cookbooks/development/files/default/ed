@@ -13,4 +13,4 @@ docker run -d --detach-keys 'ctrl-z' \
        -v $HOME:$HOME \
        --user $UID:$UID \
        -it jvshahid/emacs \
-       /usr/local/bin/emacs
+       bash -c "/usr/local/bin/emacs --daemon && read"

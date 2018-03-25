@@ -4,7 +4,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 (setq vc-follow-symlinks t)
 (setq gc-cons-threshold (* 64 1024 1024))
 
@@ -61,6 +60,7 @@
 (straight-use-package 'pinentry)
 (straight-use-package 'multiple-cursors)
 (straight-use-package 'flx-ido)
+(straight-use-package 'hierarchy)
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
 (straight-use-package '(livedown :type git :host github :repo "shime/emacs-livedown"))
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
@@ -173,6 +173,7 @@ the command again. CMD is the command to run"
                                  (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
   (add-hook 'clojure-mode-hook (lambda ()
                                    (local-set-key (kbd "C-c C-r") 'projectile-toggle-between-implementation-and-test))))
+
 (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
@@ -829,5 +830,3 @@ buffer."
         smtpmail-smtp-server "smtp.gmail.com"
         smtpmail-smtp-service 587
         smtpmail-debug-info t))
-
-(server-start)
