@@ -26,8 +26,8 @@ function docker_version() {
 # minimum tested docker version
 min_docker_version=18.0.0
 
-highest_version=$(echo -e "$min_docker_version\n$docker_version" | sort -V | tail -n+2)
-if [ "x$highest_version" != "x$docker_version" ]; then
+highest_version=$(echo -e "$min_docker_version\n$(docker_version)" | sort -V | tail -n+2)
+if [ "x$highest_version" != "x$(docker_version)" ]; then
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     sudo apt-get update && sudo apt-get -y install docker-ce
