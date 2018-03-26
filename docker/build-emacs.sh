@@ -28,8 +28,5 @@ pushd emacs
   make install
 popd
 rm -rf emacs
-git clone https://github.com/jvshahid/emacs-config
-ln -s /emacs-config/emacs.d ~/.emacs.d
-emacs --batch -l ~/.emacs.d/init.el
 apt-get remove -y --purge build-essential autoconf
 apt-get autoremove -y
