@@ -20,5 +20,6 @@ pushd emacs
   make install
 popd
 rm -rf emacs
-apt-get remove -y --purge build-essential autoconf
+apt-get remove -y --purge build-essential autoconf gcc gcc-5
 apt-get autoremove -y
+rm -rf /var/lib/apt/lists
