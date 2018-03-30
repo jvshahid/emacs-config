@@ -6,8 +6,6 @@ RUN apt-get -y install \
         libxapian-dev \
         libxml2-dev \
         libgtkextra-dev \
-        openjdk-8-jdk-headless \
-        libgtkextra-dev \
         libavfilter-dev \
         libao-dev \
         libjson-c-dev
