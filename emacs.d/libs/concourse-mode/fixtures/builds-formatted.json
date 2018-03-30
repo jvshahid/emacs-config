@@ -1,0 +1,24 @@
+[
+  {
+    "end_time": 1522282513,
+    "id": 1,
+    "team_name": "main",
+    "name": "1",
+    "status": "succeeded",
+    "job_name": "first",
+    "api_url": "/api/v1/builds/1",
+    "pipeline_name": "main",
+    "start_time": 1522281947
+  },
+  {
+    "end_time": 1522278614,
+    "id": 20,
+    "team_name": "main",
+    "name": "20",
+    "status": "succeeded",
+    "job_name": "first",
+    "api_url": "/api/v1/builds/20",
+    "pipeline_name": "main",
+    "start_time": 1522278089
+  }
+]

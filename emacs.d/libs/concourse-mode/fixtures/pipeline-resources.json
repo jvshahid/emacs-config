@@ -1,0 +1,322 @@
+[
+  {
+    "last_checked": 1522363652,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-ci"
+  },
+  {
+    "last_checked": 1522363642,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-release-release-candidate"
+  },
+  {
+    "last_checked": 1522363657,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "deployments-diego"
+  },
+  {
+    "last_checked": 1522363658,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "cats-concourse-task"
+  },
+  {
+    "last_checked": 1522363658,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "time-rotor-gcp-config"
+  },
+  {
+    "last_checked": 1522363687,
+    "groups": [],
+    "type": "bosh-io-release",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "cflinuxfs2-release-tarball"
+  },
+  {
+    "last_checked": 1522363701,
+    "groups": [],
+    "type": "time",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "12hours"
+  },
+  {
+    "last_checked": 1522363656,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-release-mergeback"
+  },
+  {
+    "last_checked": 1522363667,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "cf-deployment-diego"
+  },
+  {
+    "last_checked": 1522363644,
+    "groups": [],
+    "type": "s3",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-trace-time-rotor-gcp-benchmark-logs"
+  },
+  {
+    "last_checked": 1522363652,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "routing-release"
+  },
+  {
+    "last_checked": 1522363652,
+    "groups": [],
+    "type": "s3",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-exported-release"
+  },
+  {
+    "last_checked": 1522363676,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-release-v1.25.2"
+  },
+  {
+    "last_checked": 1522363650,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diegocanaryapp"
+  },
+  {
+    "last_checked": 1522363681,
+    "groups": [],
+    "type": "s3",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-dev-release"
+  },
+  {
+    "last_checked": 1522363700,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "garden-runc-release-master"
+  },
+  {
+    "last_checked": 1522363669,
+    "groups": [],
+    "type": "bosh-io-release",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "garden-runc-release-tarball"
+  },
+  {
+    "last_checked": 1522363645,
+    "groups": [],
+    "type": "semver",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "version"
+  },
+  {
+    "last_checked": 1522363674,
+    "groups": [],
+    "type": "time",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "30min"
+  },
+  {
+    "last_checked": 1522363677,
+    "groups": [],
+    "type": "s3",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-dusts-logs"
+  },
+  {
+    "last_checked": 1522363668,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-release-v1.0.0"
+  },
+  {
+    "last_checked": 1522363689,
+    "groups": [],
+    "type": "github-release",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "github-release"
+  },
+  {
+    "last_checked": 1522363701,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "warp-drive-cats-config"
+  },
+  {
+    "last_checked": 1522363648,
+    "groups": [],
+    "type": "bosh-io-stemcell",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "gcp-windows-stemcell"
+  },
+  {
+    "last_checked": 1522363648,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "cf-deployment-develop"
+  },
+  {
+    "last_checked": 1522363649,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "cf-deployment-rc"
+  },
+  {
+    "last_checked": 1522363652,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "electron-cannon-cats-config"
+  },
+  {
+    "last_checked": 1522363659,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "warp-drive-config"
+  },
+  {
+    "last_checked": 1522363644,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "cf-acceptance-tests"
+  },
+  {
+    "last_checked": 1522363647,
+    "groups": [],
+    "type": "bosh-io-stemcell",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "gcp-stemcell"
+  },
+  {
+    "last_checked": 1522363648,
+    "groups": [],
+    "type": "bosh-io-release",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "routing-release-tarball"
+  },
+  {
+    "last_checked": 1522363649,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-release"
+  },
+  {
+    "last_checked": 1522363650,
+    "groups": [],
+    "type": "pool",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "candidate-lock"
+  },
+  {
+    "last_checked": 1522363663,
+    "groups": [],
+    "type": "time",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "daily"
+  },
+  {
+    "last_checked": 1522363666,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "electron-cannon-config"
+  },
+  {
+    "last_checked": 1522363700,
+    "groups": [],
+    "type": "bosh-io-release",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "garden-windows-release-tarball"
+  },
+  {
+    "last_checked": 1522363666,
+    "groups": [],
+    "type": "git",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-release-master"
+  },
+  {
+    "last_checked": 1522363676,
+    "groups": [],
+    "type": "s3",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "diego-final-releases"
+  },
+  {
+    "last_checked": 1522363679,
+    "groups": [],
+    "type": "tracker",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "tracker"
+  },
+  {
+    "last_checked": 1522363653,
+    "groups": [],
+    "type": "bosh-io-stemcell",
+    "team_name": "main",
+    "pipeline_name": "main",
+    "name": "gcp-windows2016-stemcell"
+  }
+]

@@ -1,0 +1,51 @@
+id: 0
+event: event
+data: {"data":{"status":"started","time":1518030932},"event":"status","version":"1.0"}
+
+id: 1
+event: event
+data: {"data":{"origin":{"id":"5a61226c"},"plan":{"name":"diego-release","resource":"diego-release","type":"git","version":{"ref":"6b470ccf3fe8212aede328e0825feaffd066153c"}},"exit_status":0,"version":{"ref":"6b470ccf3fe8212aede328e0825feaffd066153c"},"metadata":[{"name":"commit","value":"6b470ccf3fe8212aede328e0825feaffd066153c"},{"name":"author","value":"Danny Cao"},{"name":"author_date","value":"2018-02-07 13:55:47 -0500"},{"name":"committer","value":"Danny Cao"},{"name":"committer_date","value":"2018-02-07 13:55:47 -0500"},{"name":"branch","value":"develop"},{"name":"message","value":"bump inigo\n\n[finishes #154975819]\n\nSubmodule src/code.cloudfoundry.org/inigo 5ef657ace..cf7080b29:\n  \u003e Bump stop process timeout to 20s\n"}]},"event":"finish-get","version":"4.0"}
+
+id: 2
+event: event
+data: {"data":{"origin":{"id":"5a61226d"},"config":{"platform":"linux","image":"","run":{"path":"diego-release/scripts/ci/run_unit","args":null,"dir":""},"inputs":[{"name":"diego-release","path":""}]}},"event":"initialize-task","version":"4.0"}
+
+id: 3
+event: event
+data: {"data":{"time":0,"origin":{"id":"5a61226d"},"config":{"platform":"linux","image":"","run":{"path":"diego-release/scripts/ci/run_unit","args":null,"dir":""},"inputs":[{"name":"diego-release","path":""}]}},"event":"start-task","version":"5.0"}
+
+id: 4
+event: event
+data: {"data":{"origin":{"id":"5a61226d","source":"stdout"},"payload":" * Starting PostgreSQL 9.4 database server\r\n"},"event":"log","version":"5.0"}
+
+id: 5
+event: event
+data: {"data":{"origin":{"id":"5a61226d","source":"stdout"},"payload":"   ...done.\r\n"},"event":"log","version":"5.0"}
+
+id: 6
+event: event
+data: {"data":{"origin":{"id":"5a61226d","source":"stdout"},"payload":"Running store-dependent test suites against a Postgres database...\r\n"},"event":"log","version":"5.0"}
+
+id: 7
+event: event
+data: {"data":{"origin":{"id":"5a61226d","source":"stdout"},"payload":"[1518030956] \u001b[1mAuctioneer Cmd Suite\u001b[0m - 35 specs - 7 nodes "},"event":"log","version":"5.0"}
+
+id: 8
+event: event
+data: {"data":{"origin":{"id":"5a61226d","source":"stdout"},"payload":"\u001b[32m•\u001b[0m"},"event":"log","version":"5.0"}
+
+id: 9
+event: event
+data: {"data":{"origin":{"id":"5a61226d","source":"stdout"},"payload":"\u001b[32m•\u001b[0m"},"event":"log","version":"5.0"}
+
+id: 10
+event: event
+data: {"data":{"origin":{"id":"5a61226d","source":"stdout"},"payload":"\u001b[32m•\u001b[0m"},"event":"log","version":"5.0"}
+
+id: 901
+event: event
+data: {"data":{"origin":{"id":"5a61226d","source":"stdout"},"payload":"\r\n"},"event":"log","version":"5.0"}
+
+id: 11
+event: end
+data

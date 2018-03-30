@@ -1,0 +1,71 @@
+[
+  {
+    "finished_build": {
+      "end_time": 1519841640,
+      "start_time": 1519840873,
+      "id": 1,
+      "team_name": "main",
+      "name": "1",
+      "status": "succeeded",
+      "job_name": "first",
+      "url": "/teams/main/pipelines/main/jobs/first/builds/1",
+      "api_url": "/api/v1/builds/1",
+      "pipeline_name": "main"
+    },
+    "next_build": null,
+    "name": "first",
+    "id": 1
+  },
+  {
+    "finished_build": {
+      "end_time": 1519842065,
+      "start_time": 1519841651,
+      "id": 1,
+      "team_name": "main",
+      "name": "2",
+      "status": "succeeded",
+      "job_name": "second",
+      "url": "/teams/main/pipelines/main/jobs/second/builds/1",
+      "api_url": "/api/v1/builds/2",
+      "pipeline_name": "main"
+    },
+    "next_build": {
+      "start_time": 1521312791,
+      "pipeline_name": "main",
+      "api_url": "/api/v1/builds/3",
+      "job_name": "second",
+      "status": "started",
+      "name": "3",
+      "team_name": "main",
+      "id": 2
+    },
+    "name": "second",
+    "id": 2
+  },
+  {
+    "finished_build": {
+      "end_time": 1519842609,
+      "start_time": 1519842075,
+      "id": 4,
+      "team_name": "main",
+      "name": "1",
+      "status": "succeeded",
+      "job_name": "third",
+      "url": "/teams/main/pipelines/main/jobs/third/builds/1",
+      "api_url": "/api/v1/builds/4",
+      "pipeline_name": "main"
+    },
+    "next_build": {
+      "pipeline_name": "main",
+      "api_url": "/api/v1/builds/4",
+      "job_name": "time-rotor-gcp-benchmark-bbs-with-postgres-tests",
+      "status": "pending",
+      "name": "2",
+      "team_name": "main",
+      "id": 5
+    },
+    "name": "third",
+    "id": 3
+  }
+]
+

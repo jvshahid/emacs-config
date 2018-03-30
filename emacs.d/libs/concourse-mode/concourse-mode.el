@@ -8,11 +8,10 @@
 (defun concourse-get-url (url callback)
   "Depending on the value of `noninteractive' calls either
 `url-retrieve' or `url-retrieve-synchronously'"
-  (if noninteractive
-      (let ((buffer (url-retrieve-synchronously url t)))
-        (with-current-buffer buffer
-          (funcall callback nil)))
-    (url-retrieve url callback nil t)))
+  (let ((buffer (url-retrieve-synchronously url t)))
+    (with-current-buffer buffer
+      (funcall callback nil))))
+  ;; (url-retrieve url callback nil t)
 
 (defun concourse-parse-response (status)
   (unwind-protect
@@ -138,12 +137,21 @@ longer than this value is considered hanging"
    (t (setq concourse-pipeline-color "green")))
   (force-mode-line-update t))
 
+(defun concourse-jobs-path ()
+  (format "/api/v1/teams/%s/pipelines/%s/jobs"
+          concourse-team
+          concourse-pipeline))
+
+(defun concourse-builds-path (name)
+  (format "%s/%s/builds"
+          (concourse-jobs-path)
+          name))
+
 (defun concourse-update-mode-line ()
   (concourse-get-url
-   (format "https://%s/api/v1/teams/%s/pipelines/%s/jobs"
+   (format "https://%s%s"
            concourse-url
-           concourse-team
-           concourse-pipeline)
+           (concourse-jobs-path))
    (lambda (x)
      (concourse->>
       x

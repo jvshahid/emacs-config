@@ -1,0 +1,249 @@
+{
+  "outputs": [
+    {
+      "enabled": false,
+      "version": {
+        "path": "ketchup-smoke-tests/dusts.0.0.0.1518026575.log"
+      },
+      "resource": "diego-dusts-logs",
+      "metadata": null,
+      "type": "",
+      "id": 0
+    }
+  ],
+  "inputs": [
+    {
+      "first_occurrence": false,
+      "pipeline_id": 1,
+      "metadata": [
+        {
+          "value": "ce9efe79c1d60b8fc84eec3ca301256def92ebbf",
+          "name": "commit"
+        },
+        {
+          "value": "Routing CI (Automated)",
+          "name": "author"
+        },
+        {
+          "value": "2018-01-19 23:59:44 +0000",
+          "name": "author_date"
+        },
+        {
+          "value": "Routing CI (Automated)",
+          "name": "committer"
+        },
+        {
+          "value": "2018-01-19 23:59:44 +0000",
+          "name": "committer_date"
+        },
+        {
+          "value": "master",
+          "name": "branch"
+        },
+        {
+          "value": "0.171.0",
+          "name": "tags"
+        },
+        {
+          "value": "Create final release 0.171.0\n",
+          "name": "message"
+        }
+      ],
+      "version": {
+        "ref": "ce9efe79c1d60b8fc84eec3ca301256def92ebbf"
+      },
+      "type": "git",
+      "resource": "routing-release",
+      "name": "routing-release"
+    },
+    {
+      "first_occurrence": false,
+      "pipeline_id": 1,
+      "metadata": [
+        {
+          "value": "https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.171.0",
+          "name": "url"
+        },
+        {
+          "value": "137f568a99949ce97b8f45f7736ad9c6f57f5ecf",
+          "name": "sha1"
+        }
+      ],
+      "version": {
+        "version": "0.171.0"
+      },
+      "type": "bosh-io-release",
+      "resource": "routing-release-tarball",
+      "name": "routing-release-tarball"
+    },
+    {
+      "first_occurrence": false,
+      "pipeline_id": 1,
+      "metadata": [
+        {
+          "value": "de869f46381c2cb2b3b58ac82df299b6d6c72296",
+          "name": "commit"
+        },
+        {
+          "value": "CI (Automated)",
+          "name": "author"
+        },
+        {
+          "value": "2017-08-23 23:56:00 +0000",
+          "name": "author_date"
+        },
+        {
+          "value": "CI (Automated)",
+          "name": "committer"
+        },
+        {
+          "value": "2017-08-23 23:56:00 +0000",
+          "name": "committer_date"
+        },
+        {
+          "value": "v1.25.2",
+          "name": "tags"
+        },
+        {
+          "value": "Create final release 1.25.2\n",
+          "name": "message"
+        }
+      ],
+      "version": {
+        "ref": "de869f46381c2cb2b3b58ac82df299b6d6c72296"
+      },
+      "type": "git",
+      "resource": "diego-release-v1.25.2",
+      "name": "diego-release-v1.25.2"
+    },
+    {
+      "first_occurrence": false,
+      "pipeline_id": 1,
+      "metadata": [
+        {
+          "value": "0926be8f41f44df5f86a784a9b44c3060e279de5",
+          "name": "commit"
+        },
+        {
+          "value": "CI Bot",
+          "name": "author"
+        },
+        {
+          "value": "2018-01-30 16:31:40 +0000",
+          "name": "author_date"
+        },
+        {
+          "value": "CI Bot",
+          "name": "committer"
+        },
+        {
+          "value": "2018-01-30 16:31:40 +0000",
+          "name": "committer_date"
+        },
+        {
+          "value": "master",
+          "name": "branch"
+        },
+        {
+          "value": "v1.11.1",
+          "name": "tags"
+        },
+        {
+          "value": "release v1.11.1\n",
+          "name": "message"
+        }
+      ],
+      "version": {
+        "ref": "0926be8f41f44df5f86a784a9b44c3060e279de5"
+      },
+      "type": "git",
+      "resource": "garden-runc-release-master",
+      "name": "garden-runc-release-master"
+    },
+    {
+      "first_occurrence": false,
+      "pipeline_id": 1,
+      "metadata": [
+        {
+          "value": "https://bosh.io/d/github.com/cloudfoundry/garden-runc-release?v=1.11.1",
+          "name": "url"
+        },
+        {
+          "value": "d9a7901c0502d97c043b857496f0f414a5843e8d",
+          "name": "sha1"
+        }
+      ],
+      "version": {
+        "version": "1.11.1"
+      },
+      "type": "bosh-io-release",
+      "resource": "garden-runc-release-tarball",
+      "name": "garden-runc-release-tarball"
+    },
+    {
+      "first_occurrence": false,
+      "pipeline_id": 1,
+      "metadata": [
+        {
+          "value": "ece67ce1201a0fc716d931f9205454a295ce95c6",
+          "name": "commit"
+        },
+        {
+          "value": "Edwin Xie",
+          "name": "author"
+        },
+        {
+          "value": "2018-01-31 13:29:51 -0500",
+          "name": "author_date"
+        },
+        {
+          "value": "master",
+          "name": "branch"
+        },
+        {
+          "value": "another rename check_package_specs -> check_package_and_submodule_specs\n\n[#154032983]\n\nSigned-off-by: John Shahid <jvshahid@gmail.com>\n",
+          "name": "message"
+        }
+      ],
+      "version": {
+        "ref": "ece67ce1201a0fc716d931f9205454a295ce95c6"
+      },
+      "type": "git",
+      "resource": "diego-ci",
+      "name": "diego-ci"
+    },
+    {
+      "first_occurrence": false,
+      "pipeline_id": 1,
+      "metadata": [
+        {
+          "value": "d02478886eb0c90eecdd885fe5d764267ac29e19",
+          "name": "commit"
+        },
+        {
+          "value": "John Shahid",
+          "name": "author"
+        },
+        {
+          "value": "2018-02-07 11:13:49 -0500",
+          "name": "author_date"
+        },
+        {
+          "value": "develop",
+          "name": "branch"
+        },
+        {
+          "value": "bump auction\n\n[finishes #150253675]\n\nSubmodule src/code.cloudfoundry.org/auction 3cc0a1c7..04227296:\n  > Exempt empty cell ids when checking checking the state response\n\nSigned-off-by: Charlie Vieth <cviethjr@pivotal.io>\n",
+          "name": "message"
+        }
+      ],
+      "version": {
+        "ref": "d02478886eb0c90eecdd885fe5d764267ac29e19"
+      },
+      "type": "git",
+      "resource": "diego-release",
+      "name": "diego-release"
+    }
+  ]
+}
+
