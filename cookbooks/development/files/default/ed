@@ -10,9 +10,10 @@ docker run -d --detach-keys 'ctrl-z' \
        -e DISPLAY=$DISPLAY \
        -e HOME=$HOME \
        -e TERM=screen-256color \
+       --device /dev/snd \
        -v /tmp:/tmp \
+       -v /dev:/dev \
        -v $HOME:$HOME \
        --user $UID:$UID \
        -it $image \
-       --device /dev/snd \
        bash -c "/usr/local/bin/emacs --daemon & read"
