@@ -6,7 +6,6 @@ RUN apt-get update && \
                 ispell \
                 libgmime-2.6-dev \
                 libxapian-dev \
-                libxml2-dev \
                 libgtkextra-dev \
                 libavfilter-dev \
                 libao-dev \

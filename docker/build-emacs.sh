@@ -8,6 +8,7 @@ apt-get install -y git-core \
         texinfo \
         autoconf \
         libgnutls28-dev \
+        libxml2-dev \
         libtinfo-dev
 
 mkdir ~/.ssh
