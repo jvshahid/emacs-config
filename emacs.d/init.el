@@ -134,11 +134,12 @@ the command again. CMD is the command to run"
                                   (helm-fzf default-directory)))
 
 (with-eval-after-load 'flycheck
-  (setq flycheck-disabled-checkers '(go-errcheck))
   (setq flycheck-check-syntax-automatically (quote (save mode-enabled)))
   (setq flycheck-go-build-install-deps t))
 (add-hook 'java-mode-hook 'flycheck-mode)
 (add-hook 'go-mode-hook 'flycheck-mode)
+(add-hook 'go-mode-hook (lambda ()
+                          (setq flycheck-disabled-checkers '(go-megacheck))))
 
 (autoload 'aw-swap-window "ace-window")
 (defun swap-next-window (n)
