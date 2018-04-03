@@ -10,13 +10,10 @@ docker run -d --detach-keys 'ctrl-z' \
        -e DISPLAY=$DISPLAY \
        -e HOME=$HOME \
        -e TERM=screen-256color \
+       --device /dev/snd \
        -v /tmp:/tmp \
        -v /dev:/dev \
        -v $HOME:$HOME \
        --user $UID:$UID \
-       --device /dev/snd \
-       -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
-       -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
-       --group-add $(getent group audio | cut -d: -f3) \
        -it $image \
        bash -c "/usr/local/bin/emacs --daemon & read"
