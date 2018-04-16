@@ -395,6 +395,7 @@ the command again. CMD is the command to run"
  '(select-enable-clipboard t)
  '(send-mail-function 'smtpmail-send-it)
  '(show-paren-mode t)
+ '(c-basic-offset 2)
  '(show-trailing-whitespace t)
  '(tab-width 2)
  '(tags-case-fold-search t)
