@@ -10,6 +10,7 @@ docker run -d --detach-keys 'ctrl-z' \
        -e DISPLAY=$DISPLAY \
        -e HOME=$HOME \
        -e TERM=screen-256color \
+       -e LANG=en_US.UTF-8 \
        --device /dev/snd \
        -v /tmp:/tmp \
        -v /dev:/dev \
