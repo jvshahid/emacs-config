@@ -9,5 +9,8 @@ RUN apt-get update && \
                 libgtkextra-dev \
                 libavfilter-dev \
                 libao-dev \
-                libjson-c-dev && \
+                libjson-c-dev \
+                libxtst6 \
+                pulseaudio-utils && \
      rm -rf /var/lib/apt/lists
+COPY pulse-client.conf /etc/pulse/client.conf
