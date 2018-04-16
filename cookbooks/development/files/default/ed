@@ -2,10 +2,10 @@
 
 image="jvshahid/development"
 docker pull $image
-docker rm -f emacs
+docker rm -f emacs-$USER
 docker run -d --detach-keys 'ctrl-z' \
        --rm \
-       --name emacs \
+       --name emacs-$USER \
        -e PATH=$PATH \
        -e DISPLAY=$DISPLAY \
        -e HOME=$HOME \
