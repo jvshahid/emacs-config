@@ -57,7 +57,6 @@
 (straight-use-package 'ac-emacs-eclim)
 (straight-use-package 'ac-cider)
 (straight-use-package 'wgrep)
-(straight-use-package 'pinentry)
 (straight-use-package 'multiple-cursors)
 (straight-use-package 'flx-ido)
 (straight-use-package 'hierarchy)
@@ -116,8 +115,6 @@ the command again. CMD is the command to run"
 (define-repeatable-key (kbd "C-c M-.") (kbd "M-.") (lambda () (enlarge-window-horizontally 4)))
 (define-repeatable-key (kbd "C-c M-,") (kbd "M-,") (lambda () (shrink-window-horizontally 4)))
 (global-set-key (kbd "C-c C-r") 'ff-find-related-file)
-
-(pinentry-start)
 
 (define-key global-map (kbd "C-x g") 'magit-status)
 (with-eval-after-load 'magit
