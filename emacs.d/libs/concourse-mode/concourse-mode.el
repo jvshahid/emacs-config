@@ -165,7 +165,7 @@ longer than this value is considered hanging"
   (cancel-timer concourse-timer))
 
 ;;; Tests:
-;;; run using `emacs --batch -l concourse.el -f ert-run-tests-batch-and-exit'
+;;; run using `emacs --batch -l concourse-mode.el -f ert-run-tests-batch-and-exit'
 
 (ert-deftest concourse-test-partial ()
   (let ((second (apply-partially 'nth 1))
