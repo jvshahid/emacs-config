@@ -281,7 +281,7 @@ the command again. CMD is the command to run"
 
 (defun replace-last-sexp ()
   (interactive)
-  (let ((value (eval (preceding-sexp))))
+  (let ((value (eval (elisp--preceding-sexp))))
     (kill-sexp -1)
     (insert (format "%S" value))))
 
