@@ -7,8 +7,7 @@
 (setq vc-follow-symlinks t)
 (setq gc-cons-threshold (* 64 1024 1024))
 
-(let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el"))
-      (bootstrap-version 3))
+(let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el")))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
