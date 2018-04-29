@@ -332,16 +332,6 @@ the command again. CMD is the command to run"
 
 (global-set-key (kbd "C-c C-t") 'refresh-tags) ; move to left windnow
 
-(defun my-ido-find-tag ()
-  "Find a tag using ido"
-  (interactive)
-  (tags-completion-table)
-  (let (tag-names)
-    (mapatoms (lambda (x)
-                (push (prin1-to-string x t) tag-names))
-              tags-completion-table)
-    (etags-select-find (ido-completing-read "Tag: " tag-names nil nil nil))))
-
 (global-set-key (kbd "M-.") 'xref-find-references)
 (setq completion-ignore-case t)
 
@@ -574,52 +564,6 @@ If DELTA was provided it will be added to the current line's indentation."
 ;;   (insert "end")
 ;;   (ruby-indent-line t)
 ;;   (end-of-line))
-
-(defun ruby-brace-to-do-end ()
-  "convert a {-} block into a do-end block"
-  (when (looking-at "{")
-    (let ((orig (point))
-          (end  (progn
-                  (ruby-forward-sexp)
-                  (set-mark (point))
-                  (point))))
-      (when (eq (char-before) ?\})
-        (delete-char -1)
-        (insert "\nend")
-        (goto-char orig)
-        (delete-char 1)
-        (insert "do")
-        (when (looking-at ".*\\s |.*|")
-          (message "found args")
-          (goto-char (match-end 0)))
-        (insert "\n")
-        (indent-region orig (+ (mark) 2))
-        (delete-trailing-whitespace orig (+ (mark) 2))
-        t))))
-
-(defun ruby-do-end-to-brace ()
-  "opposite of ruby-brace-to-do-end"
-  (when (and (or (bolp)
-                 (not (memq (char-syntax (char-before)) '(?w ?_))))
-             (looking-at "\\<do\\(\\s \\|$\\)"))
-    (let ((orig (point))
-          (end (progn (ruby-forward-sexp) (point))))
-      (backward-char 3)
-      (when (looking-at ruby-block-end-re)
-        (delete-char 3)
-        (insert "}")
-        (goto-char orig)
-        (delete-char 2)
-        (insert "{")
-        (if (looking-at "\\s +|")
-            (delete-char (- (match-end 0) (match-beginning 0) 1)))
-        t))))
-
-(defun ruby-toggle-block ()
-  "toggle block mode do-end -> {} or {} -> do-end"
-  (interactive)
-  (or (ruby-brace-to-do-end)
-      (ruby-do-end-to-brace)))
 
 ;; (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
