@@ -385,6 +385,7 @@ the command again. CMD is the command to run"
  '(show-trailing-whitespace t)
  '(tab-width 2)
  '(tags-case-fold-search t)
+ '(user-full-name "John Shahid")
  '(user-mail-address "jvshahid@gmail.com")
  '(windmove-wrap-around t))
 
