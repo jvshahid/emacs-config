@@ -65,12 +65,25 @@
                         (should (equal 4 (count-lines (point-min) (point-max))))
                         (forward-line)
                         (should (looking-at " +|\\-\\[\\+\\] +first"))
+                        (end-of-line)
+                        (should (equal (get-text-property (- (point) 1) 'face)
+                                       '(:foreground "red")))
+                        (beginning-of-line)
                         (forward-line)
                         (should (looking-at " +|\\-\\[\\+\\] +second"))
                         (forward-line)
                         (should (looking-at " +`\\-\\[\\+\\] +third"))))))
 
-(ert-deftest pipeline-render-test ()
+(ert-deftest pipeline-render-pipeline-server-request-test ()
+  (with-fake-server nil
+                    (with-temp-buffer
+                      (concourse-view-pipeline (current-buffer))
+                      (widget-button-press (point-min))
+                      (with-current-buffer "concourse-fake-server"
+                        (search-backward "request: ")
+                        (looking-at "/api/v1/teams/main/pipelines/main/jobs")))))
+
+(ert-deftest pipeline-render-pipeline-test ()
   (with-fake-server nil
                     (with-temp-buffer
                       (concourse-view-pipeline (current-buffer))
@@ -84,14 +97,45 @@
                           (button-activate (button-at (point)))
                           (should button-pressed))))))
 
-(ert-deftest job-render-test ()
+(ert-deftest job-render-job-test ()
   (with-fake-server nil
                     (with-temp-buffer
-                      (concourse-view-job '((name "first")) (current-buffer))
+                      (concourse-view-job '((name . "first")) (current-buffer))
                       (should (looking-at "\\[\\+\\] +first"))
                       (widget-button-press (point-min))
                       (should (equal 3 (count-lines (point-min) (point-max))))
                       (forward-line 1)
                       (should (looking-at " +|\\-\\[\\+\\] +1"))
                       (forward-line 1)
-                      (should (looking-at " +`\\-\\[\\+\\] +20")))))
+                      (should (looking-at " +`\\-\\[\\+\\] +20"))
+                      (end-of-line)
+                      (should (equal (get-text-property (- (point) 1) 'face)
+                                     '(:foreground "red"))))))
+
+(ert-deftest pipeline-render-job-server-request-test ()
+  (with-fake-server nil
+                    (with-temp-buffer
+                      (concourse-view-job '((name . "first")) (current-buffer))
+                      (widget-button-press (point-min))
+                      (with-current-buffer "concourse-fake-server"
+                        (search-backward "request: ")
+                        (looking-at "/api/v1/teams/main/pipelines/main/jobs/first/builds")))))
+
+(ert-deftest job-render-build-test ()
+  (with-fake-server nil
+                    (with-temp-buffer
+                      (let ((proc (concourse-view-build '((api_url . "/api/v1/builds/1/events")) (current-buffer))))
+                        (while (process-live-p proc)
+                          (accept-process-output proc)))
+                      (debug)
+                      (goto-char (point-min))
+                      (should (looking-at "\\[\\+\\] +first")))))
+
+;; (ert-deftest pipeline-render-job-server-request-test ()
+;;   (with-fake-server nil
+;;                     (with-temp-buffer
+;;                       (concourse-view-job '((name . "first")) (current-buffer))
+;;                       (widget-button-press (point-min))
+;;                       (with-current-buffer "concourse-fake-server"
+;;                         (search-backward "request: ")
+;;                         (looking-at "/api/v1/teams/main/pipelines/main/jobs/first/builds")))))

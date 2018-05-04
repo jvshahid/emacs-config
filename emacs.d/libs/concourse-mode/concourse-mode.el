@@ -149,9 +149,9 @@ longer than this value is considered hanging"
 
 (defun concourse-update-mode-line ()
   (concourse-get-url
-   (format "https://%s%s"
-           concourse-url
-           (concourse-jobs-path))
+   (format (concat
+            concourse-url
+            (concourse-jobs-path)))
    (lambda (x)
      (concourse->>
       x

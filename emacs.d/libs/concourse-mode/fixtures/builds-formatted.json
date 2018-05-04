@@ -15,7 +15,7 @@
     "id": 20,
     "team_name": "main",
     "name": "20",
-    "status": "succeeded",
+    "status": "failed",
     "job_name": "first",
     "api_url": "/api/v1/builds/20",
     "pipeline_name": "main",

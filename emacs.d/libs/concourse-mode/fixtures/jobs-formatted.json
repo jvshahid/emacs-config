@@ -6,7 +6,7 @@
       "id": 1,
       "team_name": "main",
       "name": "1",
-      "status": "succeeded",
+      "status": "failed",
       "job_name": "first",
       "url": "/teams/main/pipelines/main/jobs/first/builds/1",
       "api_url": "/api/v1/builds/1",
