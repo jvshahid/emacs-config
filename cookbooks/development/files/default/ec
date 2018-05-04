@@ -8,4 +8,8 @@ if [[ $# > 0 ]]; then
     fi
 fi
 
+if ! docker ps | grep emacs-$USER >/dev/null 2>&1; then
+    ed
+    sleep 1
+fi
 exec docker exec --detach-keys 'ctrl-z' -it emacs-$USER bash -c "stty cols $(tput cols) && stty rows $(tput lines) && emacsclient -t $args"
