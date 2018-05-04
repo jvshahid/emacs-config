@@ -215,11 +215,17 @@ the command again. CMD is the command to run"
   (add-to-list 'ac-modes 'cider-mode)
   (add-to-list 'ac-modes 'cider-repl-mode))
 
+(defun remove-pianobar-mode ()
+  (setq mode-line-modes (delete pianobar-modeline-object mode-line-modes)))
+
 (with-eval-after-load 'protobuf-mode
   (add-hook 'protobuf-mode-hook 'subword-mode))
 (autoload 'pianobar "pianobar" "pianobar pandora mode" t)
 (with-eval-after-load 'pianobar
-  (setq pianobar-command "~/codez/pianobar/pianobar"))
+  (setq pianobar-command "~/codez/pianobar/pianobar")
+  (add-hook 'pianobar-mode-hook (lambda ()
+                                  (add-hook 'kill-buffer-hook
+                                            #'remove-pianobar-mode))))
 
 (with-eval-after-load 'arduino-mode
   (add-hook 'arduino-mode-hook
