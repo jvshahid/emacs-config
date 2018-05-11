@@ -137,6 +137,10 @@ the command again. CMD is the command to run"
 (add-hook 'go-mode-hook (lambda ()
                           (setq flycheck-disabled-checkers '(go-megacheck))))
 
+;; disable the use of CGO inside emacs. otherwise, it complains that gcc is
+;; missing while flychecking a buffer
+(setenv "CGO_ENABLED" "0")
+
 (autoload 'aw-swap-window "ace-window")
 (defun swap-next-window (n)
   "swap the buffer of the current window with the next window obtained using 'next-window"
