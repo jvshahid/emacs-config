@@ -1,7 +1,7 @@
 repos_root = File.expand_path "../../../../", File.dirname(__FILE__)
 
 git "#{repos_root}/mu" do
-  revision 'e50e6bd3d1e896595e0be5487c3ea8ce237eb44f'
+  branch "master"
   repository "https://github.com/djcb/mu"
   user ENV['SUDO_USER']
   notifies :run, "bash[build_mu]"
@@ -18,7 +18,7 @@ bash "build_mu" do
 end
 
 git "#{repos_root}/mbsync" do
-  revision 'cbac8aa75ce041384155d360f040aec5049d1de5'
+  branch "master"
   repository "https://git.code.sf.net/p/isync/isync"
   user ENV['SUDO_USER']
   notifies :run, "bash[build_mbsync]"
