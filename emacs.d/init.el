@@ -251,6 +251,9 @@ the command again. CMD is the command to run"
   (add-hook 'go-mode-hook 'hs-minor-mode)
   (add-hook 'go-mode-hook 'ginkgo-mode))
 
+(if-let (go-cmd (locate-file "go" exec-path))
+    (setenv "GOROOT" (file-truename (concat go-cmd "/../.."))))
+
 (add-hook 'buffer-list-update-hook
           (lambda ()
             (when (equal major-mode 'go-mode)
@@ -550,20 +553,24 @@ If DELTA was provided it will be added to the current line's indentation."
     (unless go-cmd (find-go))
 
     (setup-go-path)
+    (install-go-deps)))
 
-    ;; install goimports, godef, godoc and gocode
-    (dolist (url '("golang.org/x/tools/cmd/goimports"
-                   "github.com/rogpeppe/godef"
-                   "github.com/nsf/gocode"
-                   "github.com/dougm/goflymake"
-                   "golang.org/x/tools/cmd/gorename"
-                   "golang.org/x/tools/cmd/godoc"
-                   "github.com/golang/lint"
-                   "github.com/mdempsky/unconvert"
-                   "golang.org/x/tools/cmd/guru"))
-      (message "Running 'go get -u %s'" url)
-      (start-process (format "go-get-%s" (ff-basename url))
-                     "*go-get*" "go" "get" "-u" url))))
+(defun install-go-deps ()
+  (interactive)
+  ;; install goimports, godef, godoc and gocode
+  (dolist (url '("golang.org/x/tools/cmd/goimports"
+                 "github.com/rogpeppe/godef"
+                 "github.com/nsf/gocode"
+                 "github.com/dougm/goflymake"
+                 "golang.org/x/tools/cmd/gorename"
+                 "golang.org/x/tools/cmd/godoc"
+                 "github.com/golang/lint"
+                 "github.com/kisielk/errcheck"
+                 "github.com/mdempsky/unconvert"
+                 "golang.org/x/tools/cmd/guru"))
+    (message "Running 'go get -u %s'" url)
+    (start-process (format "go-get-%s" (ff-basename url))
+                   "*go-get*" "go" "get" "-u" url)))
 
 (setq gofmt-command "goimports")
 (setq gofmt-args nil)
