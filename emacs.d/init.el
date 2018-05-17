@@ -251,6 +251,16 @@ the command again. CMD is the command to run"
   (add-hook 'go-mode-hook 'hs-minor-mode)
   (add-hook 'go-mode-hook 'ginkgo-mode))
 
+(add-hook 'buffer-list-update-hook
+          (lambda ()
+            (when (equal major-mode 'go-mode)
+              (unless (and (boundp 'gopath)
+                           gopath)
+                (if-let ((envrc (find-prog (buffer-file-name) ".envrc")))
+                  (setq-local gopath (file-truename (concat envrc "/..")))))
+              (and gopath
+                   (setenv "GOPATH" gopath)))))
+
 (defun disable-auto-completion ()
   (setq-local ac-auto-start nil)
   (local-set-key "\M-." 'ac-start))
