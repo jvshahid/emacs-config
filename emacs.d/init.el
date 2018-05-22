@@ -398,7 +398,6 @@ the command again. CMD is the command to run"
  '(menu-bar-mode nil)
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
- '(recenter-redisplay nil)
  '(safe-local-variable-values '((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
