@@ -428,8 +428,7 @@ the command again. CMD is the command to run"
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
 
-(global-linum-mode 1)
-(setq linum-format "%d ") ;adds an extra space after line number
+(global-display-line-numbers-mode 1)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -745,7 +744,7 @@ buffer."
 
 (add-hook 'term-mode-hook (lambda ()
                             (setq show-trailing-whitespace nil)
-                            (push (lambda () (linum-mode 0))
+                            (push (lambda () (display-line-numbers-mode 0))
                                   delayed-after-hook-functions)))
 
 (with-eval-after-load 'mu4e
@@ -768,7 +767,7 @@ buffer."
 
   (add-hook 'mu4e-headers-mode-hook
             (lambda ()
-              (push (lambda () (linum-mode 0))
+              (push (lambda () (display-line-numbers-mode 0))
                   delayed-after-hook-functions)))
 
 
@@ -777,7 +776,7 @@ buffer."
               (setq show-trailing-whitespace nil)
               (local-set-key (kbd "<tab>") 'shr-next-link)
               (local-set-key (kbd "<backtab>") 'shr-previous-link)
-              (push (lambda () (linum-mode 0))
+              (push (lambda () (display-line-numbers-mode 0))
                     delayed-after-hook-functions)))
 
   (require 'org-mu4e)
