@@ -43,7 +43,7 @@
 (straight-use-package 'go-rename)
 (straight-use-package 'clojure-mode)
 (straight-use-package 'cider)
-(straight-use-package '(flycheck :type git :host github :repo "jvshahid/flycheck")) ; redisplay bug fix pr#1464
+(straight-use-package 'flycheck)
 (straight-use-package 'flycheck-clojure)
 (straight-use-package 'paredit)
 (straight-use-package 'clojure-cheatsheet)
