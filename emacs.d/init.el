@@ -218,7 +218,9 @@ the command again. CMD is the command to run"
   (add-to-list 'ac-modes 'cider-mode)
   (add-to-list 'ac-modes 'cider-repl-mode)
   (setq ac-auto-show-menu t)
-  (setq ac-ignore-case t))
+  (setq ac-ignore-case t)
+  (add-hook 'auto-complete-mode-hook (lambda ()
+                                       (local-set-key "\M-." 'auto-complete))))
 
 (defun remove-pianobar-mode ()
   (setq mode-line-modes (delete pianobar-modeline-object mode-line-modes)))
