@@ -125,9 +125,7 @@ the command again. CMD is the command to run"
   (setq helm-findutils-search-full-path t))
 ;;; override the default fzf find command
 (setenv "FZF_DEFAULT_COMMAND" "ag -g \"\"")
-(global-set-key (kbd "C-x C-p") (lambda ()
-                                  (interactive)
-                                  (helm-fzf default-directory)))
+(global-set-key (kbd "C-x C-p") #'better-fzf)
 
 (with-eval-after-load 'flycheck
   (setq flycheck-check-syntax-automatically (quote (save mode-enabled)))
@@ -181,6 +179,19 @@ the command again. CMD is the command to run"
                                   (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (local-set-key (kbd "C-c C-j") 'xref-find-definitions)))
+(defun better-fzf ()
+  (interactive)
+  (let* ((buffer (make-term "fzf-test" "bash" nil "-c" "~/.fzf/bin/fzf --height=30"))
+         (proc   (get-buffer-process buffer)))
+    (set-process-sentinel proc (lambda (proc str)
+                                 (goto-char (point-min))
+                                 (let ((file (thing-at-point 'line)))
+                                   (kill-buffer)
+                                   (if (string= str "finished\n")
+                                       (find-file (string-trim file))))))
+    (switch-to-buffer buffer)
+    (term-char-mode)))
+
 (defun show-all-buffers ()
   (interactive)
   (display-buffer (list-buffers-noselect nil (buffer-list))))
