@@ -207,8 +207,7 @@ the command again. CMD is the command to run"
 (defun cider-autocomplete-setup ()
   (auto-complete-mode)
   (ac-cider-setup)
-  (local-set-key (kbd "C-c C-j") 'cider-find-var)
-  (define-key cider-mode-map (kbd "M-.") 'ac-start))
+  (local-set-key (kbd "C-c C-j") 'cider-find-var))
 (add-hook 'cider-mode-hook 'cider-autocomplete-setup)
 (add-hook 'cider-mode-hook (lambda ()
                              (define-key cider-mode-map (kbd "C-c M-.") nil)))
@@ -217,7 +216,9 @@ the command again. CMD is the command to run"
 (with-eval-after-load 'auto-complete
   (ac-config-default)
   (add-to-list 'ac-modes 'cider-mode)
-  (add-to-list 'ac-modes 'cider-repl-mode))
+  (add-to-list 'ac-modes 'cider-repl-mode)
+  (setq ac-auto-show-menu t)
+  (setq ac-ignore-case t))
 
 (defun remove-pianobar-mode ()
   (setq mode-line-modes (delete pianobar-modeline-object mode-line-modes)))
@@ -263,12 +264,6 @@ the command again. CMD is the command to run"
                   (setq-local gopath  nil)))
               (and gopath
                    (setenv "GOPATH" gopath)))))
-
-(defun disable-auto-completion ()
-  (setq-local ac-auto-start nil)
-  (local-set-key "\M-." 'ac-start))
-
-(add-hook 'auto-complete-mode-hook 'disable-auto-completion)
 
 (with-eval-after-load 'ruby-mode
   (rvm-use-default))
