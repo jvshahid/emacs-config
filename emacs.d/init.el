@@ -74,6 +74,9 @@
                                  :branch "master"))
 (straight-use-package 'edit-indirect)
 
+(with-eval-after-load 'term
+  (load-file "~/.emacs.d/libs/term.el"))
+
 (with-eval-after-load 'parinfer
   (require 'paredit)
   (setq parinfer-extensions
