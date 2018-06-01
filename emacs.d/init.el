@@ -260,6 +260,8 @@ the command again. CMD is the command to run"
   (add-hook 'arduino-mode-hook
             'subword-mode))
 
+(defun add-yasnippet-to-ac-sources ()
+  (push 'ac-source-yasnippet ac-sources))
 
 (with-eval-after-load 'go-mode
   (require 'go-eldoc)
@@ -274,7 +276,9 @@ the command again. CMD is the command to run"
   (add-hook 'go-mode-hook 'subword-mode)
   (add-hook 'go-mode-hook 'yas-minor-mode)
   (add-hook 'go-mode-hook 'hs-minor-mode)
-  (add-hook 'go-mode-hook 'ginkgo-mode))
+  (add-hook 'go-mode-hook 'ginkgo-mode)
+  (add-hook 'go-mode-hook #'add-yasnippet-to-ac-sources))
+
 
 (if-let (go-cmd (locate-file "go" exec-path))
     (setenv "GOROOT" (file-truename (concat go-cmd "/../.."))))
