@@ -239,7 +239,7 @@ the command again. CMD is the command to run"
   (ac-config-default)
   (add-to-list 'ac-modes 'cider-mode)
   (add-to-list 'ac-modes 'cider-repl-mode)
-  (setq ac-auto-show-menu t)
+  (setq ac-auto-show-menu 0.3)
   (setq ac-ignore-case t)
   (add-hook 'auto-complete-mode-hook (lambda ()
                                        (local-set-key "\M-." 'auto-complete))))
