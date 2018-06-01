@@ -1,13 +1,3 @@
-(defun term-move-to-column (column)
-  (setq term-current-column column)
-  (let ((point-at-eol (line-end-position)))
-    (move-to-column term-current-column)))
-    ;; If move-to-column extends the current line it will use the face
-    ;; from the last character on the line, set the face for the chars
-    ;; to default.
-    ;; (when (> (point) point-at-eol)
-    ;;   (put-text-property point-at-eol (point) 'font-lock-face 'default))
-
 (defun term-emulate-terminal (proc str)
   (with-current-buffer (process-buffer proc)
     (let* ((i 0) funny
@@ -116,12 +106,11 @@
                   (insert decoded-substring)
                   (setq term-current-column (current-column)
                         columns (- term-current-column old-column))
-                  ;; TODO: what is this trying to do
                   (when (not (or (eobp) term-insert-mode))
                     (let ((pos (point)))
                       (term-move-columns columns)
                       (delete-region pos (point))
-                      (term-move-columns (- columns))))
+                      (setq term-current-column nil)))
                   ;; In insert mode if the current line
                   ;; has become too long it needs to be
                   ;; chopped off.
@@ -138,7 +127,6 @@
                 ;; If the last char was written in last column,
                 ;; back up one column, but remember we did so.
                 ;; Thus we emulate xterm/vt100-style line-wrapping.
-                ;; TODO: (when (eq (current-column) term-width))))))))))
                 (when (eq (term-current-column) term-width)
                   (term-move-columns -1)
                   ;; We check after ctrl sequence handling if point
