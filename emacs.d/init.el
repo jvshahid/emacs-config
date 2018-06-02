@@ -19,6 +19,11 @@
 
 (setq search-exit-option 'move)
 
+(straight-use-package '(go-mode :type git
+                                :host github
+                                :repo "jvshahid/go-mode.el"
+                                :branch "set-scope-autocomplete-package-name"
+                                :upstream (:host github :repo "dominikh/go-mode.el"))); guru-set-scope auto completion pr#249
 (straight-use-package 'projectile)
 (straight-use-package 'magit)
 (straight-use-package 'rvm)
@@ -57,7 +62,6 @@
 (straight-use-package 'wgrep)
 (straight-use-package 'multiple-cursors)
 (straight-use-package 'flx-ido)
-(straight-use-package '(go-mode :type git :host github :repo "jvshahid/go-mode.el" :branch "set-scope-autocomplete-package-name")) ; guru-set-scope auto completion pr#249
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
 (straight-use-package '(livedown :type git :host github :repo "shime/emacs-livedown"))
