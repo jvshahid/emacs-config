@@ -416,6 +416,8 @@ the command again. CMD is the command to run"
  '(windmove-wrap-around t))
 
 (when (display-graphic-p)
+  (straight-use-package '(color-theme :type git :host github :repo "emacsorphanage/color-theme" :files ("color-theme.el" "themes")))
+  (straight-use-package 'color-theme-solarized)
   (require 'color-theme)
   (require 'color-theme-solarized)
   (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
