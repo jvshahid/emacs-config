@@ -68,6 +68,9 @@
            smart-tab
            paredit)))
 
+(with-eval-after-load 'yasnippet-snippets
+  (yas-reload-all))
+
 (flx-ido-mode 1)
 (setq ido-use-faces nil)
 
