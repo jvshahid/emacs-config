@@ -26,53 +26,34 @@
                                 :upstream (:host github :repo "dominikh/go-mode.el"))); guru-set-scope auto completion pr#249
 (straight-use-package 'projectile)
 (straight-use-package 'magit)
-(straight-use-package 'rvm)
 (straight-use-package 'etags-select)
 (straight-use-package 'yaml-mode)
 (straight-use-package 'go-guru)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'protobuf-mode)
-(straight-use-package 'edit-server)
-(straight-use-package 'edit-server-htmlize)
 (straight-use-package 'go-eldoc)
 (straight-use-package 'auto-complete)
 (straight-use-package 'go-autocomplete)
 (straight-use-package 'yasnippet)
 (straight-use-package 'yasnippet-snippets)
-(straight-use-package 'arduino-mode)
 (straight-use-package 'dockerfile-mode)
-(straight-use-package '(color-theme :type git :host github :repo "emacsorphanage/color-theme" :files ("color-theme.el" "themes")))
-(straight-use-package 'color-theme-solarized)
-(straight-use-package 'ace-jump-mode)
 (straight-use-package 'ace-window)
-(straight-use-package 'haskell-mode)
 (straight-use-package 'go-rename)
 (straight-use-package 'clojure-mode)
 (straight-use-package 'cider)
 (straight-use-package 'flycheck)
 (straight-use-package 'flycheck-clojure)
 (straight-use-package 'paredit)
-(straight-use-package 'clojure-cheatsheet)
-(straight-use-package 'clj-refactor)
 (straight-use-package 'helm)
-(straight-use-package 'haskell-mode)
 (straight-use-package 'request)
 (straight-use-package 'eclim)
 (straight-use-package 'ac-emacs-eclim)
 (straight-use-package 'ac-cider)
 (straight-use-package 'wgrep)
-(straight-use-package 'multiple-cursors)
 (straight-use-package 'flx-ido)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
-(straight-use-package '(livedown :type git :host github :repo "shime/emacs-livedown"))
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
-(straight-use-package '(helm-fzf :type git
-                                 :host github
-                                 :repo "jvshahid/helm-fzf"
-                                 :branch "add-dash-require"
-                                 :upstream (:host github
-                                                  :repo "ibmandura/helm-fzf")))
 (straight-use-package '(parinfer :type git
                                  :host github
                                  :repo  "DogLooksGood/parinfer-mode"
