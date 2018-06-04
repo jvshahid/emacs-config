@@ -270,8 +270,8 @@ the command again. CMD is the command to run"
           (lambda ()
             (when (equal major-mode 'go-mode)
               (unless (boundp 'gopath)
-                (if-let ((envrc (find-prog (buffer-file-name) ".envrc")))
-                    (setq-local gopath (file-truename (concat envrc "/..")))
+                (if-let ((root (locate-dominating-file buffer-file-name ".envrc")))
+                    (setq-local gopath (expand-file-name root))
                   (setq-local gopath  nil)))
               (and gopath
                    (setenv "GOPATH" gopath)))))
@@ -335,31 +335,6 @@ the command again. CMD is the command to run"
 (defun clear-tags-table ()
   (interactive)
   (setq tags-completion-table nil))
-
-(defun find-prog (filename program)
-  (let ((dir (file-name-directory filename))
-        (filename nil))
-    (while (and (not (string= dir "/")) (not filename))
-      (let ((filename-temp (file-truename (concat dir "/" program))))
-        (if (file-exists-p filename-temp)
-            (setq filename filename-temp)
-          (setq dir (file-truename (concat dir "/.."))))))
-    filename))
-
-(defun refresh-tags ()
-  (interactive)
-  (let ((refresh-tags-sh (find-prog buffer-file-name "refresh_tags.sh")))
-    (if refresh-tags-sh
-        (progn
-          (message "refreshing tags using %s" refresh-tags-sh)
-          (if (= 0 (call-process-shell-command refresh-tags-sh))
-              (progn
-                (message "finished refreshing the tags")
-                (clear-tags-table))
-            (error "process exit with non zero exit code")))
-      (error "Couldn't find refresh_tags.sh in any directory above %s" buffer-file-name))))
-
-(global-set-key (kbd "C-c C-t") 'refresh-tags) ; move to left windnow
 
 (global-set-key (kbd "M-.") 'xref-find-references)
 (setq completion-ignore-case t)
