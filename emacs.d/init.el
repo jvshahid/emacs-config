@@ -276,9 +276,6 @@ the command again. CMD is the command to run"
               (and gopath
                    (setenv "GOPATH" gopath)))))
 
-(with-eval-after-load 'ruby-mode
-  (rvm-use-default))
-
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'subword-mode)
 (add-hook 'java-mode-hook 'eclim-mode)
