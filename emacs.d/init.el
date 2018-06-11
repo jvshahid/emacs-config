@@ -19,7 +19,7 @@
 
 (setq search-exit-option 'move)
 
-(straight-use-package '(debbugs :type git :repo "emacsmirror/debbugs" :files ("*")))
+(straight-use-package '(debbugs :type git :host github :repo "emacsmirror/debbugs" :files ("*")))
 (straight-use-package '(go-mode :type git
                                 :host github
                                 :repo "jvshahid/go-mode.el"
