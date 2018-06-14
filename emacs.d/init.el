@@ -749,7 +749,7 @@ buffer."
   (add-hook 'mu4e-headers-mode-hook
             (lambda ()
               (push (lambda () (display-line-numbers-mode 0))
-                  delayed-after-hook-functions)))
+                    delayed-after-hook-functions)))
 
 
   (add-hook 'mu4e-view-mode-hook
