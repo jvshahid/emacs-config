@@ -11,6 +11,7 @@ docker run -d --detach-keys 'ctrl-z' \
        -e HOME=$HOME \
        -e TERM=screen-256color \
        -e LANG=en_US.UTF-8 \
+       --cap-add sys_ptrace \
        -v /tmp:/tmp \
        -v /dev:/dev \
        -v $HOME:$HOME \
