@@ -12,6 +12,7 @@ RUN apt-get update && \
                 libjson-c-dev \
                 libxtst6 \
                 pulseaudio-utils \
+                gdb \
                 curl && \
      rm -rf /var/lib/apt/lists
 COPY pulse-client.conf /etc/pulse/client.conf
