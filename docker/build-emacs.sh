@@ -22,7 +22,7 @@ rm -rf emacs
 mv emacs-$sha emacs
 pushd emacs
   autoreconf -i
-  ./configure --enable-checking='yes,glyphs' --enable-check-lisp-object-type CFLAGS='-O0 -g3' --without-x
+  ./configure --enable-check-lisp-object-type CFLAGS='-O0 -g3' --without-x
   make -j8
   make install
 popd
