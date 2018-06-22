@@ -59,24 +59,8 @@
                                  :branch "master"))
 (straight-use-package 'edit-indirect)
 
-(advice-add 'debug :around
-            (lambda (&rest args)
-              "disable post-command-hook"
-              (let ((post-command-hook nil))
-                (apply args))))
 
-(defvar debug-post-command-hook-count nil)
 
-(defun debug-post-command-hook ()
-  (let ((debug-post-command-hook-count (1+ (or debug-post-command-hook-count 0))))
-    (if (> debug-post-command-hook-count 10)
-        (debug)
-      (print (format "post-command-hook %d %S"
-                     debug-post-command-hook-count
-                     (current-buffer))
-             #'external-debugging-output))))
-
-(add-hook 'post-command-hook #'debug-post-command-hook)
 
 (add-variable-watcher 'buffer-file-name (lambda (_ val _ w)
                                           (if (and val (string-match "^~[^/]" val))
