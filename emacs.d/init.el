@@ -47,8 +47,6 @@
 (straight-use-package 'paredit)
 (straight-use-package 'helm)
 (straight-use-package 'request)
-(straight-use-package 'eclim)
-(straight-use-package 'ac-emacs-eclim)
 (straight-use-package 'ac-cider)
 (straight-use-package 'wgrep)
 (straight-use-package 'flx-ido)
@@ -301,12 +299,6 @@ the command again. CMD is the command to run"
 
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'subword-mode)
-(add-hook 'java-mode-hook 'eclim-mode)
-(add-hook 'java-mode-hook 'ac-emacs-eclim-config)
-(add-hook 'java-mode-hook 'auto-complete-mode)
-(add-hook 'java-mode-hook (lambda ()
-                            (local-set-key (kbd "C-c C-j") 'eclim-java-find-declaration)
-                            (local-set-key (kbd "C-c C-d") 'eclim-java-show-documentation-for-current-element)))
 
 ;;; end of modes
 
@@ -386,8 +378,6 @@ the command again. CMD is the command to run"
  '(display-battery-mode t)
  '(display-time-day-and-date t)
  '(display-time-mode t)
- '(eclim-eclipse-dirs '("~/bin/eclipse"))
- '(eclim-executable "~/bin/eclipse/eclim")
  '(electric-indent-mode nil)
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
