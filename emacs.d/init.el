@@ -341,8 +341,6 @@ the command again. CMD is the command to run"
 (setq completion-ignore-case t)
 
 (global-auto-revert-mode 1)
-;; (global-hl-line-mode)
-(make-variable-buffer-local 'global-hl-line-mode)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
 
