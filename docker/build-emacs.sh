@@ -16,13 +16,10 @@ apt-get install -y git-core \
 mkdir ~/.ssh
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 sha=4a7e74fea687011ee81dcbb02294bccd99b3a05f
-wget -O emacs.zip https://codeload.github.com/emacs-mirror/emacs/zip/$sha
-unzip emacs.zip
-rm -rf emacs
-mv emacs-$sha emacs
+git clone https://github.com/jvshahid/emacs.git -b easy-mmode-clear-buffer-list --depth 1
 pushd emacs
   autoreconf -i
-  ./configure --enable-check-lisp-object-type CFLAGS='-O0 -g3' --without-x
+  ./configure CFLAGS='-O0 -g3' --without-x
   make -j8
   make install
 popd
