@@ -25,11 +25,7 @@
                               :branch "fix-unaligned-left-margin"
                               :upstream (:host github :repo "auto-complete/go-mode.el"))) ; pr#116
 (straight-use-package '(debbugs :type git :host github :repo "emacsmirror/debbugs" :files ("*")))
-(straight-use-package '(go-mode :type git
-                                :host github
-                                :repo "jvshahid/go-mode.el"
-                                :branch "set-scope-autocomplete-package-name"
-                                :upstream (:host github :repo "dominikh/go-mode.el"))); guru-set-scope auto completion pr#249
+(straight-use-package 'go-mode)
 (straight-use-package 'projectile)
 (straight-use-package 'magit)
 (straight-use-package 'etags-select)
