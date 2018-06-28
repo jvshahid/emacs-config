@@ -62,7 +62,7 @@
                                  :host github
                                  :repo  "DogLooksGood/parinfer-mode"
                                  :branch "master"))
-(straight-use-package 'edit-indirect)
+(straight-use-package 'edit-indirect)   ;markdown edit code regions
 
 
 
