@@ -60,9 +60,6 @@
                                  :branch "master"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 
-
-
-
 (add-variable-watcher 'buffer-file-name (lambda (_ val _ w)
                                           (if (and val (string-match "^~[^/]" val))
                                               (debug))))
@@ -157,7 +154,6 @@ the command again. CMD is the command to run"
   (add-hook 'clojure-mode-hook 'parinfer-mode)
   (add-hook 'clojure-mode-hook 'flycheck-mode)
   (add-hook 'clojure-mode-hook 'flycheck-clojure-setup)
-  (add-hook 'clojure-mode-hook 'clj-refactor-mode)
   (add-hook 'clojure-mode-hook 'yas-minor-mode)
   (add-hook 'clojure-mode-hook (lambda ()
                                  (push 'clojure-cider-typed flycheck-disabled-checkers)))
@@ -354,6 +350,7 @@ the command again. CMD is the command to run"
  '(browse-url-generic-program "xdg-open")
  '(c-basic-offset 2)
  '(c-default-style '((java-mode . "java") (awk-mode . "awk") (other . "gnu")))
+ '(cider-lein-parameters "repl :headless :host localhost")
  '(column-number-mode t)
  '(column-number-more t)
  '(debug-on-error nil)
@@ -370,7 +367,6 @@ the command again. CMD is the command to run"
  '(ido-mode 'both nil (ido))
  '(js-indent-level 2)
  '(menu-bar-mode nil)
- '(tool-bar-mode nil)
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
  '(safe-local-variable-values '((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
@@ -382,6 +378,7 @@ the command again. CMD is the command to run"
  '(show-trailing-whitespace t)
  '(tab-width 2)
  '(tags-case-fold-search t)
+ '(tool-bar-mode nil)
  '(user-full-name "John Shahid")
  '(user-mail-address "jvshahid@gmail.com")
  '(windmove-wrap-around t))
