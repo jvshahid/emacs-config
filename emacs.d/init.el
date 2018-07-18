@@ -51,6 +51,10 @@
 (straight-use-package 'ac-cider)
 (straight-use-package 'wgrep)
 (straight-use-package 'flx-ido)
+(straight-use-package 'lsp-mode)
+(straight-use-package 'lsp-java)
+(straight-use-package 'lsp-ui)
+(straight-use-package 'company-lsp)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
@@ -59,6 +63,33 @@
                                  :repo  "DogLooksGood/parinfer-mode"
                                  :branch "master"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
+
+
+(with-eval-after-load 'company-lsp
+  (setq company-lsp-enable-snippet t
+        company-lsp-cache-candidates t))
+
+(with-eval-after-load 'company
+  (push 'java-mode company-global-modes)
+  (push 'company-lsp company-backends))
+
+(with-eval-after-load 'lsp-ui
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-imenu-enable nil)
+  (setq lsp-ui-peek-enable nil)
+  (setq lsp-ui-sideline-enable nil))
+
+(autoload 'lsp-java-enable "lsp-java")
+(setq lsp-java-server-install-dir "~/bin/lsp-java")
+(setq lsp-java--workspace-folders (list "/home/jvshahid/codez/nokogiri/ext/java"))
+
+(add-hook 'java-mode-hook (lambda ()
+                            (lsp-java-enable)
+                            (lsp-ui-mode)
+                            (auto-complete-mode -1)
+                            (company-mode)
+                            (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
+                            (local-set-key (kbd "M-.") 'company-complete)))
 
 (add-variable-watcher 'buffer-file-name (lambda (_ val _ w)
                                           (if (and val (string-match "^~[^/]" val))
