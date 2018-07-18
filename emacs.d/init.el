@@ -307,7 +307,8 @@ the command again. CMD is the command to run"
                     (setq-local gopath (expand-file-name root))
                   (setq-local gopath  nil)))
               (and gopath
-                   (setenv "GOPATH" gopath)))))
+                   (save-match-data
+                     (setenv "GOPATH" gopath))))))
 
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'subword-mode)
