@@ -18,7 +18,7 @@ ssh-keyscan github.com >> ~/.ssh/known_hosts
 git clone https://github.com/jvshahid/emacs.git --depth 1
 pushd emacs
   autoreconf -i
-  ./configure CFLAGS='-O0 -g3' --without-x
+  ./configure --without-x
   make -j8
   make install
 popd
