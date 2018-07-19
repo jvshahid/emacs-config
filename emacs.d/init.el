@@ -673,8 +673,7 @@ If DELTA was provided it will be added to the current line's indentation."
               (message "Buffer is already formatted"))
           (fmt-apply-rcs-patch patchbuf)
           (message "Applied formatting"))
-      (message "Could not format. Check errors for details")
-      (find-file tmpfile))
+      (message "Could not format. Check errors for details"))
 
     (kill-buffer patchbuf)
     (delete-file tmpfile)))
