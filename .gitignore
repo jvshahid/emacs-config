@@ -1,40 +1,30 @@
-semanticdb/
-auto-save-list/
-ede-projects.el
-.project-roots*
-*~
-\#*\#
-.\#*
 ac-comphist.dat
-session.*
-.org-id-locations
-emacs.d/elpa/javascript-2.2.1/
-emacs.d/elpa/yasnippet*
-emacs.d/elpa/cider-0.8.2/
-emacs.d/elpa/queue-0.1.1/
-tramp
-**/ensime_head
-url/cookies
-libs/lua-mode/
-libs/forml-mode/
-swank/
+
+# elpa
+emacs.d/elpa
+
+# tramp
+emacs.d/tramp
+
+# chef
 chef-client-running.pid
 chef-stacktrace.out
 remote_file/
-emacs.d/libs/ensime-mode/
-emacs.d/libs/forml-mode/
-*.deb
+
+# ido
 emacs.d/ido.last
 
 # shell history
 emacs.d/eshell/
+
 # url cookies
 emacs.d/url/
 
-# cask
-.cask/
+# java workspace
+emacs.d/workspace/
+
+# straight
 straight/
-elpa/
 
 # emacs
 emacs.d/games/
