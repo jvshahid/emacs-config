@@ -15,8 +15,7 @@ apt-get install -y git-core \
 
 mkdir ~/.ssh
 ssh-keyscan github.com >> ~/.ssh/known_hosts
-sha=4a7e74fea687011ee81dcbb02294bccd99b3a05f
-git clone https://github.com/jvshahid/emacs.git -b easy-mmode-clear-buffer-list --depth 1
+git clone https://github.com/jvshahid/emacs.git --depth 1
 pushd emacs
   autoreconf -i
   ./configure CFLAGS='-O0 -g3' --without-x
