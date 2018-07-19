@@ -1,4 +1,6 @@
 *~
+\#*.*\#
+\#*\#
 refresh_tags.sh
 TAGS
 .clang-format
