@@ -64,7 +64,6 @@
                                  :branch "master"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 
-
 (with-eval-after-load 'company-lsp
   (setq company-lsp-enable-snippet t
         company-lsp-cache-candidates t))
@@ -414,6 +413,7 @@ the command again. CMD is the command to run"
  '(user-full-name "John Shahid")
  '(user-mail-address "jvshahid@gmail.com")
  '(windmove-wrap-around t))
+
 
 (when (display-graphic-p)
   (straight-use-package '(color-theme :type git :host github :repo "emacsorphanage/color-theme" :files ("color-theme.el" "themes")))
@@ -797,3 +797,19 @@ buffer."
         smtpmail-smtp-server "smtp.gmail.com"
         smtpmail-smtp-service 587
         smtpmail-debug-info t))
+
+(when (display-graphic-p)
+  (straight-use-package 'exwm)
+  (setq mouse-autoselect-window t
+        focus-follows-mouse t)
+  (require 'exwm-config)
+  (exwm-config-default)
+
+  (require 'exwm-randr)
+  (setq exwm-randr-workspace-output-plist '(0 "HDMI-1"))
+  (add-hook 'exwm-randr-screen-change-hook
+            (lambda ()
+              (start-process-shell-command
+               "xrandr" nil "xrandr --output HDMI-1 --above LVDS-1 --auto")))
+  (exwm-randr-enable)
+  (define-key exwm-mode-map (kbd "C-c C-k") #'exwm-input-toggle-keyboard))
