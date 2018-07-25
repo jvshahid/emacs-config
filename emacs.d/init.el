@@ -22,8 +22,7 @@
 (straight-use-package '(popup :type git
                               :host github
                               :repo "jvshahid/popup-el"
-                              :branch "fix-unaligned-left-margin"
-                              :upstream (:host github :repo "auto-complete/go-mode.el"))) ; pr#116
+                              :branch "fix-unaligned-left-margin")) ; pr#116
 (straight-use-package '(debbugs :type git :host github :repo "emacsmirror/debbugs" :files ("*")))
 (straight-use-package 'go-mode)
 (straight-use-package 'projectile)
