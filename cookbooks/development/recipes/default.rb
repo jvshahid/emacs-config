@@ -12,7 +12,6 @@ return if node[:os] != 'linux'
 
 # things that i need on any machine
 include_recipe "development::packages"
-include_recipe "development::cask"
 include_recipe "development::tmux"
 include_recipe "development::setup_desktop_environment"
 include_recipe "development::z"
