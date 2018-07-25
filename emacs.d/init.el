@@ -748,6 +748,9 @@ buffer."
 (autoload 'mu4e "mu4e" "start mu4e" t)
 
 (add-hook 'term-mode-hook (lambda ()
+                            (define-key term-raw-map (kbd "C-/") (lambda ()
+                                                                   (interactive)
+                                                                   (term-send-raw-string (kbd "C-_"))))
                             (setq show-trailing-whitespace nil)
                             (push (lambda () (display-line-numbers-mode 0))
                                   delayed-after-hook-functions)))
