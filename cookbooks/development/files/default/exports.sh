@@ -26,7 +26,9 @@ export PATH=$HOME/bin:/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.f
 # custom emacs build
 emacs_installation=$HOME/bin/emacs-27
 export PATH=${emacs_installation}/bin:$PATH
-export TERM=screen-256color
+if [[ ! -z $TMUX_PANE ]]; then
+    export TERM=screen-256color
+fi
 # android path
 PATH="$PATH:$SDK/tools/:$SDK/platform-tools"
 # go path
