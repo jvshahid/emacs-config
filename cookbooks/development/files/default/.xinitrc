@@ -15,6 +15,8 @@ xset r rate 200 60
 
 cinnamon-screensaver &
 
+synclient TouchpadOff=1
+
 # Start Emacs
 # exec dbus-launch --exit-with-session emacs
 exec emacs
