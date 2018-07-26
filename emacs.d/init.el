@@ -815,8 +815,12 @@ buffer."
                "xrandr" nil "xrandr --output HDMI-1 --above LVDS-1 --auto")))
   (exwm-randr-enable)
   (define-key exwm-mode-map (kbd "C-c C-k") #'exwm-input-toggle-keyboard)
+
   (push '([?\M-b] . [C-left]) exwm-input-simulation-keys)
   (push '([?\M-f] . [C-right]) exwm-input-simulation-keys)
+  (push '([?\M-d] . [C-S-right delete]) exwm-input-simulation-keys)
+  (push `(,(kbd "DEL") . [backspace]) exwm-input-simulation-keys)
+  (push `(,(kbd "C-8") . [backspace]) exwm-input-simulation-keys)
   (push '([?\C-/] . [C-z]) exwm-input-simulation-keys)
-  (push '([?\C-m] . [return]) exwm-input-simulation-keys)
+  (push `([?\C-m] . [return]) exwm-input-simulation-keys)
   (exwm-input--set-simulation-keys exwm-input-simulation-keys))
