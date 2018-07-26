@@ -529,8 +529,9 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun add-to-path (path)
-  (setq exec-path (cons path exec-path))
-  (setenv "PATH" (concat path ":$PATH") t))
+  (let ((path (substitute-env-vars path)))
+    (setq exec-path (cons path exec-path))
+    (setenv "PATH" (concat path ":$PATH") t)))
 
 (defun find-go ()
   (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
@@ -558,22 +559,26 @@ If DELTA was provided it will be added to the current line's indentation."
     (setup-go-path)
     (install-go-deps)))
 
+(add-to-path "$HOME/.emacs.d/go/bin")
+
 (defun install-go-deps ()
   (interactive)
-  ;; install goimports, godef, godoc and gocode
-  (dolist (url '("golang.org/x/tools/cmd/goimports"
-                 "github.com/rogpeppe/godef"
-                 "github.com/nsf/gocode"
-                 "github.com/dougm/goflymake"
-                 "golang.org/x/tools/cmd/gorename"
-                 "golang.org/x/tools/cmd/godoc"
-                 "github.com/golang/lint"
-                 "github.com/kisielk/errcheck"
-                 "github.com/mdempsky/unconvert"
-                 "golang.org/x/tools/cmd/guru"))
-    (message "Running 'go get -u %s'" url)
-    (start-process (format "go-get-%s" (ff-basename url))
-                   "*go-get*" "go" "get" "-u" url)))
+  (let ((process-environment (cons (substitute-env-vars "GOPATH=$HOME/.emacs.d/go")
+                                   process-environment)))
+    ;; install goimports, godef, godoc and gocode
+    (dolist (url '("golang.org/x/tools/cmd/goimports"
+                   "github.com/rogpeppe/godef"
+                   "github.com/nsf/gocode"
+                   "github.com/dougm/goflymake"
+                   "golang.org/x/tools/cmd/gorename"
+                   "golang.org/x/tools/cmd/godoc"
+                   "github.com/golang/lint"
+                   "github.com/kisielk/errcheck"
+                   "github.com/mdempsky/unconvert"
+                   "golang.org/x/tools/cmd/guru"))
+      (message "Running 'go get -u %s'" url)
+      (start-process (format "go-get-%s" (ff-basename url))
+                     "*go-get*" "go" "get" "-u" url))))
 
 (setq gofmt-command "goimports")
 (setq gofmt-args nil)
