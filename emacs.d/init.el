@@ -567,7 +567,6 @@ If DELTA was provided it will be added to the current line's indentation."
   (interactive)
   (let ((process-environment (cons (substitute-env-vars "GOPATH=$HOME/.emacs.d/go")
                                    process-environment)))
-    ;; install goimports, godef, godoc and gocode
     (dolist (url '("golang.org/x/tools/cmd/goimports"
                    "github.com/rogpeppe/godef"
                    "github.com/nsf/gocode"
