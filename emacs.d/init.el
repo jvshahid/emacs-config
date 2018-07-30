@@ -830,4 +830,6 @@ buffer."
   (push `(,(kbd "C-8") . [backspace]) exwm-input-simulation-keys)
   (push '([?\C-/] . [C-z]) exwm-input-simulation-keys)
   (push `([?\C-m] . [return]) exwm-input-simulation-keys)
+  (push `([?\M-<] . [C-home]) exwm-input-simulation-keys)
+  (push `([?\M->] . [C-end]) exwm-input-simulation-keys)
   (exwm-input--set-simulation-keys exwm-input-simulation-keys))
