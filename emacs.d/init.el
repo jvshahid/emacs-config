@@ -566,7 +566,10 @@ If DELTA was provided it will be added to the current line's indentation."
 (defun install-go-deps ()
   (interactive)
   (let ((process-environment (cons (substitute-env-vars "GOPATH=$HOME/.emacs.d/go")
-                                   process-environment)))
+                                   process-environment))
+        ;; make sure the buffer-list-update-hook don't run, otherwise it could
+        ;; mess up the GOPATH environment variables
+        (buffer-list-update-hook nil))
     (dolist (url '("golang.org/x/tools/cmd/goimports"
                    "github.com/rogpeppe/godef"
                    "github.com/nsf/gocode"
