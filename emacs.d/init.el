@@ -464,12 +464,6 @@ If DELTA was provided it will be added to the current line's indentation."
                                 (if delta delta 0))))))
 (define-key global-map (kbd "C-x t") 'toggle-indent-longer-lines)
 
-(defun toggle-fullscreen ()
-  (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
-(global-set-key [f11] 'toggle-fullscreen)
-
 (defface todo-face '((t :background "red" :foreground "grey"))
   "The face used to mark TODO"
   :group 'todo-faces)
