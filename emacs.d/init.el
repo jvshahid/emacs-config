@@ -429,7 +429,6 @@ the command again. CMD is the command to run"
 
 (display-time)
 
-(define-key global-map (kbd "C-;") 'comment-or-uncomment-region)
 (define-key global-map (kbd "C-x C-r") 'query-replace)
 
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
