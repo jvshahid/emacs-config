@@ -8,7 +8,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 gnome-settings-daemon &
 
 # allow for the change in font size to take effect
-sleep 5
+sleep 10
 
 # Fallback cursor
 xsetroot -cursor_name left_ptr
