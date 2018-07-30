@@ -299,7 +299,9 @@ the command again. CMD is the command to run"
 
 (add-hook 'buffer-list-update-hook
           (lambda ()
-            (when (equal major-mode 'go-mode)
+            (when (and (equal major-mode 'go-mode)
+                       ;; ensure the buffer has a backing file
+                       buffer-file-name)
               (unless (boundp 'gopath)
                 (if-let ((root (locate-dominating-file buffer-file-name ".envrc")))
                     (setq-local gopath (expand-file-name root))
