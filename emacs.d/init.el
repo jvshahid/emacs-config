@@ -277,39 +277,6 @@ the command again. CMD is the command to run"
 (defun add-yasnippet-to-ac-sources ()
   (push 'ac-source-yasnippet ac-sources))
 
-(with-eval-after-load 'go-mode
-  (require 'go-eldoc)
-  (require 'go-autocomplete)
-  (require 'go-rename)
-  (require 'go-guru)
-  (setq ginkgo-use-pwd-as-test-dir t)
-  (setq ginkgo-use-default-keys t)
-  (require 'ginkgo-mode)
-  (add-hook 'go-mode-hook 'auto-complete-mode)
-  (add-hook 'go-mode-hook 'go-eldoc-setup)
-  (add-hook 'go-mode-hook 'subword-mode)
-  (add-hook 'go-mode-hook 'yas-minor-mode)
-  (add-hook 'go-mode-hook 'hs-minor-mode)
-  (add-hook 'go-mode-hook 'ginkgo-mode)
-  (add-hook 'go-mode-hook #'add-yasnippet-to-ac-sources))
-
-
-(if-let (go-cmd (locate-file "go" exec-path))
-    (setenv "GOROOT" (file-truename (concat go-cmd "/../.."))))
-
-(add-hook 'buffer-list-update-hook
-          (lambda ()
-            (when (and (equal major-mode 'go-mode)
-                       ;; ensure the buffer has a backing file
-                       buffer-file-name)
-              (unless (boundp 'gopath)
-                (if-let ((root (locate-dominating-file buffer-file-name ".envrc")))
-                    (setq-local gopath (expand-file-name root))
-                  (setq-local gopath  nil)))
-              (and gopath
-                   (save-match-data
-                     (setenv "GOPATH" gopath))))))
-
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'subword-mode)
 
@@ -523,36 +490,56 @@ If DELTA was provided it will be added to the current line's indentation."
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;          GO lang mode               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(with-eval-after-load 'go-mode
+  (require 'go-eldoc)
+  (require 'go-autocomplete)
+  (require 'go-rename)
+  (require 'go-guru)
+  (setq ginkgo-use-pwd-as-test-dir t)
+  (setq ginkgo-use-default-keys t)
+  (require 'ginkgo-mode)
+  (add-hook 'go-mode-hook 'auto-complete-mode)
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
+  (add-hook 'go-mode-hook 'subword-mode)
+  (add-hook 'go-mode-hook 'yas-minor-mode)
+  (add-hook 'go-mode-hook 'hs-minor-mode)
+  (add-hook 'go-mode-hook 'ginkgo-mode)
+  (add-hook 'go-mode-hook #'add-yasnippet-to-ac-sources))
+
+
+(defun setup-gopath ()
+  (when (and (eq (current-buffer) (window-buffer)) ; filter temp buffer events
+             (equal major-mode 'go-mode)
+             ;; ensure the buffer has a backing file
+             buffer-file-name)
+    (unless (boundp 'gopath)
+      (if-let ((root (locate-dominating-file buffer-file-name ".envrc")))
+          (setq-local gopath (expand-file-name root))
+        (setq-local gopath  nil)))
+    (and gopath
+         (save-match-data
+           (setenv "GOPATH" gopath)))))
+
+(add-hook 'buffer-list-update-hook #'setup-gopath)
+
 (defun add-to-path (path)
   (let ((path (substitute-env-vars path)))
     (setq exec-path (cons path exec-path))
     (setenv "PATH" (concat path ":$PATH") t)))
 
-(defun find-go ()
-  (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
-         (gobin (concat goroot "/bin")))
-    (add-to-path gobin)
-    (setenv "GOROOT" goroot)))
-
-(defun setup-go-path ()
-  (let* ((gopath (expand-file-name (read-directory-name "GOPATH")))
-         (gopathbin (concat gopath "/bin")))
-    (add-to-path gopathbin)
-    (setenv "GOPATH" gopath)
-    (setenv "GOBIN" gopathbin)))
-
 (autoload 'ff-basename "find-file" "Return the basename of pathname STRING.")
-(defun setup-go-env ()
+
+(defun setup-goroot ()
   "Setup the golang environment, this function will install
    goimports, godef, godoc and gocode"
   (interactive)
   (let ((go-cmd (locate-file "go" exec-path)))
-
     ;; ask the user for the path of go if we can't find it
-    (unless go-cmd (find-go))
-
-    (setup-go-path)
-    (install-go-deps)))
+    (unless go-cmd
+      (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
+             (gobin (concat goroot "/bin")))
+        (add-to-path gobin)
+        (setenv "GOROOT" goroot)))))
 
 (add-to-path "$HOME/.emacs.d/go/bin")
 
