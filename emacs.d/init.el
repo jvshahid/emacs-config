@@ -739,6 +739,13 @@ buffer."
                             (define-key term-raw-map (kbd "C-/") (lambda ()
                                                                    (interactive)
                                                                    (term-send-raw-string (kbd "C-_"))))
+                            (define-key term-raw-map (kbd "C-c \\") #'split-window-horizontally)
+                            (define-key term-raw-map (kbd "C-c -")  #'split-window-vertically)
+                            (define-key term-raw-map (kbd "C-c l")  #'windmove-right)
+                            (define-key term-raw-map (kbd "C-c h")  #'windmove-left)
+                            (define-key term-raw-map (kbd "C-c j")  #'windmove-down)
+                            (define-key term-raw-map (kbd "C-c k")  #'windmove-up)
+
                             (setq show-trailing-whitespace nil)
                             (push (lambda () (display-line-numbers-mode 0))
                                   delayed-after-hook-functions)))
