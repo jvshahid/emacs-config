@@ -22,6 +22,8 @@ synclient TouchpadOff=1
 
 xrdb -merge ~/.Xresources
 
+xset m 2 0
+
 # Start Emacs
 # exec dbus-launch --exit-with-session emacs
 exec emacs
