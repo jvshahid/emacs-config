@@ -368,7 +368,15 @@ the command again. CMD is the command to run"
  '(menu-bar-mode nil)
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
- '(safe-local-variable-values '((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
+ '(safe-local-variable-values
+   '((eval progn
+           (make-local-variable 'process-environment)
+           (push
+            (concat "GOPATH="
+                    (expand-file-name
+                     (locate-dominating-file default-directory ".dir-locals.el")))
+            process-environment))
+     (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
  '(select-enable-clipboard t)
@@ -520,7 +528,8 @@ If DELTA was provided it will be added to the current line's indentation."
          (save-match-data
            (setenv "GOPATH" gopath)))))
 
-(add-hook 'buffer-list-update-hook #'setup-gopath)
+;; use .dir-locals.el for now
+;; (add-hook 'buffer-list-update-hook #'setup-gopath)
 
 (defun add-to-path (path)
   (let ((path (substitute-env-vars path)))
