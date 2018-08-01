@@ -20,6 +20,8 @@ cinnamon-screensaver &
 
 synclient TouchpadOff=1
 
+xrdb -merge ~/.Xresources
+
 # Start Emacs
 # exec dbus-launch --exit-with-session emacs
 exec emacs
