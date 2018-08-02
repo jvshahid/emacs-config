@@ -797,6 +797,12 @@ buffer."
         smtpmail-smtp-service 587
         smtpmail-debug-info t))
 
+(defun insert-zapped-char (_ ch)
+  (insert-char ch)
+  (forward-char -1))
+
+(advice-add 'zap-to-char :after #'insert-zapped-char)
+
 (when (display-graphic-p)
   (straight-use-package 'exwm)
   (setq mouse-autoselect-window t
