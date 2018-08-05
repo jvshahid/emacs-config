@@ -805,7 +805,7 @@ buffer."
 (advice-add 'zap-to-char :after #'insert-zapped-char)
 
 (when (display-graphic-p)
-  (straight-use-package 'exwm)
+  (straight-use-package '(exwm :type git :host github :repo "ch11ng/exwm"))
   (setq mouse-autoselect-window t
         focus-follows-mouse t)
   (require 'exwm-config)
