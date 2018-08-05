@@ -746,6 +746,7 @@ buffer."
                             (define-key term-raw-map (kbd "C-c h")  #'windmove-left)
                             (define-key term-raw-map (kbd "C-c j")  #'windmove-down)
                             (define-key term-raw-map (kbd "C-c k")  #'windmove-up)
+                            (define-key term-raw-map (kbd "C-x k")  #'kill-buffer)
 
                             (setq show-trailing-whitespace nil)
                             (push (lambda () (display-line-numbers-mode 0))
