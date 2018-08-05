@@ -14,6 +14,8 @@ cinnamon-screensaver &
 
 synclient TouchpadOff=1
 
+dropbox start
+
 xrdb -merge ~/.Xresources
 
 xset m 2 0
