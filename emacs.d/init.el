@@ -63,6 +63,8 @@
                                  :branch "master"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 
+(global-set-key (kbd "C-c =") #'helm-show-kill-ring)
+
 (with-eval-after-load 'company-lsp
   (setq company-lsp-enable-snippet t
         company-lsp-cache-candidates t))
