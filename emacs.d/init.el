@@ -836,6 +836,7 @@ buffer."
   (push `(,(kbd "C-k") . [S-end C-x delete]) exwm-input-simulation-keys)
   (push `(,(kbd "C-y") . [C-v]) exwm-input-simulation-keys)
   (push `(,(kbd "C-w") . [C-x]) exwm-input-simulation-keys)
+  (push `(,(kbd "M-w") . [C-c]) exwm-input-simulation-keys)
   (push `(,(kbd "C-c C-w") . [S-C-left C-x]) exwm-input-simulation-keys)
   (push `([?\C-  ?\C-n] . [S-down]) exwm-input-simulation-keys)
   (push `([?\C-  ?\C-p] . [S-up]) exwm-input-simulation-keys)
