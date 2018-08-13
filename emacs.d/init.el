@@ -401,6 +401,7 @@ the command again. CMD is the command to run"
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
 
+(setq display-line-numbers-type 'visual)
 (global-display-line-numbers-mode 1)
 
 (custom-set-faces
