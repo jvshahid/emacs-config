@@ -805,6 +805,28 @@ buffer."
 
 (advice-add 'zap-to-char :after #'insert-zapped-char)
 
+(defun toggle-mic-mute ()
+  (interactive)
+  (start-process "toggle-audio-mute" nil "amixer" "set" "Capture" "toggle"))
+
+(defun toggle-audio-mute ()
+  (interactive)
+  (start-process "toggle-audio-mute" nil "amixer" "-D" "pulse" "set" "Master" "1+" "toggle"))
+
+(defun raise-audio-volume ()
+  (interactive)
+  (start-process "raise-audio-volume" nil "amixer" "-q" "sset" "Master" "5%+"))
+
+(defun lower-audio-volume ()
+  (interactive)
+  (start-process "raise-audio-volume" nil "amixer" "-q" "sset" "Master" "5%-"))
+
+(global-set-key (kbd "<XF86AudioMute>") #'toggle-audio-mute)
+(global-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
+(global-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
+(global-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume)
+
+
 (when (display-graphic-p)
   (straight-use-package '(exwm :type git :host github :repo "ch11ng/exwm"))
   (setq mouse-autoselect-window t
