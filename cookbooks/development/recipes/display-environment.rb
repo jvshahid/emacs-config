@@ -5,7 +5,7 @@ cookbook_file "/etc/systemd/logind.conf" do
   owner "jvshahid"
 end
 
-cookbook_file "/etc/systemd/.xsession" do
+cookbook_file "#{ENV['HOME']}/.xsession" do
   mode 0444
   owner "jvshahid"
 end
