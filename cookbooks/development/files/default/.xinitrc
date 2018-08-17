@@ -7,8 +7,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Fallback cursor
 xsetroot -cursor_name left_ptr
 
-# Keyboard repeat rate
-xset r rate 200 60
+xset s 300                      # sleep after 5 minutes
+
+xset r rate 200 60              # Keyboard repeat rate
 
 synclient TouchpadOff=1
 
