@@ -1,4 +1,3 @@
 #!/usr/bin/env zsh
 
-source ~/.zshrc
-exec ~/.xinitrc
+exec $SHELL -i -l ~/.xinitrc
