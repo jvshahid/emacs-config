@@ -117,7 +117,9 @@ packages = [
             'libsasl2-dev',     # for mbsync
             'libgmime-2.6-dev', # for mu
             'libxapian-dev',    # for mu
-            'scdaemon'          # for gpg ssh support
+            'scdaemon',         # for gpg ssh support
+            'libxcb-util-dev',  # for xss-lock
+            'libxcb-screensaver0-dev'
            ]
 
 if node[:development][:lenovo]

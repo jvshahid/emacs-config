@@ -20,6 +20,7 @@ include_recipe "development::fzf"
 # extras on my laptop
 include_recipe "development::basic"
 include_recipe "development::display-environment"
+include_recipe "development::xss-lock"
 include_recipe "development::remove_avahi"
 include_recipe "development::chrome"
 include_recipe "development::clang"
