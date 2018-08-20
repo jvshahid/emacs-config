@@ -91,10 +91,6 @@
                             (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
                             (local-set-key (kbd "M-.") 'company-complete)))
 
-(add-variable-watcher 'buffer-file-name (lambda (_ val _ w)
-                                          (if (and val (string-match "^~[^/]" val))
-                                              (debug))))
-
 (with-eval-after-load 'parinfer
   (require 'paredit)
   (setq parinfer-extensions
@@ -370,8 +366,7 @@ the command again. CMD is the command to run"
  '(menu-bar-mode nil)
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
- '(safe-local-variable-values
-   '((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
+ '(safe-local-variable-values '((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(scroll-bar-mode nil)
  '(scroll-conservatively 1000)
  '(select-enable-clipboard t)
