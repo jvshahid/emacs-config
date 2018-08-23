@@ -63,6 +63,21 @@
                                  :branch "master"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 
+(defun disable-line-numbers (orig &rest args)
+  "set `display-line-numbers' to `nil' in order to make the
+popup-create fast. Otherwise the following list of functions will be slow:
+
+- `end-of-visual-line'
+- `beginning-of-visual-line'
+- `posn-col-row'
+
+all of which are used by popup-create and slowing it down.
+"
+  (let ((display-line-numbers nil))
+    (apply orig args)))
+
+(advice-add 'ac-menu-create :around #'disable-line-numbers)
+
 (global-set-key (kbd "C-c =") #'helm-show-kill-ring)
 
 (with-eval-after-load 'company-lsp
