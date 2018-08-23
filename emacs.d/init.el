@@ -758,7 +758,9 @@ buffer."
                             (define-key term-raw-map (kbd "C-c j")  #'windmove-down)
                             (define-key term-raw-map (kbd "C-c k")  #'windmove-up)
 
-                            (setq show-trailing-whitespace nil)))
+                            (setq show-trailing-whitespace nil)
+                            (push (lambda () (display-line-numbers-mode 0))
+                                  delayed-after-hook-functions)))
 
 (with-eval-after-load 'mu4e
   (setq mu4e-get-mail-command (expand-file-name "~/bin/isync/bin/mbsync gmail")
@@ -778,11 +780,19 @@ buffer."
                                  ("/[Gmail]/Drafts" . ?d)
                                  ("/[Gmail]/All Mail" . ?a)))
 
+  (add-hook 'mu4e-headers-mode-hook
+            (lambda ()
+              (push (lambda () (display-line-numbers-mode 0))
+                    delayed-after-hook-functions)))
+
+
   (add-hook 'mu4e-view-mode-hook
             (lambda ()
               (setq show-trailing-whitespace nil)
               (local-set-key (kbd "<tab>") 'shr-next-link)
-              (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+              (local-set-key (kbd "<backtab>") 'shr-previous-link)
+              (push (lambda () (display-line-numbers-mode 0))
+                    delayed-after-hook-functions)))
 
   (require 'org-mu4e)
   (setq org-mu4e-convert-to-html t)
