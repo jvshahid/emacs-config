@@ -16,7 +16,7 @@ bash "build_emacs" do
   cwd "#{repos_root}/emacs"
   code <<-EOF
     autoreconf -i
-    ./configure --prefix=$HOME/bin/emacs-27 --without-x
+    ./configure --prefix=$HOME/bin/emacs-27 --with-xpm=no --with-jpeg=no --with-gif=no --with-tiff=no
     make install
   EOF
 end
