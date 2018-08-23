@@ -400,9 +400,6 @@ the command again. CMD is the command to run"
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
 
-(setq display-line-numbers-type 'visual)
-(global-display-line-numbers-mode 1)
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -746,9 +743,7 @@ buffer."
                             (define-key term-raw-map (kbd "C-c j")  #'windmove-down)
                             (define-key term-raw-map (kbd "C-c k")  #'windmove-up)
 
-                            (setq show-trailing-whitespace nil)
-                            (push (lambda () (display-line-numbers-mode 0))
-                                  delayed-after-hook-functions)))
+                            (setq show-trailing-whitespace nil)))
 
 (with-eval-after-load 'mu4e
   (setq mu4e-get-mail-command (expand-file-name "~/bin/isync/bin/mbsync gmail")
@@ -768,19 +763,11 @@ buffer."
                                  ("/[Gmail]/Drafts" . ?d)
                                  ("/[Gmail]/All Mail" . ?a)))
 
-  (add-hook 'mu4e-headers-mode-hook
-            (lambda ()
-              (push (lambda () (display-line-numbers-mode 0))
-                    delayed-after-hook-functions)))
-
-
   (add-hook 'mu4e-view-mode-hook
             (lambda ()
               (setq show-trailing-whitespace nil)
               (local-set-key (kbd "<tab>") 'shr-next-link)
-              (local-set-key (kbd "<backtab>") 'shr-previous-link)
-              (push (lambda () (display-line-numbers-mode 0))
-                    delayed-after-hook-functions)))
+              (local-set-key (kbd "<backtab>") 'shr-previous-link)))
 
   (require 'org-mu4e)
   (setq org-mu4e-convert-to-html t)
