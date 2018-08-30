@@ -571,7 +571,8 @@ If DELTA was provided it will be added to the current line's indentation."
                  "github.com/kisielk/errcheck"
                  "github.com/mdempsky/unconvert"
                  "golang.org/x/tools/cmd/guru")))
-    (apply 'start-process "go-get" "*go-get*" "go" "get" "-u" urls)))
+    (let ((default-directory (substitute-env-vars "$HOME/.emacs.d/go")))
+      (apply 'start-process "go-get" "*go-get*" "go" "get" "-u" urls))))
 
 (setq gofmt-command "goimports")
 (setq gofmt-args nil)
