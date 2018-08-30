@@ -34,7 +34,7 @@
 (straight-use-package 'protobuf-mode)
 (straight-use-package 'go-eldoc)
 (straight-use-package 'auto-complete)
-(straight-use-package 'go-autocomplete)
+(straight-use-package '(go-autocomplete :type git :host github :repo "mdempsky/gocode" :files ("emacs/*")))
 (straight-use-package 'yasnippet)
 (straight-use-package 'yasnippet-snippets)
 (straight-use-package 'dockerfile-mode)
@@ -563,7 +563,7 @@ If DELTA was provided it will be added to the current line's indentation."
         (buffer-list-update-hook nil)
         (urls  '("golang.org/x/tools/cmd/goimports"
                  "github.com/rogpeppe/godef"
-                 "github.com/nsf/gocode"
+                 "github.com/mdempsky/gocode"
                  "github.com/dougm/goflymake"
                  "golang.org/x/tools/cmd/gorename"
                  "golang.org/x/tools/cmd/godoc"
