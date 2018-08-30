@@ -528,9 +528,8 @@ If DELTA was provided it will be added to the current line's indentation."
       (if-let ((root (locate-dominating-file buffer-file-name ".envrc")))
           (setq-local gopath (expand-file-name root))
         (setq-local gopath  nil)))
-    (and gopath
-         (save-match-data
-           (setenv "GOPATH" gopath)))))
+    (save-match-data
+      (setenv "GOPATH" gopath))))
 
 (add-hook 'buffer-list-update-hook #'setup-gopath)
 
