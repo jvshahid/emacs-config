@@ -560,20 +560,18 @@ If DELTA was provided it will be added to the current line's indentation."
                                    process-environment))
         ;; make sure the buffer-list-update-hook don't run, otherwise it could
         ;; mess up the GOPATH environment variables
-        (buffer-list-update-hook nil))
-    (dolist (url '("golang.org/x/tools/cmd/goimports"
-                   "github.com/rogpeppe/godef"
-                   "github.com/nsf/gocode"
-                   "github.com/dougm/goflymake"
-                   "golang.org/x/tools/cmd/gorename"
-                   "golang.org/x/tools/cmd/godoc"
-                   "github.com/golang/lint"
-                   "github.com/kisielk/errcheck"
-                   "github.com/mdempsky/unconvert"
-                   "golang.org/x/tools/cmd/guru"))
-      (message "Running 'go get -u %s'" url)
-      (start-process (format "go-get-%s" (ff-basename url))
-                     "*go-get*" "go" "get" "-u" url))))
+        (buffer-list-update-hook nil)
+        (urls  '("golang.org/x/tools/cmd/goimports"
+                 "github.com/rogpeppe/godef"
+                 "github.com/nsf/gocode"
+                 "github.com/dougm/goflymake"
+                 "golang.org/x/tools/cmd/gorename"
+                 "golang.org/x/tools/cmd/godoc"
+                 "github.com/golang/lint"
+                 "github.com/kisielk/errcheck"
+                 "github.com/mdempsky/unconvert"
+                 "golang.org/x/tools/cmd/guru")))
+    (apply 'start-process "go-get" "*go-get*" "go" "get" "-u" urls)))
 
 (setq gofmt-command "goimports")
 (setq gofmt-args nil)
