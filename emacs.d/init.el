@@ -876,6 +876,9 @@ buffer."
 
   (exwm-input--set-simulation-keys exwm-input-simulation-keys)
 
+  (setq exwm-workspace-number 2
+        exwm-workspace-switch-create-limit 0)
+
   (require 'exwm-randr)
   (setq exwm-randr-workspace-output-plist '(0 "HDMI-1"))
   (add-hook 'exwm-randr-screen-change-hook
