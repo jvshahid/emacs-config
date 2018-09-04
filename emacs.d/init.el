@@ -755,7 +755,7 @@ buffer."
                             (define-key term-raw-map (kbd "C-c h")  #'windmove-left)
                             (define-key term-raw-map (kbd "C-c j")  #'windmove-down)
                             (define-key term-raw-map (kbd "C-c k")  #'windmove-up)
-
+                            (setq bidi-paragraph-direction 'left-to-right) ;faster back scrolling
                             (setq show-trailing-whitespace nil)
                             (push (lambda () (display-line-numbers-mode 0))
                                   delayed-after-hook-functions)))
