@@ -17,8 +17,7 @@ dropbox start
 
 xrdb -merge ~/.Xresources
 
-cinnamon-screensaver &
-xss-lock -- cinnamon-screensaver-command -l & # automatically run screensave on resume
+xss-lock -- i3lock -c 000000 --nofork & # automatically run screensave on resume
 
 xset m 2 0
 

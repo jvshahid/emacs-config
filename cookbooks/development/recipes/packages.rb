@@ -119,7 +119,8 @@ packages = [
             'libxapian-dev',    # for mu
             'scdaemon',         # for gpg ssh support
             'libxcb-util-dev',  # for xss-lock
-            'libxcb-screensaver0-dev'
+            'libxcb-screensaver0-dev',
+            'i3lock'
            ]
 
 if node[:development][:lenovo]
