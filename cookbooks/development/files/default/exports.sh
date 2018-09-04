@@ -45,6 +45,7 @@ export PATH=/home/jvshahid/bin/java/bin:/home/jvshahid/bin/eclipse:$PATH
 export MANPATH=$emacs_installation/share/man:$MANPATH
 export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 export GPG_AGENT_INFO=${HOME}/.gnupg/S.gpg-agent:0:1
+export FZF_DEFAULT_OPTS='--height=20'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 [[ -s $HOME/.z.sh ]] && source $HOME/.z.sh
