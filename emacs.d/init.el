@@ -745,6 +745,11 @@ buffer."
 (add-to-list 'load-path "~/bin/mu/share/emacs/site-lisp/mu4e")
 (autoload 'mu4e "mu4e" "start mu4e" t)
 
+(defun paste-term ()
+  (interactive
+   (term-send-string (get-buffer-process (current-buffer))
+                     (current-kill 0))))
+
 (add-hook 'term-mode-hook (lambda ()
                             (define-key term-raw-map (kbd "C-/") (lambda ()
                                                                    (interactive)
@@ -755,6 +760,7 @@ buffer."
                             (define-key term-raw-map (kbd "C-c h")  #'windmove-left)
                             (define-key term-raw-map (kbd "C-c j")  #'windmove-down)
                             (define-key term-raw-map (kbd "C-c k")  #'windmove-up)
+                            (define-key term-raw-map (kbd "C-c C-y")  #'paste-term)
                             (setq bidi-paragraph-direction 'left-to-right) ;faster back scrolling
                             (setq show-trailing-whitespace nil)
                             (push (lambda () (display-line-numbers-mode 0))
