@@ -563,7 +563,7 @@ If DELTA was provided it will be added to the current line's indentation."
         (buffer-list-update-hook nil)
         (urls  '("golang.org/x/tools/cmd/goimports"
                  "github.com/rogpeppe/godef"
-                 "github.com/mdempsky/gocode"
+                 "github.com/nsf/gocode"
                  "github.com/dougm/goflymake"
                  "golang.org/x/tools/cmd/gorename"
                  "golang.org/x/tools/cmd/godoc"
