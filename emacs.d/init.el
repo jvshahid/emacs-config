@@ -94,6 +94,8 @@ all of which are used by popup-create and slowing it down.
   (setq lsp-ui-peek-enable nil)
   (setq lsp-ui-sideline-enable nil))
 
+(global-unset-key (kbd "C-z"))     ;stop suspending the frame on accidental C-z
+
 (autoload 'lsp-java-enable "lsp-java")
 (setq lsp-java-server-install-dir "~/bin/lsp-java")
 (setq lsp-java--workspace-folders (list "/home/jvshahid/codez/nokogiri/ext/java"))
