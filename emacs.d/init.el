@@ -786,7 +786,6 @@ buffer."
         mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum
         mu4e-maildir-shortcuts '(("/INBOX" . ?i)
                                  ("/[Gmail]/Sent Mail" . ?s)
-                                 ("/[Gmail]/Drafts" . ?d)
                                  ("/[Gmail]/All Mail" . ?a)))
 
   (add-hook 'mu4e-headers-mode-hook
