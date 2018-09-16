@@ -98,7 +98,8 @@ all of which are used by popup-create and slowing it down.
 
 (autoload 'lsp-java-enable "lsp-java")
 (setq lsp-java-server-install-dir "~/bin/lsp-java")
-(setq lsp-java--workspace-folders (list "/home/jvshahid/codez/nokogiri/ext/java"))
+(setq lsp-java--workspace-folders (list "/home/jvshahid/codez/nokogiri/ext/java"
+                                        "/home/jvshahid/codez/jruby/core"))
 
 (add-hook 'java-mode-hook (lambda ()
                             (lsp-java-enable)
