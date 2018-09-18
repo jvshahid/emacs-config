@@ -109,6 +109,11 @@ all of which are used by popup-create and slowing it down.
                             (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
                             (local-set-key (kbd "M-.") 'company-complete)))
 
+(add-hook 'c-mode-hook (lambda ()
+                         (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
+                         (local-set-key (kbd "C-c C-c") 'compile)
+                         (local-set-key (kbd "C-c C-m") 'man)))
+
 (with-eval-after-load 'parinfer
   (require 'paredit)
   (setq parinfer-extensions
@@ -410,7 +415,7 @@ the command again. CMD is the command to run"
   (require 'color-theme-solarized)
   (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
   (server-start)
-  (setq frame-background-mode 'dark)
+  (setq frame-background-mode 'light)
   (load-theme 'solarized t))
 
 (display-time)
