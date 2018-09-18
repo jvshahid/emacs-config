@@ -485,7 +485,7 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'org-mode-hook 'org-indent-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
 
-(setq c++fmt-command "clang-format-3.8")
+(setq c++fmt-command "clang-format-8")
 (setq c++fmt-args (lambda (filename)
                     (list (format "-assume-filename=%s" filename) "-style=file")))
 (setq arduinofmt-command c++fmt-command)

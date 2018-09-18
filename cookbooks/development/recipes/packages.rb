@@ -99,7 +99,7 @@ packages = [
             'astyle',
             'texlive-latex-base',
             'texlive-fonts-recommended',
-            'clang-format-3.8',
+            'clang-format-8',
             'ant-optional',
             'qemu-kvm', # the next 4 dependencies are for faster android emulation
             'libvirt-bin',
