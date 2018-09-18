@@ -415,7 +415,7 @@ the command again. CMD is the command to run"
   (require 'color-theme-solarized)
   (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
   (server-start)
-  (setq frame-background-mode 'light)
+  (setq frame-background-mode 'dark)
   (load-theme 'solarized t))
 
 (display-time)
