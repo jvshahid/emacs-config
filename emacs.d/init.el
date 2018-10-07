@@ -387,6 +387,7 @@ the command again. CMD is the command to run"
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
  '(fill-column 79)
+ '(global-font-lock-mode nil)
  '(godoc-command "godoc")
  '(godoc-use-completing-read t)
  '(ido-mode 'both nil (ido))
