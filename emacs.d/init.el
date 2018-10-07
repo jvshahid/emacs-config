@@ -408,16 +408,24 @@ the command again. CMD is the command to run"
  '(user-mail-address "jvshahid@gmail.com")
  '(windmove-wrap-around t))
 
+;; set the colors of the minibuffer when ido-find-file is used to find a file
+(custom-set-faces
+ '(ido-first-match ((t (:foreground "yellow4" :weight bold))))
+ '(ido-only-match ((t (:foreground "yellow4")))))
 
 (when (display-graphic-p)
-  (straight-use-package '(color-theme :type git :host github :repo "emacsorphanage/color-theme" :files ("color-theme.el" "themes")))
-  (straight-use-package 'color-theme-solarized)
-  (require 'color-theme)
-  (require 'color-theme-solarized)
   (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
   (server-start)
-  (setq frame-background-mode 'dark)
-  (load-theme 'solarized t))
+  (load-theme 'tango-dark t)
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(default ((t (:slant normal :foreground "#919ba5" :weight normal :height 130 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
+   '(font-lock-keyword-face ((t (:foreground "#90c958"))))))
+
+(setq-default line-spacing 2)
 
 (display-time)
 
@@ -425,15 +433,6 @@ the command again. CMD is the command to run"
 
 (setq-default indent-tabs-mode nil) ; always replace tabs with spaces
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:slant normal :weight normal :height 113 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
- '(ido-first-match ((t (:foreground "yellow4" :weight bold))))
- '(ido-only-match ((t (:foreground "yellow4")))))
 
 ;; Adding automatic untabify and delete trailing whitespaces (very useful)
 ;; (add-hook 'local-write-file-hooks
