@@ -904,3 +904,44 @@ buffer."
   (exwm-input-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
   (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
   (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume))
+;; Add the version of Emacs when a symbol was added
+;; Stefan Monnier: http://lists.gnu.org/archive/html/emacs-devel/2018-09/msg00959.html
+(defun help-fns--first-release (function)
+  "Try and find the first release that defined this function."
+  ;; Code below relies on the etc/NEWS* files.
+  ;; FIXME: Maybe we should also use the */ChangeLog* files when available.
+  ;; FIXME: Maybe we should also look for announcements of the addition
+  ;; of the *packages* in which the function is defined.
+  (when (symbolp function)
+    (let* ((name (symbol-name function))
+           (re (concat "\\_<" (regexp-quote name) "\\_>"))
+           (news (directory-files data-directory t "\\`NEWS.[1-9]"))
+           (first nil))
+      (with-temp-buffer
+        (dolist (f news)
+          (erase-buffer)
+          (insert-file-contents f)
+          (goto-char (point-min))
+          (search-forward "\n*")
+          (while (re-search-forward re nil t)
+            (save-excursion
+              (if (re-search-backward "^\\*.*in Emacs \\([0-9.]+\\)"
+                                      nil t)
+                  ;; (error "Ref found in non-versioned section in %S"
+                  ;;        (file-name-nondirectory f))
+                (let ((version (match-string 1)))
+                  (when (or (null first) (version< version first))
+                    (setq first version))))))))
+      (when first
+        (insert (format "\nIntroduced at or before Emacs version %s.\n"
+                        first))))))
+
+(add-hook 'help-fns-describe-function-functions #'help-fns--first-release)
+;; (remove-hook 'help-fns-describe-function-functions #'help-fns--first-release)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ido-first-match ((t (:foreground "yellow4" :weight bold))))
+ '(ido-only-match ((t (:foreground "yellow4")))))
