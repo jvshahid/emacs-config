@@ -748,6 +748,7 @@ buffer."
              (t
               (error "invalid rcs patch or internal error in go--apply-rcs-patch")))))))))
 
+;;; enable scroll-left command without confirmation
 (put 'scroll-left 'disabled nil)
 
 ;;; email
