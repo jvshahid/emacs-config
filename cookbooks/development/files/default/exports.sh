@@ -15,10 +15,6 @@ if [[ ${EMACS} != 't' ]] ; then
 fi
 export JAVA_FONTS=$HOME/.fonts/
 # go language path
-# rust language path
-export RUSTROOT=$HOME/bin/rust
-export RUSTCROOT=$RUSTROOT/rustc
-export CARGOROOT=$RUSTROOT/cargo
 # android sdk and ndk
 export SDK=~/Android/Sdk/
 export NDK=$SDK/ndk-bundle
@@ -32,7 +28,6 @@ fi
 # android path
 PATH="$PATH:$SDK/tools/:$SDK/platform-tools"
 # go path
-PATH="$PATH:$RUSTCROOT/bin:$CARGOROOT/bin"
 export LD_LIBRARY_PATH="$RUSTCROOT/lib:$LD_LIBRARY_PATH"
 export SCALA_HOME=$HOME/Downloads/scala-2.8.1.final
 export MOSH_INSTALLATION='$HOME/mosh-installation'
@@ -42,6 +37,8 @@ export EDITOR=ec
 export GOPATH=$HOME/codez/gocodez
 export PATH=$PATH:$GOPATH/bin:/home/jvshahid/.cask/bin
 export PATH=/home/jvshahid/bin/java/bin:/home/jvshahid/bin/eclipse:$PATH
+# Rust
+export PATH=$HOME/.cargo/bin:$PATH
 export MANPATH=$emacs_installation/share/man:$MANPATH
 export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 export GPG_AGENT_INFO=${HOME}/.gnupg/S.gpg-agent:0:1

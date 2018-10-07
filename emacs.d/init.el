@@ -904,6 +904,21 @@ buffer."
   (exwm-input-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
   (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
   (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume))
+
+
+;; rust
+
+(straight-use-package 'rust-mode)
+(straight-use-package 'lsp-rust)
+(autoload 'lsp-rust-enable "lsp-rust" "start lsp support for rust" t)
+(add-hook 'rust-mode-hook (lambda ()
+                            (lsp-rust-enable)
+                            (lsp-ui-mode)
+                            (auto-complete-mode -1)
+                            (company-mode)
+                            (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
+                            (local-set-key (kbd "M-.") 'company-complete)))
+
 ;; Add the version of Emacs when a symbol was added
 ;; Stefan Monnier: http://lists.gnu.org/archive/html/emacs-devel/2018-09/msg00959.html
 (defun help-fns--first-release (function)
