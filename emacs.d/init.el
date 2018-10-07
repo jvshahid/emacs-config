@@ -382,6 +382,7 @@ the command again. CMD is the command to run"
  '(display-battery-mode t)
  '(display-time-day-and-date t)
  '(display-time-mode t)
+ '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(electric-indent-mode nil)
  '(erc-user-full-name "John Shahid")
  '(etags-select-use-short-name-completion t)
