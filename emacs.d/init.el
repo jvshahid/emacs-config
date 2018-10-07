@@ -397,7 +397,6 @@ the command again. CMD is the command to run"
  '(perl-indent-level 2)
  '(safe-local-variable-values '((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(scroll-bar-mode nil)
- '(scroll-conservatively 1000)
  '(select-enable-clipboard t)
  '(send-mail-function 'smtpmail-send-it)
  '(show-paren-mode t)
