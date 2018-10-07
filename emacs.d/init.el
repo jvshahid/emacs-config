@@ -528,7 +528,6 @@ If DELTA was provided it will be added to the current line's indentation."
   (add-hook 'go-mode-hook 'ginkgo-mode)
   (add-hook 'go-mode-hook #'add-yasnippet-to-ac-sources))
 
-
 (defun setup-gopath ()
   (when (and (eq (current-buffer) (window-buffer)) ; filter temp buffer events
              (equal major-mode 'go-mode)
@@ -799,7 +798,6 @@ buffer."
               (push (lambda () (display-line-numbers-mode 0))
                     delayed-after-hook-functions)))
 
-
   (add-hook 'mu4e-view-mode-hook
             (lambda ()
               (setq show-trailing-whitespace nil)
@@ -848,7 +846,6 @@ buffer."
 (global-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
 (global-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
 (global-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume)
-
 
 (when (display-graphic-p)
   (straight-use-package '(exwm :type git :host github :repo "ch11ng/exwm"))
