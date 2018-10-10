@@ -553,13 +553,10 @@ If DELTA was provided it will be added to the current line's indentation."
   "Setup the golang environment, this function will install
    goimports, godef, godoc and gocode"
   (interactive)
-  (let ((go-cmd (locate-file "go" exec-path)))
-    ;; ask the user for the path of go if we can't find it
-    (unless go-cmd
-      (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
-             (gobin (concat goroot "/bin")))
-        (add-to-path gobin)
-        (setenv "GOROOT" goroot)))))
+  (let* ((goroot (expand-file-name (read-directory-name "GOROOT")))
+         (gobin (concat goroot "/bin")))
+    (add-to-path gobin)
+    (setenv "GOROOT" goroot)))
 
 (add-to-path "$HOME/.emacs.d/go/bin")
 
