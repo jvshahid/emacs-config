@@ -534,9 +534,9 @@ If DELTA was provided it will be added to the current line's indentation."
              ;; ensure the buffer has a backing file
              buffer-file-name)
     (unless (boundp 'gopath)
-      (if-let ((root (locate-dominating-file buffer-file-name ".envrc")))
-          (setq-local gopath (expand-file-name root))
-        (setq-local gopath  nil)))
+      (setq-local gopath  nil)          ;prevent recursive calls
+      (when-let ((root (locate-dominating-file buffer-file-name ".envrc")))
+        (setq-local gopath (expand-file-name root))))
     (save-match-data
       (setenv "GOPATH" gopath))))
 
