@@ -824,6 +824,28 @@ buffer."
 
 (advice-add 'zap-to-char :after #'insert-zapped-char)
 
+;; modified version of window-adjust-process-window-size that uses
+;; window-screen-lines instead window-body-height
+(defun modified-window-adjust-process-window-size (reducer windows)
+  "Adjust the window sizes of a process.
+WINDOWS is a list of windows associated with that process.  REDUCER is
+a two-argument function used to combine the widths and heights of
+the given windows."
+  (when windows
+    (let ((width (window-max-chars-per-line (car windows)))
+          (height (floor (with-selected-window (car windows)
+                           (window-screen-lines)))))
+      (dolist (window (cdr windows))
+        (setf width (funcall reducer width (window-max-chars-per-line window)))
+        (setf height (funcall reducer height (with-selected-window window
+                                               (floor (window-screen-lines))))))
+      (cons width height))))
+
+(defun use-window-screen-lines-instead (orig-func &rest args)
+  (apply #'modified-window-adjust-process-window-size args))
+
+(advice-add 'window-adjust-process-window-size :around #'use-window-screen-lines-instead)
+
 (defun toggle-mic-mute ()
   (interactive)
   (start-process "toggle-audio-mute" nil "amixer" "set" "Capture" "toggle"))
