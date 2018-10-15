@@ -974,5 +974,4 @@ the given windows."
                         first))))))
 
 (add-hook 'help-fns-describe-function-functions #'help-fns--first-release)
-;; (remove-hook 'help-fns-describe-function-functions #'help-fns--first-release)
 
