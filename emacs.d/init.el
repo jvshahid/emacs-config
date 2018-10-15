@@ -409,11 +409,6 @@ the command again. CMD is the command to run"
  '(user-mail-address "jvshahid@gmail.com")
  '(windmove-wrap-around t))
 
-;; set the colors of the minibuffer when ido-find-file is used to find a file
-(custom-set-faces
- '(ido-first-match ((t (:foreground "yellow4" :weight bold))))
- '(ido-only-match ((t (:foreground "yellow4")))))
-
 (when (display-graphic-p)
   (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
   (server-start)
@@ -424,7 +419,13 @@ the command again. CMD is the command to run"
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
    '(default ((t (:slant normal :foreground "#919ba5" :weight normal :height 130 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
-   '(font-lock-keyword-face ((t (:foreground "#90c958"))))))
+   '(ido-first-match ((t (:foreground "yellow4" :weight bold))))
+   '(ido-only-match ((t (:foreground "yellow4"))))
+   '(font-lock-constant-face ((t nil)))
+   '(font-lock-keyword-face ((t (:foreground "#90c958"))))
+   '(markdown-inline-code-face ((t nil)))
+   '(markdown-table-face ((t nil)))
+   '(org-table ((t nil)))))
 
 (setq-default line-spacing 2)
 
@@ -973,10 +974,4 @@ the given windows."
 
 (add-hook 'help-fns-describe-function-functions #'help-fns--first-release)
 ;; (remove-hook 'help-fns-describe-function-functions #'help-fns--first-release)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ido-first-match ((t (:foreground "yellow4" :weight bold))))
- '(ido-only-match ((t (:foreground "yellow4")))))
+
