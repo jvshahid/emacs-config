@@ -403,6 +403,7 @@ the command again. CMD is the command to run"
  '(show-trailing-whitespace t)
  '(tab-width 2)
  '(tags-case-fold-search t)
+ '(term-buffer-maximum-size 0)
  '(term-suppress-hard-newline t)
  '(tool-bar-mode nil)
  '(user-full-name "John Shahid")
