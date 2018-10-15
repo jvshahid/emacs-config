@@ -697,9 +697,9 @@ If DELTA was provided it will be added to the current line's indentation."
   ;; not modify the kill ring. This solution does depend on the
   ;; implementation of kill-line, but it's the only viable solution
   ;; that does not require to write kill-line from scratch.
-  (cl-flet ((kill-region (beg end)
-                         (delete-region beg end))
-            (kill-new (_) ()))
+  (flet ((kill-region (beg end)
+                      (delete-region beg end))
+         (kill-new (_) ()))
     (modified-kill-whole-line arg)))
 
 (defun fmt-apply-rcs-patch (patch-buffer)
