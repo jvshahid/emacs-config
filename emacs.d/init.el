@@ -919,6 +919,7 @@ the given windows."
   (add-hook 'exwm-randr-screen-change-hook
             (lambda ()
               (start-process-shell-command
+               ;; xrandr --output <something> --same-as <other-thing> for mirroring
                "xrandr" nil "xrandr --output HDMI-1 --above LVDS-1 --auto")))
   (exwm-randr-enable)
 
