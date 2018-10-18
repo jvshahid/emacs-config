@@ -690,6 +690,8 @@ If DELTA was provided it will be added to the current line's indentation."
       #'kill-whole-line
     #'kill-entire-line))
 
+(autoload 'flet "cl" "Used in init.el to dynamically bind some functions" t)
+
 (defun delete-whole-line (&optional arg)
   "Delete the current line without putting it in the kill-ring."
   ;; Emacs uses both kill-region and kill-new, Xemacs only uses
