@@ -845,6 +845,12 @@ the given windows."
 
 (advice-add 'window-adjust-process-window-size :around #'use-window-screen-lines-instead)
 
+(defun rebind-window-text-height (orig-func &rest args)
+  (flet ((window-text-height () (floor (window-screen-lines))))
+        (apply orig-func args)))
+
+(advice-add 'ansi-term :around #'rebind-window-text-height)
+
 (defun toggle-mic-mute ()
   (interactive)
   (start-process "toggle-audio-mute" nil "amixer" "set" "Capture" "toggle"))
