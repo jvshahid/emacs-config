@@ -337,7 +337,7 @@ the command again. CMD is the command to run"
 
 (defun find-grep-current-word (ignore-case)
   "interactive way to grep for the word under the cursor using
-   ack-grep on linux or ag on macos"
+ag"
   (interactive "P")
   (let* ((extra-arg (if ignore-case "-i " ""))
          (grep-cmd "ag --color --nogroup ")
