@@ -412,20 +412,7 @@ ag"
 (when (display-graphic-p)
   (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
   (server-start)
-  (load-theme 'tango-dark t)
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(default ((t (:slant normal :foreground "#919ba5" :weight normal :height 130 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
-   '(ido-first-match ((t (:foreground "yellow4" :weight bold))))
-   '(ido-only-match ((t (:foreground "yellow4"))))
-   '(font-lock-constant-face ((t nil)))
-   '(font-lock-keyword-face ((t (:foreground "#90c958"))))
-   '(markdown-inline-code-face ((t nil)))
-   '(markdown-table-face ((t nil)))
-   '(org-table ((t nil)))))
+  (load-theme 'tango-dark t))
 
 (setq-default line-spacing 2)
 
@@ -987,3 +974,16 @@ the given windows."
 
 (add-hook 'help-fns-describe-function-functions #'help-fns--first-release)
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((((type x)) . (:slant normal :foreground "#919ba5" :weight normal :height 130 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
+ '(font-lock-constant-face ((t . nil)))
+ '(font-lock-keyword-face ((t . (:foreground "#90c958"))))
+ '(ido-first-match ((t . (:foreground "yellow4" :weight bold))))
+ '(ido-only-match ((t . (:foreground "yellow4"))))
+ '(markdown-inline-code-face ((t . nil)))
+ '(markdown-table-face ((t . nil)))
+ '(org-table ((t . nil))))
