@@ -52,7 +52,6 @@
 (straight-use-package 'flx-ido)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-java)
-(straight-use-package 'lsp-ui)
 (straight-use-package 'company-lsp)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
@@ -103,7 +102,6 @@ all of which are used by popup-create and slowing it down.
 
 (add-hook 'java-mode-hook (lambda ()
                             (lsp-java-enable)
-                            (lsp-ui-mode)
                             (auto-complete-mode -1)
                             (company-mode)
                             (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
@@ -946,7 +944,6 @@ the given windows."
 (autoload 'lsp-rust-enable "lsp-rust" "start lsp support for rust" t)
 (add-hook 'rust-mode-hook (lambda ()
                             (lsp-rust-enable)
-                            (lsp-ui-mode)
                             (auto-complete-mode -1)
                             (company-mode)
                             (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
