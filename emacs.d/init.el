@@ -850,9 +850,10 @@ the given windows."
 
 ;; add ginkgo filename:line format, which is a slight variation of go.  It
 ;; doesn't start with tab and it doesn't necessarily end with whitespace
-(add-to-list 'compilation-error-regexp-alist 'ginkgo)
-(add-to-list 'compilation-error-regexp-alist-alist
-             '(ginkgo . ("^\\ +\\([^()\t\n]+\\):\\([0-9]+\\).*$" 1 2)) t)
+(with-eval-after-load 'compile
+  (add-to-list 'compilation-error-regexp-alist 'ginkgo)
+  (add-to-list 'compilation-error-regexp-alist-alist
+               '(ginkgo . ("^\\ +\\([^()\t\n]+\\):\\([0-9]+\\).*$" 1 2)) t))
 
 (advice-add 'ansi-term :around #'rebind-window-text-height)
 
