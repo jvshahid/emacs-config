@@ -855,7 +855,7 @@ the given windows."
   (add-to-list 'compilation-error-regexp-alist-alist
                '(ginkgo . ("^\\ +\\([^()\t\n]+\\):\\([0-9]+\\).*$" 1 2)) t))
 
-(advice-add 'ansi-term :around #'rebind-window-text-height)
+(advice-add 'term-mode :around #'rebind-window-text-height)
 
 (defun toggle-mic-mute ()
   (interactive)
