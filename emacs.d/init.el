@@ -408,7 +408,8 @@ ag"
  '(tool-bar-mode nil)
  '(user-full-name "John Shahid")
  '(user-mail-address "jvshahid@gmail.com")
- '(windmove-wrap-around t))
+ '(windmove-wrap-around t)
+ '(yank-excluded-properties t))
 
 (when (display-graphic-p)
   (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
