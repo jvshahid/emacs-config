@@ -944,6 +944,22 @@ the given windows."
                             (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
                             (local-set-key (kbd "M-.") 'company-complete)))
 
+(defun jump-to-file-and-line ()
+  (interactive)
+  (let ((thing (thing-at-point 'filename)))
+    (save-match-data
+      (if (not (string-match "^\\([^:]*\\)\\(:\\([0-9]+\\)\\)?$" thing))
+          (message "%s doesn't look like a filename" thing)
+        (let ((name (match-string 1 thing))
+              (line (match-string 3 thing)))
+          (if (not (file-exists-p name))
+              (message "Cannot find file %s" name)
+            (find-file-other-window name)
+            (goto-char (point-min))
+            (if line (forward-line (1- (string-to-number line))))))))))
+
+(global-set-key (kbd "C-x 4 j") #'jump-to-file-and-line)
+
 ;; Add the version of Emacs when a symbol was added
 ;; Stefan Monnier: http://lists.gnu.org/archive/html/emacs-devel/2018-09/msg00959.html
 (defun help-fns--first-release (function)
