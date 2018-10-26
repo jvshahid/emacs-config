@@ -53,6 +53,7 @@
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-java)
 (straight-use-package 'company-lsp)
+(straight-use-package 'git-link)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
@@ -74,6 +75,9 @@ all of which are used by popup-create and slowing it down.
 "
   (let ((display-line-numbers nil))
     (apply orig args)))
+
+(with-eval-after-load 'git-link
+  (setq git-link-use-commit t))
 
 (advice-add 'ac-menu-create :around #'disable-line-numbers)
 
