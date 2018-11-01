@@ -416,8 +416,10 @@ ag"
       (load-theme 'tango-dark t))
   (xterm-mouse-mode))
 
+;; set spaces between lines for easier readability
 (setq-default line-spacing 2)
 
+;; display time in mode line
 (display-time)
 
 (define-key global-map (kbd "C-x C-r") 'query-replace)
