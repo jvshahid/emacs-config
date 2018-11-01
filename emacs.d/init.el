@@ -195,7 +195,6 @@ the command again. CMD is the command to run"
   (interactive "p")
   (swap-next-window (- n)))
 
-(xterm-mouse-mode)
 (global-set-key (kbd "C-'") 'ace-jump-mode)
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "C-c ]") 'swap-next-window)
@@ -411,10 +410,12 @@ ag"
  '(windmove-wrap-around t)
  '(yank-excluded-properties t))
 
-(when (display-graphic-p)
-  (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
-  (server-start)
-  (load-theme 'tango-dark t))
+(if (display-graphic-p)
+    (progn
+      (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
+      (server-start)
+      (load-theme 'tango-dark t))
+  (xterm-mouse-mode))
 
 (setq-default line-spacing 2)
 
