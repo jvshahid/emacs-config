@@ -163,8 +163,6 @@ the command again. CMD is the command to run"
                                 (setq show-trailing-whitespace nil)))
   (setq magit-revert-item-confirm t))
 
-(with-eval-after-load 'helm
-  (setq helm-findutils-search-full-path t))
 ;;; override the default fzf find command
 (setenv "FZF_DEFAULT_COMMAND" "ag -g \"\"")
 (global-set-key (kbd "C-x C-p") #'better-fzf)
