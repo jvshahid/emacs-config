@@ -195,7 +195,6 @@ the command again. CMD is the command to run"
   (interactive "p")
   (swap-next-window (- n)))
 
-(global-set-key (kbd "C-'") 'ace-jump-mode)
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "C-c ]") 'swap-next-window)
 (global-set-key (kbd "C-c [") 'swap-previous-window)
