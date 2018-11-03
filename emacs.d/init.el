@@ -404,8 +404,6 @@ ag"
  '(term-buffer-maximum-size 0)
  '(term-suppress-hard-newline t)
  '(tool-bar-mode nil)
- '(user-full-name "John Shahid")
- '(user-mail-address "jvshahid@gmail.com")
  '(windmove-wrap-around t)
  '(yank-excluded-properties t))
 
@@ -763,49 +761,9 @@ buffer."
                             (push (lambda () (display-line-numbers-mode 0))
                                   delayed-after-hook-functions)))
 
-(with-eval-after-load 'mu4e
-  (setq mu4e-get-mail-command (expand-file-name "~/bin/isync/bin/mbsync gmail")
-        mu4e-html2text-comma 'mu4e-shr2text ; nd "w3m -dump -T text/html"
-        mu4e-update-interval nil          ;do not auto update
-        mu4e-headers-auto-update t
-        mu4e-compose-signature-auto-include nil
-        mu4e-mu-binary (expand-file-name "~/bin/mu/bin/mu")
-        mu4e-maildir (expand-file-name "~/Maildir/gmail")
-        mu4e-drafts-folder "/[Gmail]/Drafts"
-        mu4e-sent-folder "/[Gmail]/Sent Mail"
-        mu4e-sent-message-behavior 'delete
-        mu4e-view-show-addresses t
-        mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum
-        mu4e-maildir-shortcuts '(("/INBOX" . ?i)
-                                 ("/[Gmail]/Sent Mail" . ?s)
-                                 ("/[Gmail]/All Mail" . ?a)))
-
-  (add-hook 'mu4e-headers-mode-hook
-            (lambda ()
-              (push (lambda () (display-line-numbers-mode 0))
-                    delayed-after-hook-functions)))
-
-  (add-hook 'mu4e-view-mode-hook
-            (lambda ()
-              (setq show-trailing-whitespace nil)
-              (local-set-key (kbd "<tab>") 'shr-next-link)
-              (local-set-key (kbd "<backtab>") 'shr-previous-link)
-              (push (lambda () (display-line-numbers-mode 0))
-                    delayed-after-hook-functions)))
-
-  (require 'org-mu4e)
-  (setq org-mu4e-convert-to-html t)
-
-  (add-hook 'mu4e-compose-mode-hook 'flyspell-mode)
-
-  (require 'smtpmail)
-  (setq message-send-mail-function 'smtpmail-send-it
-        smtpmail-starttls-credentials
-        '(("smtp.gmail.com" 587 nil nil))
-        smtpmail-default-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587
-        smtpmail-debug-info t))
+(let ((email-setup (expand-file-name "~/Dropbox/email-setup.el")))
+  (if (file-exists-p email-setup)
+      (load-file email-setup)))
 
 (defun insert-zapped-char (_ ch)
   (insert-char ch)
