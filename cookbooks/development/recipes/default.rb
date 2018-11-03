@@ -27,6 +27,7 @@ include_recipe "development::clang"
 include_recipe "development::autoraise"
 include_recipe "development::pianobar"
 include_recipe "development::ctags"
+include_recipe "development::git-crypt"
 include_recipe "development::mbsync"
 include_recipe "development::wireshark"
 
