@@ -36,6 +36,7 @@ export EDITOR=ec
 [ -f /home/jvshahid/.travis/travis.sh ] && source /home/jvshahid/.travis/travis.sh
 export GOPATH=$HOME/codez/gocodez
 export PATH=$PATH:$GOPATH/bin:/home/jvshahid/.cask/bin
+export PATH=$PATH:$HOME/bin/git-crypt/bin
 export PATH=/home/jvshahid/bin/java/bin:/home/jvshahid/bin/eclipse:$PATH
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
