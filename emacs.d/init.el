@@ -761,9 +761,8 @@ buffer."
                             (push (lambda () (display-line-numbers-mode 0))
                                   delayed-after-hook-functions)))
 
-(let ((email-setup (expand-file-name "~/Dropbox/email-setup.el")))
-  (if (file-exists-p email-setup)
-      (load-file email-setup)))
+;; keep email details separately in an encrypted file
+(load-file (expand-file-name "~/.emacs.d/email-setup.el"))
 
 (defun insert-zapped-char (_ ch)
   (insert-char ch)
