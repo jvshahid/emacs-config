@@ -51,6 +51,7 @@
 (straight-use-package 'wgrep)
 (straight-use-package 'flx-ido)
 (straight-use-package 'lsp-mode)
+(straight-use-package 'lsp-ui)
 (straight-use-package 'lsp-java)
 (straight-use-package 'company-lsp)
 (straight-use-package 'git-link)
@@ -108,6 +109,7 @@ all of which are used by popup-create and slowing it down.
                             (lsp-java-enable)
                             (auto-complete-mode -1)
                             (company-mode)
+                            (lsp-ui-mode)
                             (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
                             (local-set-key (kbd "M-.") 'company-complete)))
 
