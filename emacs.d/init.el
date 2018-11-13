@@ -29,6 +29,7 @@
 (straight-use-package 'magit)
 (straight-use-package 'etags-select)
 (straight-use-package 'yaml-mode)
+(straight-use-package 'arduino-mode)
 (straight-use-package 'go-guru)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'protobuf-mode)
