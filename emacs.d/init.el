@@ -397,6 +397,8 @@ ag"
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
  '(safe-local-variable-values '((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
+ '(sc-auto-fill-region-p nil)
+ '(sc-citation-leader "")
  '(scroll-bar-mode nil)
  '(select-enable-clipboard t)
  '(send-mail-function 'smtpmail-send-it)
