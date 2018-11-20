@@ -884,9 +884,6 @@ the given windows."
             (lambda ()
               (start-process-shell-command
                ;; xrandr --output <something> --same-as <other-thing> for mirroring
-               "xrandr" nil "xrandr --output LVDS-1 --primary")
-              (start-process-shell-command
-               ;; xrandr --output <something> --same-as <other-thing> for mirroring
                "xrandr" nil "xrandr --output HDMI-1 --above LVDS-1 --auto")))
   (exwm-randr-enable)
 
