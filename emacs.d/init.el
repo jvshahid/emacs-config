@@ -766,8 +766,10 @@ buffer."
                             (push (lambda () (display-line-numbers-mode 0))
                                   delayed-after-hook-functions)))
 
-;; keep email details separately in an encrypted file
-(load-file (expand-file-name "~/.emacs.d/email-setup.el"))
+;; keep email details separately in an encrypted file.  Ignore errors if the
+;; file is encrypted
+(ignore-errors
+  (load-file (expand-file-name "~/.emacs.d/email-setup.el")))
 
 (defun insert-zapped-char (_ ch)
   (insert-char ch)
