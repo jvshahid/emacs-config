@@ -56,6 +56,8 @@
 (straight-use-package 'lsp-java)
 (straight-use-package 'company-lsp)
 (straight-use-package 'git-link)
+(straight-use-package 'rvm)
+(straight-use-package 'robe)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
@@ -80,6 +82,21 @@ all of which are used by popup-create and slowing it down.
 
 (with-eval-after-load 'git-link
   (setq git-link-use-commit t))
+
+(with-eval-after-load 'rob-mode
+  (add-hook 'robe-mode-hook 'ac-robe-setup))
+
+(with-eval-after-load 'ruby-mode
+  (add-to-list 'hs-special-modes-alist
+       '(ruby-mode
+         "\\(def\\|do\\|{\\)" "\\(end\\|end\\|}\\)" "#"
+         (lambda (arg) (ruby-end-of-block)) nil))
+  (add-hook 'ruby-mode-hook 'robe-mode)
+  (add-hook 'ruby-mode-hook 'flycheck-mode)
+  (add-hook 'ruby-mode-hook (lambda ()
+                              (define-key robe-mode-map (kbd "M-.") nil)
+                              (local-set-key (kbd "M-.") 'company-complete)
+                              (local-set-key (kbd "C-c C-j") 'robe-jump))))
 
 (advice-add 'ac-menu-create :around #'disable-line-numbers)
 
