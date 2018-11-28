@@ -83,20 +83,24 @@ all of which are used by popup-create and slowing it down.
 (with-eval-after-load 'git-link
   (setq git-link-use-commit t))
 
-(with-eval-after-load 'rob-mode
+(with-eval-after-load 'robe
   (add-hook 'robe-mode-hook 'ac-robe-setup))
 
-(with-eval-after-load 'ruby-mode
-  (add-to-list 'hs-special-modes-alist
-       '(ruby-mode
-         "\\(def\\|do\\|{\\)" "\\(end\\|end\\|}\\)" "#"
-         (lambda (arg) (ruby-end-of-block)) nil))
-  (add-hook 'ruby-mode-hook 'robe-mode)
-  (add-hook 'ruby-mode-hook 'flycheck-mode)
-  (add-hook 'ruby-mode-hook (lambda ()
-                              (define-key robe-mode-map (kbd "M-.") nil)
-                              (local-set-key (kbd "M-.") 'company-complete)
-                              (local-set-key (kbd "C-c C-j") 'robe-jump))))
+(add-to-list 'hs-special-modes-alist
+              `(ruby-mode
+                ,(rx (or "def" "class" "module" "do" "{" "[" "if" "else" "unless")) ; Block start
+                ,(rx (or "}" "]" "end"))                       ; Block end
+                ,(rx (or "#" "=begin"))                        ; Comment start
+                ruby-forward-sexp nil))
+
+(add-hook 'ruby-mode-hook (lambda ()
+                            (hs-minor-mode)
+                            (robe-mode)
+                            (flycheck-mode)
+                            (setq ac-auto-start nil)
+                            (define-key robe-mode-map (kbd "M-.") nil)
+                            (local-set-key (kbd "M-.") 'company-complete)
+                            (local-set-key (kbd "C-c C-j") 'robe-jump)))
 
 (advice-add 'ac-menu-create :around #'disable-line-numbers)
 
