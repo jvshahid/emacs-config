@@ -919,7 +919,6 @@ the given windows."
 (straight-use-package 'rust-mode)
 (straight-use-package 'lsp-rust)
 (autoload 'lsp-rust-enable "lsp-rust" "start lsp support for rust" t)
-(setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
 (add-hook 'rust-mode-hook (lambda ()
                             (lsp-rust-enable)
                             (flycheck-mode)
