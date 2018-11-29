@@ -417,7 +417,9 @@ ag"
  '(menu-bar-mode nil)
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
- '(safe-local-variable-values '((bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
+ '(safe-local-variable-values
+   '((flycheck-rust-crate-type)
+     (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(sc-auto-fill-region-p nil)
  '(sc-citation-leader "")
  '(scroll-bar-mode nil)
