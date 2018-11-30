@@ -93,3 +93,12 @@ function get_lvc_data() {
 function firefox32() {
     docker run --rm "$@" -v /tmp/.X11-unix/X0:/tmp/.X11-unix/X0 jvshahid/firefox32
 }
+
+function import_vpn() {
+    name=$1
+    file=$2
+    current_name=$(nmcli c import type openvpn file $file | grep successfully | sed -E "s/Connection '(.*)'.*/\\1/")
+    nmcli c m $current_name connection.id $name
+    nmcli c m $name ipv4.never-default true
+    nmcli c m $name vpn.user-name jshahid
+}

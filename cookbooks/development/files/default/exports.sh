@@ -41,7 +41,7 @@ export PATH=/home/jvshahid/bin/java/bin:/home/jvshahid/bin/eclipse:$PATH
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
 export MANPATH=$emacs_installation/share/man:$MANPATH
-export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 export GPG_AGENT_INFO=${HOME}/.gnupg/S.gpg-agent:0:1
 export FZF_DEFAULT_OPTS='--height=20'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

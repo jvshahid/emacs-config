@@ -1,4 +1,7 @@
+#!/usr/bin/env zsh
+
 # Disable access control
+source ~/.zshrc
 xhost +SI:localuser:$USER
 
 # Make Java applications aware this is a non-reparenting window manager.
@@ -13,14 +16,14 @@ xset r rate 200 60              # Keyboard repeat rate
 
 synclient TouchpadOff=1
 
-dropbox start
+dropbox-cli start
 
 xrdb -merge ~/.Xresources
 
 xss-lock -- i3lock -c 000000 --nofork & # automatically run screensave on resume
 
-xset m 2 0
+xset m 3 0
 
 # Start Emacs
 # exec dbus-launch --exit-with-session emacs
-exec emacs
+exec ~/bin/emacs-27/bin/emacs

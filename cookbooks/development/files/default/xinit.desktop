@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=xinit
 Comment=This session uses .xinitrc
-Exec=custom
+Exec=~/.xinitrc
 Icon=
 Type=Application
