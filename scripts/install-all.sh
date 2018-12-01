@@ -16,6 +16,4 @@ cd $(dirname $0)
 ./install-paman.sh
 ./install-fonts.sh
 ./install-packages.sh
-
-# setup yubikey stuff
-sudo systemctl start pcscd.service
+./install-smartcards.sh
