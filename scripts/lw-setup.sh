@@ -16,8 +16,8 @@ if [ "x$repo_dir" != "x$PWD" ]; then
 fi
 
 ln -sf $repo_dir/emacs.d ~/.emacs.d
-ln -sf $repo_dir/cookbooks/development/files/default/ec ~/bin
-ln -sf $repo_dir/cookbooks/development/files/default/ed ~/bin
+ln -sf $repo_dir/dotfiles/ec ~/bin
+ln -sf $repo_dir/dotfiles/ed ~/bin
 
 function docker_version() {
   docker version | sed -n '/Server:/,$P' | grep Version: | cut -d: -f2 | tr -d ' \t\n'

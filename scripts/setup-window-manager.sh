@@ -20,10 +20,10 @@ PACKAGES
 
 systemctl enable lightdm
 
-cp ../cookbooks/development/files/default/logind.conf /etc/systemd/logind.conf
+cp ../dotfiles/logind.conf /etc/systemd/logind.conf
 
 mkdir -p /usr/share/xsessions
-cp ../cookbooks/development/files/default/xinit.desktop /usr/share/xsessions/xinit.desktop
+cp ../dotfiles/xinit.desktop /usr/share/xsessions/xinit.desktop
 
-cp ../cookbooks/development/files/default/90-keyboard.hwdb /lib/udev/hwdb.d/90-keyboard.hwdb
+cp ../dotfiles/90-keyboard.hwdb /lib/udev/hwdb.d/90-keyboard.hwdb
 udevadm hwdb --update
