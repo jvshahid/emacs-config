@@ -4,5 +4,5 @@
 cat <<PACKAGES | xargs sudo pacman --noconfirm --needed -S
 dstat
 rsync
+ispell
 PACKAGES
-
