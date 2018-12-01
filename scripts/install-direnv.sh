@@ -4,5 +4,6 @@
 
 pushd ~/codez/direnv
   git pull --rebase
-  ln -sf $PWD/direnv /home/jvshahid/bin/
+  make install DESTDIR=/tmp/direnv
+  mv /tmp/direnv/bin/direnv ~/bin/
 popd
