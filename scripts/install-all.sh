@@ -5,7 +5,7 @@ cd $(dirname $0)
 ./install-emacs.sh
 
 ./install-chrome.sh
-./install-direenv.sh
+./install-direnv.sh
 ./install-dotfiles.sh
 ./install-dropbox.sh
 ./install-fzf.sh
