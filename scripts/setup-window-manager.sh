@@ -20,7 +20,7 @@ packages=(
     xss-lock
 )
 
-install_package ${package[*]}
+install_package ${packages[*]}
 
 systemctl enable lightdm
 
