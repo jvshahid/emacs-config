@@ -3,9 +3,9 @@
 source ./helpers.sh
 
 packages=(
-dstat
-rsync
-ispell
+    dstat
+    rsync
+    ispell
 )
 
 install_package ${packages[*]}

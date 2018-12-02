@@ -3,21 +3,21 @@
 source ./helpers.sh
 
 packages=(
-i3lock
-lightdm
-lightdm-gtk-greeter
-xf86-input-synaptics
-xf86-video-intel
-xorg-server
-xorg-xhost
-xorg-xhost
-xorg-xrandr
-xorg-xrdb
-xorg-xset
-xorg-xset
-xorg-xsetroot
-xss-lock
-xss-lock
+    i3lock
+    lightdm
+    lightdm-gtk-greeter
+    xf86-input-synaptics
+    xf86-video-intel
+    xorg-server
+    xorg-xhost
+    xorg-xhost
+    xorg-xrandr
+    xorg-xrdb
+    xorg-xset
+    xorg-xset
+    xorg-xsetroot
+    xss-lock
+    xss-lock
 )
 
 install_package ${package[*]}
