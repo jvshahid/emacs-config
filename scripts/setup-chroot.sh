@@ -4,13 +4,15 @@
 
 cd $(dirname $0)
 
+source ./helpers.sh
+
 ./setup-basic.sh
 
 ./setup-user.sh
 
 ./setup-grub.sh
 
-pacman -S --noconfirm networkmanager networkmanager-openvpn
+install_package networkmanager networkmanager-openvpn
 systemctl enable NetworkManager
 
 ./setup-window-manager.sh
@@ -19,19 +21,23 @@ systemctl enable NetworkManager
 
 ./setup-time-sync.sh
 
-pacman -S --needed --noconfirm openssh \
-       libusb-compat \
-       the_silver_searcher \
-       openssl \
-       libyaml \
-       automake \
-       keepassx2 \
-       pulseaudio \
-       pulseaudio-zeroconf \
-       pulseaudio-alsa \
-       alsa-utils \
-       acpi \
-       thermald
+packages=(
+    acpi
+    alsa-utils
+    automake
+    keepassx2
+    libusb-compat
+    libyaml
+    openssh
+    openssl
+    pulseaudio
+    pulseaudio-alsa
+    pulseaudio-zeroconf
+    the_silver_searcher
+    thermald
+)
+
+install_package ${packages[*]}
 
 systemctl enable thermald.service
 

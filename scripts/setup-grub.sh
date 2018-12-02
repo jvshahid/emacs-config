@@ -1,6 +1,9 @@
 #!/usr/bin/bash
 
-pacman -S --needed --noconfirm grub
+source ./helpers.sh
+
+install_package grub
+
 mkdir -p /boot/grub
 cd /boot/grub
 grub-mkconfig > grub.cfg

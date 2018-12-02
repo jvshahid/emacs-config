@@ -1,6 +1,8 @@
 #!/usr/bin/bash -e
 
-cat <<PACKAGES | xargs pacman -S --noconfirm
+source ./helpers.sh
+
+packages=(
 i3lock
 lightdm
 lightdm-gtk-greeter
@@ -16,7 +18,9 @@ xorg-xset
 xorg-xsetroot
 xss-lock
 xss-lock
-PACKAGES
+)
+
+install_package ${package[*]}
 
 systemctl enable lightdm
 

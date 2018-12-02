@@ -2,7 +2,9 @@
 
 cd $(dirname $0)
 
-pacman -S --needed --noconfirm chrony
+source ./helpers.sh
+
+install_package chrony
 
 cat <<EOF >> /etc/chrony.conf
 server 0.pool.ntp.org iburst

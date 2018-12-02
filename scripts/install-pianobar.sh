@@ -1,6 +1,8 @@
 #!/usr/bin/bash -e
 
-sudo pacman --needed --noconfirm -S ffmpeg libao
+source ./helpers.sh
+
+install_package ffmpeg libao
 
 [ ! -d ~/codez/pianobar ] && git clone https://github.com/PromyLOPh/pianobar.git ~/codez/pianobar
 

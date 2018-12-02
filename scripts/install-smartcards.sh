@@ -1,4 +1,6 @@
 #!/usr/bin/bash -e
 
-sudo pacman --noconfirm --needed -S ccid
-sudo systemctl enable pcscd.service
+source ./helpers.sh
+
+install_package ccid
+systemctl enable pcscd.service

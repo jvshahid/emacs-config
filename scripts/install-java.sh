@@ -1,5 +1,5 @@
 #!/usr/bin/bash -e
 
-set -x
+source ./helpers.sh
 
-sudo pacman -S jdk10-openjdk
+install_package jdk10-openjdk

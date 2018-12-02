@@ -1,7 +1,11 @@
 #!/usr/bin/bash
 
+source ./helpers.sh
+
+# this is the first time to run pacman. refresh the cache
 pacman -Sy --noconfirm
-pacman -S --noconfirm sudo zsh
+
+install_package sudo zsh
 groupadd jvshahid --gid 1000
 groupadd sudo
 useradd jvshahid -G sudo --uid 1000 -g jvshahid --no-create-home --shell /bin/zsh

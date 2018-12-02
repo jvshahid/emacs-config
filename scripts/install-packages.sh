@@ -1,8 +1,11 @@
 #!/usr/bin/bash -e
 
-# rsync
-cat <<PACKAGES | xargs sudo pacman --noconfirm --needed -S
+source ./helpers.sh
+
+packages=(
 dstat
 rsync
 ispell
-PACKAGES
+)
+
+install_package ${packages[*]}

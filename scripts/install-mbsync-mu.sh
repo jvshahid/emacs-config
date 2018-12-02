@@ -1,6 +1,8 @@
 #!/usr/bin/bash -e
 
-sudo pacman -S --needed --noconfirm gmime3 xapian-core
+source ./helpers.sh
+
+install_package gmime3 xapian-core
 
 [ ! -d ~/codez/mu ] && git clone https://github.com/djcb/mu ~/codez/mu
 pushd ~/codez/mu

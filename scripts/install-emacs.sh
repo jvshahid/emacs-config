@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-sudo pacman -S --needed --noconfirm gcc autoconf make gtk3 pkg-config git
+source ./helpers.sh
+
+install_package gcc autoconf make gtk3 pkg-config git
 
 [ ! -d ~/codez/emacs ] && git clone https://github.com/emacs-mirror/emacs.git ~/codez/emacs
 
