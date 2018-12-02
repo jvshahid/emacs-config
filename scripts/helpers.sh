@@ -10,6 +10,6 @@ function install_aur_package() {
     dir=~/codez/aur/$name
     [ ! -d $dir ] && git clone $url $dir
     pushd $dir
-      makepkg --noconfirm -csi
+      makepkg --noconfirm --needed -csi
     popd
 }
