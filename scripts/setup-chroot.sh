@@ -21,24 +21,4 @@ systemctl enable NetworkManager
 
 ./setup-time-sync.sh
 
-packages=(
-    acpi
-    alsa-utils
-    automake
-    keepassx2
-    libusb-compat
-    libyaml
-    openssh
-    openssl
-    pulseaudio
-    pulseaudio-alsa
-    pulseaudio-zeroconf
-    the_silver_searcher
-    thermald
-)
-
-install_package ${packages[*]}
-
-systemctl enable thermald.service
-
 su jvshahid ./install-all.sh
