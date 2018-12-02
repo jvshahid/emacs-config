@@ -3,4 +3,5 @@
 source ./helpers.sh
 
 install_package ccid
-systemctl enable pcscd.service
+
+sudo systemctl enable pcscd.service

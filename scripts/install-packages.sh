@@ -24,4 +24,4 @@ packages=(
 
 install_package ${packages[*]}
 
-systemctl enable thermald.service
+sudo systemctl enable thermald.service
