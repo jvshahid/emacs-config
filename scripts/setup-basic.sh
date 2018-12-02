@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/bash -e
 
 ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
 hwclock --systohc

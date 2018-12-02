@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash -e
 
 repo=$(cd $(dirname $0)/.. && pwd)
 
