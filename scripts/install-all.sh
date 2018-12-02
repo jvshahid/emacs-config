@@ -4,6 +4,7 @@ cd $(dirname $0)
 
 ./install-emacs.sh
 
+./install-java.sh
 ./install-chrome.sh
 ./install-direnv.sh
 ./install-dotfiles.sh
