@@ -1,7 +1,13 @@
 #!/usr/bin/bash -e
 
 function install_package() {
-    pacman -S --needed --noconfirm $*
+    sudo=
+
+    if [ `id -u` -ne 0 ]; then
+        sudo=sudo
+    fi
+
+    $sudo pacman -S --needed --noconfirm $*
 }
 
 function install_aur_package() {
