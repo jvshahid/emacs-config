@@ -17,6 +17,8 @@ systemctl enable NetworkManager
 
 ./setup-fonts.sh
 
+./setup-time-sync.sh
+
 pacman -S --needed --noconfirm openssh \
        libusb-compat \
        the_silver_searcher \
@@ -27,6 +29,10 @@ pacman -S --needed --noconfirm openssh \
        pulseaudio \
        pulseaudio-zeroconf \
        pulseaudio-alsa \
-       alsa-utils
+       alsa-utils \
+       acpi \
+       thermald
+
+systemctl enable thermald.service
 
 su jvshahid ./install-all.sh
