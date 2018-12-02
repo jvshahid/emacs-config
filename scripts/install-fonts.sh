@@ -1,6 +1,6 @@
 #!/usr/bin/bash -e
 
-source ./install-aur-package.sh
+source ./helpers.sh
 
 sudo pacman -S --needed --noconfirm ttf-dejavu ttf-ubuntu-font-family ttf-roboto
 

@@ -1,5 +1,5 @@
 #!/usr/bin/bash -e
 
-source ./install-aur-package.sh
+source ./helpers.sh
 
 install_aur_package paman

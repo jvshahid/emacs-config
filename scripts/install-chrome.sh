@@ -2,6 +2,6 @@
 
 set -x
 
-source ./install-aur-package.sh
+source ./helpers.sh
 
 install_aur_package google-chrome

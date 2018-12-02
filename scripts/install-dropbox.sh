@@ -2,7 +2,7 @@
 
 sudo pacman -S --needed --noconfirm patch
 
-source ./install-aur-package.sh
+source ./helpers.sh
 
 install_aur_package dropbox
 install_aur_package dropbox-cli
