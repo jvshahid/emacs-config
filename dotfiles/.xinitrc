@@ -20,7 +20,7 @@ dropbox-cli start
 
 xrdb -merge ~/.Xresources
 
-xss-lock -- i3lock -c 000000 --nofork & # automatically run screensave on resume
+xss-lock -l -- i3lock -c 000000 --nofork & # automatically run screensave on resume
 
 xset m 3 0
 
