@@ -3,7 +3,7 @@
 ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
 hwclock --systohc
 
-sed -i 's/^# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 
 # this is what it used to look like
 cat <<LOCALE > /etc/locale.conf
@@ -23,6 +23,8 @@ LC_MEASUREMENT="en_US.UTF-8"
 LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=
 LOCALE
+
+locale-gen
 
 echo 'amun' > /etc/hostname
 
