@@ -432,6 +432,7 @@ ag"
  '(term-buffer-maximum-size 0)
  '(term-suppress-hard-newline t)
  '(tool-bar-mode nil)
+ '(truncate-partial-width-windows nil)
  '(windmove-wrap-around t)
  '(yank-excluded-properties t))
 
