@@ -17,7 +17,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(setq search-exit-option 'move)
+(setq isearch-yank-on-move t)
 
 (straight-use-package '(popup :type git
                               :host github
