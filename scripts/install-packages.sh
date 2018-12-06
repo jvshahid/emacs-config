@@ -20,6 +20,7 @@ packages=(
     the_silver_searcher
     the_silver_searcher
     thermald
+    unzip
 )
 
 install_package ${packages[*]}
