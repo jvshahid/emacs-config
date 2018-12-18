@@ -426,7 +426,6 @@ ag"
  '(show-trailing-whitespace t)
  '(tab-width 2)
  '(tags-case-fold-search t)
- '(term-buffer-maximum-size 0)
  '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil)
  '(windmove-wrap-around t)
@@ -770,22 +769,6 @@ buffer."
 (add-to-list 'load-path "~/bin/mu/share/emacs/site-lisp/mu4e")
 (autoload 'mu4e "mu4e" "start mu4e" t)
 
-(add-hook 'term-mode-hook (lambda ()
-                            (define-key term-raw-map (kbd "C-/") (lambda ()
-                                                                   (interactive)
-                                                                   (term-send-raw-string (kbd "C-_"))))
-                            (define-key term-raw-map (kbd "C-c \\") #'split-window-horizontally)
-                            (define-key term-raw-map (kbd "C-c -")  #'split-window-vertically)
-                            (define-key term-raw-map (kbd "C-c l")  #'windmove-right)
-                            (define-key term-raw-map (kbd "C-c h")  #'windmove-left)
-                            (define-key term-raw-map (kbd "C-c j")  #'windmove-down)
-                            (define-key term-raw-map (kbd "C-c k")  #'windmove-up)
-                            (define-key term-raw-map (kbd "C-c C-y")  #'term-paste)
-                            (setq bidi-paragraph-direction 'left-to-right) ;faster back scrolling
-                            (setq show-trailing-whitespace nil)
-                            (push (lambda () (display-line-numbers-mode 0))
-                                  delayed-after-hook-functions)))
-
 ;; keep email details separately in an encrypted file.  Ignore errors if the
 ;; file is encrypted
 (ignore-errors
@@ -829,8 +812,6 @@ the given windows."
   (add-to-list 'compilation-error-regexp-alist 'ginkgo)
   (add-to-list 'compilation-error-regexp-alist-alist
                '(ginkgo . ("^\\ +\\([^()\t\n]+\\):\\([0-9]+\\).*$" 1 2)) t))
-
-(advice-add 'term-mode :around #'rebind-window-text-height)
 
 (defun toggle-mic-mute ()
   (interactive)
