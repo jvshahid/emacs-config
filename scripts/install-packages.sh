@@ -6,11 +6,15 @@ packages=(
     acpi
     alsa-utils
     automake
+    dnsutils
     dstat
+    gnome-screenshot
     ispell
     keepassx2
+    libreoffice-fresh
     libusb-compat
     libyaml
+    mlocate
     openssh
     openssl
     pulseaudio
