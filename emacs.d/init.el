@@ -188,8 +188,9 @@ the command again. CMD is the command to run"
   (setq magit-revert-item-confirm t))
 
 ;;; override the default fzf find command
-(setenv "FZF_DEFAULT_COMMAND" "ag -g \"\"")
-(global-set-key (kbd "C-x C-p") #'better-fzf)
+(global-set-key (kbd "C-x C-p") (lambda ()
+                                  (interactive)
+                                  (helm-locate '(4))))
 
 (with-eval-after-load 'flycheck
   (setq flycheck-check-syntax-automatically (quote (save mode-enabled)))
@@ -242,25 +243,6 @@ the command again. CMD is the command to run"
                                   (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (local-set-key (kbd "C-c C-j") 'xref-find-definitions)))
-(defun better-fzf ()
-  (interactive)
-  (let* ((buffer (make-term "*fzf*" "bash" nil "-c" "~/.fzf/bin/fzf -m --height=20"))
-         (proc   (get-buffer-process buffer)))
-    (set-process-sentinel proc (lambda (proc str)
-                                 (goto-char (point-min))
-                                 (let (files)
-                                   (while (/= (point) (point-max))
-                                     (if-let ((file (thing-at-point 'line)))
-                                         (unless (string= "" (string-trim file))
-                                           (push (expand-file-name (string-trim file))
-                                                 files)))
-                                     (forward-line))
-                                   (when (string= str "finished\n")
-                                     (find-file (car files))
-                                     (mapc #'find-file-other-window (cdr files)))
-                                   (kill-buffer (process-buffer proc)))))
-    (switch-to-buffer buffer)
-    (term-char-mode)))
 
 (defun show-all-buffers ()
   (interactive)
