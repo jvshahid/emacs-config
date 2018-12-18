@@ -38,6 +38,7 @@ export GOPATH=$HOME/codez/gocodez
 export PATH=$PATH:$GOPATH/bin:/home/jvshahid/.cask/bin
 export PATH=$PATH:$HOME/bin/git-crypt/bin
 export PATH=/home/jvshahid/bin/java/bin:/home/jvshahid/bin/eclipse:$PATH
+export PATH=/home/jvshahid/bin/clj/bin:$PATH
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
 export MANPATH=$emacs_installation/share/man:$MANPATH
