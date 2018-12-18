@@ -198,9 +198,7 @@ the command again. CMD is the command to run"
   (add-hook 'magit-mode-hook '(lambda ()
                                 (setq show-trailing-whitespace nil)))
   (setq
-   auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p
-   magit-save-repository-buffers nil
-   magit-revert-item-confirm t))
+   auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p))
 
 ;;; override the default fzf find command
 (global-set-key (kbd "C-x C-p") (lambda ()
