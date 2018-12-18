@@ -375,6 +375,8 @@ ag"
 (global-set-key (kbd "M-.") 'xref-find-references)
 (setq completion-ignore-case t)
 
+(setq vc-handled-backends nil)          ; speed up tramp
+
 (global-auto-revert-mode 1)
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
