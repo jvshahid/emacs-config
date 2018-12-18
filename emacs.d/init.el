@@ -105,7 +105,17 @@ all of which are used by popup-create and slowing it down.
 (advice-add 'ac-menu-create :around #'disable-line-numbers)
 
 (global-set-key (kbd "C-c =") #'helm-show-kill-ring)
+(global-set-key (kbd "M-x") #'helm-M-x)
+(setq helm-locate-fuzzy-match t)
+(setq helm-recentf-fuzzy-match t)
+(setq helm-M-x-fuzzy-match t)
 
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (eshell-cmpl-initialize)
+            (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
+            (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))
+(setq helm-show-completion-display-function nil)
 (with-eval-after-load 'company-lsp
   (setq company-lsp-enable-snippet t
         company-lsp-cache-candidates t))
