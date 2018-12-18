@@ -25,6 +25,7 @@
                               :branch "fix-unaligned-left-margin")) ; pr#116
 (straight-use-package '(debbugs :type git :host github :repo "emacsmirror/debbugs" :files ("*")))
 (straight-use-package 'go-mode)
+(straight-use-package 'eshell-z)
 (straight-use-package 'projectile)
 (straight-use-package 'magit)
 (straight-use-package 'etags-select)
@@ -110,6 +111,7 @@ all of which are used by popup-create and slowing it down.
 (setq helm-recentf-fuzzy-match t)
 (setq helm-M-x-fuzzy-match t)
 
+(autoload 'eshell/z "eshell-z")
 (add-hook 'eshell-mode-hook
           (lambda ()
             (eshell-cmpl-initialize)
