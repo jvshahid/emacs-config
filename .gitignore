@@ -32,3 +32,5 @@ emacs.d/projectile-bookmarks.eld
 
 # go binaries
 /emacs.d/go
+/emacs.d/bookmarks
+/emacs.d/recentf
