@@ -27,6 +27,7 @@
 (straight-use-package 'go-mode)
 (straight-use-package 'eshell-z)
 (straight-use-package 'projectile)
+(straight-use-package '(helm-fzf :type git :host github :repo "ibmandura/helm-fzf"))
 (straight-use-package 'magit)
 (straight-use-package 'etags-select)
 (straight-use-package 'yaml-mode)
@@ -202,9 +203,7 @@ the command again. CMD is the command to run"
    auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p))
 
 ;;; override the default fzf find command
-(global-set-key (kbd "C-x C-p") (lambda ()
-                                  (interactive)
-                                  (helm-locate '(4))))
+(global-set-key (kbd "C-x C-p") 'helm-fzf)
 
 (with-eval-after-load 'flycheck
   (setq flycheck-check-syntax-automatically (quote (save mode-enabled)))
