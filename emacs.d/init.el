@@ -284,10 +284,9 @@ the command again. CMD is the command to run"
 (defun cider-autocomplete-setup ()
   (auto-complete-mode)
   (ac-cider-setup)
-  (local-set-key (kbd "C-c C-j") 'cider-find-var))
+  (define-key cider-mode-map (kbd "M-.") 'auto-complete)
+  (define-key cider-mode-map (kbd "C-c C-j") 'cider-find-dwim))
 (add-hook 'cider-mode-hook 'cider-autocomplete-setup)
-(add-hook 'cider-mode-hook (lambda ()
-                             (define-key cider-mode-map (kbd "C-c M-.") nil)))
 
 (add-hook 'cider-repl-mode-hook 'cider-autocomplete-setup)
 (with-eval-after-load 'auto-complete
