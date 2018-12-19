@@ -110,6 +110,8 @@ all of which are used by popup-create and slowing it down.
 (setq helm-locate-fuzzy-match t)
 (setq helm-recentf-fuzzy-match t)
 (setq helm-M-x-fuzzy-match t)
+(savehist-mode)
+(setq tramp-use-ssh-controlmaster-options nil)
 
 (autoload 'eshell/z "eshell-z")
 (add-hook 'eshell-mode-hook
