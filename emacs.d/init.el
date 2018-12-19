@@ -117,8 +117,7 @@ all of which are used by popup-create and slowing it down.
 (add-hook 'eshell-mode-hook
           (lambda ()
             (eshell-cmpl-initialize)
-            (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
-            (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))
+            (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
 (setq helm-show-completion-display-function nil)
 (with-eval-after-load 'company-lsp
   (setq company-lsp-enable-snippet t
