@@ -970,3 +970,18 @@ the given windows."
  '(markdown-inline-code-face ((t)))
  '(markdown-table-face ((t)))
  '(org-table ((t))))
+
+(defun magit-ci-create (&optional args)
+  "Create a new commit on `HEAD' using `ci'.
+With a prefix argument, amend to the commit at `HEAD' instead.
+\n(git commit [--amend] ARGS)"
+  (interactive (if current-prefix-arg
+                   (list (cons "--amend" (magit-commit-arguments)))
+                 (list (magit-commit-arguments))))
+  (when (member "--all" args)
+    (setq this-command 'magit-commit-all))
+  (when (setq args (magit-commit-assert args))
+    (let ((default-directory (magit-toplevel)))
+      (magit-run-git-with-editor "ci" args))))
+
+(magit-define-popup-action 'magit-commit-popup ?i "Commit using ci" 'magit-ci-create ?c t)
