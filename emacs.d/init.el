@@ -72,6 +72,7 @@
 (load "rust")
 (load "java")
 (load "c")
+(load "pair")
 
 (setq tramp-use-ssh-controlmaster-options nil)
 
