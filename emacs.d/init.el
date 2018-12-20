@@ -61,6 +61,8 @@
 (load "format-on-save")
 (load "helm")
 (load "org")
+(load "tramp-conf")
+
 (load "ruby")
 (load "go")
 (load "elisp")
