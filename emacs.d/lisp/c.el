@@ -1,3 +1,5 @@
+(straight-use-package 'arduino-mode)
+
 (defun c-c++-hook ()
   (subword-mode))
 
