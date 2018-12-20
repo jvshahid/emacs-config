@@ -19,10 +19,6 @@
 
 (setq isearch-yank-on-move t)
 
-(straight-use-package '(popup :type git
-                              :host github
-                              :repo "jvshahid/popup-el"
-                              :branch "fix-unaligned-left-margin")) ; pr#116
 (straight-use-package '(debbugs :type git :host github :repo "emacsmirror/debbugs" :files ("*")))
 (straight-use-package 'eshell-z)
 (straight-use-package 'projectile)
@@ -36,7 +32,6 @@
 (straight-use-package 'dockerfile-mode)
 (straight-use-package 'ace-window)
 (straight-use-package 'flycheck)
-(straight-use-package 'request)
 (straight-use-package 'wgrep)
 (straight-use-package 'flx-ido)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
