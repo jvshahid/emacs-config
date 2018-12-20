@@ -52,7 +52,6 @@
 (global-unset-key (kbd "C-z"))     ;stop suspending the frame on accidental C-z
 
 (push "~/.emacs.d/lisp" load-path)
-(load "lsp")
 (load "navigation")
 (load "exwm")
 (load "email")
@@ -63,6 +62,8 @@
 (load "org")
 (load "tramp-conf")
 
+;; programming modes
+(load "lsp")
 (load "ruby")
 (load "go")
 (load "elisp")
