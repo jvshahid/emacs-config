@@ -76,7 +76,8 @@
 (setq tramp-use-ssh-controlmaster-options nil)
 
 (autoload 'eshell/z "eshell-z")
-
+(add-hook 'eshell-mode-hook (lambda ()
+                              (setq show-trailing-whitespace nil)))
 
 (with-eval-after-load 'yasnippet-snippets
   (yas-reload-all))
