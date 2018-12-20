@@ -15,6 +15,7 @@
             (eshell-cmpl-initialize)
             (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
 
+(setq-default helm-fzf--no-sort nil)
 (autoload 'helm-fzf-project-root "helm-fzf" "Create a new commit on `HEAD' using `ci'.
 With a prefix argument, amend to the commit at `HEAD' instead.
 \n(git commit [--amend] ARGS)")
