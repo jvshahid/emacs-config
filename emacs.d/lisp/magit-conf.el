@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (straight-use-package 'magit)
 (straight-use-package 'git-link)
 

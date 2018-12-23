@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (straight-use-package 'rvm)
 (straight-use-package 'robe)            ;auto completion for ruby
 

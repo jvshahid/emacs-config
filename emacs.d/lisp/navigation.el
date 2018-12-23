@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (autoload 'aw-swap-window "ace-window")
 
 (defun swap-next-window (n)
@@ -30,7 +32,9 @@ the command again. CMD is the command to run"
                        (define-key map key 'repeat)
                        map)))))
 
-(define-repeatable-key (kbd "C-c M-=") (kbd "M-=") (lambda () (enlarge-window 4)))
+(define-repeatable-key (kbd "C-c M-=")
+
+ (kbd "M-=") (lambda () (enlarge-window 4)))
 (define-repeatable-key (kbd "C-c M--") (kbd "M--") (lambda () (shrink-window 4)))
 (define-repeatable-key (kbd "C-c M-.") (kbd "M-.") (lambda () (enlarge-window-horizontally 4)))
 (define-repeatable-key (kbd "C-c M-,") (kbd "M-,") (lambda () (shrink-window-horizontally 4)))

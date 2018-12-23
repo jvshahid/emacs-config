@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun setup-org-keybindings ()
   (local-set-key "\M-p" 'org-metaup)
   (local-set-key "\M-n" 'org-metadown))

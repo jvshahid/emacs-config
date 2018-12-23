@@ -34,3 +34,5 @@ emacs.d/projectile-bookmarks.eld
 /emacs.d/go
 /emacs.d/bookmarks
 /emacs.d/recentf
+eglot-eclipse-jdt-cache/
+/emacs.d/history

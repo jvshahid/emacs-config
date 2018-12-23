@@ -1,9 +1,9 @@
+;;; -*- lexical-binding: t; -*-
+
 (straight-use-package 'rust-mode)
-(straight-use-package 'lsp-rust)
-(autoload 'lsp-rust-enable "lsp-rust" "start lsp support for rust" t)
+
 (add-hook 'rust-mode-hook (lambda ()
-                            (lsp-rust-enable)
-                            (flycheck-mode)
+                            (eglot-ensure)
                             (yas-minor-mode)
                             (auto-complete-mode -1)
                             (company-mode)

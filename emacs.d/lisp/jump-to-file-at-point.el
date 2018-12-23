@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (defun jump-to-file-and-line ()
   (interactive)
   (let ((thing (thing-at-point 'filename)))

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (straight-use-package 'paredit)
 (straight-use-package '(parinfer :type git
                                  :host github

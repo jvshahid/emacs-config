@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (straight-use-package 'helm)
 (straight-use-package '(helm-fzf :type git :host github :repo "ibmandura/helm-fzf"))
 

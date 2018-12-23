@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (straight-use-package 'go-mode)
 (straight-use-package 'go-guru)
 (straight-use-package 'go-eldoc)

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t; -*-
+
 (straight-use-package 'clojure-mode)
 (straight-use-package 'flycheck-clojure)
 (straight-use-package 'cider)

@@ -47,25 +47,25 @@
 
 (push "~/.emacs.d/lisp" load-path)
 (load "navigation")
-(load "exwm")
-(load "email")
-(load "magit")
+(load "exwm-conf")
+(load "email-conf")
+(load "magit-conf")
 (load "jump-to-file-at-point")
 (load "format-on-save")
-(load "helm")
-(load "org")
+(load "helm-conf")
+(load "org-conf")
 (load "tramp-conf")
 
 ;; programming modes
-(load "lsp")
-(load "ruby")
-(load "go")
-(load "elisp")
-(load "clojure")
-(load "rust")
-(load "java")
-(load "c")
-(load "pair")
+(load "prog-lsp")
+(load "prog-ruby")
+(load "prog-go")
+(load "prog-elisp")
+(load "prog-clojure")
+(load "prog-rust")
+(load "prog-java")
+(load "prog-c")
+(load "prog-pair")
 
 (setq tramp-use-ssh-controlmaster-options nil)
 
@@ -83,7 +83,6 @@
 
 (with-eval-after-load 'flycheck
   (setq flycheck-check-syntax-automatically (quote (save mode-enabled))))
-(add-hook 'java-mode-hook 'flycheck-mode)
 
 (setenv "GIT_EDITOR" "emacsclient")
 
@@ -119,9 +118,6 @@
 
 (defun add-yasnippet-to-ac-sources ()
   (push 'ac-source-yasnippet ac-sources))
-
-(add-hook 'java-mode-hook 'yas-minor-mode)
-(add-hook 'java-mode-hook 'subword-mode)
 
 ;;; end of modes
 
@@ -160,8 +156,6 @@ ag"
 
 (global-set-key (kbd "M-.") 'xref-find-references)
 (setq completion-ignore-case t)
-
-(setq vc-handled-backends nil)          ; speed up tramp
 
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
