@@ -8,6 +8,4 @@
 (add-hook 'java-mode-hook (lambda ()
                             (eglot-ensure)
                             (company-mode)
-                            (auto-complete-mode -1)
-                            (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
-                            (local-set-key (kbd "M-.") 'company-complete)))
+                            (local-set-key (kbd "C-c C-j") 'xref-find-definitions)))

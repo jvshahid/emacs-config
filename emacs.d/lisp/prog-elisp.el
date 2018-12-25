@@ -14,7 +14,6 @@
            paredit)))
 
 (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
-(add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
 (add-hook 'emacs-lisp-mode-hook (lambda ()

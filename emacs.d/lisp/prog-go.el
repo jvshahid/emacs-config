@@ -1,9 +1,9 @@
-;;; -*- lexical-binding: t; -*-
+;; -*- lexical-binding: t; -*-
 
 (straight-use-package 'go-mode)
 (straight-use-package 'go-guru)
 (straight-use-package 'go-eldoc)
-(straight-use-package '(go-autocomplete :type git :host github :repo "mdempsky/gocode" :files ("emacs/*")))
+(straight-use-package 'company-go)
 (straight-use-package 'go-rename)
 (straight-use-package '(ginkgo-mode :type git :host github :repo "jvshahid/ginkgo-mode" :branch "minor-fixes"))
 
@@ -18,20 +18,25 @@
 (setenv "CGO_ENABLED" "0")
 
 (with-eval-after-load 'go-mode
+  (require 'company-go)
+  (setq company-go-show-annotation t)
+
   (require 'go-eldoc)
-  (require 'go-autocomplete)
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
+
   (require 'go-rename)
   (require 'go-guru)
+
+  (require 'ginkgo-mode)
+  (add-hook 'go-mode-hook 'ginkgo-mode)
   (setq ginkgo-use-pwd-as-test-dir t)
   (setq ginkgo-use-default-keys t)
-  (require 'ginkgo-mode)
-  (add-hook 'go-mode-hook 'auto-complete-mode)
-  (add-hook 'go-mode-hook 'go-eldoc-setup)
+
   (add-hook 'go-mode-hook 'subword-mode)
   (add-hook 'go-mode-hook 'yas-minor-mode)
   (add-hook 'go-mode-hook 'hs-minor-mode)
-  (add-hook 'go-mode-hook 'ginkgo-mode)
-  (add-hook 'go-mode-hook #'add-yasnippet-to-ac-sources))
+  (add-hook 'go-mode-hook (lambda ()
+                            (setq-local company-backends '(company-go)))))
 
 (defun setup-gopath ()
   (when (and (eq (current-buffer) (window-buffer)) ; filter temp buffer events

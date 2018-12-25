@@ -3,8 +3,8 @@
 (straight-use-package 'rvm)
 (straight-use-package 'robe)            ;auto completion for ruby
 
-(with-eval-after-load 'robe
-  (add-hook 'robe-mode-hook 'ac-robe-setup))
+(eval-after-load 'robe
+  '(push 'company-robe company-backends))
 
 (add-to-list 'hs-special-modes-alist
               `(ruby-mode
@@ -17,7 +17,6 @@
                             (hs-minor-mode)
                             (robe-mode)
                             (flycheck-mode)
-                            (setq ac-auto-start nil)
                             (define-key robe-mode-map (kbd "M-.") nil)
                             (local-set-key (kbd "M-.") 'company-complete)
                             (local-set-key (kbd "C-c C-j") 'robe-jump)))

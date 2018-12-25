@@ -26,7 +26,6 @@
 (straight-use-package 'yaml-mode)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'protobuf-mode)
-(straight-use-package 'auto-complete)
 (straight-use-package 'yasnippet)
 (straight-use-package 'yasnippet-snippets)
 (straight-use-package 'dockerfile-mode)
@@ -57,6 +56,7 @@
 (load "tramp-conf")
 
 ;; programming modes
+(load "prog-autocomplete")
 (load "prog-lsp")
 (load "prog-ruby")
 (load "prog-go")
@@ -293,6 +293,11 @@ If DELTA was provided it will be added to the current line's indentation."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((((type x)) :slant normal :foreground "#919ba5" :weight normal :height 130 :width normal :family "Ubuntu Mono" :foundry "unknown")))
+ '(company-template-field ((t (:inherit region))))
+ '(company-tooltip ((t (:background "lightgrey" :foreground "black"))))
+ '(company-tooltip-annotation ((t (:inherit copmany-tooltip))))
+ '(company-tooltip-annotation-selection ((t (:inherit company-tooltip-selection))))
+ '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
  '(font-lock-constant-face ((t)))
  '(font-lock-keyword-face ((t :foreground "#90c958")))
  '(ido-first-match ((t :foreground "yellow4" :weight bold)))
