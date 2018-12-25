@@ -17,8 +17,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(setq isearch-yank-on-move t)
-
 (straight-use-package '(debbugs :type git :host github :repo "emacsmirror/debbugs" :files ("*")))
 (straight-use-package 'eshell-z)
 (straight-use-package 'projectile)
@@ -38,6 +36,8 @@
 
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 
+(setq completion-ignore-case t)
+(setq isearch-yank-on-move t)
 (display-time)
 (savehist-mode)
 (global-auto-revert-mode)
@@ -170,7 +170,7 @@ ag"
  '(blink-cursor-mode nil)
  '(browse-url-browser-function 'browse-url-generic)
  '(browse-url-generic-program "xdg-open")
- '(c-basic-offset 2)
+ '(c-basic-offset 4)
  '(c-default-style '((java-mode . "java") (awk-mode . "awk") (other . "gnu")))
  '(column-number-mode t)
  '(column-number-more t)
@@ -193,7 +193,9 @@ ag"
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
  '(safe-local-variable-values
-   '((flycheck-rust-crate-type)
+   '((eglot-workspace-configuration
+      (goto_def_racer_fallback . t))
+     (flycheck-rust-crate-type)
      (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(sc-auto-fill-region-p nil)
  '(sc-citation-leader "")
