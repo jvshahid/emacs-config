@@ -73,6 +73,10 @@
     (interactive)
     (start-process "raise-audio-volume" nil "amixer" "-q" "sset" "Master" "5%+"))
 
+  (defun lock-screen ()
+    (interactive)
+    (start-process "lock-screen" nil "xset" "s" "activate"))
+
   (defun lower-audio-volume ()
     (interactive)
     (start-process "raise-audio-volume" nil "amixer" "-q" "sset" "Master" "5%-"))
@@ -80,5 +84,6 @@
   (global-set-key (kbd "<XF86AudioMute>") #'toggle-audio-mute)
   (global-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
   (global-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
-  (global-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume))
+  (global-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume)
+  (global-set-key (kbd "C-s-l") #'lock-screen))
 
