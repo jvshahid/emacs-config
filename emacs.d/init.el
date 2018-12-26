@@ -18,7 +18,6 @@
   (load bootstrap-file nil 'nomessage))
 
 (straight-use-package '(debbugs :type git :host github :repo "emacsmirror/debbugs" :files ("*")))
-(straight-use-package 'eshell-z)
 (straight-use-package 'projectile)
 (straight-use-package 'etags-select)
 (straight-use-package 'yaml-mode)
@@ -54,6 +53,7 @@
 (load "helm-conf")
 (load "org-conf")
 (load "tramp-conf")
+(load "term-conf")
 
 ;; programming modes
 (load "prog-autocomplete")
@@ -68,10 +68,6 @@
 (load "prog-pair")
 
 (setq tramp-use-ssh-controlmaster-options nil)
-
-(autoload 'eshell/z "eshell-z")
-(add-hook 'eshell-mode-hook (lambda ()
-                              (setq show-trailing-whitespace nil)))
 
 (with-eval-after-load 'yasnippet-snippets
   (yas-reload-all))
