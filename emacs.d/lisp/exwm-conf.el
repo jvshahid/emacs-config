@@ -57,10 +57,6 @@
                "xrandr" nil "xrandr --output HDMI1 --above LVDS1 --auto")))
   (exwm-randr-enable)
 
-  (exwm-input-set-key (kbd "<XF86AudioMute>") #'toggle-audio-mute)
-  (exwm-input-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
-  (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
-  (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume)
   (defun toggle-mic-mute ()
     (interactive)
     (start-process "toggle-audio-mute" nil "amixer" "set" "Capture" "toggle"))
@@ -80,6 +76,13 @@
   (defun lower-audio-volume ()
     (interactive)
     (start-process "raise-audio-volume" nil "amixer" "-q" "sset" "Master" "5%-"))
+
+
+  (exwm-input-set-key (kbd "<XF86AudioMute>") #'toggle-audio-mute)
+  (exwm-input-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
+  (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
+  (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume)
+  (exwm-input-set-key (kbd "C-s-l") #'lock-screen)
 
   (global-set-key (kbd "<XF86AudioMute>") #'toggle-audio-mute)
   (global-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)

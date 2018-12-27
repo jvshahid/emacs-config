@@ -8,6 +8,7 @@
 (setq helm-locate-fuzzy-match t)
 (setq helm-recentf-fuzzy-match t)
 (setq helm-M-x-fuzzy-match t)
+(setq helm-exit-idle-delay 0)
 
 ;; stop using a new frame for helm completion
 (setq helm-show-completion-display-function nil)
