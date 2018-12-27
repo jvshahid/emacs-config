@@ -9,4 +9,5 @@
                             (eglot-ensure)
                             (company-mode)
                             (yas-minor-mode)
+                            (setq-local company-idle-delay 0.5)
                             (local-set-key (kbd "C-c C-j") 'xref-find-definitions)))
