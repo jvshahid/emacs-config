@@ -8,4 +8,5 @@
 (add-hook 'java-mode-hook (lambda ()
                             (eglot-ensure)
                             (company-mode)
+                            (yas-minor-mode)
                             (local-set-key (kbd "C-c C-j") 'xref-find-definitions)))
