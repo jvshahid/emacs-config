@@ -10,11 +10,6 @@
 (setq helm-M-x-fuzzy-match t)
 (setq helm-exit-idle-delay 0)
 
-(define-key helm-map (kbd "M-n") 'helm-next-line)
-(define-key helm-map (kbd "M-p") 'helm-previous-line)
-(define-key helm-map (kbd "C-n") nil)
-(define-key helm-map (kbd "C-p") nil)
-
 ;; stop using a new frame for helm completion
 (setq helm-show-completion-display-function nil)
 
