@@ -19,25 +19,41 @@
 (global-set-key (kbd "C-c ]") 'swap-next-window)
 (global-set-key (kbd "C-c [") 'swap-previous-window)
 
-(defun define-repeatable-key (keyseq key cmd)
-  "define a repeatable key sequence. KEYSEQ is the initial key
-sequence invoking the command. KEY is the key sequence to invoke
-the command again. CMD is the command to run"
-  (global-set-key keyseq
-                  (lambda ()
-                    (interactive)
-                    (funcall cmd)
-                    (set-transient-map
-                     (let ((map (make-sparse-keymap)))
-                       (define-key map key 'repeat)
-                       map)))))
+(defun shahid/resize-window (inc)
+  "Adjust the dimensions of window by INC.
 
-(define-repeatable-key (kbd "C-c M-=")
+INC may be passed as a numeric prefix argument.
 
- (kbd "M-=") (lambda () (enlarge-window 4)))
-(define-repeatable-key (kbd "C-c M--") (kbd "M--") (lambda () (shrink-window 4)))
-(define-repeatable-key (kbd "C-c M-.") (kbd "M-.") (lambda () (enlarge-window-horizontally 4)))
-(define-repeatable-key (kbd "C-c M-,") (kbd "M-,") (lambda () (shrink-window-horizontally 4)))
+The actual adjustment made depends on the final component of the
+key-binding used to invoke the command, with all modifiers
+removed:
+
+    >,. Enlarges the current window horizontally
+    <,, Shrinks the current window horizontally
+    =   Enlarges the current window vertically
+    -   Shrinks the current window vertically
+
+After adjusting, continue to read input events and further adjust
+the dimenstions, where the event is one of the above characters.
+"
+  (interactive "p")
+  (let ((event (event-basic-type last-input-event)))
+    (cond
+     ((= event ?=) (enlarge-window inc))
+     ((= event ?-) (shrink-window inc))
+     ((= event ?.) (enlarge-window-horizontally inc))
+     ((= event ?,) (shrink-window-horizontally inc)))
+    (set-transient-map
+     (let ((map (make-sparse-keymap)))
+       (dolist (key '("=" "-" "." ","))
+         (define-key
+           map
+           (kbd (concat "M-" key))
+           (lambda () (interactive) (shahid/resize-window inc))))
+       map))))
+
+(dolist (key '("=" "-" "." ","))
+  (global-set-key (kbd (concat "C-c M-" key)) 'shahid/resize-window))
 
 (winner-mode)
 (global-set-key (kbd "C-c \\") 'split-window-horizontally)
