@@ -18,17 +18,13 @@
 (setenv "CGO_ENABLED" "0")
 
 (with-eval-after-load 'go-mode
-  (require 'company-go)
   (setq company-go-show-annotation t)
 
-  (require 'go-eldoc)
   (add-hook 'go-mode-hook 'go-eldoc-setup)
-
-  (require 'go-rename)
-  (require 'go-guru)
 
   (require 'ginkgo-mode)
   (add-hook 'go-mode-hook 'ginkgo-mode)
+
   (setq ginkgo-use-pwd-as-test-dir t)
   (setq ginkgo-use-default-keys t)
 
