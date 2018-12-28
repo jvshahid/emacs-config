@@ -8,5 +8,5 @@
                             (yas-minor-mode)
                             (company-mode)
                             (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
-                            (local-set-key (kbd "M-.") 'company-complete)))
+                            (local-set-key (kbd "C-.") 'company-complete)))
 

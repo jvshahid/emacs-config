@@ -150,7 +150,7 @@ ag"
 ;; assign a key to find-grep-current-word
 (global-set-key (kbd "C-c C-g") 'find-grep-current-word)
 
-(global-set-key (kbd "M-.") 'xref-find-references)
+(global-set-key (kbd "M-.") 'xref-find-definitions)
 (setq completion-ignore-case t)
 
 (global-set-key "\C-c\C-w" 'backward-kill-word)

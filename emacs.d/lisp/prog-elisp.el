@@ -16,8 +16,6 @@
 (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
                                   (local-set-key (kbd "C-x p") 'parinfer-toggle-mode)))
-(add-hook 'emacs-lisp-mode-hook (lambda ()
-                                  (local-set-key (kbd "C-c C-j") 'xref-find-definitions)))
 
 (defun replace-last-sexp ()
   (interactive)

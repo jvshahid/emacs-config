@@ -16,7 +16,7 @@
                                  (local-set-key (kbd "C-c C-r") 'projectile-toggle-between-implementation-and-test))))
 
 (defun cider-autocomplete-setup ()
-  (define-key cider-mode-map (kbd "M-.") 'company-complete)
+  (define-key cider-mode-map (kbd "C-.") 'company-complete)
   (define-key cider-mode-map (kbd "C-c C-j") 'cider-find-dwim))
 
 (add-hook 'cider-mode-hook 'cider-autocomplete-setup)

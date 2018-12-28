@@ -17,8 +17,7 @@
                             (hs-minor-mode)
                             (robe-mode)
                             (flycheck-mode)
-                            (define-key robe-mode-map (kbd "M-.") nil)
-                            (local-set-key (kbd "M-.") 'company-complete)
+                            (local-set-key (kbd "C-.") 'company-complete)
                             (local-set-key (kbd "C-c C-j") 'robe-jump)))
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
