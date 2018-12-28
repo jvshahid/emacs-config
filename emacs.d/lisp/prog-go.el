@@ -28,6 +28,10 @@
   (setq ginkgo-use-pwd-as-test-dir t)
   (setq ginkgo-use-default-keys t)
 
+  (define-key go-mode-map (kbd "M-.") 'godef-jump)
+  (define-key go-mode-map (kbd "C-x 4 .") 'godef-jump-other-window)
+  (define-key go-mode-map (kbd "M-?") 'go-guru-referrers)
+
   (add-hook 'go-mode-hook 'subword-mode)
   (add-hook 'go-mode-hook 'yas-minor-mode)
   (add-hook 'go-mode-hook 'hs-minor-mode)
