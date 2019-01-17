@@ -13,4 +13,4 @@
   (define-key company-active-map (kbd "M-w") 'company-show-location)
   (delete 'company-eclim company-backends)
   (add-hook 'company-mode-hook (lambda ()
-                                 (local-set-key (kbd "C-.") 'company-complete))))
+                                 (local-set-key (kbd "C-M-i") 'company-complete))))
