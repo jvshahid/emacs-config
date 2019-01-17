@@ -2,7 +2,16 @@
 
 ;; configuration for term and eshell
 
+(require 'cl)
+
+(setq term-buffer-maximum-size 0)
+(defun rebind-window-text-height (orig-func &rest args)
+  (flet ((window-text-height () (floor (window-screen-lines))))
+    (apply orig-func args)))
+(advice-add 'term-mode :around #'rebind-window-text-height)
 (add-hook 'term-mode-hook (lambda ()
+                            ;; fix C-c non-prefix error when eshell runs visual commands
+                            (term-set-escape-char ?\C-c)
                             (define-key term-raw-map (kbd "C-/") (lambda ()
                                                                    (interactive)
                                                                    (term-send-raw-string (kbd "C-_"))))
@@ -23,3 +32,6 @@
                               (company-mode -1)
                               (setq show-trailing-whitespace nil)))
 
+(with-eval-after-load 'em-term
+  (add-to-list 'eshell-visual-commands "dstat")
+  (add-to-list 'eshell-visual-options '("nmcli" "--ask")))
