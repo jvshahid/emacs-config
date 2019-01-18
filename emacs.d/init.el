@@ -31,8 +31,6 @@
 (straight-use-package 'wgrep)
 (straight-use-package 'flx-ido)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
-(straight-use-package '(pianobar :type git :host github :repo "agrif/pianobar.el"))
-
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 
 (setq completion-ignore-case t)
@@ -54,6 +52,7 @@
 (load "conf-org")
 (load "conf-tramp")
 (load "conf-term")
+(load "conf-media")
 
 ;; programming modes
 (load "prog-autocomplete")
@@ -98,15 +97,6 @@
   (add-hook 'gfm-mode-hook 'setup-org-keybindings)
   (setq-default markdown-command "~/bin/flavor"))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
-
-(defun remove-pianobar-mode ()
-  (setq mode-line-modes (delete pianobar-modeline-object mode-line-modes)))
-
-(with-eval-after-load 'pianobar
-  (setq pianobar-command "~/codez/pianobar/pianobar")
-  (add-hook 'pianobar-mode-hook (lambda ()
-                                  (add-hook 'kill-buffer-hook
-                                            #'remove-pianobar-mode))))
 
 (with-eval-after-load 'arduino-mode
   (add-hook 'arduino-mode-hook
