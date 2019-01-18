@@ -45,15 +45,15 @@
 
 (push "~/.emacs.d/lisp" load-path)
 (load "navigation")
-(load "exwm-conf")
-(load "email-conf")
-(load "magit-conf")
+(load "conf-exwm")
+(load "conf-email")
+(load "conf-magit")
 (load "jump-to-file-at-point")
 (load "format-on-save")
-(load "helm-conf")
-(load "org-conf")
-(load "tramp-conf")
-(load "term-conf")
+(load "conf-helm")
+(load "conf-org")
+(load "conf-tramp")
+(load "conf-term")
 
 ;; programming modes
 (load "prog-autocomplete")

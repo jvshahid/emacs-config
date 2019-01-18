@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-install_package gcc autoconf make gtk3 pkg-config git libtiff libxpm giflib libjpeg-turbo
+install_package gcc autoconf make gtk3 pkg-config git libtiff libxpm giflib libjpeg-turbo libmagick
 
 [ ! -d ~/codez/emacs ] && git clone https://github.com/emacs-mirror/emacs.git ~/codez/emacs
 
