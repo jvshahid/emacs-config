@@ -38,20 +38,6 @@
   (add-hook 'go-mode-hook (lambda ()
                             (setq-local company-backends '(company-go)))))
 
-(defun setup-gopath ()
-  (when (and (eq (current-buffer) (window-buffer)) ; filter temp buffer events
-             (equal major-mode 'go-mode)
-             ;; ensure the buffer has a backing file
-             buffer-file-name)
-    (unless (boundp 'gopath)
-      (setq-local gopath  nil)          ;prevent recursive calls
-      (when-let ((root (locate-dominating-file buffer-file-name ".envrc")))
-        (setq-local gopath (expand-file-name root))))
-    (save-match-data
-      (setenv "GOPATH" gopath))))
-
-(add-hook 'buffer-list-update-hook #'setup-gopath)
-
 (defun add-to-path (path)
   (let ((path (substitute-env-vars path)))
     (setq exec-path (cons path exec-path))

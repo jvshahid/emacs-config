@@ -32,6 +32,12 @@
 (straight-use-package 'flx-ido)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
+(straight-use-package 'direnv)
+
+(direnv-mode)
+(with-eval-after-load 'direnv
+  (setq direnv-always-show-summary nil
+        direnv-non-file-modes '(eshell-mode)))
 
 (setq completion-ignore-case t)
 (setq isearch-yank-on-move t)
