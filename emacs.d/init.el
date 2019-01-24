@@ -144,9 +144,8 @@ ag"
          (prompt (if ignore-case "search for (ignore case): " "search for: "))
          (word (read-string prompt (current-word)))
          (directory (read-directory-name "in: " default-directory)))
-    (when (tramp-tramp-file-p directory)
-      (setq directory (tramp-file-name-localname (tramp-dissect-file-name directory))))
-    (grep-find (concat grep-cmd extra-arg (shell-quote-argument word) " " directory))))
+    (let ((default-directory directory))
+      (grep-find (concat grep-cmd extra-arg (shell-quote-argument word))))))
 
 ;; assign a key to find-grep-current-word
 (global-set-key (kbd "C-c C-g") 'find-grep-current-word)
@@ -207,6 +206,7 @@ ag"
  '(tags-case-fold-search t)
  '(tool-bar-mode nil)
  '(truncate-partial-width-windows nil)
+ '(wgrep-auto-save-buffer t)
  '(windmove-wrap-around t)
  '(yank-excluded-properties t))
 
