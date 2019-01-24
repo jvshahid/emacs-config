@@ -34,6 +34,10 @@
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 (straight-use-package 'direnv)
 
+;; setup projectile caching
+(setq projectile-enable-caching t)
+(projectile-mode)
+
 (direnv-mode)
 (with-eval-after-load 'direnv
   (setq direnv-always-show-summary nil

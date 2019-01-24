@@ -29,6 +29,13 @@ straight/
 # emacs
 emacs.d/games/
 emacs.d/projectile-bookmarks.eld
+emacs.d/lisp/*.elc
+
+# emms
+emacs.d/emms
+
+# projectile cache
+emacs.d/projectile.cache
 
 # go binaries
 /emacs.d/go

@@ -35,3 +35,8 @@
 (with-eval-after-load 'em-term
   (add-to-list 'eshell-visual-commands "dstat")
   (add-to-list 'eshell-visual-options '("nmcli" "--ask")))
+
+(add-hook 'eshell-mode-hook
+          (lambda ()
+            (eshell-cmpl-initialize)
+            (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
