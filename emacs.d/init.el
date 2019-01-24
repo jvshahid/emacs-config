@@ -56,7 +56,6 @@
 (load "conf-exwm")
 (load "conf-email")
 (load "conf-magit")
-(load "jump-to-file-at-point")
 (load "format-on-save")
 (load "conf-helm")
 (load "conf-org")
@@ -145,10 +144,14 @@ ag"
          (prompt (if ignore-case "search for (ignore case): " "search for: "))
          (word (read-string prompt (current-word)))
          (directory (read-directory-name "in: " default-directory)))
+    (when (tramp-tramp-file-p directory)
+      (setq directory (tramp-file-name-localname (tramp-dissect-file-name directory))))
     (grep-find (concat grep-cmd extra-arg (shell-quote-argument word) " " directory))))
 
 ;; assign a key to find-grep-current-word
 (global-set-key (kbd "C-c C-g") 'find-grep-current-word)
+
+(global-set-key (kbd "C-x 4 j") #'find-file-at-point)
 
 (global-set-key (kbd "M-.") 'xref-find-definitions)
 (setq completion-ignore-case t)
