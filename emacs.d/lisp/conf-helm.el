@@ -11,6 +11,7 @@
 ;; helm fuzzy matching
 (setq helm-locate-fuzzy-match t)
 (setq helm-recentf-fuzzy-match t)
+(setq helm-buffers-fuzzy-matching t)
 (setq helm-M-x-fuzzy-match t)
 (setq helm-mode-fuzzy-match t)
 (setq helm-completion-in-region-fuzzy-match t)
@@ -20,3 +21,4 @@
 
 ;;; override the default fzf find command
 (global-set-key (kbd "C-x C-p") 'helm-projectile-find-file)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
