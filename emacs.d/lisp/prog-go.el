@@ -17,16 +17,15 @@
 ;; missing while flychecking a buffer
 (setenv "CGO_ENABLED" "0")
 
-(with-eval-after-load 'go-mode
-  (setq company-go-show-annotation t)
+(setq ginkgo-use-default-keys t)
+(setq ginkgo-use-pwd-as-test-dir t)
+(setq company-go-show-annotation t)
 
+(with-eval-after-load 'go-mode
   (add-hook 'go-mode-hook 'go-eldoc-setup)
 
   (require 'ginkgo-mode)
   (add-hook 'go-mode-hook 'ginkgo-mode)
-
-  (setq ginkgo-use-pwd-as-test-dir t)
-  (setq ginkgo-use-default-keys t)
 
   (define-key go-mode-map (kbd "M-.") 'godef-jump)
   (define-key go-mode-map (kbd "C-x 4 .") 'godef-jump-other-window)
