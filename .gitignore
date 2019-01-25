@@ -15,7 +15,8 @@ remote_file/
 emacs.d/ido.last
 
 # shell history
-emacs.d/eshell/
+emacs.d/eshell/lastdir
+emacs.d/eshell/history
 
 # url cookies
 emacs.d/url/

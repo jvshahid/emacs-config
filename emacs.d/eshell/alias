@@ -1,0 +1,3 @@
+alias rr cd ${magit-toplevel}
+alias ll ls -l $*
+alias ff find-file-other-window $1
