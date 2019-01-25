@@ -75,6 +75,8 @@
 (load "prog-c")
 (load "prog-pair")
 
+(auto-save-visited-mode)
+
 (setq tramp-use-ssh-controlmaster-options nil)
 
 (with-eval-after-load 'yasnippet-snippets
