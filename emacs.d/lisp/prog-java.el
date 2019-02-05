@@ -3,7 +3,7 @@
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'subword-mode)
 
-(setenv "CLASSPATH" "/home/jvshahid/bin/lsp-java/plugins/org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar")
+(setenv "CLASSPATH" "/home/jvshahid/codez/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar")
 
 (add-hook 'java-mode-hook (lambda ()
                             (eglot-ensure)
