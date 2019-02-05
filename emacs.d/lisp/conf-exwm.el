@@ -49,12 +49,12 @@
         exwm-workspace-switch-create-limit 0)
 
   (require 'exwm-randr)
-  (setq exwm-randr-workspace-output-plist '(0 "DP1"))
+  (setq exwm-randr-workspace-output-plist '(0 "DP-1"))
   (add-hook 'exwm-randr-screen-change-hook
             (lambda ()
               (start-process-shell-command
                ;; xrandr --output <something> --same-as <other-thing> for mirroring
-               "xrandr" nil "xrandr --output DP1 --above LVDS1 --auto")))
+               "xrandr" nil "xrandr --output DP-1 --above LVDS-1 --auto")))
   (exwm-randr-enable)
 
   (defun toggle-mic-mute ()

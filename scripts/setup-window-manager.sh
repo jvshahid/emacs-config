@@ -7,7 +7,6 @@ packages=(
     lightdm
     lightdm-gtk-greeter
     xf86-input-synaptics
-    xf86-video-intel
     xorg-server
     xorg-xhost
     xorg-xhost
