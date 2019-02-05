@@ -3,6 +3,7 @@
 (straight-use-package 'helm)
 (straight-use-package 'helm-projectile)
 (require 'helm-projectile)
+(require 'helm-config)
 
 (global-set-key (kbd "C-c =") #'helm-show-kill-ring)
 (global-set-key (kbd "M-x") #'helm-M-x)
