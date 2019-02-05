@@ -49,6 +49,7 @@
 (savehist-mode)
 (global-auto-revert-mode)
 (global-unset-key (kbd "C-z"))     ;stop suspending the frame on accidental C-z
+(global-unset-key (kbd "C-x C-z")) ;stop suspending the frame on accidental C-x C-z
 (setq-default inhibit-startup-screen t)
 
 (push "~/.emacs.d/lisp" load-path)
