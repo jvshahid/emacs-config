@@ -182,6 +182,7 @@ ag"
  '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(electric-indent-mode nil)
  '(erc-user-full-name "John Shahid")
+ '(eshell-cmpl-ignore-case t)
  '(etags-select-use-short-name-completion t)
  '(fill-column 79)
  '(global-font-lock-mode nil)
