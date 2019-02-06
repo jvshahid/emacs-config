@@ -74,6 +74,7 @@
 (load "prog-rust")
 (load "prog-java")
 (load "prog-c")
+(load "prog-terraform")
 (load "prog-pair")
 
 (auto-save-visited-mode)
