@@ -11,7 +11,8 @@
         '(defaults
            pretty-parens
            smart-tab
-           paredit)))
+           paredit))
+  (define-key parinfer-mode-map (kbd "C-x p") 'parinfer-toggle-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 (add-hook 'emacs-lisp-mode-hook (lambda ()
