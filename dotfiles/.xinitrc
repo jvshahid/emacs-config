@@ -22,7 +22,9 @@ xrdb -merge ~/.Xresources
 
 xss-lock -l -- i3lock -c 000000 --nofork & # automatically run screensave on resume
 
-xset m 3 0
+# don't do that anymore.  let's stick with the default, my fingers are stressed
+# not sure why ?
+# xset m 3 0
 
 # Start Emacs
 # exec dbus-launch --exit-with-session emacs
