@@ -40,8 +40,12 @@
 
 (direnv-mode)
 (with-eval-after-load 'direnv
-  (setq direnv-always-show-summary nil
+  (setq direnv-always-show-summary t
         direnv-non-file-modes '(eshell-mode)))
+
+(defun shahid/bind-global-key (key func)
+  (global-set-key (kbd key) func)
+  (exwm-input-set-key (kbd key) func))
 
 (setq completion-ignore-case t)
 (setq isearch-yank-on-move t)

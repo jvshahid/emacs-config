@@ -77,16 +77,9 @@
     (interactive)
     (start-process "raise-audio-volume" nil "amixer" "-q" "sset" "Master" "5%-"))
 
-
-  (exwm-input-set-key (kbd "<XF86AudioMute>") #'toggle-audio-mute)
-  (exwm-input-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
-  (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
-  (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume)
-  (exwm-input-set-key (kbd "C-s-l") #'lock-screen)
-
-  (global-set-key (kbd "<XF86AudioMute>") #'toggle-audio-mute)
-  (global-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
-  (global-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
-  (global-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume)
-  (global-set-key (kbd "C-s-l") #'lock-screen))
+  (shahid/bind-global-key "<XF86AudioMute>" #'toggle-audio-mute)
+  (shahid/bind-global-key "<XF86AudioMicMute>" #'toggle-mic-mute)
+  (shahid/bind-global-key "<XF86AudioLowerVolume>" #'lower-audio-volume)
+  (shahid/bind-global-key "<XF86AudioRaiseVolume>" #'raise-audio-volume)
+  (shahid/bind-global-key "C-s-l" #'lock-screen))
 

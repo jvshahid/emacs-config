@@ -6,6 +6,8 @@
 ;; prevent mu4e update messages
 (setq mu4e-hide-index-messages t)
 
+(shahid/bind-global-key "s-m" #'mu4e)
+
 ;; keep email details separately in an encrypted file.  Ignore errors if the
 ;; file is encrypted
 (ignore-errors
