@@ -12,18 +12,14 @@
                                 (setq show-trailing-whitespace nil)))
   (setq
    auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p)
-  (magit-define-popup-action 'magit-commit-popup ?i "Commit using ci" 'magit-ci-create ?c t))
 
-(defun magit-ci-create (&optional args)
-  "Create a new commit on `HEAD' using `ci'.
-With a prefix argument, amend to the commit at `HEAD' instead.
-\n(git commit [--amend] ARGS)"
-  (interactive (if current-prefix-arg
-                   (list (cons "--amend" (magit-commit-arguments)))
-                 (list (magit-commit-arguments))))
-  (when (member "--all" args)
-    (setq this-command 'magit-commit-all))
-  (when (setq args (magit-commit-assert args))
-    (let ((default-directory (magit-toplevel)))
-      (magit-run-git-with-editor "ci" args))))
+  (defun shahid/magit-replace-command (args)
+    (message "called with: %S " args)
+    (pcase-let ((`(,cmd . ,args) args))
+      (cond
+       ((string-equal cmd "commit") (cons "ci" args))
+       (t (cons cmd args)))))
 
+  (advice-add #'magit-run-git-with-editor
+              :filter-args
+              #'shahid/magit-replace-command))
