@@ -21,4 +21,6 @@ systemctl enable NetworkManager
 
 ./setup-time-sync.sh
 
+./setup-trackpoint-speed.sh
+
 su jvshahid ./install-all.sh
