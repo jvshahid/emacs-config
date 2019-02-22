@@ -17,7 +17,8 @@ With prefix argument, switch to default-directory"
     (if (eq (current-buffer) curbuf)
         ;; user was in eshell already, bury buffer
         (bury-buffer)
-      (when arg
+      (when (and arg
+                 (not (string-equal default-directory dir)))
         (eshell/cd dir)
         (eshell-reset)))))
 
