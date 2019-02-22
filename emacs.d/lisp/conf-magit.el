@@ -21,7 +21,7 @@ customizable variables for the commands to use.  Currently this
 function only replaces `commit' with `ci' which is the my local
 alias for git-duet-commit."
     (pcase args
-      (`("commit" . ,args) (cons "ci" args))
+      (`("commit" . ,rest) (cons "ci" rest))
       (_ args)))
 
   (advice-add #'magit-run-git-with-editor
