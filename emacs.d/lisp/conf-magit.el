@@ -14,11 +14,15 @@
    auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p)
 
   (defun shahid/magit-replace-command (args)
-    (message "called with: %S " args)
-    (pcase-let ((`(,cmd . ,args) args))
-      (cond
-       ((string-equal cmd "commit") (cons "ci" args))
-       (t (cons cmd args)))))
+    "Replaces git first arguments.
+
+To work around the limitation that magit doesn't have
+customizable variables for the commands to use.  Currently this
+function only replaces `commit' with `ci' which is the my local
+alias for git-duet-commit."
+    (pcase args
+      (`("commit" . ,args) (cons "ci" args))
+      (_ args)))
 
   (advice-add #'magit-run-git-with-editor
               :filter-args
