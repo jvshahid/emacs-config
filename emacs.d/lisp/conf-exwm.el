@@ -77,6 +77,19 @@
     (interactive)
     (start-process "raise-audio-volume" nil "amixer" "-q" "sset" "Master" "5%-"))
 
+  (defun shahid/swap-monitors ()
+    (interactive)
+    (let ((new-pos (mod (1+ exwm-workspace-current-index) 2)))
+      (exwm-workspace-move exwm-workspace--current new-pos)))
+
+  (defun shahid/window-swap-monitors ()
+    (interactive)
+    (let ((new-pos (mod (1+ exwm-workspace-current-index) 2)))
+      (exwm-workspace-move-window new-pos)))
+
+  (shahid/bind-global-key "s-s" #'shahid/swap-monitors)
+  (shahid/bind-global-key "s-w" #'shahid/window-swap-monitors)
+
   (shahid/bind-global-key "<XF86AudioMute>" #'toggle-audio-mute)
   (shahid/bind-global-key "<XF86AudioMicMute>" #'toggle-mic-mute)
   (shahid/bind-global-key "<XF86AudioLowerVolume>" #'lower-audio-volume)
