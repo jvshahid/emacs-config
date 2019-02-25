@@ -4,25 +4,25 @@
 
 (require 'cl)
 
-;; inspired by poyarzun's
-;; https://github.com/Logiraptor/dotfiles/blob/1e5e21471ebc97895e3bcc9d2681dbc653981d33/.emacs.d/lisp/custom-visuals.el#L41-L50
-(defun shahid/eshell-show-hide (&optional arg)
+;; use inhibit-same-window for eshell buffers
+;; inhibit-same-window
+(add-to-list 'display-buffer-alist
+             '("\\*eshell.*" display-buffer-reuse-window (inhibit-same-window . t)))
+
+
+(defun shahid/eshell-and-switch-dir (&optional arg)
   "Pop the eshell buffer.
 
 With prefix argument, switch to default-directory"
   (interactive "P")
-  (let ((curbuf (current-buffer))
-        (dir default-directory)
-        (buf (eshell)))
-    (if (eq (current-buffer) curbuf)
-        ;; user was in eshell already, bury buffer
-        (bury-buffer)
-      (when (and arg
-                 (not (string-equal default-directory dir)))
-        (eshell/cd dir)
-        (eshell-reset)))))
+  (let ((dir default-directory))
+    (eshell arg)
+    (when (not (string-equal default-directory dir))
+      (eshell/cd dir)
+      (eshell-reset))))
 
-(shahid/bind-global-key "s-e" #'shahid/eshell-show-hide)
+(shahid/bind-global-key "s-e" #'eshell)
+(shahid/bind-global-key "s-M-e" #'shahid/eshell-and-switch-dir)
 
 (setq term-buffer-maximum-size 0)
 (defun rebind-window-text-height (orig-func &rest args)
