@@ -30,5 +30,3 @@
 ;;; override the default fzf find command
 (global-set-key (kbd "C-x C-p") 'helm-projectile-find-file)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-
-(helm-mode)
