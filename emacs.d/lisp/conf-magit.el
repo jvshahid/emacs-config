@@ -27,3 +27,7 @@ alias for git-duet-commit."
   (advice-add #'magit-run-git-with-editor
               :filter-args
               #'shahid/magit-replace-command))
+
+(add-to-list 'display-buffer-alist
+             '("^magit: .*" (display-buffer-reuse-window
+                             display-buffer-same-window)))
