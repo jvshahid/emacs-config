@@ -4,6 +4,7 @@ source ./helpers.sh
 
 packages=(
     i3lock
+    unclutter
     lightdm
     lightdm-gtk-greeter
     xf86-input-synaptics

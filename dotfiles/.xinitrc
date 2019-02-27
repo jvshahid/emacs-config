@@ -20,6 +20,8 @@ dropbox-cli start
 
 xrdb -merge ~/.Xresources
 
+unclutter &
+
 xss-lock -l -- i3lock -c 000000 --nofork & # automatically run screensave on resume
 
 # Start Emacs
