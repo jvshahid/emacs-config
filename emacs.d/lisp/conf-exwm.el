@@ -80,12 +80,18 @@
   (defun shahid/swap-monitors ()
     (interactive)
     (let ((new-pos (mod (1+ exwm-workspace-current-index) 2)))
-      (exwm-workspace-move exwm-workspace--current new-pos)))
+      (exwm-workspace-move exwm-workspace--current new-pos)
+      ;; make sure the right window is selected and has the focus
+      (exwm-workspace-switch new-pos)
+      (select-window (get-buffer-window))))
 
   (defun shahid/window-swap-monitors ()
     (interactive)
     (let ((new-pos (mod (1+ exwm-workspace-current-index) 2)))
-      (exwm-workspace-move-window new-pos)))
+      (exwm-workspace-move-window new-pos)
+      ;; make sure the right window is selected and has the focus
+      (exwm-workspace-switch new-pos)
+      (select-window (get-buffer-window))))
 
   (shahid/bind-global-key "s-s" #'shahid/swap-monitors)
   (shahid/bind-global-key "s-w" #'shahid/window-swap-monitors)
