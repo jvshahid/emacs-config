@@ -75,6 +75,7 @@
 (load "prog-go")
 (load "prog-elisp")
 (load "prog-clojure")
+(load "prog-haskell")
 (load "prog-rust")
 (load "prog-java")
 (load "prog-c")
