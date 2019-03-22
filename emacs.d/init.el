@@ -146,7 +146,7 @@
 ag"
   (interactive "P")
   (let* ((extra-arg (if ignore-case "-i " ""))
-         (grep-cmd "ag --color --nogroup ")
+         (grep-cmd "ag --nocolor --nogroup ")
          (prompt (if ignore-case "search for (ignore case): " "search for: "))
          (word (read-string prompt (current-word)))
          (directory (read-directory-name "in: " default-directory)))
