@@ -48,6 +48,9 @@
   (setq exwm-workspace-number 2
         exwm-workspace-switch-create-limit 0)
 
+  (setq exwm-workspace-show-all-buffers t)
+  (setq exwm-layout-show-all-buffers t)
+
   (require 'exwm-randr)
   (setq exwm-randr-workspace-output-plist '(0 "DP-1"))
   (add-hook 'exwm-randr-screen-change-hook
