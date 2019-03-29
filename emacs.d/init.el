@@ -57,8 +57,8 @@
 (setq-default inhibit-startup-screen t)
 
 (push "~/.emacs.d/lisp" load-path)
-(load "navigation")
 (load "conf-exwm")
+(load "navigation")
 (load "conf-email")
 (load "conf-magit")
 (load "format-on-save")
