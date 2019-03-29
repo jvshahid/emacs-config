@@ -1,6 +1,9 @@
 ;;; -*- lexical-binding: t; -*-
 
 (straight-use-package '(emacs-rotate :repo "daichirata/emacs-rotate" :host github))
+(straight-use-package 'golden-ratio)
+
+(golden-ratio-mode)
 
 (global-set-key (kbd "C-c 1") #'rotate:even-vertical)
 (global-set-key (kbd "C-c 2") #'rotate:even-horizontal)
