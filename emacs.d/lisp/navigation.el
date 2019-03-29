@@ -2,11 +2,11 @@
 
 (straight-use-package '(emacs-rotate :repo "daichirata/emacs-rotate" :host github))
 
-(shahid/bind-global-key "C-c 1" #'rotate:even-vertical)
-(shahid/bind-global-key "C-c 2" #'rotate:even-horizontal)
-(shahid/bind-global-key "C-c 3" #'rotate:main-vertical)
-(shahid/bind-global-key "C-c 4" #'rotate:main-horizontal)
-(shahid/bind-global-key "C-c 5" #'rotate:tiled)
+(global-set-key (kbd "C-c 1") #'rotate:even-vertical)
+(global-set-key (kbd "C-c 2") #'rotate:even-horizontal)
+(global-set-key (kbd "C-c 3") #'rotate:main-vertical)
+(global-set-key (kbd "C-c 4") #'rotate:main-horizontal)
+(global-set-key (kbd "C-c 5") #'rotate:tiled)
 
 (autoload 'aw-swap-window "ace-window")
 
