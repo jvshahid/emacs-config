@@ -331,3 +331,4 @@ If DELTA was provided it will be added to the current line's indentation."
           (hs-hide-level 1)
           (goto-char location))))))
 
+(put 'list-timers 'disabled nil)
