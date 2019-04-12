@@ -4,6 +4,7 @@ cd $(dirname $0)
 
 ./install-emacs.sh
 
+./install-yay.sh
 ./install-java.sh
 ./install-terminal.sh
 ./install-chrome.sh
