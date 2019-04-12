@@ -52,12 +52,17 @@
   (setq exwm-layout-show-all-buffers t)
 
   (require 'exwm-randr)
-  (setq exwm-randr-workspace-output-plist '(0 "DP-1"))
-  (add-hook 'exwm-randr-screen-change-hook
-            (lambda ()
-              (start-process-shell-command
-               ;; xrandr --output <something> --same-as <other-thing> for mirroring
-               "xrandr" nil "xrandr --output DP-1 --above LVDS-1 --auto")))
+  (setq exwm-randr-workspace-monitor-plist '(0 "DP-1"))
+  (defun shahid/exwm-randr-screen-changed ()
+    (if (= 0 (call-process-shell-command "xrandr | grep --silent 'DP-1 disconnected'"))
+        (start-process-shell-command
+         ;; xrandr --output <something> --same-as <other-thing> for mirroring
+         "xrandr" nil "xrandr --output DP-1 --off --output LVDS-1 --auto")
+      (start-process-shell-command
+       ;; xrandr --output <something> --same-as <other-thing> for mirroring
+       "xrandr" nil "xrandr --output DP-1 --above LVDS-1 --auto --output LVDS-1 --off")))
+  (add-hook 'exwm-randr-screen-change-hook #'shahid/exwm-randr-screen-changed)
+
   (exwm-randr-enable)
 
   (defun toggle-mic-mute ()
