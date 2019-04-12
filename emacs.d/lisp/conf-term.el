@@ -28,6 +28,11 @@ With prefix argument, switch to default-directory"
 (defun rebind-window-text-height (orig-func &rest args)
   (flet ((window-text-height () (floor (window-screen-lines))))
     (apply orig-func args)))
+
+(defun shahid/disable-complete-in-region (&rest args)
+  (completion-in-region-mode -1))
+
+(advice-add 'eshell-send-input :before #'shahid/disable-complete-in-region)
 (advice-add 'term-mode :around #'rebind-window-text-height)
 (add-hook 'term-mode-hook (lambda ()
                             ;; fix C-c non-prefix error when eshell runs visual commands
