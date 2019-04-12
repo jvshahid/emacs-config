@@ -15,7 +15,7 @@
 
 ;; disable the use of CGO inside emacs. otherwise, it complains that gcc is
 ;; missing while flychecking a buffer
-(setenv "CGO_ENABLED" "0")
+(setenv "CGO_ENABLED" "1")
 
 (setq ginkgo-use-default-keys t)
 (setq ginkgo-use-pwd-as-test-dir t)
