@@ -47,6 +47,7 @@ With prefix argument, switch to default-directory"
 
 (straight-use-package 'eshell-z)
 
+(setq eshell-prefer-lisp-functions t)
 (autoload 'eshell/z "eshell-z")
 (add-hook 'eshell-mode-hook (lambda ()
                               (company-mode -1)
