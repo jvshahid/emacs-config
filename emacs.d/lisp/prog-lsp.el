@@ -1,6 +1,12 @@
 ;;; -*- lexical-binding: t; -*-
 
-(straight-use-package 'eglot)
+(straight-use-package 'lsp-ui)
+(straight-use-package 'company-lsp)
+(setq lsp-inhibit-message t
+      lsp-ui-doc-enable nil
+      lsp-ui-imenu-enable nil
+      lsp-ui-peek-enable nil
+      lsp-ui-sideline-enable nil)
 
 (with-eval-after-load 'flymake
   (define-key flymake-mode-map (kbd "C-c ! n") 'flymake-goto-next-error)

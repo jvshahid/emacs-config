@@ -1,13 +1,12 @@
 ;;; -*- lexical-binding: t; -*-
 
+(straight-use-package 'lsp-java)
+(require 'lsp-java)
+
+(add-hook 'java-mode-hook #'lsp)
 (add-hook 'java-mode-hook 'yas-minor-mode)
 (add-hook 'java-mode-hook 'subword-mode)
-
-(setenv "CLASSPATH" "/home/jvshahid/codez/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.5.200.v20180922-1751.jar")
-
-(add-hook 'java-mode-hook (lambda ()
-                            (eglot-ensure)
-                            (company-mode)
-                            (yas-minor-mode)
-                            (setq-local company-idle-delay 0.5)
-                            (local-set-key (kbd "C-c C-j") 'xref-find-definitions)))
+(add-hook 'java-mode-hook #'company-mode)
+(add-hook 'java-mode-hook #'yas-minor-mode)
+(add-hook 'java-mode-hook #'hs-minor-mode)
+(add-hook 'java-mode-hook (lambda () (setq-local company-idle-delay 0.5)))
