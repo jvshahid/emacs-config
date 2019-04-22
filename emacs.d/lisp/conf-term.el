@@ -62,6 +62,9 @@ With prefix argument, switch to default-directory"
   (add-to-list 'eshell-visual-commands "dstat")
   (add-to-list 'eshell-visual-options '("nmcli" "--ask")))
 
+(setq eshell-buffer-maximum-lines 10000)
+(add-to-list 'eshell-output-filter-functions #'eshell-truncate-buffer)
+
 (add-hook 'eshell-mode-hook
           (lambda ()
             (eshell-cmpl-initialize)
