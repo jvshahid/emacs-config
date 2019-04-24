@@ -6,3 +6,5 @@
 (add-hook 'org-mode-hook 'setup-org-keybindings)
 (add-hook 'org-mode-hook 'org-indent-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
+(add-to-list 'org-agenda-files "~/Dropbox/Orgzly")
+(shahid/bind-global-key "C-c C-a" #'org-agenda)
