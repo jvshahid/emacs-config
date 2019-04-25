@@ -29,7 +29,6 @@
 (straight-use-package 'ace-window)
 (straight-use-package 'flycheck)
 (straight-use-package 'wgrep)
-(straight-use-package 'flx-ido)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 (straight-use-package 'direnv)
@@ -62,6 +61,8 @@
 (load "conf-email")
 (load "conf-magit")
 (load "format-on-save")
+;; load ido before helm to ensure ido is used for file and buffer switching
+(load "conf-ido")
 (load "conf-helm")
 (load "conf-org")
 (load "conf-tramp")
@@ -86,9 +87,6 @@
 
 (with-eval-after-load 'yasnippet-snippets
   (yas-reload-all))
-
-(flx-ido-mode 1)
-(setq ido-use-faces nil)
 
 (global-set-key (kbd "C-c C-r") 'ff-find-related-file)
 
@@ -193,7 +191,6 @@ ag"
  '(global-font-lock-mode nil)
  '(godoc-command "godoc")
  '(godoc-use-completing-read t)
- '(ido-mode 'both nil (ido))
  '(js-indent-level 2)
  '(menu-bar-mode nil)
  '(ns-command-modifier 'control)
