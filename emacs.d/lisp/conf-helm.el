@@ -34,3 +34,5 @@
 ;; turn helm mode for everything else besides file and buffer switching which
 ;; is handled by ido.  I still prefer ido for that.
 (helm-mode)
+
+(add-to-list 'helm-completing-read-handlers-alist '(find-grep-current-word . nil))
