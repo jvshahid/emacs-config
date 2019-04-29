@@ -36,3 +36,7 @@
 (helm-mode)
 
 (add-to-list 'helm-completing-read-handlers-alist '(find-grep-current-word . nil))
+(add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename . nil))
+(add-to-list 'helm-completing-read-handlers-alist '(dired-do-copy . nil))
+(add-to-list 'helm-completing-read-handlers-alist '(dired-create-directory . nil))
+(add-to-list 'helm-completing-read-handlers-alist '(mml-attach-file . nil))
