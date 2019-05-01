@@ -24,7 +24,7 @@ With prefix argument, switch to default-directory"
 (shahid/bind-global-key "s-e" #'eshell)
 (shahid/bind-global-key "s-M-e" #'shahid/eshell-and-switch-dir)
 
-(setq term-buffer-maximum-size 0)
+(setq term-buffer-maximum-size 10000)
 
 (defun shahid/disable-complete-in-region (&rest args)
   (completion-in-region-mode -1))
