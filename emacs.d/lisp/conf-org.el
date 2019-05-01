@@ -22,4 +22,5 @@
    '(("t" "Todo" entry (file+headline "~/Dropbox/orgs/todo.org" "Inbox")
           "* TODO %? %^g\n  %a"))))
 
+(setq org-refile-targets '((nil . (:level . 2))))
 (define-key global-map "\C-cc" #'org-capture)
