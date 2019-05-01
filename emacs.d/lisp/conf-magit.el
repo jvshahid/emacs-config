@@ -28,6 +28,8 @@ alias for git-duet-commit."
               :filter-args
               #'shahid/magit-replace-command))
 
+(autoload 'magit-toplevel "magit-git")
+
 (add-to-list 'display-buffer-alist
              '("^magit: .*" (display-buffer-reuse-window
                              display-buffer-same-window)))
