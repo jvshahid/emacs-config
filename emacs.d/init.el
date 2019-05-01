@@ -55,6 +55,62 @@
 (global-unset-key (kbd "C-x C-z")) ;stop suspending the frame on accidental C-x C-z
 (setq-default inhibit-startup-screen t)
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes")
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ac-use-menu-map t)
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+ '(auth-source-save-behavior nil)
+ '(blink-cursor-mode nil)
+ '(browse-url-browser-function 'browse-url-generic)
+ '(browse-url-generic-program "xdg-open")
+ '(c-basic-offset 4)
+ '(c-default-style '((java-mode . "java") (awk-mode . "awk") (other . "gnu")))
+ '(column-number-mode t)
+ '(column-number-more t)
+ '(debug-on-error nil)
+ '(dired-omit-files "\\.test\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|.*~$")
+ '(display-battery-mode t)
+ '(display-time-day-and-date t)
+ '(display-time-mode t)
+ '(ediff-window-setup-function 'ediff-setup-windows-plain)
+ '(electric-indent-mode nil)
+ '(erc-user-full-name "John Shahid")
+ '(eshell-cmpl-ignore-case t)
+ '(etags-select-use-short-name-completion t)
+ '(fill-column 79)
+ '(global-font-lock-mode t)
+ '(godoc-command "godoc")
+ '(godoc-use-completing-read t)
+ '(js-indent-level 2)
+ '(menu-bar-mode nil)
+ '(ns-command-modifier 'control)
+ '(perl-indent-level 2)
+ '(safe-local-variable-values
+   '((eglot-workspace-configuration
+      (goto_def_racer_fallback . t))
+     (flycheck-rust-crate-type)
+     (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
+ '(sc-auto-fill-region-p nil)
+ '(sc-citation-leader "")
+ '(scroll-bar-mode nil)
+ '(select-enable-clipboard t)
+ '(send-mail-function 'smtpmail-send-it)
+ '(show-paren-mode t)
+ '(show-trailing-whitespace t)
+ '(tab-width 2)
+ '(tags-case-fold-search t)
+ '(tool-bar-mode nil)
+ '(truncate-partial-width-windows nil)
+ '(wgrep-auto-save-buffer t)
+ '(windmove-wrap-around t)
+ '(yank-excluded-properties t))
+
 (push "~/.emacs.d/lisp" load-path)
 (load "conf-exwm")
 (load "navigation")
@@ -163,58 +219,6 @@ ag"
 (global-set-key "\C-c\C-w" 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ac-use-menu-map t)
- '(auth-source-save-behavior nil)
- '(blink-cursor-mode nil)
- '(browse-url-browser-function 'browse-url-generic)
- '(browse-url-generic-program "xdg-open")
- '(c-basic-offset 4)
- '(c-default-style '((java-mode . "java") (awk-mode . "awk") (other . "gnu")))
- '(column-number-mode t)
- '(column-number-more t)
- '(debug-on-error nil)
- '(dired-omit-files "\\.test\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|.*~$")
- '(display-battery-mode t)
- '(display-time-day-and-date t)
- '(display-time-mode t)
- '(ediff-window-setup-function 'ediff-setup-windows-plain)
- '(electric-indent-mode nil)
- '(erc-user-full-name "John Shahid")
- '(eshell-cmpl-ignore-case t)
- '(etags-select-use-short-name-completion t)
- '(fill-column 79)
- '(global-font-lock-mode nil)
- '(godoc-command "godoc")
- '(godoc-use-completing-read t)
- '(js-indent-level 2)
- '(menu-bar-mode nil)
- '(ns-command-modifier 'control)
- '(perl-indent-level 2)
- '(safe-local-variable-values
-   '((eglot-workspace-configuration
-      (goto_def_racer_fallback . t))
-     (flycheck-rust-crate-type)
-     (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
- '(sc-auto-fill-region-p nil)
- '(sc-citation-leader "")
- '(scroll-bar-mode nil)
- '(select-enable-clipboard t)
- '(send-mail-function 'smtpmail-send-it)
- '(show-paren-mode t)
- '(show-trailing-whitespace t)
- '(tab-width 2)
- '(tags-case-fold-search t)
- '(tool-bar-mode nil)
- '(truncate-partial-width-windows nil)
- '(wgrep-auto-save-buffer t)
- '(windmove-wrap-around t)
- '(yank-excluded-properties t))
-
 ;; set spaces between lines for easier readability
 (setq-default line-spacing 2)
 
@@ -298,19 +302,7 @@ If DELTA was provided it will be added to the current line's indentation."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((type x)) :slant normal :foreground "#919ba5" :weight normal :height 130 :width normal :family "Ubuntu Mono" :foundry "unknown")))
- '(company-template-field ((t (:inherit region))))
- '(company-tooltip ((t (:background "lightgrey" :foreground "black"))))
- '(company-tooltip-annotation ((t (:inherit copmany-tooltip))))
- '(company-tooltip-annotation-selection ((t (:inherit company-tooltip-selection))))
- '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
- '(font-lock-constant-face ((t)))
- '(font-lock-keyword-face ((t :foreground "#90c958")))
- '(ido-first-match ((t :foreground "yellow4" :weight bold)))
- '(ido-only-match ((t :foreground "yellow4")))
- '(markdown-inline-code-face ((t)))
- '(markdown-table-face ((t)))
- '(org-table ((t))))
+ '(default ((((type x)) :slant normal :weight normal :height 130 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
 
 (defun focus-this-block ()
   "Hide everything except this test and the BeforeEach and AfterEach blocks that run as part of this test."

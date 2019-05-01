@@ -3,7 +3,7 @@
 (when (display-graphic-p)
   (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
   (server-start)
-  (load-theme 'tango-dark t)
+  (load-theme 'just-grey t)
   (straight-use-package '(exwm :type git :host github :repo "ch11ng/exwm"))
   (setq mouse-autoselect-window t
         focus-follows-mouse t)
