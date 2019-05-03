@@ -14,7 +14,6 @@ ln -sf $repo/dotfiles/functions.sh ~/
 ln -sf $repo/dotfiles/exports.sh ~/
 ln -sf $repo/dotfiles/prompt.sh ~/
 ln -sf $repo/dotfiles/.mbsyncrc ~/
-ln -sf $repo/dotfiles/.gnupg/gpg-agent.conf ~/
 
 # these two need to be copied
 cp -f $repo/dotfiles/.xinitrc ~/
