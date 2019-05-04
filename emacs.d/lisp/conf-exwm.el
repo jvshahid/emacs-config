@@ -57,11 +57,9 @@
     (interactive)
     (if (= 0 (call-process-shell-command "xrandr | grep --silent 'DP-1 disconnected'"))
         (progn
-          (golden-ratio-mode 1)
           (start-process-shell-command
            ;; xrandr --output <something> --same-as <other-thing> for mirroring
            "xrandr" nil "xrandr --output DP-1 --off --output LVDS-1 --auto"))
-      (golden-ratio-mode -1)
       (start-process-shell-command
        ;; xrandr --output <something> --same-as <other-thing> for mirroring
        "xrandr" nil "xrandr --output DP-1 --above LVDS-1 --auto --output LVDS-1 --off")))

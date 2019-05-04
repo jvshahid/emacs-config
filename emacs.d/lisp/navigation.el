@@ -1,14 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
 (straight-use-package '(emacs-rotate :repo "daichirata/emacs-rotate" :host github))
-(straight-use-package 'golden-ratio)
-
-(golden-ratio-mode)
-(add-to-list 'golden-ratio-extra-commands 'magit-show-commit)
-(add-to-list 'golden-ratio-extra-commands 'calendar)
-(add-to-list 'golden-ratio-extra-commands 'calc)
-(add-to-list 'golden-ratio-extra-commands 'ace-window)
-(add-to-list 'golden-ratio-extra-commands 'find-file-at-point)
 
 (global-set-key (kbd "C-c 1") #'rotate:even-vertical)
 (global-set-key (kbd "C-c 2") #'rotate:even-horizontal)
