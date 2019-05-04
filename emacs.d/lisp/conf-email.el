@@ -1,5 +1,16 @@
 ;;; -*- lexical-binding: t; -*-
 
+(defun shahid/read-auth-passwd (host user)
+  (let ((found (nth 0 (auth-source-search :max 1
+                                          :host host
+                                          :user user
+                                          :require '(:secret)))))
+    (when found
+      (let ((secret (plist-get found :secret)))
+        (if (functionp secret)
+            (funcall secret)
+          secret)))))
+
 (add-to-list 'load-path "~/bin/mu/share/emacs/site-lisp/mu4e")
 (autoload 'mu4e "mu4e" "start mu4e" t)
 
