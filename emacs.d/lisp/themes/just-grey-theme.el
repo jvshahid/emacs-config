@@ -184,6 +184,7 @@ Semantic, and Ansi-Color faces are included.")
    `(company-tooltip-annotation-selection ((t (:inherit company-tooltip-selection))))
    `(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
    ;; Message faces
+   `(message-mml ((,class (:foreground ,alum-1 :weight semi-bold))))
    `(message-header-name ((,class (:foreground ,blue-1))))
    `(message-header-cc ((,class (:foreground ,butter-3))))
    `(message-header-other ((,class (:foreground ,choc-2))))
