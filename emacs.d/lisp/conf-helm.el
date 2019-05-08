@@ -35,6 +35,8 @@
 ;; is handled by ido.  I still prefer ido for that.
 (helm-mode)
 
+(global-set-key (kbd "M-s o") 'helm-occur)
+
 (add-to-list 'helm-completing-read-handlers-alist '(find-grep-current-word . nil))
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename . nil))
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-copy . nil))
