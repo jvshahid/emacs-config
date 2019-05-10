@@ -302,6 +302,20 @@ If DELTA was provided it will be added to the current line's indentation."
 
 (add-hook 'help-fns-describe-function-functions #'help-fns--first-release)
 
+(defun shahid/tracker-updates (username)
+  (interactive "Musername: ")
+  (let ((token (shahid/read-auth-passwd "pivotaltracker.com" username))
+        (buf (get-buffer-create "*tracker updates*")))
+    (with-current-buffer buf
+      (erase-buffer))
+    (let ((proc (start-process "get-notifications" buf "~/bin/get-notifications.rb" token)))
+      (set-process-sentinel proc (lambda (_ event)
+                                   (message "Tracker updates finished with %S" event)
+                                   (with-current-buffer buf
+                                     (org-mode)
+                                     (goto-char (point-min))))))
+    (switch-to-buffer buf)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
