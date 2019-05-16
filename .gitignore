@@ -44,3 +44,5 @@ emacs.d/projectile.cache
 /emacs.d/recentf
 eglot-eclipse-jdt-cache/
 /emacs.d/history
+/emacs.d/.lsp-session-v1
+/emacs.d/eclipse.jdt.ls
