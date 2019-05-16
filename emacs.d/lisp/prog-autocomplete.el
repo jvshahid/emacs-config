@@ -17,3 +17,8 @@
 ;; this backend adds so much garbage and is not very usefull.  I usually use
 ;; M-/ to expand dabbrev
 (setq company-backends (delete 'company-dabbrev company-backends))
+
+(defun shahid/add-pcomplete-to-capf ()
+  (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
+
+(add-hook 'org-mode-hook #'shahid/add-pcomplete-to-capf)
