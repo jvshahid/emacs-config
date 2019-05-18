@@ -73,9 +73,20 @@
   :group 'tracker
   :type 'string)
 
+(defun tracker--get-password (username)
+  (let ((found (nth 0 (auth-source-search :max 1
+                                          :host "pivotaltracker.com"
+                                          :user username
+                                          :require '(:secret)))))
+    (when found
+      (let ((secret (plist-get found :secret)))
+        (if (functionp secret)
+            (funcall secret)
+          secret)))))
+
 (defun tracker-notifications ()
   (interactive)
-  (let* ((token (shahid/read-auth-passwd "pivotaltracker.com" tracker-username))
+  (let* ((token (tracker--get-password tracker-username))
          (url-request-extra-headers `(("X-TrackerToken" . ,token))))
     (url-retrieve "https://www.pivotaltracker.com/services/v5/my/notifications?notification_types=:all"
                   #'tracker--parser-response)))
