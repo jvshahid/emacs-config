@@ -140,6 +140,10 @@
 (load "prog-terraform")
 (load "prog-pair")
 
+(load "tracker")
+(setq tracker-username "jvshahid")
+(shahid/bind-global-key "s-p" #'tracker-notifications)
+
 (setq tramp-use-ssh-controlmaster-options nil)
 
 (with-eval-after-load 'yasnippet-snippets
