@@ -326,3 +326,5 @@ If DELTA was provided it will be added to the current line's indentation."
           (goto-char location))))))
 
 (put 'list-timers 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
