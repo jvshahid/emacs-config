@@ -41,10 +41,12 @@
               grouped-by-story))))
 
 (defun tracker--notifications-to-org (notifications)
-  (let ((grouped-by-proj (seq-group-by #'tracker--notification-project
-                                       notifications)))
-    (seq-do #'tracker--proj-notifications-to-org
-            grouped-by-proj)))
+  (if (seq-empty-p notifications)
+      (insert "No notifications at this time")
+    (let ((grouped-by-proj (seq-group-by #'tracker--notification-project
+                                         notifications)))
+      (seq-do #'tracker--proj-notifications-to-org
+              grouped-by-proj))))
 
 (defun tracker--parser-response (status)
   (search-forward "\n\n")
