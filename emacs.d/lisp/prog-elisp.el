@@ -6,6 +6,8 @@
                                  :repo  "DogLooksGood/parinfer-mode"
                                  :branch "master"))
 (with-eval-after-load 'parinfer
+  (put 'parinfer-smart-tab:forward-char 'isearch-move 'enabled)
+  (put 'parinfer-smart-tab:backward-char 'isearch-move 'enabled)
   (require 'paredit)
   (setq parinfer-extensions
         '(defaults
