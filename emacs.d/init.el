@@ -113,6 +113,7 @@
  '(windmove-wrap-around t)
  '(yank-excluded-properties t))
 
+(recentf-mode)
 (run-with-idle-timer 60 t #'recentf-save-list)
 
 (push "~/.emacs.d/lisp" load-path)
