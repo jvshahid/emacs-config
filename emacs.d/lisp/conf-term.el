@@ -66,3 +66,9 @@ With prefix argument, switch to default-directory"
           (lambda ()
             (eshell-cmpl-initialize)
             (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
+
+(defun eshell-confirm-kill (func &rest args)
+  (when (y-or-n-p (format "Kill eshell process "))
+    (apply func args)))
+
+(advice-add 'eshell-kill-process :around #'eshell-confirm-kill)
