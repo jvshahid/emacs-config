@@ -9,6 +9,7 @@
     (define-key map (kbd "n") 'mc/mark-next-like-this)
     (define-key map (kbd "N") 'mc/skip-to-next-like-this)
     (define-key map (kbd "p") 'mc/unmark-next-like-this)
+    (define-key map (kbd "e") 'mc/edit-lines)
     (set-transient-map map t)))
 
 (global-set-key (kbd "C-c ,") #'multiple-cursor-activate)
