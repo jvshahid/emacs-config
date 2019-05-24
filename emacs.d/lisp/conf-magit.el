@@ -7,6 +7,9 @@
   (setq git-link-use-commit t))
 
 (define-key global-map (kbd "C-x g") 'magit-status)
+
+(add-hook 'git-commit-mode-hook #'flyspell-mode)
+
 (with-eval-after-load 'magit
   (add-hook 'magit-mode-hook '(lambda ()
                                 (setq show-trailing-whitespace nil)))
