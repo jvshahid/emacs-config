@@ -128,6 +128,7 @@
 (load "conf-tramp")
 (load "conf-term")
 (load "conf-media")
+(load "conf-mc")
 
 ;; programming modes
 (load "prog-autocomplete")

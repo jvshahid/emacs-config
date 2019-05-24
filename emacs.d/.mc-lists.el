@@ -3,7 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-sexp
+        dabbrev-completion
+        dabbrev-expand
+        forward-sexp
         kill-region
+        kill-sexp
         mark-sexp
         parinfer-backward-delete-char
         parinfer-smart-tab:backward-char
@@ -13,5 +18,10 @@
 
 (setq mc/cmds-to-run-once
       '(
+        completion-at-point
+        helm-M-x
+        mc-doit-mc/mark-next-like-this
+        multiple-cursor-activate
+        multiple-cursor-doit
         repeat
         ))
