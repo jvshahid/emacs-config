@@ -2,66 +2,39 @@
 
 (straight-use-package '(emacs-rotate :repo "daichirata/emacs-rotate" :host github))
 
-(global-set-key (kbd "C-c 1") #'rotate:even-vertical)
-(global-set-key (kbd "C-c 2") #'rotate:even-horizontal)
-(global-set-key (kbd "C-c 3") #'rotate:main-vertical)
-(global-set-key (kbd "C-c 4") #'rotate:main-horizontal)
-(global-set-key (kbd "C-c 5") #'rotate:tiled)
-
 (autoload 'aw-swap-window "ace-window")
 
 (defun swap-next-window (n)
   "swap the buffer of the current window with the next window obtained using 'next-window"
   (interactive "p")
-  (let ((fun  (if (< n 0) 'previous-window 'next-window))
-        (n    (abs n)))
-    (dotimes (_ n)
-      (aw-swap-window (funcall fun)))))
+  (let ((win  (if (< n 0)
+                  (previous-window)
+                (next-window))))
+    (aw-swap-window win)))
 
-(defun swap-previous-window (n)
+(defun swap-previous-window ()
   "swap the buffer of the current window with the previous window obtained using 'previous-window"
-  (interactive "p")
-  (swap-next-window (- n)))
+  (interactive)
+  (swap-next-window (- 1)))
 
-(global-set-key (kbd "C-x o") 'ace-window)
-(global-set-key (kbd "C-c ]") 'swap-next-window)
-(global-set-key (kbd "C-c [") 'swap-previous-window)
+(defun shahid/windows-mode ()
+  (interactive)
+  (let ((map (make-sparse-keymap)))
+    (set-transient-map map t)
+    (define-key map (kbd "C-u") #'universal-argument)
+    (define-key map (kbd "-") #'shrink-window)
+    (define-key map (kbd "=") #'enlarge-window)
+    (define-key map (kbd ".") #'enlarge-window-horizontally)
+    (define-key map (kbd ",") #'shrink-window-horizontally)
+    (define-key map (kbd "]") #'swap-next-window)
+    (define-key map (kbd "[") #'swap-previous-window)
+    (define-key map (kbd "1") #'rotate:even-vertical)
+    (define-key map (kbd "2") #'rotate:even-horizontal)
+    (define-key map (kbd "3") #'rotate:main-vertical)
+    (define-key map (kbd "4") #'rotate:main-horizontal)
+    (define-key map (kbd "5") #'rotate:tiled)))
 
-(defun shahid/resize-window (inc)
-  "Adjust the dimensions of window by INC.
-
-INC may be passed as a numeric prefix argument.
-
-The actual adjustment made depends on the final component of the
-key-binding used to invoke the command, with all modifiers
-removed:
-
-    >,. Enlarges the current window horizontally
-    <,, Shrinks the current window horizontally
-    =   Enlarges the current window vertically
-    -   Shrinks the current window vertically
-
-After adjusting, continue to read input events and further adjust
-the dimenstions, where the event is one of the above characters.
-"
-  (interactive "p")
-  (let ((event (event-basic-type last-input-event)))
-    (cond
-     ((= event ?=) (enlarge-window inc))
-     ((= event ?-) (shrink-window inc))
-     ((= event ?.) (enlarge-window-horizontally inc))
-     ((= event ?,) (shrink-window-horizontally inc)))
-    (set-transient-map
-     (let ((map (make-sparse-keymap)))
-       (dolist (key '("=" "-" "." ","))
-         (define-key
-           map
-           (kbd (concat "M-" key))
-           (lambda () (interactive) (shahid/resize-window inc))))
-       map))))
-
-(dolist (key '("=" "-" "." ","))
-  (global-set-key (kbd (concat "C-c M-" key)) 'shahid/resize-window))
+(shahid/bind-global-key "C-c m" #'shahid/windows-mode)
 
 (winner-mode)
 (global-set-key (kbd "C-c \\") 'split-window-horizontally)
