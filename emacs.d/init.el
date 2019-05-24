@@ -92,6 +92,7 @@
  '(menu-bar-mode nil)
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
+ '(recentf-max-saved-items 200)
  '(safe-local-variable-values
    '((eglot-workspace-configuration
       (goto_def_racer_fallback . t))
@@ -111,6 +112,8 @@
  '(wgrep-auto-save-buffer t)
  '(windmove-wrap-around t)
  '(yank-excluded-properties t))
+
+(run-with-idle-timer 60 t #'recentf-save-list)
 
 (push "~/.emacs.d/lisp" load-path)
 (load "conf-exwm")
