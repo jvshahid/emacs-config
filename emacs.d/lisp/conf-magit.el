@@ -33,3 +33,8 @@ alias for git-duet-commit."
 (add-to-list 'display-buffer-alist
              '("^magit: .*" (display-buffer-reuse-window
                              display-buffer-same-window)))
+
+(defun magit-pullify ()
+  (interactive)
+  (magit-run-git "config" "--add" "remote.origin.fetch" "+refs/pull/*/head:refs/remotes/origin/pr/*")
+  (magit-fetch-all nil))
