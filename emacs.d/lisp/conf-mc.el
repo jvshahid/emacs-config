@@ -12,4 +12,6 @@
     (define-key map (kbd "e") 'mc/edit-lines)
     (set-transient-map map t)))
 
+(add-to-list 'mc/unsupported-minor-modes 'parinfer-mode)
+
 (global-set-key (kbd "C-c ,") #'multiple-cursor-activate)

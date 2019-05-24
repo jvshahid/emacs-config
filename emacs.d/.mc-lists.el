@@ -4,8 +4,11 @@
 (setq mc/cmds-to-run-for-all
       '(
         backward-sexp
+        backward-up-list
         dabbrev-completion
         dabbrev-expand
+        down-list
+        downcase-region
         forward-sexp
         kill-region
         kill-sexp
@@ -13,7 +16,10 @@
         parinfer-backward-delete-char
         parinfer-smart-tab:backward-char
         parinfer-smart-tab:forward-char
+        parinfer-yank
+        transpose-sexps
         transpose-words
+        upcase-region
         ))
 
 (setq mc/cmds-to-run-once
