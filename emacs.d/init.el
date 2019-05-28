@@ -27,7 +27,6 @@
 (straight-use-package 'yasnippet)
 (straight-use-package 'yasnippet-snippets)
 (straight-use-package 'dockerfile-mode)
-(straight-use-package 'ace-window)
 (straight-use-package 'flycheck)
 (straight-use-package 'wgrep)
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
@@ -259,8 +258,6 @@ If DELTA was provided it will be added to the current line's indentation."
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
 (setq dired-omit-files
       (concat dired-omit-files ".*~$"))
-
-;; add the ace-window mode
 
 ;;; disable org toc
 (setq org-export-with-toc nil)

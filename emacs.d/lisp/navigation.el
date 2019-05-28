@@ -2,6 +2,7 @@
 
 (straight-use-package '(emacs-rotate :repo "daichirata/emacs-rotate" :host github))
 
+(straight-use-package 'ace-window)
 (autoload 'aw-swap-window "ace-window")
 
 (defun swap-next-window (n)
