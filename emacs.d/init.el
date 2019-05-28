@@ -34,6 +34,9 @@
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 (straight-use-package 'direnv)
 
+;; human readable sizes in dired
+(setq dired-listing-switches "-alh")
+
 ;; setup projectile caching
 (setq projectile-enable-caching t)
 (projectile-mode)
