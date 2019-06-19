@@ -25,6 +25,7 @@
 (setq mc/cmds-to-run-once
       '(
         completion-at-point
+        end-of-buffer
         helm-M-x
         mc-doit-mc/mark-next-like-this
         multiple-cursor-activate
