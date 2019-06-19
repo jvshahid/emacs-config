@@ -9,10 +9,12 @@
   (alist-get 'project notification))
 
 (defun tracker--notification-story (notification)
-  (alist-get 'story notification))
+  (or (alist-get 'story notification)
+      (alist-get 'epic notification)))
 
 (defun tracker--story-url (story)
-  (format "https://www.pivotaltracker.com/story/show/%s"
+  (format "https://www.pivotaltracker.com/%s/show/%s"
+          (alist-get 'kind story)
           (alist-get 'id story)))
 
 (defun tracker--story-notifications-to-org (notifications)
