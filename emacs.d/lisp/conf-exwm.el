@@ -103,6 +103,7 @@
       (exwm-workspace-switch new-pos)
       (select-window (get-buffer-window))))
 
+  (shahid/bind-global-key "s-q" #'shahid/exwm-randr-screen-changed)
   (shahid/bind-global-key "s-s" #'shahid/swap-monitors)
   (shahid/bind-global-key "s-w" #'shahid/window-swap-monitors)
 
