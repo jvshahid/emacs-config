@@ -10,9 +10,13 @@
         down-list
         downcase-region
         forward-sexp
+        indent-for-tab-command
         kill-region
         kill-sexp
         mark-sexp
+        markdown-outdent-or-delete
+        org-delete-char
+        orgtbl-self-insert-command
         parinfer-backward-delete-char
         parinfer-smart-tab:backward-char
         parinfer-smart-tab:forward-char
@@ -26,6 +30,7 @@
       '(
         completion-at-point
         end-of-buffer
+        handle-select-window
         helm-M-x
         mc-doit-mc/mark-next-like-this
         multiple-cursor-activate
