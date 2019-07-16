@@ -3,6 +3,8 @@
 (straight-use-package 'magit)
 (straight-use-package 'git-link)
 
+(magit-auto-revert-mode)
+
 (with-eval-after-load 'git-link
   (setq git-link-use-commit t))
 
