@@ -34,7 +34,8 @@
 (straight-use-package 'direnv)
 
 ;; human readable sizes in dired
-(setq dired-listing-switches "-alh")
+(setq dired-listing-switches "-alh"
+      dired-dwim-target t)
 
 ;; setup projectile caching
 (setq projectile-enable-caching t)
