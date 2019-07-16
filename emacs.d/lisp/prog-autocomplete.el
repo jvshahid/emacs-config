@@ -7,7 +7,7 @@
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
-  (setq company-idle-delay 0.5)
+  (setq-default company-idle-delay 0.5)
   (setq company-minimum-prefix-length 0)
   (define-key company-active-map (kbd "M-d") 'company-show-doc-buffer)
   (define-key company-active-map (kbd "M-w") 'company-show-location)
