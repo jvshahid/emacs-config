@@ -9,6 +9,7 @@
         dabbrev-expand
         down-list
         downcase-region
+        electric-newline-and-maybe-indent
         forward-sexp
         indent-for-tab-command
         kill-region
@@ -30,6 +31,7 @@
       '(
         completion-at-point
         end-of-buffer
+        eshell
         handle-select-window
         helm-M-x
         mc-doit-mc/mark-next-like-this
