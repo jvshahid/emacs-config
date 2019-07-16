@@ -14,22 +14,7 @@
   (add-hook 'magit-mode-hook '(lambda ()
                                 (setq show-trailing-whitespace nil)))
   (setq
-   auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p)
-
-  (defun shahid/magit-replace-command (args)
-    "Replaces git first arguments.
-
-To work around the limitation that magit doesn't have
-customizable variables for the commands to use.  Currently this
-function only replaces `commit' with `ci' which is the my local
-alias for git-duet-commit."
-    (pcase args
-      (`("commit" . ,rest) (cons "ci" rest))
-      (_ args)))
-
-  (advice-add #'magit-run-git-with-editor
-              :filter-args
-              #'shahid/magit-replace-command))
+   auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p))
 
 (autoload 'magit-toplevel "magit-git")
 
