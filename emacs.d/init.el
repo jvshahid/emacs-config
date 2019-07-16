@@ -334,3 +334,4 @@ If DELTA was provided it will be added to the current line's indentation."
 (put 'list-timers 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
