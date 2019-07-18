@@ -13,7 +13,7 @@ pushd ~/codez/pianobar
   make
 popd
 
-cat <<EOF | sudo tee /etc/libao.conf
+cat <<EOF | $sudo tee /etc/libao.conf
 default_driver=pulse
 quiet
 EOF

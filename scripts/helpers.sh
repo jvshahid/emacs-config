@@ -11,3 +11,9 @@ function install_aur_package() {
 function yay_update_all() {
     yay -Syu --timeupdate --noconfirm
 }
+
+sudo=
+
+if [ `id -u` -ne 0 ]; then
+    sudo=sudo
+fi
