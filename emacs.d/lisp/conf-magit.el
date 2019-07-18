@@ -19,6 +19,8 @@
    auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p))
 
 (autoload 'magit-toplevel "magit-git")
+;; work around an issue with magit
+(autoload 'magit-process-file "magit-process")
 
 (add-to-list 'display-buffer-alist
              '("^magit: .*" (display-buffer-reuse-window
