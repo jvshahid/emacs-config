@@ -22,6 +22,7 @@
         parinfer-smart-tab:backward-char
         parinfer-smart-tab:forward-char
         parinfer-yank
+        sh-assignment
         transpose-sexps
         transpose-words
         upcase-region
