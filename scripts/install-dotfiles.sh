@@ -5,6 +5,7 @@ repo=$(cd $(dirname $0)/.. && pwd)
 ln -sf $repo/dotfiles/.ackrc ~/
 ln -sf $repo/dotfiles/.gdbinit ~/
 ln -sf $repo/dotfiles/.zshrc ~/
+ln -sf $repo/dotfiles/.bashrc ~/
 ln -sf $repo/dotfiles/.gemrc ~/
 ln -sf $repo/dotfiles/.gitconfig ~/
 ln -sf $repo/dotfiles/.gitignore_global ~/

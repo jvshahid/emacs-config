@@ -10,6 +10,8 @@
   (require 'exwm-config)
   (exwm-config-default)
 
+  (defvar external-monitor-name "DP-1")
+
   (setq exwm-input-simulation-keys `(([?\C-b] . [left])
                                      ([?\C-f] . [right])
                                      ([?\C-p] . [up])
@@ -52,17 +54,18 @@
   (setq exwm-layout-show-all-buffers t)
 
   (require 'exwm-randr)
-  (setq exwm-randr-workspace-monitor-plist '(0 "DP-1"))
+  (setq exwm-randr-workspace-monitor-plist `(0 ,external-monitor-name))
   (defun shahid/exwm-randr-screen-changed ()
     (interactive)
-    (if (= 0 (call-process-shell-command "xrandr | grep --silent 'DP-1 disconnected'"))
+    (if (= 0 (call-process-shell-command (format "xrandr | grep --silent '%s disconnected'" external-monitor-name)))
         (progn
           (start-process-shell-command
            ;; xrandr --output <something> --same-as <other-thing> for mirroring
-           "xrandr" nil "xrandr --output DP-1 --off --output LVDS-1 --auto"))
+           "xrandr" nil (format "xrandr --output %s --off --output LVDS-1 --auto" external-monitor-name)))
       (start-process-shell-command
        ;; xrandr --output <something> --same-as <other-thing> for mirroring
-       "xrandr" nil "xrandr --output DP-1 --above LVDS-1 --auto --output LVDS-1 --off")))
+       ;; xrandr --output LVDS-1 --mode 1366x768 --output HDMI-1 --mode 1366x768 --same-as LVDS-1
+       "xrandr" nil (format "xrandr --output %s --above LVDS-1 --auto --output LVDS-1 --off" external-monitor-name))))
   (add-hook 'exwm-randr-screen-change-hook #'shahid/exwm-randr-screen-changed)
 
   (exwm-randr-enable)
