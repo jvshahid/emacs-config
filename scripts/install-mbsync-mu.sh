@@ -7,8 +7,7 @@ install_package gmime3 xapian-core
 [ ! -d ~/codez/mu ] && git clone https://github.com/djcb/mu ~/codez/mu
 pushd ~/codez/mu
   git pull --rebase
-  [ ! -f ./configure ] && ./autogen.sh
-  [ ! -f Makefile ] && ./configure --prefix=$HOME/bin/mu
+  [ ! -f ./configure -o ! -f Makefile ] && ./autogen.sh --prefix=$HOME/bin/mu
   make install
 popd
 
