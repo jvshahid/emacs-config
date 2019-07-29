@@ -29,4 +29,6 @@ packages=(
 
 install_package ${packages[*]}
 
-sudo systemctl enable thermald.service
+$sudo systemctl enable thermald.service
+
+bash ./disable-mic-boost.sh
