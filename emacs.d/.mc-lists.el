@@ -12,6 +12,7 @@
         electric-newline-and-maybe-indent
         forward-sexp
         indent-for-tab-command
+        insert-register
         kill-region
         kill-sexp
         mark-sexp
@@ -35,6 +36,7 @@
         eshell
         handle-select-window
         helm-M-x
+        hs-show-all
         mc-doit-mc/mark-next-like-this
         multiple-cursor-activate
         multiple-cursor-doit
