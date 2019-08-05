@@ -10,8 +10,6 @@
   (require 'exwm-config)
   (exwm-config-default)
 
-  (defvar external-monitor-name "DP-1")
-
   (setq exwm-input-simulation-keys `(([?\C-b] . [left])
                                      ([?\C-f] . [right])
                                      ([?\C-p] . [up])
@@ -54,18 +52,47 @@
   (setq exwm-layout-show-all-buffers t)
 
   (require 'exwm-randr)
-  (setq exwm-randr-workspace-monitor-plist `(0 ,external-monitor-name))
+
   (defun shahid/exwm-randr-screen-changed ()
     (interactive)
-    (if (= 0 (call-process-shell-command (format "xrandr | grep --silent '%s disconnected'" external-monitor-name)))
+    (if (= 0 (call-process-shell-command (format "xrandr | grep --silent '%s disconnected'" shahid/external-monitor-name)))
         (progn
           (start-process-shell-command
            ;; xrandr --output <something> --same-as <other-thing> for mirroring
-           "xrandr" nil (format "xrandr --output %s --off --output LVDS-1 --auto" external-monitor-name)))
-      (start-process-shell-command
-       ;; xrandr --output <something> --same-as <other-thing> for mirroring
-       ;; xrandr --output LVDS-1 --mode 1366x768 --output HDMI-1 --mode 1366x768 --same-as LVDS-1
-       "xrandr" nil (format "xrandr --output %s --above LVDS-1 --auto --output LVDS-1 --off" external-monitor-name))))
+           "xrandr" nil (format "xrandr --output %s --off --output LVDS-1 --auto" shahid/external-monitor-name)))
+      (let ((cmd
+             (cl-case shahid/monitor-config
+               ('external (format "xrandr --output %s --above LVDS-1 --auto --output LVDS-1 --off" shahid/external-monitor-name))
+               ('both (format "xrandr --output %s --above LVDS-1 --auto --output LVDS-1 --auto" shahid/external-monitor-name))
+               ;; (format xrandr --output LVDS-1 --mode 1366x768 --output %s --mode 1366x768 --same-as LVDS-1 shahid/external-monitor-name)
+               ('mirror (let ((mode (shahid/highest-resolution-for-mirror)))
+                          (format "xrandr --output LVDS-1 --mode %s --output %s --mode %s --same-as LVDS-1" mode shahid/external-monitor-name mode))))))
+        (start-process-shell-command
+         "xrandr" nil cmd))))
+
+  (defun shahid/change-display-configuration (sym value)
+    (set sym value)
+    (setq exwm-randr-workspace-monitor-plist `(0 ,shahid/external-monitor-name))
+    (shahid/exwm-randr-screen-changed))
+
+  (defcustom shahid/monitor-config 'external
+    ""
+    :type '(choice (const :tag "External monitor only" external)
+                   (const :tag "Both laptop and External monitor" both)
+                   (const :tag "Mirror laptop and External monitors" mirror))
+    :initialize 'custom-initialize-default
+    :set 'shahid/change-display-configuration)
+
+  (defcustom shahid/external-monitor-name "DP-1"
+    ""
+    :type '(string)
+    :set 'shahid/change-display-configuration)
+
+  (defun shahid/highest-resolution-for-mirror ()
+    (string-trim
+     (shell-command-to-string
+      "xrandr | grep --color=no -E '^ +[0-9]+x[0-9]+' | awk '{print $1}' | sort -nr | uniq -c | grep --color=no -E '^ +2' | head -1 | awk '{print $2}'")))
+
   (add-hook 'exwm-randr-screen-change-hook #'shahid/exwm-randr-screen-changed)
 
   (exwm-randr-enable)
