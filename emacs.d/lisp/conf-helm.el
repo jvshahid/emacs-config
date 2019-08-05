@@ -16,6 +16,7 @@
 (setq helm-mode-fuzzy-match t)
 (setq helm-eshell-fuzzy-match t)
 (setq helm-completion-in-region-fuzzy-match t)
+(setq helm-buffer-skip-remote-checking t)
 
 (require 'helm-projectile)
 (require 'helm-config)
