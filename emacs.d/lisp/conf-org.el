@@ -10,6 +10,7 @@
 (global-set-key (kbd "C-c C-a") #'org-agenda)
 
 (with-eval-after-load 'org
+  (setq org-agenda-skip-scheduled-if-done t)
   (setq org-directory "~/Dropbox/orgs")
   (add-to-list 'org-agenda-files "~/Dropbox/orgs")
   (setq org-enforce-todo-dependencies t)
