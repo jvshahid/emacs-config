@@ -6,6 +6,7 @@
 
 (with-eval-after-load 'clojure-mode
   (add-hook 'clojure-mode-hook 'parinfer-mode)
+  (add-hook 'clojure-mode-hook 'hs-minor-mode)
   (add-hook 'clojure-mode-hook 'flycheck-mode)
   (add-hook 'clojure-mode-hook 'yas-minor-mode)
   (add-hook 'clojure-mode-hook (lambda ()
