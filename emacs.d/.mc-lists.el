@@ -5,6 +5,7 @@
       '(
         backward-sexp
         backward-up-list
+        complete-symbol
         dabbrev-completion
         dabbrev-expand
         down-list
@@ -27,6 +28,7 @@
         transpose-sexps
         transpose-words
         upcase-region
+        wgrep-finish-edit
         ))
 
 (setq mc/cmds-to-run-once
@@ -41,4 +43,5 @@
         multiple-cursor-activate
         multiple-cursor-doit
         repeat
+        xref-find-definitions
         ))
