@@ -24,11 +24,13 @@
         parinfer-smart-tab:backward-char
         parinfer-smart-tab:forward-char
         parinfer-yank
+        query-replace
         sh-assignment
         transpose-sexps
         transpose-words
         upcase-region
         wgrep-finish-edit
+        yaml-electric-dash-and-dot
         ))
 
 (setq mc/cmds-to-run-once
