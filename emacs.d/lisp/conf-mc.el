@@ -13,6 +13,7 @@
     (set-transient-map map t)))
 
 (with-eval-after-load 'multiple-cursors-core
-	(add-to-list 'mc/unsupported-minor-modes 'parinfer-mode))
+  (add-to-list 'mc/unsupported-minor-modes 'parinfer-mode)
+  (require 'multiple-cursors))
 
 (global-set-key (kbd "C-c ,") #'multiple-cursor-activate)
