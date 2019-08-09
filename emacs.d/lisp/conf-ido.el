@@ -9,7 +9,7 @@
 
 (ido-mode t)
 (flx-ido-mode 1)
-(setq ido-use-faces nil)
+(setq ido-use-faces t)
 
 ;; do nothing
 (defun shahid/do-not-disable-ido (orig-func &rest args))
