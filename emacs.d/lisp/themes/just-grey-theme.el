@@ -82,6 +82,9 @@ Semantic, and Ansi-Color faces are included.")
    `(isearch ((,class (:foreground ,alum-1 :background ,orange-3))))
    `(lazy-highlight ((,class (:background ,choc-3))))
    `(trailing-whitespace ((,class (:background ,red-3))))
+   ;; ido
+   `(ido-only-match ((,class (:inherit ido-first-match))))
+   `(ido-subdir ((,class (:underline t))))
    ;; Mode line faces
    `(mode-line ((,class
                  (:box (:line-width -1 :style released-button)
