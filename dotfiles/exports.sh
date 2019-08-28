@@ -16,16 +16,18 @@ fi
 export JAVA_FONTS=$HOME/.fonts/
 # go language path
 # android sdk and ndk
-export SDK=~/Android/Sdk/
-export NDK=$SDK/ndk-bundle
-export PATH=$HOME/bin:/usr/local/MATLAB/R2011b/bin:$HOME/Downloads/scala-2.9.0.final/bin:$PATH:$NDK/
+export ANDROID_HOME=$HOME/bin/android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$HOME/bin/android/bin
 # custom emacs build
 emacs_installation=$HOME/bin/emacs-27
 export PATH=${emacs_installation}/bin:$PATH
 if [[ ! -z $TMUX_PANE ]]; then
     export TERM=screen-256color
 fi
-# android path
 PATH="$PATH:$SDK/tools/:$SDK/platform-tools"
 # go path
 export LD_LIBRARY_PATH="$RUSTCROOT/lib:$LD_LIBRARY_PATH"
