@@ -33,6 +33,8 @@
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 (straight-use-package 'direnv)
 
+(setq-default enable-recursive-minibuffers t)
+
 ;; human readable sizes in dired
 (setq dired-listing-switches "-alh"
       dired-dwim-target t)
