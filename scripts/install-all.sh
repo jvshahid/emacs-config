@@ -6,7 +6,7 @@ cd $(dirname $0)
 ./install-emacs.sh
 ./install-java.sh
 ./install-terminal.sh
-./install-chrome.sh
+./install-browser.sh
 ./install-direnv.sh
 ./install-dotfiles.sh
 ./install-dropbox.sh
