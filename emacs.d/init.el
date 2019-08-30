@@ -127,9 +127,7 @@
 (load "conf-email")
 (load "conf-magit")
 (load "format-on-save")
-;; load ido before helm to ensure ido is used for file and buffer switching
 (load "conf-helm")
-(load "conf-ido")
 (load "conf-org")
 (load "conf-tramp")
 (load "conf-term")

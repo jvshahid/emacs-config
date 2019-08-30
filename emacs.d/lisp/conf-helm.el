@@ -23,6 +23,7 @@
 
 (global-set-key (kbd "C-c =") #'helm-show-kill-ring)
 (global-set-key (kbd "M-x") #'helm-M-x)
+(global-set-key (kbd "C-x C-f") #'helm-find-files)
 (setq helm-exit-idle-delay 0)
 
 ;; stop using a new frame for helm completion
@@ -30,17 +31,9 @@
 
 ;;; override the default fzf find command
 (global-set-key (kbd "C-x C-p") 'helm-projectile-find-file)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
 
-;; turn helm mode for everything else besides file and buffer switching which
-;; is handled by ido.  I still prefer ido for that.
-(helm-mode)
+(helm-mode 1)
 
 (global-set-key (kbd "M-s o") 'helm-occur)
 
-(add-to-list 'helm-completing-read-handlers-alist '(find-grep-current-word . nil))
-(add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename . nil))
-(add-to-list 'helm-completing-read-handlers-alist '(dired-do-copy . nil))
-(add-to-list 'helm-completing-read-handlers-alist '(dired-create-directory . nil))
-(add-to-list 'helm-completing-read-handlers-alist '(mml-attach-file . nil))
-(add-to-list 'helm-completing-read-handlers-alist '(ediff-files . nil))
