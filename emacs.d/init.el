@@ -59,6 +59,7 @@
 (global-auto-revert-mode)
 (global-unset-key (kbd "C-z"))     ;stop suspending the frame on accidental C-z
 (global-unset-key (kbd "C-x C-z")) ;stop suspending the frame on accidental C-x C-z
+(global-set-key (kbd "C-x C-v") #'revert-buffer)
 (setq-default inhibit-startup-screen t)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes")

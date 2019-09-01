@@ -17,6 +17,9 @@
 (setq helm-eshell-fuzzy-match t)
 (setq helm-completion-in-region-fuzzy-match t)
 (setq helm-buffer-skip-remote-checking t)
+(setq helm-ff-skip-boring-files t)
+(setq helm-grep-file-path-style 'relative)
+(setq helm-list-directory-function 'helm-list-dir-lisp)
 
 (require 'helm-projectile)
 (require 'helm-config)
