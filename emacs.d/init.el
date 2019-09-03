@@ -119,6 +119,7 @@
  '(windmove-wrap-around t)
  '(yank-excluded-properties t))
 
+(setq recentf-auto-cleanup 'never)
 (recentf-mode)
 (run-with-idle-timer 60 t #'recentf-save-list)
 
