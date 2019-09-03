@@ -20,6 +20,8 @@
 (setq helm-ff-skip-boring-files t)
 (setq helm-grep-file-path-style 'relative)
 (setq helm-list-directory-function 'helm-list-dir-lisp)
+(setq helm-substitute-in-filename-stay-on-remote t)
+(setq helm-prevent-escaping-from-minibuffer nil)
 
 (require 'helm-projectile)
 (require 'helm-config)
@@ -27,6 +29,7 @@
 (global-set-key (kbd "C-c =") #'helm-show-kill-ring)
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
+
 (setq helm-exit-idle-delay 0)
 
 ;; stop using a new frame for helm completion
