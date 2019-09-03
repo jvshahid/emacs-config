@@ -231,7 +231,7 @@ ag"
 (global-set-key (kbd "M-.") 'xref-find-definitions)
 (setq completion-ignore-case t)
 
-(global-set-key "\C-c\C-w" 'backward-kill-word)
+(global-set-key (kbd "C-c C-w") 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
 
 ;; set spaces between lines for easier readability
