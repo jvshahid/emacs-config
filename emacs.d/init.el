@@ -48,10 +48,6 @@
   (setq direnv-always-show-summary t
         direnv-non-file-modes '(eshell-mode)))
 
-(defun shahid/bind-global-key (key func)
-  (global-set-key (kbd key) func)
-  (exwm-input-set-key (kbd key) func))
-
 (setq completion-ignore-case t)
 (setq isearch-yank-on-move t)
 (display-time)
@@ -63,6 +59,7 @@
 (setq-default inhibit-startup-screen t)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes")
+(load-theme 'just-grey t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -122,6 +119,9 @@
 (setq recentf-auto-cleanup 'never)
 (recentf-mode)
 (run-with-idle-timer 60 t #'recentf-save-list)
+
+(defun shahid/bind-global-key (key func)
+  (global-set-key (kbd key) func))
 
 (push "~/.emacs.d/lisp" load-path)
 (load "conf-exwm")

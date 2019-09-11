@@ -3,7 +3,6 @@
 (when (display-graphic-p)
   (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
   (server-start)
-  (load-theme 'just-grey t)
   (straight-use-package '(exwm :type git :host github :repo "ch11ng/exwm"))
   (setq mouse-autoselect-window t
         focus-follows-mouse t)
@@ -142,6 +141,11 @@
       ;; make sure the right window is selected and has the focus
       (exwm-workspace-switch new-pos)
       (select-window (get-buffer-window))))
+
+	;; override the original definition
+	(defun shahid/bind-global-key (key func)
+		(global-set-key (kbd key) func)
+		(exwm-input-set-key (kbd key) func))
 
   (shahid/bind-global-key "s-q" #'shahid/exwm-randr-screen-changed)
   (shahid/bind-global-key "s-s" #'shahid/swap-monitors)

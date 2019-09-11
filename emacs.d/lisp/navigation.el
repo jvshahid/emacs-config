@@ -34,7 +34,7 @@
     (define-key map (kbd "4") #'rotate:main-horizontal)
     (define-key map (kbd "5") #'rotate:tiled)))
 
-(shahid/bind-global-key "C-x m" #'shahid/windows-mode)
+(shahid/bind-global-key "C-c m" #'shahid/windows-mode)
 
 (winner-mode)
 (global-set-key (kbd "C-c \\") 'split-window-horizontally)
