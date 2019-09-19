@@ -46,3 +46,6 @@ eglot-eclipse-jdt-cache/
 /emacs.d/history
 /emacs.d/.lsp-session-v1
 /emacs.d/eclipse.jdt.ls
+
+# magit transient history
+/emacs.d/transient
