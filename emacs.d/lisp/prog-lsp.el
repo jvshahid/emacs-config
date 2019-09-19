@@ -8,6 +8,9 @@
       lsp-ui-peek-enable nil
       lsp-ui-sideline-enable nil)
 
+(with-eval-after-load 'lsp
+  (require 'lsp-clients))
+
 (with-eval-after-load 'flymake
   (define-key flymake-mode-map (kbd "C-c ! n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "C-c ! p") 'flymake-goto-prev-error)
