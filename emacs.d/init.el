@@ -139,6 +139,7 @@
 ;; programming modes
 (load "prog-autocomplete")
 (load "prog-lsp")
+(load "prog-racket")
 (load "prog-ruby")
 (load "prog-go")
 (load "prog-elisp")
