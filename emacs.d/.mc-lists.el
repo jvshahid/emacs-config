@@ -26,6 +26,7 @@
         parinfer-yank
         query-replace
         sh-assignment
+        tab-to-tab-stop
         transpose-sexps
         transpose-words
         upcase-region
@@ -36,6 +37,7 @@
 (setq mc/cmds-to-run-once
       '(
         completion-at-point
+        describe-key-briefly
         end-of-buffer
         eshell
         handle-select-window
