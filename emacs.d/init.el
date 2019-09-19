@@ -199,8 +199,12 @@
   (interactive)
   (revert-buffer-with-coding-system 'us-ascii-dos))
 
-(defun epoch-to-string (seconds)
-  (format-time-string "%d %b %Y %H:%M:%S %Z" (seconds-to-time seconds)))
+(defun epoch-to-string (start end)
+  (interactive "r")
+  (let ((seconds (string-to-number (buffer-substring start end))))
+    (delete-region start end)
+    (insert (format-time-string "%d %b %Y %H:%M:%S %Z"
+                                (seconds-to-time seconds)))))
 
 (defun string-to-epoch (str)
   (unix-time (apply 'encode-time (parse-time-string str))))
