@@ -45,16 +45,7 @@ $ "
     add-zsh-hook precmd set_zsh_prompt
 else
     function get_bash_prompt {
-        git_repo_info
-        if [[ "x$REPO" == "x" ]]; then
-            echo "\w"
-        else
-            if [[ "x$CWD" == "x$DIR_NAME" ]]; then
-                echo "\[\033[1;34m\]GIT $REPO\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS";
-            else
-                echo "\[\033[1;34m\]GIT $REPO [${CWD##$DIR_NAME}]\[\033[0m\]\[\033[1;30m\]$(__git_ps1)\[\033[0m\]$STATUS";
-            fi
-        fi
+        echo "\w"
     }
     function set_bash_prompt {
         export PS1="\u@\h [$(get_bash_prompt)]\n$ "
