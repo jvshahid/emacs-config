@@ -1,5 +1,5 @@
 (
- (:id "sha1:706608f9b7fcfdea563351d49047f296d74a5a76" :fingerprints ("sha1:3b:b9:1f:d6:37:bb:65:06:f8:10:0f:7f:0e:12:00:2f:03:5a:9d:a0") :host "smtp.gmail.com:587" :conditions (:renegotiation-info-ext))
+ (:id "sha1:706608f9b7fcfdea563351d49047f296d74a5a76" :fingerprints ("sha1:3b:b9:1f:d6:37:bb:65:06:f8:10:0f:7f:0e:12:00:2f:03:5a:9d:a0" "sha1:c6:f0:13:66:61:e7:7e:d4:e6:c0:24:bc:a9:52:94:fa:5b:38:22:98") :host "smtp.gmail.com:587" :conditions (:same-cert))
  (:id "sha1:8b87d59c95ddf28cdea00460882b75cfda89ca6b" :fingerprint "sha1:14:7d:80:73:59:f8:98:83:46:c8:91:92:3b:4a:6f:bd:43:04:8a:36" :host "diego.ci.cf-app.com:443" :conditions (:unknown-ca :invalid))
  (:id "sha1:8b8ef1d2eb7784ca34bfd8bfae83c3ef0ce8013f" :fingerprint "sha1:14:7d:80:73:59:f8:98:83:46:c8:91:92:3b:4a:6f:bd:43:04:8a:36" :host "diego-backup.ci.cf-app.com:443" :conditions (:unknown-ca :invalid))
  (:id "sha1:6d4eb958390599243ba9f5035cb671fa8dd6a93a" :fingerprint "sha1:02:91:f1:23:ea:c5:1b:38:7f:8a:49:f9:42:b2:23:78:8b:8d:da:e4" :host "elpa.gnu.org:443" :conditions (:invalid))
