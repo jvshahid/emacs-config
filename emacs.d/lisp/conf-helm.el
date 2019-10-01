@@ -5,6 +5,8 @@
                (side . bottom)
                (window-height . 20)))
 
+(ido-mode -1)                           ; turn off ido-mode
+
 (straight-use-package 'helm)
 (straight-use-package 'helm-projectile)
 
