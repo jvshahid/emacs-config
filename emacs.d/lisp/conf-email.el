@@ -22,7 +22,8 @@
   (require 'org-mu4e))
 
 ;; prevent mu4e update messages
-(setq mu4e-hide-index-messages t)
+(setq mu4e-hide-index-messages t
+      mu4e-display-update-status-in-modeline t)
 
 (shahid/bind-global-key "s-m" #'mu4e)
 
