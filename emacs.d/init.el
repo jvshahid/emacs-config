@@ -149,7 +149,6 @@
 (load "prog-java")
 (load "prog-c")
 (load "prog-terraform")
-(load "prog-pair")
 
 (load "tracker")
 (setq tracker-username "jvshahid")
