@@ -358,3 +358,5 @@ If DELTA was provided it will be added to the current line's indentation."
           (setq title (match-string-no-properties 1))))
       (push (cons title elems) index)
       index)))
+
+(push '(imenu-create-index-function . concourse-imenu-index-function) safe-local-variable-values)
