@@ -341,3 +341,20 @@ If DELTA was provided it will be added to the current line's indentation."
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
+
+(defun concourse-imenu-index-function ()
+  (let (title
+        elems
+        index)
+    (save-match-data
+      (while (search-forward-regexp "^\\([^: \n]*\\):$\\|^- name: \\(.*\\)$" nil t)
+        (if (match-string 2)
+            (push (cons (match-string-no-properties 2)
+                        (line-beginning-position))
+                elems)
+          (when title
+            (push (cons title elems) index))
+          (setq elems nil)
+          (setq title (match-string-no-properties 1))))
+      (push (cons title elems) index)
+      index)))
