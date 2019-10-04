@@ -4,9 +4,9 @@ source ./helpers.sh
 
 packages=(
     i3lock
-    unclutter
     lightdm
     lightdm-gtk-greeter
+    unclutter
     xf86-input-synaptics
     xorg-server
     xorg-xhost
@@ -16,7 +16,6 @@ packages=(
     xorg-xset
     xorg-xset
     xorg-xsetroot
-    xss-lock
     xss-lock
 )
 
