@@ -260,6 +260,9 @@ indentation."
                                 (if delta delta 0))))))
 
 (define-key global-map (kbd "C-x t") 'toggle-indent-longer-lines)
+(define-key global-map (kbd "M-u") #'upcase-dwim)
+(define-key global-map (kbd "M-l") #'downcase-dwim)
+(define-key global-map (kbd "M-c") #'capitalize-dwim)
 
 ;; Omit emacs files from the Dired
 (require 'dired-x)
