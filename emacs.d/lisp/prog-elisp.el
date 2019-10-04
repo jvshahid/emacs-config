@@ -4,7 +4,7 @@
 (straight-use-package '(parinfer :type git
                                  :host github
                                  :repo  "DogLooksGood/parinfer-mode"
-                                 :branch "master"))
+                                 :branch "smart"))
 (with-eval-after-load 'parinfer
   (put 'parinfer-smart-tab:forward-char 'isearch-move 'enabled)
   (put 'parinfer-smart-tab:backward-char 'isearch-move 'enabled)
@@ -13,6 +13,7 @@
         '(defaults
            pretty-parens
            smart-tab
+           smart-yank
            paredit))
   (define-key parinfer-mode-map (kbd "C-x p") 'parinfer-toggle-mode))
 

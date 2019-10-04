@@ -249,8 +249,9 @@ ag"
 (setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
 
 (defun toggle-indent-longer-lines (&optional delta)
-  "Trigger selective display to hide lines that have more indentation than the current line. \
-If DELTA was provided it will be added to the current line's indentation."
+  "Trigger selective display to hide lines that have more indentation than the current line.
+If DELTA was provided it will be added to the current line's
+indentation."
   (interactive "P")
   (let ((indentation (current-indentation)))
     (if selective-display
