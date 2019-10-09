@@ -350,12 +350,13 @@ indentation."
   (let (title
         elems
         index)
+    (beginning-of-buffer)
     (save-match-data
       (while (search-forward-regexp "^\\([^: \n]*\\):$\\|^- name: \\(.*\\)$" nil t)
         (if (match-string 2)
             (push (cons (match-string-no-properties 2)
                         (line-beginning-position))
-                elems)
+                  elems)
           (when title
             (push (cons title elems) index))
           (setq elems nil)
