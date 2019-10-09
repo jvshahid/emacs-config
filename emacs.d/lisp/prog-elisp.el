@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 (straight-use-package 'paredit)
+(straight-use-package 'selected)
 (straight-use-package '(parinfer :type git
                                  :host github
                                  :repo  "DogLooksGood/parinfer-mode"
