@@ -12,7 +12,7 @@ xsetroot -cursor_name left_ptr
 
 xset s 300                      # sleep after 5 minutes
 
-xset r rate 200 60              # Keyboard repeat rate
+# xset r rate 200 60              # Keyboard repeat rate
 
 synclient TouchpadOff=1
 
