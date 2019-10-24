@@ -22,6 +22,7 @@
 (straight-use-package 'projectile)
 (straight-use-package 'etags-select)
 (straight-use-package 'yaml-mode)
+(straight-use-package 'keyfreq)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'protobuf-mode)
 (straight-use-package 'yasnippet)
@@ -32,6 +33,9 @@
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 (straight-use-package 'direnv)
+
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
 
 (setq-default enable-recursive-minibuffers t)
 
