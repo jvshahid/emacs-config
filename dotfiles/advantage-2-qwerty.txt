@@ -1,4 +1,4 @@
-[caps]>[lshift]
+[caps]>[rwin]
 [lshift]>[lalt]
 [lctrl]>[lshift]
 [delete]>[space]
