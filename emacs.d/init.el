@@ -124,9 +124,6 @@
 (recentf-mode)
 (run-with-idle-timer 60 t #'recentf-save-list)
 
-(defun shahid/bind-global-key (key func)
-  (global-set-key (kbd key) func))
-
 (push "~/.emacs.d/lisp" load-path)
 (load "conf-exwm")
 (load "navigation")
@@ -156,7 +153,7 @@
 
 (load "tracker")
 (setq tracker-username "jvshahid")
-(shahid/bind-global-key "s-p" #'tracker-notifications)
+(global-set-key (kbd "C-c w p") #'tracker-notifications)
 
 (setq tramp-use-ssh-controlmaster-options nil)
 
