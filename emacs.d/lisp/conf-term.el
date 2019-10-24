@@ -21,8 +21,7 @@ With prefix argument, switch to default-directory"
       (eshell/cd dir)
       (eshell-reset))))
 
-(shahid/bind-global-key "s-e" #'eshell)
-(shahid/bind-global-key "s-M-e" #'shahid/eshell-and-switch-dir)
+(global-set-key (kbd "C-c w e") #'eshell)
 
 (setq term-buffer-maximum-size 10000)
 

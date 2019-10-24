@@ -142,18 +142,19 @@
       (exwm-workspace-switch new-pos)
       (select-window (get-buffer-window))))
 
-	;; override the original definition
-	(defun shahid/bind-global-key (key func)
-		(global-set-key (kbd key) func)
-		(exwm-input-set-key (kbd key) func))
-
-  (shahid/bind-global-key "s-q" #'shahid/exwm-randr-screen-changed)
-  (shahid/bind-global-key "s-s" #'shahid/swap-monitors)
-  (shahid/bind-global-key "s-w" #'shahid/window-swap-monitors)
-
-  (shahid/bind-global-key "<XF86AudioMute>" #'toggle-audio-mute)
-  (shahid/bind-global-key "<XF86AudioMicMute>" #'toggle-mic-mute)
-  (shahid/bind-global-key "<XF86AudioLowerVolume>" #'lower-audio-volume)
-  (shahid/bind-global-key "<XF86AudioRaiseVolume>" #'raise-audio-volume)
-  (shahid/bind-global-key "C-s-l" #'lock-screen))
+  (global-set-key (kbd "C-c w q") #'shahid/exwm-randr-screen-changed)
+  (global-set-key (kbd "C-c w s") #'shahid/swap-monitors)
+  (global-set-key (kbd "C-c w w") #'shahid/window-swap-monitors)
+  (global-set-key (kbd "C-c w 1") (lambda ()
+                                    (interactive)
+                                    (exwm-workspace-switch 1)))
+  (global-set-key (kbd "C-c w 0") (lambda ()
+                                    (interactive)
+                                    (exwm-workspace-switch 0)))
+  (global-set-key (kbd "C-c w w") #'shahid/window-swap-monitors)
+  (global-set-key (kbd "<XF86AudioMute>") #'toggle-audio-mute)
+  (global-set-key (kbd "<XF86AudioMicMute>") #'toggle-mic-mute)
+  (global-set-key (kbd "<XF86AudioLowerVolume>") #'lower-audio-volume)
+  (global-set-key (kbd "<XF86AudioRaiseVolume>") #'raise-audio-volume)
+  (global-set-key (kbd "C-c w l") #'lock-screen))
 
