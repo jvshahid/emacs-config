@@ -146,9 +146,11 @@
   (shahid/bind-global-key "<XF86AudioLowerVolume>" #'lower-audio-volume)
   (shahid/bind-global-key "<XF86AudioRaiseVolume>" #'raise-audio-volume)
 
-  (shahid/bind-global-key "C-c w r" (lambda (command)
-                                      (interactive (list (read-shell-command "$ ")))
-                                      (start-process-shell-command command nil command)))
-  (shahid/bind-global-key "C-c w q" #'shahid/exwm-randr-screen-changed)
-  (shahid/bind-global-key "C-c w l" #'lock-screen))
+  ;; Avoid EXWM grabbing other sequences starting with C-c.  That means the
+  ;; following key bindings won't work in buffers that are in char-mode.
+  (global-set-key (kbd "C-c w r") (lambda (command)
+                                    (interactive (list (read-shell-command "$ ")))
+                                    (start-process-shell-command command nil command)))
+  (global-set-key (kbd "C-c w q") #'shahid/exwm-randr-screen-changed)
+  (global-set-key (kbd "C-c w l") #'lock-screen))
 
