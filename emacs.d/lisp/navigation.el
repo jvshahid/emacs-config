@@ -43,8 +43,8 @@
   ("e" end-of-sentence)
   ("u" backward-up-list)
   ("SPC" mark-sexp)
-  ("." beginning-of-buffer)
-  ("," end-of-buffer)
+  ("," beginning-of-buffer)
+  ("." end-of-buffer)
   ("]" forward-paragraph)
   ("[" backward-paragraph))
 
