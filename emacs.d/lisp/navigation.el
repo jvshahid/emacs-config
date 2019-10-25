@@ -43,10 +43,16 @@
   ("e" end-of-sentence)
   ("u" backward-up-list)
   ("SPC" mark-sexp)
+  ("k" kill-sexp)
   ("," beginning-of-buffer)
   ("." end-of-buffer)
   ("]" forward-paragraph)
   ("[" backward-paragraph))
+
+(define-key indent-rigidly-map (kbd ",") 'indent-rigidly-left)
+(define-key indent-rigidly-map (kbd ".") 'indent-rigidly-right)
+(define-key indent-rigidly-map (kbd "<") 'indent-rigidly-left-to-tab-stop)
+(define-key indent-rigidly-map (kbd ">") 'indent-rigidly-right-to-tab-stop)
 
 (winner-mode)
 (global-set-key (kbd "C-c \\") 'split-window-horizontally)
