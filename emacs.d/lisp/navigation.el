@@ -1,8 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
 (straight-use-package '(emacs-rotate :repo "daichirata/emacs-rotate" :host github))
-(straight-use-package 'hydra)
-(straight-use-package 'lv)
 
 (straight-use-package 'ace-window)
 (autoload 'aw-swap-window "ace-window")

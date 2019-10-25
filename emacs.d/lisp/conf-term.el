@@ -21,8 +21,6 @@ With prefix argument, switch to default-directory"
       (eshell/cd dir)
       (eshell-reset))))
 
-(global-set-key (kbd "C-c w e") #'eshell)
-
 (setq term-buffer-maximum-size 10000)
 
 (defun shahid/disable-complete-in-region (&rest args)

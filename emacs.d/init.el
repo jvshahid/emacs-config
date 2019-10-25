@@ -33,6 +33,8 @@
 (straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 (straight-use-package 'direnv)
+(straight-use-package 'hydra)
+(straight-use-package 'lv)
 
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
@@ -153,7 +155,11 @@
 
 (load "tracker")
 (setq tracker-username "jvshahid")
-(global-set-key (kbd "C-c w p") #'tracker-notifications)
+
+(global-set-key (kbd "C-c r e") #'eshell)
+(global-set-key (kbd "C-c r t") #'ansi-term)
+(global-set-key (kbd "C-c r m") #'mu4e)
+(global-set-key (kbd "C-c r p") #'tracker-notifications)
 
 (setq tramp-use-ssh-controlmaster-options nil)
 

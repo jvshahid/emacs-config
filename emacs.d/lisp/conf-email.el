@@ -25,8 +25,6 @@
 (setq mu4e-hide-index-messages t
       mu4e-display-update-status-in-modeline t)
 
-(global-set-key (kbd "C-c w m") #'mu4e)
-
 ;; keep email details separately in an encrypted file.  Ignore errors if the
 ;; file is encrypted
 (ignore-errors
