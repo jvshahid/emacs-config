@@ -330,7 +330,7 @@ indentation."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((type x)) :slant normal :weight normal :height 130 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
+ '(default ((((type x)) :slant normal :weight normal :height 150 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
 
 (defun focus-this-block ()
   "Hide everything except this test and the BeforeEach and AfterEach blocks that run as part of this test."
