@@ -18,6 +18,8 @@
         kill-sexp
         mark-sexp
         markdown-outdent-or-delete
+        navigation-hydra/forward-sexp
+        navigation-hydra/kill-sexp
         org-delete-char
         orgtbl-self-insert-command
         parinfer-backward-delete-char
