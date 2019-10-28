@@ -2,18 +2,17 @@
 
 (straight-use-package 'multiple-cursors)
 
-(defun multiple-cursor-activate ()
-  (interactive)
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "a") 'mc/mark-all-dwim)
-    (define-key map (kbd "n") 'mc/mark-next-like-this)
-    (define-key map (kbd "N") 'mc/skip-to-next-like-this)
-    (define-key map (kbd "p") 'mc/unmark-next-like-this)
-    (define-key map (kbd "e") 'mc/edit-lines)
-    (set-transient-map map t)))
-
 (with-eval-after-load 'multiple-cursors-core
   (add-to-list 'mc/unsupported-minor-modes 'parinfer-mode)
   (require 'multiple-cursors))
+
+(defhydra hydra-multiple-cursor (global-map "C-c ,")
+  ("a" mc/mark-all-dwim)
+  ("n" mc/mark-next-like-this)
+  ("N" mc/skip-to-next-like-this)
+  ("p" mc/unmark-next-like-this)
+  ("e" mc/edit-lines))
+
+(define-key mc/keymap (kbd "C-c '") 'mc-hide-unmatched-lines-mode)
 
 (global-set-key (kbd "C-c ,") #'multiple-cursor-activate)

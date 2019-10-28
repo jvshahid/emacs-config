@@ -12,12 +12,17 @@
         downcase-region
         electric-newline-and-maybe-indent
         forward-sexp
+        hydra-multiple-cursor/mc/mark-all-dwim
+        hydra-multiple-cursor/mc/mark-next-like-this
         indent-for-tab-command
         insert-register
         kill-region
         kill-sexp
         mark-sexp
         markdown-outdent-or-delete
+        navigation-hydra/backward-sexp
+        navigation-hydra/backward-up-list
+        navigation-hydra/down-list
         navigation-hydra/forward-sexp
         navigation-hydra/kill-sexp
         org-delete-char

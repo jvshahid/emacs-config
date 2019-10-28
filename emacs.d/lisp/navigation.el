@@ -41,7 +41,7 @@
   ("b" backward-sexp)
   ("a" beginning-of-sentence)
   ("e" end-of-sentence)
-  ("u" up-list)
+  ("u" backward-up-list)
   ("d" down-list)
   ("SPC" mark-sexp)
   ("k" kill-sexp)
