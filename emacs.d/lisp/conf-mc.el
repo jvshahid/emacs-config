@@ -13,5 +13,3 @@
   ("N" mc/skip-to-next-like-this)
   ("p" mc/unmark-next-like-this)
   ("e" mc/edit-lines))
-
-(global-set-key (kbd "C-c ,") #'multiple-cursor-activate)
