@@ -12,8 +12,6 @@
         downcase-region
         electric-newline-and-maybe-indent
         forward-sexp
-        hydra-multiple-cursor/mc/mark-all-dwim
-        hydra-multiple-cursor/mc/mark-next-like-this
         indent-for-tab-command
         insert-register
         kill-region
@@ -50,6 +48,8 @@
         handle-select-window
         helm-M-x
         hs-show-all
+        hydra-multiple-cursor/mc/mark-all-dwim
+        hydra-multiple-cursor/mc/mark-next-like-this
         mc-doit-mc/mark-next-like-this
         multiple-cursor-activate
         multiple-cursor-doit
