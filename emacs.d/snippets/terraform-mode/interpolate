@@ -1,0 +1,4 @@
+# key: int
+# name: interpolate
+# --
+"\${$0}"
