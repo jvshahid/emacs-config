@@ -52,6 +52,13 @@
   ("]" forward-paragraph)
   ("[" backward-paragraph))
 
+(defhydra hide-show-hydra (global-map "C-c t")
+  ("l" hs-hide-level)
+  ("s" hs-show-block)
+  ("h" hs-hide-block)
+  ("S" hs-show-all)
+  ("H" hs-hide-all))
+
 (define-key indent-rigidly-map (kbd ",") 'indent-rigidly-left)
 (define-key indent-rigidly-map (kbd ".") 'indent-rigidly-right)
 (define-key indent-rigidly-map (kbd "<") 'indent-rigidly-left-to-tab-stop)
