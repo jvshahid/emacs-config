@@ -25,6 +25,34 @@
 (setq mu4e-hide-index-messages t
       mu4e-display-update-status-in-modeline t)
 
+(defun shahid/mu4e-headers-search-list ()
+  (interactive)
+  (let* ((msg (mu4e-message-at-point))
+         (list (mu4e-message-field (mu4e-message-at-point) :mailing-list)))
+    (mu4e-headers-search-narrow (concat "list:" list))))
+
+(defun shahid/mu4e-headers-search-from ()
+  (interactive)
+  (let* ((msg (mu4e-message-at-point))
+         (from (mu4e-message-field msg :from)))
+    (mu4e-headers-search-narrow (concat "from:" (cdar from)))))
+
+(define-key mu4e-headers-mode-map
+  (kbd "s")
+  (make-sparse-keymap))
+
+(define-key mu4e-headers-mode-map
+  (kbd "s s")
+  'mu4e-headers-search)
+
+(define-key mu4e-headers-mode-map
+  (kbd "s f")
+  #'shahid/mu4e-headers-search-from)
+
+(define-key mu4e-headers-mode-map
+  (kbd "s l")
+  #'shahid/mu4e-headers-search-list)
+
 ;; keep email details separately in an encrypted file.  Ignore errors if the
 ;; file is encrypted
 (ignore-errors
