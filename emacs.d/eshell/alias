@@ -1,3 +1,4 @@
-alias ff find-file-other-window $1
-alias ll ls -l $*
+alias updatesystem yay -Syu --timeupdate --noconfirm
 alias rr cd ${magit-toplevel}
+alias ll ls -l $*
+alias ff find-file-other-window $1
