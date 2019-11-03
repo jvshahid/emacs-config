@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-name=yay
+name=yay-git
 url=https://aur.archlinux.org/$name.git
 dir=~/codez/aur/$name
 [ ! -d $dir ] && git clone $url $dir
