@@ -10,7 +10,6 @@
 (global-evil-surround-mode)
 
 (add-to-list 'evil-emacs-state-modes 'exwm-mode)
-(setq evil-emacs-state-modes (delete 'magit-commit-mode evil-emacs-state-modes))
 (setq evil-emacs-state-modes (delete 'git-commit-mode evil-emacs-state-modes))
 
 (global-undo-tree-mode -1)
@@ -20,3 +19,14 @@
 (add-hook 'org-mode-hook 'evil-org-mode)
 (with-eval-after-load 'evil-org
   (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading)))
+
+(straight-use-package 'evil-commentary)
+(evil-commentary-mode)
+(straight-use-package
+ '(evil-terminal-cursor-change
+   type git
+   :host github
+   :repo "7696122/evil-terminal-cursor-changer"))
+
+(unless (display-graphic-p)
+  (evil-terminal-cursor-changer-activate))

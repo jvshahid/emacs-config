@@ -11,6 +11,14 @@
         down-list
         downcase-region
         electric-newline-and-maybe-indent
+        evil-backward-char
+        evil-change
+        evil-delete-char
+        evil-force-normal-state
+        evil-forward-WORD-begin
+        evil-forward-char
+        evil-insert
+        evil-normal-state
         forward-sexp
         indent-for-tab-command
         insert-register
