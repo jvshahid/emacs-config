@@ -2,10 +2,15 @@
 
 (straight-use-package 'evil)
 (straight-use-package 'evil-surround)
-
-(with-eval-after-load 'evil
-  (add-to-list 'evil-emacs-state-modes 'exwm-mode))
+(straight-use-package 'evil-collection)
+(setq evil-want-keybinding nil)
 
 (evil-mode)
-(global-undo-tree-mode -1)
 (global-evil-surround-mode)
+
+(add-to-list 'evil-emacs-state-modes 'exwm-mode)
+(setq evil-emacs-state-modes (delete 'magit-commit-mode evil-emacs-state-modes))
+(setq evil-emacs-state-modes (delete 'git-commit-mode evil-emacs-state-modes))
+
+(global-undo-tree-mode -1)
+(evil-collection-init '(dired eshell term))
