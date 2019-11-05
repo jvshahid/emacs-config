@@ -4,6 +4,7 @@
 (straight-use-package 'evil-surround)
 (straight-use-package 'evil-collection)
 (setq evil-want-keybinding nil)
+(setq evil-want-C-i-jump nil)
 
 (evil-mode)
 (global-evil-surround-mode)
@@ -14,3 +15,8 @@
 
 (global-undo-tree-mode -1)
 (evil-collection-init '(dired eshell term))
+
+(straight-use-package 'evil-org)
+(add-hook 'org-mode-hook 'evil-org-mode)
+(with-eval-after-load 'evil-org
+  (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading)))
