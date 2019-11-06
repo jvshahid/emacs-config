@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 (straight-use-package '(emacs-rotate :repo "daichirata/emacs-rotate" :host github))
+(straight-use-package 'expand-region)
 
 (straight-use-package 'ace-window)
 (autoload 'aw-swap-window "ace-window")
@@ -52,6 +53,7 @@
   ("a" beginning-of-defun)
   ("e" end-of-defun)
   ("h" mark-defun)
+  ("r" er/expand-region)
   ("u" backward-up-list)
   ("d" down-list)
   ("SPC" mark-sexp)
