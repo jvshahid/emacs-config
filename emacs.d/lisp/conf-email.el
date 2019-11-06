@@ -38,21 +38,21 @@
     (mu4e-headers-search-narrow (concat "from:" (cdar from)))))
 
 (with-eval-after-load 'mu4e-headers
-	(define-key mu4e-headers-mode-map
-		(kbd "s")
-		(make-sparse-keymap))
+  (define-key mu4e-headers-mode-map
+    (kbd "s")
+    (make-sparse-keymap))
 
-	(define-key mu4e-headers-mode-map
-		(kbd "s s")
-		'mu4e-headers-search)
+  (define-key mu4e-headers-mode-map
+    (kbd "s s")
+    'mu4e-headers-search)
 
-	(define-key mu4e-headers-mode-map
-		(kbd "s f")
-		#'shahid/mu4e-headers-search-from)
+  (define-key mu4e-headers-mode-map
+    (kbd "s f")
+    #'shahid/mu4e-headers-search-from)
 
-	(define-key mu4e-headers-mode-map
-		(kbd "s l")
-		#'shahid/mu4e-headers-search-list))
+  (define-key mu4e-headers-mode-map
+    (kbd "s l")
+    #'shahid/mu4e-headers-search-list))
 
 ;; keep email details separately in an encrypted file.  Ignore errors if the
 ;; file is encrypted
