@@ -53,7 +53,6 @@
   ("a" beginning-of-defun)
   ("e" end-of-defun)
   ("h" mark-defun)
-  ("r" er/expand-region)
   ("u" backward-up-list)
   ("d" down-list)
   ("SPC" mark-sexp)
@@ -64,6 +63,8 @@
   ("." end-of-buffer)
   ("]" forward-paragraph)
   ("[" backward-paragraph))
+
+(global-set-key (kbd "C-c n r") #'er/expand-region)
 
 (defhydra hide-show-hydra (global-map "C-c t")
   ("l" hs-hide-level)
