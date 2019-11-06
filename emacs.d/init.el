@@ -127,7 +127,6 @@
 (run-with-idle-timer 60 t #'recentf-save-list)
 
 (push "~/.emacs.d/lisp" load-path)
-(load "conf-evil")
 (load "conf-exwm")
 (load "navigation")
 (load "conf-email")
