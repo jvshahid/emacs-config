@@ -46,8 +46,6 @@
   (exchange-point-and-mark))
 
 (defhydra navigation-hydra (global-map "C-c n")
-  ("p" previous-line)
-  ("n" next-line)
   ("f" forward-sexp)
   ("b" backward-sexp)
   ("a" beginning-of-defun)
@@ -58,7 +56,6 @@
   ("SPC" mark-sexp)
   ("M-SPC" shahid/mark-sexp-inner)
   ("k" kill-sexp)
-  ("x" eval-defun)
   ("," beginning-of-buffer)
   ("." end-of-buffer)
   ("]" forward-paragraph)
@@ -72,6 +69,13 @@
   ("h" hs-hide-block)
   ("S" hs-show-all)
   ("H" hs-hide-all))
+
+(defun shahid/indent-rigidly-extend-region (&rest _)
+  (exchange-point-and-mark)
+  (beginning-of-line)
+  (exchange-point-and-mark))
+
+(advice-add 'indent-rigidly :before #'shahid/indent-rigidly-extend-region)
 
 (define-key indent-rigidly-map (kbd ",") 'indent-rigidly-left)
 (define-key indent-rigidly-map (kbd ".") 'indent-rigidly-right)
