@@ -332,22 +332,6 @@ indentation."
  ;; If there is more than one, they won't work right.
  '(default ((((type x)) :slant normal :weight normal :height 150 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
 
-(defun focus-this-block ()
-  "Hide everything except this test and the BeforeEach and AfterEach blocks that run as part of this test."
-  (interactive)
-  (if (not hs-minor-mode)
-      (message "hs-minor-mode is not turned on. Turn it on by %s"
-               (substitute-command-keys "\\[hs-minor-mode]"))
-    (save-excursion
-      (let ((location (point)))
-        ;; hide all blocks
-        (hs-hide-all)
-        ;; show one level at a time until the test is visible
-        (while (hs-already-hidden-p)
-          (hs-show-block)
-          (hs-hide-level 1)
-          (goto-char location))))))
-
 (put 'list-timers 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
