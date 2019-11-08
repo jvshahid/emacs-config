@@ -49,3 +49,4 @@ eglot-eclipse-jdt-cache/
 
 # magit transient history
 /emacs.d/transient
+*.pdmp
