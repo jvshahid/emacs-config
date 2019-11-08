@@ -54,6 +54,21 @@
     (kbd "s l")
     #'shahid/mu4e-headers-search-list))
 
+(setq mu4e-compose-forward-as-attachment t) ; Force mu4e to inline forwarded emails
+
+(defun shahid/mu4e-compose-inline-message (func msg)
+  "Insert message MSG as an attachment."
+  (let ((path (plist-get msg :path))
+        (buf (get-buffer-create "*mu4e-forwarded-message*")))
+    (unless (file-exists-p path)
+      (mu4e-warn "Message file not found"))
+    (with-current-buffer buf
+      (erase-buffer)
+      (insert-file path))
+    (message-forward-make-body-mime buf)))
+
+(advice-add 'mu4e-compose-attach-message :around #'shahid/mu4e-compose-inline-message)
+
 ;; keep email details separately in an encrypted file.  Ignore errors if the
 ;; file is encrypted
 (ignore-errors
