@@ -1,0 +1,4 @@
+# key: deps
+# name: deps
+# --
+{:deps {$1 {:mvn/version "$2"}}$0
