@@ -6,6 +6,10 @@
                                  :host github
                                  :repo  "DogLooksGood/parinfer-mode"
                                  :branch "smart"))
+
+(straight-use-package 'macrostep)
+(define-key emacs-lisp-mode-map (kbd "C-c e") 'macrostep-expand)
+
 (with-eval-after-load 'parinfer
   (put 'parinfer-smart-tab:forward-char 'isearch-move 'enabled)
   (put 'parinfer-smart-tab:backward-char 'isearch-move 'enabled)
