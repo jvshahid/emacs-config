@@ -45,9 +45,12 @@
   ("H" hs-hide-all))
 
 (defun shahid/indent-rigidly-extend-region (&rest _)
-  (exchange-point-and-mark)
-  (beginning-of-line)
-  (exchange-point-and-mark))
+  (let ((restore (unless (< (point) (region-end))
+                   (exchange-point-and-mark)
+                   t)))
+    (beginning-of-line)
+    (if restore
+        (exchange-point-and-mark))))
 
 (advice-add 'indent-rigidly :before #'shahid/indent-rigidly-extend-region)
 
