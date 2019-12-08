@@ -102,6 +102,7 @@
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
  '(recentf-max-saved-items 200)
+ '(rvm-executable "/usr/share/rvm/src/rvm/bin/rvm")
  '(safe-local-variable-values
    '((eglot-workspace-configuration
       (goto_def_racer_fallback . t))
