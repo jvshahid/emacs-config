@@ -31,7 +31,13 @@
         navigation-hydra/down-list
         navigation-hydra/forward-sexp
         navigation-hydra/kill-sexp
+        org-beginning-of-line
         org-delete-char
+        org-end-of-line
+        org-kill-line
+        org-return-indent
+        org-self-insert-command
+        org-yank
         orgtbl-self-insert-command
         parinfer-backward-delete-char
         parinfer-smart-tab:backward-char
@@ -56,6 +62,7 @@
         handle-select-window
         helm-M-x
         hs-show-all
+        hydra-multiple-cursor/mc/edit-lines
         hydra-multiple-cursor/mc/mark-all-dwim
         hydra-multiple-cursor/mc/mark-next-like-this
         mc-doit-mc/mark-next-like-this
