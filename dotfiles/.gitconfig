@@ -2,7 +2,7 @@
   email = jvshahid@gmail.com
   name = John Shahid
 [alias]
-  l  = log --decorate=short --graph -w --find-renames=50%
+  l = log --decorate=short --graph -w --find-renames=50%
   lw = log --decorate=short --graph --color-words -w --find-renames=50%
   ls = log --graph --decorate=short --pretty=\"format:[%Cred%h%Creset]%d %ar by %Cblue%an%Creset. %Cgreen%s%Creset\" --find-renames=50%
 
@@ -23,7 +23,7 @@
 
   ci = commit --verbose
 
-  p  = push --tags
+  p = push --tags
 
   su = submodule update --init --recursive
 
@@ -38,12 +38,12 @@
 [grep]
 	lineNumber = true
 [push]
-  recurseSubmodules=check
+  recurseSubmodules = check
 [commit]
 	gpgSign = true
 
 [url "git@github.com:"]
-    pushInsteadOf = "https://github.com/" # always push with authn
+    pushInsteadOf = https://github.com/ # always push with authn
 [merge]
 	conflictstyle = diff3
 [rerere]
