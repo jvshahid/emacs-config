@@ -4,8 +4,7 @@
 (straight-use-package 'selected)
 (straight-use-package '(parinfer :type git
                                  :host github
-                                 :repo  "DogLooksGood/parinfer-mode"
-                                 :branch "smart"))
+                                 :repo  "DogLooksGood/parinfer-mode"))
 
 (straight-use-package 'macrostep)
 (define-key emacs-lisp-mode-map (kbd "C-c e") 'macrostep-expand)
