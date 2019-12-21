@@ -13,6 +13,7 @@ packages=(
     ispell
     keepassx2
     libreoffice-fresh
+    libu2f-host
     libusb-compat
     libyaml
     mlocate
