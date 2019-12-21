@@ -11,13 +11,8 @@
 (straight-use-package 'helm-projectile)
 
 ;; helm fuzzy matching
-(setq helm-locate-fuzzy-match t)
-(setq helm-recentf-fuzzy-match t)
-(setq helm-buffers-fuzzy-matching t)
-(setq helm-M-x-fuzzy-match t)
-(setq helm-mode-fuzzy-match t)
-(setq helm-eshell-fuzzy-match t)
-(setq helm-completion-in-region-fuzzy-match t)
+(setq helm-completion-style 'emacs)
+(push 'flex completion-styles)
 (setq helm-buffer-skip-remote-checking t)
 (setq helm-ff-skip-boring-files t)
 (setq helm-grep-file-path-style 'relative)
