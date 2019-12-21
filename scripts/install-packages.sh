@@ -6,6 +6,7 @@ packages=(
     acpi
     alsa-utils
     automake
+    brave-bin
     dnsutils
     dstat
     gnome-screenshot
