@@ -72,3 +72,6 @@ bindkey '\et' transpose-words
 bindkey '^t' transpose-chars
 bindkey '\eq' fzf-cd-widget
 bindkey '\ea' fzf-file-widget
+
+# Added by Krypton
+export GPG_TTY=$(tty)
