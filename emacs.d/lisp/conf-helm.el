@@ -13,6 +13,11 @@
 ;; helm fuzzy matching
 (setq helm-completion-style 'emacs)
 (push 'flex completion-styles)
+(setq helm-locate-fuzzy-match t)
+(setq helm-recentf-fuzzy-match t)
+(setq helm-buffers-fuzzy-matching t)
+(setq helm-mode-fuzzy-match t)
+
 (setq helm-buffer-skip-remote-checking t)
 (setq helm-ff-skip-boring-files t)
 (setq helm-grep-file-path-style 'relative)
