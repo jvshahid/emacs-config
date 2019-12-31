@@ -28,3 +28,5 @@
   (interactive)
   (magit-run-git "config" "--add" "remote.origin.fetch" "+refs/pull/*/head:refs/remotes/origin/pr/*")
   (magit-fetch-all nil))
+
+(custom-set-variables '(auto-revert-use-notify nil))
