@@ -45,14 +45,16 @@
 (setq dired-listing-switches "-alh"
       dired-dwim-target t)
 
-;; setup projectile caching
-(setq projectile-enable-caching t)
+;; setup projectile
+(setq projectile-mode-line-prefix "") ; Disable projectile lighter.  Must be set before loading
+(setq projectile-dynamic-mode-line nil) ; Disable projectile lighter
+(setq projectile-enable-caching t)    ; Turn on caching for faster invocations.
 (projectile-mode)
 
-(direnv-mode)
 (with-eval-after-load 'direnv
   (setq direnv-always-show-summary t
         direnv-non-file-modes '(eshell-mode)))
+(direnv-mode)
 
 (setq completion-ignore-case t)
 (setq isearch-yank-on-move t)
