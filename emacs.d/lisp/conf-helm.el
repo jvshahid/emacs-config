@@ -12,16 +12,13 @@
 
 ;; helm fuzzy matching
 (setq helm-completion-style 'emacs)
-(push 'flex completion-styles)
+(add-to-list 'completion-styles 'flex)
 (setq helm-locate-fuzzy-match t)
 (setq helm-recentf-fuzzy-match t)
 (setq helm-buffers-fuzzy-matching t)
-(setq helm-mode-fuzzy-match t)
 
-(setq helm-buffer-skip-remote-checking t)
 (setq helm-ff-skip-boring-files t)
 (setq helm-grep-file-path-style 'relative)
-(setq helm-list-directory-function 'helm-list-dir-lisp)
 (setq helm-substitute-in-filename-stay-on-remote t)
 (setq helm-prevent-escaping-from-minibuffer nil)
 
@@ -31,8 +28,6 @@
 (global-set-key (kbd "C-c =") #'helm-show-kill-ring)
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
-
-(setq helm-exit-idle-delay 0)
 
 ;; stop using a new frame for helm completion
 (setq helm-show-completion-display-function nil)
@@ -44,4 +39,3 @@
 (helm-mode 1)
 
 (global-set-key (kbd "M-s o") 'helm-occur)
-
