@@ -13,6 +13,8 @@
 (ivy-mode)
 (counsel-mode)
 
+(setq ivy-display-functions-alist '(t))
+
 (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
 (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
 
