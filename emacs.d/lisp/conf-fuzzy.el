@@ -8,7 +8,8 @@
 
 (setq ivy-virtual-abbreviate 'abbreviate
       ivy-use-virtual-buffers t
-      counsel-find-file-at-point t)
+      counsel-find-file-at-point t
+      counsel-find-file-ignore-regexp "\\(?:\\[#.]\\)\\|\\(?:[#~]\\)")
 
 (ivy-mode)
 (counsel-mode)

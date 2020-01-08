@@ -135,7 +135,7 @@
 (load "conf-email")
 (load "conf-magit")
 (load "format-on-save")
-(load "conf-helm")
+(load "conf-fuzzy")
 (load "conf-org")
 (load "conf-tramp")
 (load "conf-term")
