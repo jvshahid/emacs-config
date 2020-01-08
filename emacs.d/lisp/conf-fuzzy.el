@@ -21,3 +21,4 @@
 
 (setq projectile-completion-system 'ivy)
 (global-set-key (kbd "C-x C-p") 'projectile-find-file)
+(global-set-key (kbd "M-s o") 'swiper-isearch-thing-at-point)
