@@ -4,7 +4,6 @@
 
 (straight-use-package 'ivy)
 (straight-use-package 'ivy-hydra)
-(straight-use-package 'counsel)
 
 (setq ivy-virtual-abbreviate 'abbreviate
       ivy-use-virtual-buffers t)
