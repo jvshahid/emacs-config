@@ -352,10 +352,10 @@ indentation."
                         (line-beginning-position))
                   elems)
           (when title
-            (push (cons title elems) index))
+            (push (cons title (reverse elems)) index))
           (setq elems nil)
           (setq title (match-string-no-properties 1))))
-      (push (cons title elems) index)
+      (push (cons title (seq-reverse elems)) index)
       index)))
 
 (push '(imenu-create-index-function . concourse-imenu-index-function) safe-local-variable-values)
