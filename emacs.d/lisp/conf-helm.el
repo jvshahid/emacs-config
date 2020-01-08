@@ -4,11 +4,14 @@
 
 (straight-use-package 'ivy)
 (straight-use-package 'ivy-hydra)
+(straight-use-package 'counsel)
 
 (setq ivy-virtual-abbreviate 'abbreviate
-      ivy-use-virtual-buffers t)
+      ivy-use-virtual-buffers t
+      counsel-find-file-at-point t)
 
 (ivy-mode)
+(counsel-mode)
 
 (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
 (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
