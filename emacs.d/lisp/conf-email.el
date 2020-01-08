@@ -14,8 +14,6 @@
 (add-to-list 'load-path "~/bin/mu/share/emacs/site-lisp/mu4e")
 (autoload 'mu4e "mu4e" "start mu4e" t)
 
-(straight-use-package 'helm-mu)
-
 (add-to-list 'Info-additional-directory-list "~/bin/mu/share/info")
 
 (with-eval-after-load 'mu4e

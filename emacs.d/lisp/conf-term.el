@@ -62,7 +62,7 @@ With prefix argument, switch to default-directory"
 (add-hook 'eshell-mode-hook
           (lambda ()
             (eshell-cmpl-initialize)
-            (define-key eshell-hist-mode-map (kbd "M-r") 'helm-eshell-history)))
+            (define-key eshell-hist-mode-map (kbd "M-r") 'counsel-esh-history)))
 
 (defun eshell-confirm-kill (func &rest args)
   (when (y-or-n-p (format "Kill eshell process "))

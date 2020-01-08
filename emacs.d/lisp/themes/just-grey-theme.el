@@ -112,10 +112,6 @@ Semantic, and Ansi-Color faces are included.")
    `(font-lock-string-face ((,class (:foreground ,alum-1))))
    `(font-lock-type-face ((,class (:foreground ,alum-1))))
    `(font-lock-variable-name-face ((,class (:foreground ,alum-1))))
-   ;; helm
-   `(helm-source-header ((,class :foreground ,alum-1 :underline t :height 1.2)))
-   `(helm-selection ((,class (:background ,alum-5))))
-   `(helm-ff-directory ((,class :foreground ,alum-1 :underline t)))
    ;; shell
    `(sh-quoted-exec ((,class (:foreground ,alum-1))))
    `(sh-heredoc ((,class (:foreground ,alum-1 :weight semi-bold))))
