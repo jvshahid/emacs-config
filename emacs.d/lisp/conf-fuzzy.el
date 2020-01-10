@@ -5,6 +5,7 @@
 (straight-use-package 'ivy)
 (straight-use-package 'ivy-hydra)
 (straight-use-package 'counsel)
+(straight-use-package 'ivy-rich)
 
 (setq ivy-virtual-abbreviate 'abbreviate
       ivy-use-virtual-buffers t
@@ -13,6 +14,7 @@
 
 (ivy-mode)
 (counsel-mode)
+(ivy-rich-mode)
 
 (setq ivy-display-functions-alist '(t))
 
