@@ -16,6 +16,9 @@
 (counsel-mode)
 (ivy-rich-mode)
 
+(add-hook 'minibuffer-inactive-mode-hook (lambda ()
+                                           (setq show-trailing-whitespace nil)))
+
 (setq ivy-display-functions-alist '(t))
 
 (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
