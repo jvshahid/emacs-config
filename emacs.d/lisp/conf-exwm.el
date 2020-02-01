@@ -96,7 +96,7 @@
     :initialize 'custom-initialize-default
     :set 'shahid/change-display-configuration)
 
-  (defcustom shahid/external-monitor-name "HDMI-1"
+  (defcustom shahid/external-monitor-name "DP-1"
     ""
     :type '(string)
     :set 'shahid/change-display-configuration)
