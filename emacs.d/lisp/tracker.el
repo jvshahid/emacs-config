@@ -17,6 +17,15 @@
           (alist-get 'kind story)
           (alist-get 'id story)))
 
+(defun tracker--indent-string-rigidly (str arg)
+  "Indent all ines in the given string sideways by ARG columns."
+  (with-temp-buffer
+    (insert str)
+    (indent-code-rigidly (point-min)
+                         (point-max)
+                         arg)
+    (buffer-string)))
+
 (defun tracker--story-notifications-to-org (notifications)
   (pcase-let ((`(,story . ,notifications) notifications))
     (let ((name (alist-get 'name story))
@@ -31,7 +40,8 @@
                       (context (alist-get 'context notification)))
                   (insert (format "*** %s\n%s\n"
                                   message
-                                  (or context "")))))
+                                  (tracker--indent-string-rigidly (or context "")
+                                                                  1)))))
               notifications))))
 
 (defun tracker--proj-notifications-to-org (notifications)
