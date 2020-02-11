@@ -1,3 +1,5 @@
-alias updatesystem yay -Syu --timeupdate --noconfirm
-alias rr cd ${magit-toplevel}
+alias pk eshell-up-peek
+alias up eshell-up
 alias ll ls -l $*
+alias rr cd ${magit-toplevel}
+alias updatesystem yay -Syu --timeupdate --noconfirm
