@@ -11,7 +11,8 @@
 
 (straight-use-package '(aweshell :type git :host github :repo "manateelazycat/aweshell"))
 (with-eval-after-load 'eshell
-  (require 'aweshell))
+  (require 'aweshell)
+  (define-key eshell-mode-map (kbd "C-l") nil))
 
 (setq term-buffer-maximum-size 10000)
 
