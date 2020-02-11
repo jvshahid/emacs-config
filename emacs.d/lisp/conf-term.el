@@ -14,6 +14,8 @@
   (require 'aweshell)
   (define-key eshell-mode-map (kbd "C-l") nil))
 
+(autoload 'aweshell-switch-buffer "aweshell")
+
 (setq term-buffer-maximum-size 10000)
 
 (defun shahid/disable-complete-in-region (&rest args)
