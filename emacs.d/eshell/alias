@@ -1,5 +1,5 @@
-alias pk eshell-up-peek
-alias up eshell-up
-alias ll ls -l $*
-alias rr cd ${magit-toplevel}
+alias up eshell-up $1
+alias pk eshell-up-peek $1
 alias updatesystem yay -Syu --timeupdate --noconfirm
+alias rr cd ${magit-toplevel}
+alias ll ls -l $*
