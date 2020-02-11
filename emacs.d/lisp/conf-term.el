@@ -9,17 +9,9 @@
 (add-to-list 'display-buffer-alist
              '("\\*eshell.*" display-buffer-reuse-window (inhibit-same-window . t)))
 
-
-(defun shahid/eshell-and-switch-dir (&optional arg)
-  "Pop the eshell buffer.
-
-With prefix argument, switch to default-directory"
-  (interactive "P")
-  (let ((dir default-directory))
-    (eshell arg)
-    (when (not (string-equal default-directory dir))
-      (eshell/cd dir)
-      (eshell-reset))))
+(straight-use-package '(aweshell :type git :host github :repo "manateelazycat/aweshell"))
+(with-eval-after-load 'eshell
+  (require 'aweshell))
 
 (setq term-buffer-maximum-size 10000)
 
