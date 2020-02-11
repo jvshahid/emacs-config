@@ -23,6 +23,7 @@
 
 (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
 (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
+(global-set-key (kbd "C-c i") 'ivy-resume)
 
 (setq projectile-completion-system 'ivy)
 (global-set-key (kbd "C-x C-p") 'projectile-find-file)
