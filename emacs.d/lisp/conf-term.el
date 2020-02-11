@@ -12,7 +12,11 @@
 (straight-use-package '(aweshell :type git :host github :repo "manateelazycat/aweshell"))
 (with-eval-after-load 'eshell
   (require 'aweshell)
-  (define-key eshell-mode-map (kbd "C-l") nil))
+  ;; Undo the change that aweshell makes
+  (add-hook 'eshell-mode-hook
+            (lambda ()
+              (define-key eshell-mode-map (kbd "C-l") nil))
+            100))
 
 (autoload 'aweshell-switch-buffer "aweshell")
 
