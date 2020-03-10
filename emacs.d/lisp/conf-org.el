@@ -10,18 +10,26 @@
 (global-set-key (kbd "C-c C-a") #'org-agenda)
 
 (with-eval-after-load 'org
-  (setq org-agenda-skip-scheduled-if-done t)
-  (setq org-directory "~/Dropbox/orgs")
-  (add-to-list 'org-agenda-files "~/Dropbox/orgs")
-  (setq org-enforce-todo-dependencies t)
-  (setq org-refile-use-outline-path 'file)
-  (setq org-outline-path-complete-in-steps nil)
-  (setq org-todo-keywords
-    '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
-  (setq org-log-into-drawer t)
-  (setq org-capture-templates
-   '(("t" "Todo" entry (file+headline "~/Dropbox/orgs/todo.org" "Inbox")
-          "* TODO %? %^g\n  %a"))))
+  (setq org-refile-targets '((nil . (:level . 1)) (nil . (:level . 2)))
+        org-agenda-text-search-extra-files '("~/Dropbox/orgs/todo.org_archive")
+        org-agenda-custom-commands '(("c" . "My Custom Agendas")
+                                     ("cu" "Unscheduled TODO"
+                                      ((todo ""
+                                             ((org-agenda-overriding-header "\nUnscheduled TODO")
+                                              (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))
+                                      nil
+                                      nil))
+        org-agenda-skip-scheduled-if-done t
+        org-directory "~/Dropbox/orgs"
+        org-enforce-todo-dependencies t
+        org-refile-use-outline-path 'file
+        org-outline-path-complete-in-steps nil
+        org-todo-keywords
+        '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))
+        org-log-into-drawer t
+        org-capture-templates
+        '(("t" "Todo" entry (file+headline "~/Dropbox/orgs/todo.org" "Inbox")
+           "* TODO %? %^g\n  %a")))
+  (add-to-list 'org-agenda-files "~/Dropbox/orgs"))
 
-(setq org-refile-targets '((nil . (:level . 1)) (nil . (:level . 2))))
 (define-key global-map "\C-cc" #'org-capture)
