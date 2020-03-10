@@ -17,7 +17,9 @@
 (add-to-list 'Info-additional-directory-list "~/bin/mu/share/info")
 
 (with-eval-after-load 'mu4e
-  (require 'org-mu4e))
+  (require 'org-mu4e)
+  (add-to-list 'mu4e-view-actions
+    '("ViewInBrowser" . mu4e-action-view-in-browser) t))
 
 ;; prevent mu4e update messages
 (setq mu4e-hide-index-messages t
