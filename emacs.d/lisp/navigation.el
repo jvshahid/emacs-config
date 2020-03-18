@@ -44,16 +44,6 @@
   ("S" hs-show-all)
   ("H" hs-hide-all))
 
-(defun shahid/indent-rigidly-extend-region (&rest _)
-  (let ((restore (unless (< (point) (region-end))
-                   (exchange-point-and-mark)
-                   t)))
-    (beginning-of-line)
-    (if restore
-        (exchange-point-and-mark))))
-
-(advice-add 'indent-rigidly :before #'shahid/indent-rigidly-extend-region)
-
 (define-key indent-rigidly-map (kbd ",") 'indent-rigidly-left)
 (define-key indent-rigidly-map (kbd ".") 'indent-rigidly-right)
 (define-key indent-rigidly-map (kbd "<") 'indent-rigidly-left-to-tab-stop)
