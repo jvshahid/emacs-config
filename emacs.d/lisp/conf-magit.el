@@ -1,6 +1,8 @@
 ;;; -*- lexical-binding: t; -*-
 
+(straight-use-package 'ghub :files '("*.el"))
 (straight-use-package 'magit)
+(straight-use-package 'forge)
 (straight-use-package 'git-link)
 
 (with-eval-after-load 'git-link
@@ -11,6 +13,7 @@
 (add-hook 'git-commit-mode-hook #'flyspell-mode)
 
 (with-eval-after-load 'magit
+  (require 'forge)
   (add-hook 'magit-mode-hook '(lambda ()
                                 (setq show-trailing-whitespace nil)))
   (setq

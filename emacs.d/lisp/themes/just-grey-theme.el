@@ -134,6 +134,8 @@ Semantic, and Ansi-Color faces are included.")
    `(term-color-magenta ((,class (:foreground ,alum-1))))
    `(term-color-cyan  ((,class (:foreground ,alum-1))))
    `(term-color-white ((,class (:foreground ,alum-1))))
+   ;; forge
+   `(forge-topic-closed ((,class (:foreground ,cham-2))))
    ;; dired
    `(dired-header ((,class (:foreground ,alum-1))))
    `(dired-directory ((,class (:foreground ,alum-1 :weight bold))))
