@@ -35,7 +35,9 @@
 (straight-use-package 'direnv)
 (straight-use-package 'hydra)
 (straight-use-package 'lv)
+(straight-use-package 'minions)
 
+(minions-mode 1)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
