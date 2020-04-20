@@ -343,7 +343,7 @@ indentation."
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 
-(global-set-key (kbd "C-c C-m") #'imenu)
+(global-set-key (kbd "C-c m") #'imenu)
 (defun concourse-imenu-index-function ()
   (let (title
         elems
