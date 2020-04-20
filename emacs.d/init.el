@@ -7,6 +7,7 @@
 (setq vc-follow-symlinks t)
 (setq gc-cons-threshold (* 64 1024 1024))
 (setq epg-pinentry-mode 'loopback)
+(setq auth-sources '("~/.authinfo.gpg"))
 
 (let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el")))
   (unless (file-exists-p bootstrap-file)
