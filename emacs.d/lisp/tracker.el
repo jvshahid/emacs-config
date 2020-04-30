@@ -60,7 +60,7 @@
       (seq-do #'tracker--proj-notifications-to-org
               grouped-by-proj))))
 
-(defun tracker--parser-response (status)
+(defun tracker--parse-response (status)
   (search-forward "\n\n")
   (let* ((data (json-parse-buffer :object-type 'alist))
          (unread (seq-into (seq-filter #'tracker--notification-unread-p data)
@@ -103,4 +103,4 @@
   (let* ((token (tracker--get-password tracker-username))
          (url-request-extra-headers `(("X-TrackerToken" . ,token))))
     (url-retrieve "https://www.pivotaltracker.com/services/v5/my/notifications?notification_types=:all"
-                  #'tracker--parser-response)))
+                  #'tracker--parse-response)))
