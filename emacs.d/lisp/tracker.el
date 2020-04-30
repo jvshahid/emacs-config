@@ -71,6 +71,8 @@
                                      (alist-get 'created_at not2)))
                                   unread))
          (buf (get-buffer-create "*tracker updates*")))
+    (let-alist (seq-first unread)
+      (tracker--mark-read .id))
     (kill-buffer)
     (with-current-buffer buf
       (erase-buffer)
@@ -97,6 +99,14 @@
         (if (functionp secret)
             (funcall secret)
           secret)))))
+
+(defun tracker--mark-read (id)
+  (let* ((token (tracker--get-password tracker-username))
+         (url-request-extra-headers `(("X-TrackerToken" . ,token)
+                                      ("Content-Type" . "application/json")))
+         (url-request-method "PUT")
+         (url-request-data (json-encode-alist `((before . ,id)))))
+    (url-retrieve-synchronously "https://www.pivotaltracker.com/services/v5/my/notifications/mark_read")))
 
 (defun tracker-notifications ()
   (interactive)
