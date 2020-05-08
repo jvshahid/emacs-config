@@ -9,6 +9,7 @@
 
 (setq ivy-virtual-abbreviate 'abbreviate
       ivy-use-virtual-buffers t
+      ivy-rich-parse-remote-buffer nil
       counsel-find-file-at-point t
       counsel-find-file-ignore-regexp "\\(?:\\[#.]\\)\\|\\(?:[#~]\\)")
 
