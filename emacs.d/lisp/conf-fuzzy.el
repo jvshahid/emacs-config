@@ -20,7 +20,8 @@
 (add-hook 'minibuffer-inactive-mode-hook (lambda ()
                                            (setq show-trailing-whitespace nil)))
 
-(setq ivy-display-functions-alist '(t))
+(setq ivy-display-functions-alist '(t)
+      ivy-rich-parse-remote-file-path nil)
 
 (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
 (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
