@@ -20,9 +20,6 @@
              (if (<= (length exwm-title) 30) exwm-title
                (concat (substring exwm-title 0 29) "...")))))
 
-  (add-hook 'exwm-update-class-hook 'exwm-rename-buffer)
-  (add-hook 'exwm-update-title-hook 'exwm-rename-buffer)
-
   (setq exwm-input-simulation-keys `(([?\C-b] . [left])
                                      ([?\C-f] . [right])
                                      ([?\C-p] . [up])
