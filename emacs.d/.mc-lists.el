@@ -22,6 +22,7 @@
         evil-insert
         evil-normal-state
         forward-sexp
+        hydra--negative-argument
         indent-for-tab-command
         insert-register
         kill-region
@@ -53,6 +54,7 @@
         upcase-dwim
         upcase-region
         wgrep-finish-edit
+        yaml-electric-backspace
         yaml-electric-dash-and-dot
         ))
 
@@ -74,6 +76,7 @@
         repeat
         term-char-mode
         term-send-raw
+        toggle-indent-longer-lines
         xref-find-definitions
         yaml-electric-backspace
         ))
