@@ -362,6 +362,10 @@ indentation."
       (push (cons title (seq-reverse elems)) index)
       index)))
 
+(defun setup-concourse-index-function ()
+  (interactive)
+  (add-dir-local-variable 'yaml-mode 'imenu-create-index-function #'concourse-imenu-index-function))
+
 (push '(imenu-create-index-function . concourse-imenu-index-function) safe-local-variable-values)
 
 (setq-default imenu-auto-rescan t)
