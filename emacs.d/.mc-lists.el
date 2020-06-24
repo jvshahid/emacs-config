@@ -6,11 +6,13 @@
         backward-sexp
         backward-up-list
         complete-symbol
+        counsel-yank-pop
         dabbrev-completion
         dabbrev-expand
         down-list
         downcase-region
         electric-newline-and-maybe-indent
+        eshell-bol
         evil-backward-char
         evil-change
         evil-delete-char
@@ -48,6 +50,7 @@
         tab-to-tab-stop
         transpose-sexps
         transpose-words
+        upcase-dwim
         upcase-region
         wgrep-finish-edit
         yaml-electric-dash-and-dot
@@ -69,5 +72,8 @@
         multiple-cursor-activate
         multiple-cursor-doit
         repeat
+        term-char-mode
+        term-send-raw
         xref-find-definitions
+        yaml-electric-backspace
         ))
