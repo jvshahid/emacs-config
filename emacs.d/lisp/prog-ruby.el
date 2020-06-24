@@ -1,10 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 (straight-use-package 'rvm)
-(straight-use-package 'robe)            ;auto completion for ruby
 
-(eval-after-load 'robe
-  '(push 'company-robe company-backends))
 
 (add-to-list 'hs-special-modes-alist
               `(ruby-mode
@@ -15,10 +12,8 @@
 
 (add-hook 'ruby-mode-hook (lambda ()
                             (hs-minor-mode)
-                            (robe-mode)
                             (flycheck-mode)
-                            (local-set-key (kbd "C-.") 'company-complete)
-                            (local-set-key (kbd "C-c C-j") 'robe-jump)))
+                            (local-set-key (kbd "C-.") 'company-complete)))
 
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
