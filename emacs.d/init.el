@@ -109,7 +109,9 @@
  '(recentf-max-saved-items 200)
  '(rvm-executable "/usr/share/rvm/src/rvm/bin/rvm")
  '(safe-local-variable-values
-   '((eglot-workspace-configuration
+   '((bug-reference-url-format . https://www\.pivotaltracker\.com/stories/show/1)
+     (imenu-create-index-function . concourse-imenu-index-function)
+     (eglot-workspace-configuration
       (goto_def_racer_fallback . t))
      (flycheck-rust-crate-type)
      (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
