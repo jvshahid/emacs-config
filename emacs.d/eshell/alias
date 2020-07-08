@@ -1,6 +1,7 @@
-alias backup rsync -a /home/jvshahid /mnt/
-alias ll ls -l $*
-alias rr cd ${magit-toplevel}
-alias updatesystem yay -Syu --timeupdate --noconfirm
-alias pk eshell-up-peek $1
+alias gopls go get golang.org/x/tools/gopls
 alias up eshell-up $1
+alias pk eshell-up-peek $1
+alias updatesystem yay -Syu --timeupdate --noconfirm
+alias rr cd ${magit-toplevel}
+alias ll ls -l $*
+alias backup rsync -a /home/jvshahid /mnt/
