@@ -180,6 +180,9 @@
   (setq flycheck-check-syntax-automatically (quote (save mode-enabled))))
 
 (setenv "GIT_EDITOR" "emacsclient")
+;; Don't use a pager inside eshell or ansi-term, I can use Emacs binding to
+;; navigate in the output history
+(setenv "PAGER" "cat")
 
 (defun show-all-buffers ()
   (interactive)
