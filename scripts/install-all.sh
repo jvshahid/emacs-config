@@ -19,3 +19,6 @@ cd $(dirname $0)
 ./install-fonts.sh
 ./install-packages.sh
 ./install-smartcards.sh
+./install-printer.sh
+./install-cups.sh
+./install-rsyslog.sh

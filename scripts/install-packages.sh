@@ -23,6 +23,7 @@ packages=(
     pulseaudio-alsa
     pulseaudio-zeroconf
     rsync
+    rsyslog
     the_silver_searcher
     the_silver_searcher
     thermald
