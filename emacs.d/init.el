@@ -165,6 +165,7 @@
 (setq tracker-username "jvshahid")
 
 (global-set-key (kbd "C-c r e") #'aweshell-switch-buffer)
+(global-set-key (kbd "C-c r n") #'aweshell-new)
 (global-set-key (kbd "C-c r t") #'ansi-term)
 (global-set-key (kbd "C-c r m") #'mu4e)
 (global-set-key (kbd "C-c r p") #'tracker-notifications)
