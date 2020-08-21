@@ -195,8 +195,7 @@
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 (with-eval-after-load 'markdown-mode
-  (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
-  (add-hook 'markdown-mode-hook 'turn-on-orgstruct)
+  (add-hook 'markdown-mode-hook 'orgtbl-setup)
   (add-hook 'markdown-mode-hook 'setup-org-keybindings)
   (add-hook 'gfm-mode-hook 'setup-org-keybindings)
   (setq-default markdown-command "~/bin/flavor"))
