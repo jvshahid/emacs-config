@@ -375,3 +375,5 @@ indentation."
 (push '(imenu-create-index-function . concourse-imenu-index-function) safe-local-variable-values)
 
 (setq-default imenu-auto-rescan t)
+
+(setq gc-cons-threshold 800000)
