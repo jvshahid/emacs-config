@@ -24,6 +24,7 @@
 (straight-use-package 'etags-select)
 (straight-use-package 'yaml-mode)
 (straight-use-package 'keyfreq)
+(straight-use-package 'string-inflection)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'protobuf-mode)
 (straight-use-package 'yasnippet)
