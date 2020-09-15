@@ -298,11 +298,7 @@ indentation."
 ;;; enable scroll-left command without confirmation
 (put 'scroll-left 'disabled nil)
 
-(defun insert-zapped-char (_ ch)
-  (insert-char ch)
-  (forward-char -1))
-
-(advice-add 'zap-to-char :after #'insert-zapped-char)
+(global-set-key (kbd "M-z") #'zap-up-to-char)
 
 ;; Add the version of Emacs when a symbol was added
 ;; Stefan Monnier: http://lists.gnu.org/archive/html/emacs-devel/2018-09/msg00959.html
