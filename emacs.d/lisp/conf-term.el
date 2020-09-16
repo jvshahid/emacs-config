@@ -22,6 +22,8 @@
 
 (setq term-buffer-maximum-size 10000)
 
+(setq aweshell-auto-suggestion-p nil)
+
 (defun shahid/disable-complete-in-region (&rest args)
   (completion-in-region-mode -1))
 
