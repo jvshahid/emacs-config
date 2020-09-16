@@ -47,7 +47,6 @@
 (setq eshell-prefer-lisp-functions t)
 (autoload 'eshell/z "eshell-z")
 (add-hook 'eshell-mode-hook (lambda ()
-                              (company-mode -1)
                               (setq show-trailing-whitespace nil)))
 
 (with-eval-after-load 'em-term

@@ -2,6 +2,7 @@
 
 (straight-use-package 'company)
 
+(setq company-global-modes '(not eshell-mode))
 (global-company-mode)
 
 (with-eval-after-load 'company
