@@ -68,7 +68,6 @@
 (global-unset-key (kbd "C-z"))     ;stop suspending the frame on accidental C-z
 (global-unset-key (kbd "C-x C-z")) ;stop suspending the frame on accidental C-x C-z
 (global-set-key (kbd "C-x C-v") #'revert-buffer)
-(global-set-key (kbd "C-x C-j") #'projectile-switch-project)
 (setq-default inhibit-startup-screen t)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/lisp/themes")
@@ -289,6 +288,9 @@ indentation."
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
 (setq dired-omit-files
       (concat dired-omit-files ".*~$"))
+
+;; override dired bindings
+(global-set-key (kbd "C-x C-j") #'projectile-switch-project)
 
 ;;; disable org toc
 (setq org-export-with-toc nil)
