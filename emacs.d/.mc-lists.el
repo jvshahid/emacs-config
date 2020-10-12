@@ -12,6 +12,7 @@
         down-list
         downcase-region
         electric-newline-and-maybe-indent
+        end-of-visual-line
         eshell-bol
         evil-backward-char
         evil-change
@@ -27,6 +28,7 @@
         insert-register
         kill-region
         kill-sexp
+        kill-visual-line
         mark-sexp
         markdown-outdent-or-delete
         navigation-hydra/backward-sexp
@@ -70,6 +72,7 @@
         hydra-multiple-cursor/mc/edit-lines
         hydra-multiple-cursor/mc/mark-all-dwim
         hydra-multiple-cursor/mc/mark-next-like-this
+        ivy-alt-done
         mc-doit-mc/mark-next-like-this
         multiple-cursor-activate
         multiple-cursor-doit
