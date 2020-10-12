@@ -31,6 +31,10 @@
          (list (mu4e-message-field (mu4e-message-at-point) :mailing-list)))
     (mu4e-headers-search-narrow (concat "list:" list))))
 
+(defun shahid/mu4e-headers-search-important ()
+  (interactive
+   (mu4e-headers-search-narrow "flag:flagged")))
+
 (defun shahid/mu4e-headers-search-from ()
   (interactive)
   (let* ((msg (mu4e-message-at-point))
@@ -52,7 +56,11 @@
 
   (define-key mu4e-headers-mode-map
     (kbd "s l")
-    #'shahid/mu4e-headers-search-list))
+    #'shahid/mu4e-headers-search-list)
+
+  (define-key mu4e-headers-mode-map
+    (kbd "s i")
+    #'shahid/mu4e-headers-search-important))
 
 (setq mu4e-compose-forward-as-attachment t) ; Force mu4e to inline forwarded emails
 
