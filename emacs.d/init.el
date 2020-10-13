@@ -38,6 +38,7 @@
 (straight-use-package 'hydra)
 (straight-use-package 'lv)
 (straight-use-package 'minions)
+(straight-use-package 'tldr)
 
 (minions-mode 1)
 (keyfreq-mode 1)
@@ -165,6 +166,7 @@
 (load "tracker")
 (setq tracker-username "jvshahid")
 
+(global-set-key (kbd "C-c r l") #'tldr)
 (global-set-key (kbd "C-c r e") #'aweshell-switch-buffer)
 (global-set-key (kbd "C-c r n") #'aweshell-new)
 (global-set-key (kbd "C-c r t") #'ansi-term)
