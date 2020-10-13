@@ -1,4 +1,4 @@
-alias gopls go get golang.org/x/tools/gopls
+alias gopls GO111module=on go get golang.org/x/tools/gopls@latest
 alias up eshell-up $1
 alias pk eshell-up-peek $1
 alias updatesystem yay -Syu --timeupdate --noconfirm
