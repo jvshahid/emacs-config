@@ -197,6 +197,8 @@
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
+(autoload 'orgtbl-setup "org-table")
+
 (with-eval-after-load 'markdown-mode
   (add-hook 'markdown-mode-hook 'orgtbl-setup)
   (add-hook 'markdown-mode-hook 'setup-org-keybindings)
