@@ -131,6 +131,12 @@
     (let ((new-idx (+ exwm-workspace-current-index inc)))
       (exwm-workspace-switch new-idx)))
 
+  (defun shahid/clean-dead-frames ()
+    (interactive)
+    (setq exwm-workspace--list (seq-filter (lambda (f)
+                                             (frame-live-p f))
+                                           exwm-workspace--list)))
+
   ;; override the original definition
   (defun shahid/bind-global-key (key func)
     (global-set-key (kbd key) func)
