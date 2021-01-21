@@ -13,5 +13,5 @@
   (add-hook 'go-mode-hook 'subword-mode)
   (add-hook 'go-mode-hook 'yas-minor-mode)
   (add-hook 'go-mode-hook 'hs-minor-mode)
-  (add-hook 'go-mode-hook 'lsp))
+  (add-hook 'go-mode-hook 'eglot-ensure))
 
