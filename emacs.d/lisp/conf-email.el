@@ -23,6 +23,7 @@
 
 ;; prevent mu4e update messages
 (setq mu4e-hide-index-messages t
+      mu4e-change-filenames-when-moving t
       mu4e-display-update-status-in-modeline t)
 
 (defun shahid/mu4e-headers-search-list ()
