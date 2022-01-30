@@ -149,6 +149,8 @@
 (load "conf-media")
 (load "conf-mc")
 
+(define-key key-translation-map (kbd "C-8") (kbd "DEL"))
+
 ;; programming modes
 (load "prog-autocomplete")
 (load "prog-lsp")

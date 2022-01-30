@@ -5,7 +5,6 @@
 
   (atomic-chrome-start-server)
 
-  (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
   (server-start)
   (straight-use-package '(exwm :type git :host github :repo "ch11ng/exwm"))
   (setq mouse-autoselect-window t
