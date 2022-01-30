@@ -17,8 +17,8 @@
 (counsel-mode)
 (ivy-rich-mode)
 
-(add-hook 'minibuffer-inactive-mode-hook (lambda ()
-                                           (setq show-trailing-whitespace nil)))
+(add-hook 'minibuffer-setup-hook (lambda ()
+                                   (setq show-trailing-whitespace nil)))
 
 (setq ivy-display-functions-alist '(t)
       ivy-rich-parse-remote-file-path nil)
