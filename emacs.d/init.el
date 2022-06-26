@@ -194,8 +194,8 @@
   (interactive)
   (display-buffer (list-buffers-noselect nil (buffer-list))))
 
-(add-hook 'Buffer-menu-mode-hook '(lambda ()
-                                    (setq show-trailing-whitespace nil)))
+(add-hook 'Buffer-menu-mode-hook (lambda ()
+                                   (setq show-trailing-whitespace nil)))
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
