@@ -55,6 +55,7 @@
 (setq projectile-dynamic-mode-line nil) ; Disable projectile lighter
 (setq projectile-enable-caching t)    ; Turn on caching for faster invocations.
 (projectile-mode)
+(setq vc-handled-backends nil)
 
 (with-eval-after-load 'direnv
   (setq direnv-always-show-summary t
@@ -308,6 +309,8 @@ indentation."
 (put 'scroll-left 'disabled nil)
 
 (global-set-key (kbd "M-z") #'zap-up-to-char)
+
+(setq ring-bell-function 'ignore)
 
 ;; Add the version of Emacs when a symbol was added
 ;; Stefan Monnier: http://lists.gnu.org/archive/html/emacs-devel/2018-09/msg00959.html
