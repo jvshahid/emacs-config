@@ -40,9 +40,6 @@
 	lineNumber = true
 [push]
   recurseSubmodules = check
-[commit]
-	gpgSign = true
-
 [url "git@github.com:"]
     pushInsteadOf = https://github.com/ # always push with authn
 [merge]

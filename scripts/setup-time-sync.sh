@@ -2,10 +2,6 @@
 
 cd $(dirname $0)
 
-source ./helpers.sh
-
-install_package chrony
-
 cat <<EOF >> /etc/chrony.conf
 server 0.pool.ntp.org iburst
 server 1.pool.ntp.org iburst

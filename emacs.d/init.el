@@ -22,17 +22,11 @@
 (straight-use-package '(debbugs :type git :host github :repo "emacsmirror/debbugs" :files ("*")))
 (straight-use-package 'projectile)
 (straight-use-package 'etags-select)
-(straight-use-package 'yaml-mode)
-(straight-use-package 'keyfreq)
 (straight-use-package 'string-inflection)
 (straight-use-package 'markdown-mode)
-(straight-use-package 'protobuf-mode)
 (straight-use-package 'yasnippet)
 (straight-use-package 'yasnippet-snippets)
-(straight-use-package 'dockerfile-mode)
-(straight-use-package 'flycheck)
 (straight-use-package 'wgrep)
-(straight-use-package '(concourse-mode :type git :host github :repo "jvshahid/concourse-mode"))
 (straight-use-package 'edit-indirect)   ;markdown edit code regions
 (straight-use-package 'direnv)
 (straight-use-package 'hydra)
@@ -41,8 +35,6 @@
 (straight-use-package 'tldr)
 
 (minions-mode 1)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
 
 (setq-default enable-recursive-minibuffers t)
 
@@ -117,7 +109,6 @@
      (imenu-create-index-function . concourse-imenu-index-function)
      (eglot-workspace-configuration
       (goto_def_racer_fallback . t))
-     (flycheck-rust-crate-type)
      (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(sc-auto-fill-region-p nil)
  '(sc-citation-leader "")
@@ -139,16 +130,14 @@
 (run-with-idle-timer 60 t #'recentf-save-list)
 
 (push "~/.emacs.d/lisp" load-path)
-(load "conf-exwm")
+;; (load "conf-exwm")
 (load "navigation")
 (load "conf-email")
 (load "conf-magit")
 (load "format-on-save")
 (load "conf-fuzzy")
 (load "conf-org")
-(load "conf-tramp")
 (load "conf-term")
-(load "conf-media")
 (load "conf-mc")
 
 (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
@@ -156,28 +145,19 @@
 ;; programming modes
 (load "prog-autocomplete")
 (load "prog-lsp")
-(load "prog-racket")
 (load "prog-ruby")
 (load "prog-go")
 (load "prog-elisp")
 (load "prog-clojure")
-(load "prog-haskell")
-(load "prog-rust")
 (load "prog-java")
 (load "prog-c")
 (load "prog-terraform")
-
-(load "tracker")
-(setq tracker-username "jvshahid")
 
 (global-set-key (kbd "C-c r l") #'tldr)
 (global-set-key (kbd "C-c r e") #'aweshell-switch-buffer)
 (global-set-key (kbd "C-c r n") #'aweshell-new)
 (global-set-key (kbd "C-c r t") #'ansi-term)
 (global-set-key (kbd "C-c r m") #'mu4e)
-(global-set-key (kbd "C-c r p") #'tracker-notifications)
-
-(setq tramp-use-ssh-controlmaster-options nil)
 
 (with-eval-after-load 'yasnippet-snippets
   (yas-reload-all))
@@ -209,10 +189,6 @@
   (add-hook 'gfm-mode-hook 'setup-org-keybindings)
   (setq-default markdown-command "~/bin/flavor"))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
-
-(with-eval-after-load 'arduino-mode
-  (add-hook 'arduino-mode-hook
-            'subword-mode))
 
 (defun add-yasnippet-to-ac-sources ()
   (push 'ac-source-yasnippet ac-sources))
@@ -351,7 +327,7 @@ indentation."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((type x)) :slant normal :weight normal :height 100 :width normal :family "Ubuntu Mono" :foundry "unknown"))))
+ '(default ((((type pgtk)) :slant normal :weight normal :height 110 :width normal :family "Source Code Pro"))))
 
 (put 'list-timers 'disabled nil)
 (put 'upcase-region 'disabled nil)
