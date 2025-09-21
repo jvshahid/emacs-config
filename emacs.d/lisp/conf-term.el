@@ -33,6 +33,8 @@
 (autoload 'eshell/z "eshell-z")
 (add-hook 'eshell-mode-hook (lambda ()
                               (setq show-trailing-whitespace nil)))
+(add-hook 'eat-mode-hook (lambda ()
+                           (setq show-trailing-whitespace nil)))
 
 (with-eval-after-load 'em-term
   (add-to-list 'eshell-visual-commands "dstat")
