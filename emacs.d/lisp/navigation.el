@@ -56,4 +56,5 @@
 (global-set-key (kbd "C-c h") 'windmove-left)
 (global-set-key (kbd "C-c j") 'windmove-down)
 (global-set-key (kbd "C-c k") 'windmove-up)
+(global-set-key (kbd "C-c '") 'ace-select-window)
 
