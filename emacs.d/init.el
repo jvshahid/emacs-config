@@ -74,7 +74,8 @@
  ;; If there is more than one, they won't work right.
  '(ac-use-menu-map t)
  '(ansi-color-names-vector
-   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff"
+    "#eeeeec"])
  '(auth-source-save-behavior nil)
  '(auto-revert-use-notify nil)
  '(blink-cursor-mode nil)
@@ -84,6 +85,8 @@
  '(c-default-style '((java-mode . "java") (awk-mode . "awk") (other . "gnu")))
  '(column-number-mode t)
  '(column-number-more t)
+ '(custom-safe-themes
+   '("e823e0188ab19377659d40195933fbdaa6aa09c3d79002f00cb497336728dc0a" default))
  '(debug-on-error nil)
  '(dired-omit-files "\\.test\\|^\\.?#\\|^\\.$\\|^\\.\\.$\\|.*~$")
  '(display-battery-mode t)
@@ -105,10 +108,9 @@
  '(recentf-max-saved-items 200)
  '(rvm-executable "/usr/share/rvm/src/rvm/bin/rvm")
  '(safe-local-variable-values
-   '((bug-reference-url-format . https://www\.pivotaltracker\.com/stories/show/1)
+   '((bug-reference-url-format . https://www.pivotaltracker.com/stories/show/1)
      (imenu-create-index-function . concourse-imenu-index-function)
-     (eglot-workspace-configuration
-      (goto_def_racer_fallback . t))
+     (eglot-workspace-configuration (goto_def_racer_fallback . t))
      (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(sc-auto-fill-region-p nil)
  '(sc-citation-leader "")
