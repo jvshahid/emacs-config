@@ -1,12 +1,14 @@
 ;;; -*- lexical-binding: t; -*-
 
 (defun c-c++-hook ()
-  (subword-mode))
+  (subword-mode)
+  (eglot-ensure))
 
 (add-hook 'c-mode-hook (lambda ()
                          (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
                          (local-set-key (kbd "C-c C-c") 'compile)
                          (local-set-key (kbd "C-c C-m") 'man)))
+
 (add-hook 'c-mode-hook 'c-c++-hook)
 (add-hook 'c++-mode-hook 'c-c++-hook)
 
