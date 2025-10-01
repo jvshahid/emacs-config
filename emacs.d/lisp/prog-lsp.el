@@ -8,4 +8,3 @@
 (require-with-check 'project nil 'reload)
 (require-with-check 'xref nil 'reload)
 (straight-use-package 'eglot)
-

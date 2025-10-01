@@ -7,8 +7,6 @@
 (setq mouse-autoselect-window t)
 (setq vc-follow-symlinks t)
 (setq gc-cons-threshold (* 64 1024 1024))
-(setq epg-pinentry-mode 'loopback)
-(setq auth-sources '("~/.authinfo.gpg"))
 
 (let ((bootstrap-file (concat user-emacs-directory "straight/repos/straight.el/bootstrap.el")))
   (unless (file-exists-p bootstrap-file)
@@ -20,7 +18,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(straight-use-package '(debbugs :type git :host github :repo "emacsmirror/debbugs" :files ("*")))
 (straight-use-package 'projectile)
 (straight-use-package 'etags-select)
 (straight-use-package 'string-inflection)
@@ -147,7 +144,6 @@
 
 ;; programming modes
 (load "prog-autocomplete")
-(load "prog-lsp")
 (load "prog-ruby")
 (load "prog-go")
 (load "prog-elisp")
@@ -155,6 +151,7 @@
 (load "prog-java")
 (load "prog-c")
 (load "prog-terraform")
+(load "prog-lsp")
 
 (global-set-key (kbd "C-c r l") #'tldr)
 (global-set-key (kbd "C-c r e") #'aweshell-switch-buffer)
@@ -330,7 +327,7 @@ indentation."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((type pgtk)) :slant normal :weight normal :height 110 :width normal :family "Source Code Pro"))))
+ '(default ((((type x)) :slant normal :weight normal :height 110 :width normal :family "Ubuntu Sans Mono"))))
 
 (put 'list-timers 'disabled nil)
 (put 'upcase-region 'disabled nil)
