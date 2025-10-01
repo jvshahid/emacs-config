@@ -152,6 +152,7 @@
 (load "prog-c")
 (load "prog-terraform")
 (load "prog-lsp")
+(load "prog-claude")
 
 (global-set-key (kbd "C-c r l") #'tldr)
 (global-set-key (kbd "C-c r e") #'aweshell-switch-buffer)
