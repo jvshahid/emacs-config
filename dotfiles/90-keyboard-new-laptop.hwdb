@@ -1,0 +1,9 @@
+# -*- conf -*-
+# use sudo evtest to find the scan codes of various keys
+evdev:atkbd:dmi:bvn*:bvr*:bd*:svn*:pn*:pvr*
+ KEYBOARD_KEY_38=leftctrl
+ KEYBOARD_KEY_b8=rightctrl
+ KEYBOARD_KEY_2a=leftalt
+ KEYBOARD_KEY_36=rightalt
+ KEYBOARD_KEY_3a=leftshift
+ KEYBOARD_KEY_9d=rightshift
