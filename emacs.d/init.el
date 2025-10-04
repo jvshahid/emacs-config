@@ -131,6 +131,11 @@
  '(windmove-wrap-around t)
  '(yank-excluded-properties t))
 
+;; don't enable show-trailing-space for special/read-only buffers
+(defun shahid/disable-show-trailing-space ()
+  (setq show-trailing-whitespace nil))
+(add-hook 'special-mode-hook #'shahid/disable-show-trailing-space)
+
 (setq recentf-auto-cleanup 'never)
 (recentf-mode)
 (run-with-idle-timer 60 t #'recentf-save-list)
