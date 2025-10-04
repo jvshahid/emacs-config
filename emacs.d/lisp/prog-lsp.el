@@ -8,3 +8,11 @@
 (require-with-check 'project nil 'reload)
 (require-with-check 'xref nil 'reload)
 (straight-use-package 'eglot)
+
+(defun my-eglot-hook ()
+  (local-set-key (kbd "C-c C-j a") #'eglot-code-actions)
+  (local-set-key (kbd "C-c C-j f") #'eglot-format)
+  (local-set-key (kbd "C-c C-j r") #'eglot-rename))
+
+(add-hook 'eglot-managed-mode-hook #'my-eglot-hook)
+
