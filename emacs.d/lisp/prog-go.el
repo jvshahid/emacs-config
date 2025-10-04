@@ -14,14 +14,8 @@
   (add-hook 'go-mode-hook 'hs-minor-mode)
   (add-hook 'go-mode-hook 'eglot-ensure))
 
-(defun project-find-go-module (dir)
-  (when-let ((root (locate-dominating-file dir "go.mod")))
-    (cons 'go-module root)))
-
 (cl-defmethod project-root ((project (head go-module)))
   (cdr project))
-
-(add-hook 'project-find-functions #'project-find-go-module)
 
 ;; Optional: install eglot-format-buffer as a save hook.  The depth of -10
 ;; places this before eglot's willSave notification, so that that notification
