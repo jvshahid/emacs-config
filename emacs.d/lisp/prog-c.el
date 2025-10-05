@@ -4,10 +4,12 @@
   (subword-mode)
   (eglot-ensure))
 
-(add-hook 'c-mode-hook (lambda ()
-                         (local-set-key (kbd "C-c C-j") 'xref-find-definitions)
-                         (local-set-key (kbd "C-c C-c") 'compile)
-                         (local-set-key (kbd "C-c C-m") 'man)))
+(defun shahid/c-key-bindings ()
+  (lambda ()
+    (local-set-key (kbd "C-c C-c") 'compile)
+    (local-set-key (kbd "C-c C-m") 'man)))
+
+(add-hook 'c-mode-hook #'shahid/c-key-bindings)
 
 (add-hook 'c-mode-hook 'c-c++-hook)
 (add-hook 'c++-mode-hook 'c-c++-hook)
