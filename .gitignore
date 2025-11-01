@@ -50,3 +50,7 @@ eglot-eclipse-jdt-cache/
 # magit transient history
 /emacs.d/transient
 *.pdmp
+/emacs.d/tldr/
+/emacs.d/projects
+/emacs.d/forge-database.sqlite
+/emacs.d/eln-cache/
