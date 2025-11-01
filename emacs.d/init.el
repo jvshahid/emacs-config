@@ -155,6 +155,7 @@
 (load "prog-autocomplete")
 (load "prog-ruby")
 (load "prog-go")
+(load "prog-rust")
 (load "prog-elisp")
 (load "prog-clojure")
 (load "prog-java")
@@ -185,9 +186,6 @@
 (defun show-all-buffers ()
   (interactive)
   (display-buffer (list-buffers-noselect nil (buffer-list))))
-
-(add-hook 'Buffer-menu-mode-hook (lambda ()
-                                   (setq show-trailing-whitespace nil)))
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
