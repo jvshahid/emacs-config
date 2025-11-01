@@ -110,11 +110,9 @@
  '(ns-command-modifier 'control)
  '(perl-indent-level 2)
  '(recentf-max-saved-items 200)
- '(rvm-executable "/usr/share/rvm/src/rvm/bin/rvm")
  '(safe-local-variable-values
    '((bug-reference-url-format . https://www.pivotaltracker.com/stories/show/1)
      (imenu-create-index-function . concourse-imenu-index-function)
-     (eglot-workspace-configuration (goto_def_racer_fallback . t))
      (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(sc-auto-fill-region-p nil)
  '(sc-citation-leader "")
@@ -168,7 +166,7 @@
 (global-set-key (kbd "C-c r l") #'tldr)
 (global-set-key (kbd "C-c r e") #'aweshell-switch-buffer)
 (global-set-key (kbd "C-c r n") #'aweshell-new)
-(global-set-key (kbd "C-c r t") #'ansi-term)
+(global-set-key (kbd "C-c r t") #'eat)
 (global-set-key (kbd "C-c r m") #'mu4e)
 
 (with-eval-after-load 'yasnippet-snippets
@@ -281,7 +279,7 @@ indentation."
 
 ;; Omit emacs files from the Dired
 (require 'dired-x)
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode)))
+(add-hook 'dired-mode-hook #'dired-omit-mode)
 (setq dired-omit-files
       (concat dired-omit-files ".*~$"))
 
