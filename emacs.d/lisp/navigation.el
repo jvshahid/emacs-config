@@ -39,10 +39,10 @@
 
 (defhydra hide-show-hydra (global-map "C-c t")
   ("l" hs-hide-level)
-  ("s" hs-show-block)
-  ("h" hs-hide-block)
-  ("S" hs-show-all)
-  ("H" hs-hide-all))
+  ("b" hs-hide-block)
+  ("B" hs-show-block)
+  ("a" hs-show-all)
+  ("A" hs-hide-all))
 
 (define-key indent-rigidly-map (kbd ",") 'indent-rigidly-left)
 (define-key indent-rigidly-map (kbd ".") 'indent-rigidly-right)

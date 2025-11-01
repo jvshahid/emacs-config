@@ -5,4 +5,6 @@
 (add-hook 'java-mode-hook 'subword-mode)
 (add-hook 'java-mode-hook #'company-mode)
 (add-hook 'java-mode-hook #'hs-minor-mode)
-(add-hook 'java-mode-hook (lambda () (setq-local company-idle-delay 0.5)))
+(defun shahid/java-mode-hook ()
+  (setq-local c-basic-offset 2))
+(add-hook 'java-mode-hook #'shahid/java-mode-hook)

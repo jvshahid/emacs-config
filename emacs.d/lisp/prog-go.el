@@ -24,10 +24,12 @@
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
 (add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
 
-(setq-default eglot-workspace-configuration
-    '((:gopls .
-        ((staticcheck . t)
-         (matcher . "CaseSensitive")))))
+(with-eval-after-load 'eglot
+  (setq eglot-workspace-configuration
+        (plist-put eglot-workspace-configuration
+                   :gopls
+                   '((staticcheck . nil)
+                     (matcher . "CaseSensitive")))))
 
 (setenv "PATH" (concat (getenv "PATH") ":/Users/jvshahid/homebrew/bin/"))
 
