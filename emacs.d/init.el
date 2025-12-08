@@ -63,6 +63,7 @@
 (display-time)
 (savehist-mode)
 (global-auto-revert-mode)
+(setq global-auto-revert-non-file-buffers t)
 (global-unset-key (kbd "C-z"))     ;stop suspending the frame on accidental C-z
 (global-unset-key (kbd "C-x C-z")) ;stop suspending the frame on accidental C-x C-z
 (global-set-key (kbd "C-x C-v") #'revert-buffer)
