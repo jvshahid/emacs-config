@@ -12,6 +12,9 @@
 (defun my-eglot-hook ()
   (local-set-key (kbd "C-c C-j a") #'eglot-code-actions)
   (local-set-key (kbd "C-c C-j f") #'eglot-format)
+  (local-set-key (kbd "C-c C-j i") #'eglot-find-implementation)
+  (local-set-key (kbd "C-c C-j C") #'eglot-show-call-hierarchy)
+  (local-set-key (kbd "C-c C-j T") #'eglot-show-type-hierarchy)
   (local-set-key (kbd "C-c C-j r") #'eglot-rename))
 
 (add-hook 'eglot-managed-mode-hook #'my-eglot-hook)
