@@ -3,7 +3,6 @@
 \#*\#
 refresh_tags.sh
 TAGS
-todo.org
 locate.db
 compile_commands.json
 .cache
