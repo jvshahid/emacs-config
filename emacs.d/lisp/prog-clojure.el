@@ -19,3 +19,5 @@
 
 (with-eval-after-load 'cider-mode
   (define-key cider-mode-map (kbd "C-M-i") nil))
+
+(setq-default cider-enable-nrepl-jvmti-agent t)
