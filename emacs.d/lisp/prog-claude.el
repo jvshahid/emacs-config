@@ -11,7 +11,8 @@
 
 (defun claude ()
   (interactive)
-  (let ((buffer (eat "claude" t)))
+  (let* ((default-directory (project-root (project-current)))
+         (buffer (eat "claude" t)))
     (with-current-buffer buffer
       (rename-buffer "claude" t))))
 
