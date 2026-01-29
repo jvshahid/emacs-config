@@ -134,6 +134,7 @@
 (defun shahid/disable-show-trailing-space ()
   (setq show-trailing-whitespace nil))
 (add-hook 'special-mode-hook #'shahid/disable-show-trailing-space)
+(add-hook 'term-mode-hook #'shahid/disable-show-trailing-space)
 
 (setq recentf-auto-cleanup 'never)
 (recentf-mode)
@@ -164,6 +165,7 @@
 (load "prog-terraform")
 (load "prog-lsp")
 (load "prog-claude")
+(load "prog-tla")
 
 (global-set-key (kbd "C-c r l") #'tldr)
 (global-set-key (kbd "C-c r e") #'aweshell-switch-buffer)
