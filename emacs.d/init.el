@@ -123,19 +123,13 @@
 (with-eval-after-load 'yasnippet-snippets
   (yas-reload-all))
 
-(global-set-key (kbd "C-c C-r") 'ff-find-related-file)
-
 (with-eval-after-load 'flycheck
-  (setq flycheck-check-syntax-automatically (quote (save mode-enabled))))
+  (setq flycheck-check-syntax-automatically '(save mode-enabled)))
 
 (setenv "GIT_EDITOR" "emacsclient")
 ;; Don't use a pager inside eshell or ansi-term, I can use Emacs binding to
 ;; navigate in the output history
 (setenv "PAGER" "cat")
-
-(defun show-all-buffers ()
-  (interactive)
-  (display-buffer (list-buffers-noselect nil (buffer-list))))
 
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
@@ -148,79 +142,25 @@
   (setq-default markdown-command "~/bin/flavor"))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 
-(defun add-yasnippet-to-ac-sources ()
-  (push 'ac-source-yasnippet ac-sources))
-
-;;; end of modes
-
-;;; miscellaneous functions
-
-(defun omg-this-is-a-dos-file ()
-  (interactive)
-  (revert-buffer-with-coding-system 'us-ascii-dos))
-
-(defun epoch-to-string (start end)
-  (interactive "r")
-  (let ((seconds (string-to-number (buffer-substring start end))))
-    (delete-region start end)
-    (insert (format-time-string "%d %b %Y %H:%M:%S %Z"
-                                (seconds-to-time seconds)))))
-
-(defun string-to-epoch (str)
-  (unix-time (apply 'encode-time (parse-time-string str))))
-
-(defun unix-time (&optional optional-time)
-  (let ((time (if optional-time optional-time (current-time))))
-    (+ (ash (car time) 16)
-       (cadr time))))
-
-(defun find-grep-current-word (ignore-case)
-  "interactive way to grep for the word under the cursor using
-ag"
-  (interactive "P")
-  (let* ((extra-arg (if ignore-case "-i " ""))
-         (grep-cmd "rg --color=never --no-heading ")
-         (prompt (if ignore-case "search for (ignore case): " "search for: "))
-         (word (read-string prompt (current-word)))
-         (directory (read-directory-name "in: " default-directory)))
-    (let ((default-directory directory))
-      (grep-find (concat grep-cmd extra-arg (shell-quote-argument word))))))
-
-;; assign a key to find-grep-current-word
-(global-set-key (kbd "C-c C-g") 'find-grep-current-word)
-
 (global-set-key (kbd "C-x 4 j") #'find-file-at-point)
+(global-set-key (kbd "M-.") #'xref-find-definitions)
+(global-set-key (kbd "C-c C-w") #'backward-kill-word)
+(global-set-key (kbd "C-c C-r") #'ff-find-related-file)
+(global-set-key (kbd "C-x C-r") #'query-replace)
+(global-set-key (kbd "M-u") #'upcase-dwim)
+(global-set-key (kbd "M-l") #'downcase-dwim)
+(global-set-key (kbd "M-c") #'capitalize-dwim)
+(global-set-key (kbd "M-z") #'zap-up-to-char)
+(global-set-key (kbd "C-c m") #'imenu)
+(global-set-key (kbd "C-x C-j") #'projectile-switch-project)
+(fset 'yes-or-no-p 'y-or-n-p)
 
-(global-set-key (kbd "M-.") 'xref-find-definitions)
-
-(global-set-key (kbd "C-c C-w") 'backward-kill-word)
-(fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
-
-;; set spaces between lines for easier readability
 (setq-default line-spacing 2)
-
-;; display time in mode line
-
-(define-key global-map (kbd "C-x C-r") 'query-replace)
-
-(setq-default indent-tabs-mode nil) ; always replace tabs with spaces
-(setq-default show-trailing-whitespace t) ; show the trailing whitespace at the end of line (not including the end of line character)
-
-(defun toggle-indent-longer-lines (&optional delta)
-  "Trigger selective display to hide lines that have more indentation than the current line.
-If DELTA was provided it will be added to the current line's
-indentation."
-  (interactive "P")
-  (let ((indentation (current-indentation)))
-    (if selective-display
-        (set-selective-display nil)
-      (set-selective-display (+ indentation 1
-                                (if delta delta 0))))))
-
-(define-key global-map (kbd "C-x t") 'toggle-indent-longer-lines)
-(define-key global-map (kbd "M-u") #'upcase-dwim)
-(define-key global-map (kbd "M-l") #'downcase-dwim)
-(define-key global-map (kbd "M-c") #'capitalize-dwim)
+(setq-default indent-tabs-mode nil)
+(setq-default show-trailing-whitespace t)
+(setq-default imenu-auto-rescan t)
+(setq ring-bell-function 'ignore)
+(setq org-export-with-toc nil)
 
 ;; Omit emacs files from the Dired
 (require 'dired-x)
@@ -228,85 +168,13 @@ indentation."
 (setq dired-omit-files
       (concat dired-omit-files ".*~$"))
 
-;; override dired bindings
-(global-set-key (kbd "C-x C-j") #'projectile-switch-project)
-
-;;; disable org toc
-(setq org-export-with-toc nil)
-
 (put 'narrow-to-region 'disabled nil)
-
-;;; enable scroll-left command without confirmation
 (put 'scroll-left 'disabled nil)
-
-(global-set-key (kbd "M-z") #'zap-up-to-char)
-
-(setq ring-bell-function 'ignore)
-
-;; Add the version of Emacs when a symbol was added
-;; Stefan Monnier: http://lists.gnu.org/archive/html/emacs-devel/2018-09/msg00959.html
-(defun help-fns--first-release (function)
-  "Try and find the first release that defined this function."
-  ;; Code below relies on the etc/NEWS* files.
-  ;; FIXME: Maybe we should also use the */ChangeLog* files when available.
-  ;; FIXME: Maybe we should also look for announcements of the addition
-  ;; of the *packages* in which the function is defined.
-  (when (symbolp function)
-    (let* ((name (symbol-name function))
-           (re (concat "\\_<" (regexp-quote name) "\\_>"))
-           (news (directory-files data-directory t "\\`NEWS.[1-9]"))
-           (first nil))
-      (with-temp-buffer
-        (dolist (f news)
-          (erase-buffer)
-          (insert-file-contents f)
-          (goto-char (point-min))
-          (search-forward "\n*")
-          (while (re-search-forward re nil t)
-            (save-excursion
-              (if (re-search-backward "^\\*.*in Emacs \\([0-9.]+\\)"
-                                      nil t)
-                  ;; (error "Ref found in non-versioned section in %S"
-                  ;;        (file-name-nondirectory f))
-                (let ((version (match-string 1)))
-                  (when (or (null first) (version< version first))
-                    (setq first version))))))))
-      (when first
-        (insert (format "\nIntroduced at or before Emacs version %s.\n"
-                        first))))))
-
-(add-hook 'help-fns-describe-function-functions #'help-fns--first-release)
-
 (put 'list-timers 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 
-(global-set-key (kbd "C-c m") #'imenu)
-(defun concourse-imenu-index-function ()
-  (let (title
-        elems
-        index)
-    (beginning-of-buffer)
-    (save-match-data
-      (while (search-forward-regexp "^\\([^: \n]*\\):$\\|^- name: \\(.*\\)$" nil t)
-        (if (match-string 2)
-            (push (cons (match-string-no-properties 2)
-                        (line-beginning-position))
-                  elems)
-          (when title
-            (push (cons title (reverse elems)) index))
-          (setq elems nil)
-          (setq title (match-string-no-properties 1))))
-      (push (cons title (seq-reverse elems)) index)
-      index)))
-
-(defun setup-concourse-index-function ()
-  (interactive)
-  (add-dir-local-variable 'yaml-mode 'imenu-create-index-function #'concourse-imenu-index-function))
-
-(push '(imenu-create-index-function . concourse-imenu-index-function) safe-local-variable-values)
-
-(setq-default imenu-auto-rescan t)
+(load "conf-utils")
 
 (setq gc-cons-threshold 800000)
