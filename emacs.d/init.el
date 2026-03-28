@@ -109,6 +109,7 @@
 (load "prog-clojure")
 (load "prog-java")
 (load "prog-c")
+(load "prog-python")
 (load "prog-terraform")
 (load "prog-claude")
 (load "prog-tla")
