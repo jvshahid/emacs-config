@@ -39,7 +39,6 @@
  '(recentf-max-saved-items 200)
  '(safe-local-variable-values
    '((bug-reference-url-format . https://www.pivotaltracker.com/stories/show/1)
-     (imenu-create-index-function . concourse-imenu-index-function)
      (bug-reference-bug-regexp . "#\\(?2:[0-9]+\\)")))
  '(sc-auto-fill-region-p nil)
  '(sc-citation-leader "")
