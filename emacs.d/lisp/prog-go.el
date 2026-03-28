@@ -31,5 +31,3 @@
                    '((staticcheck . nil)
                      (matcher . "CaseSensitive")))))
 
-(setenv "PATH" (concat (getenv "PATH") ":/Users/jvshahid/homebrew/bin/"))
-

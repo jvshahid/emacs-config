@@ -54,3 +54,7 @@ eglot-eclipse-jdt-cache/
 /emacs.d/projects
 /emacs.d/forge-database.sqlite
 /emacs.d/eln-cache/
+
+# backup and lock files
+*~
+\#*\#

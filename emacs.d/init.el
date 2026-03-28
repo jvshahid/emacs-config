@@ -1,9 +1,5 @@
 ;;; -*- lexical-binding: t; -*-
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  elisp funcs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (setq mouse-autoselect-window t)
 (setq vc-follow-symlinks t)
 (setq gc-cons-threshold (* 64 1024 1024))
@@ -141,7 +137,6 @@
 (run-with-idle-timer 60 t #'recentf-save-list)
 
 (push "~/.emacs.d/lisp" load-path)
-;; (load "conf-exwm")
 (load "navigation")
 (load "conf-email")
 (load "conf-magit")
@@ -227,8 +222,6 @@
     (+ (ash (car time) 16)
        (cadr time))))
 
-(defalias 'shahid/range (symbol-function 'number-sequence))
-
 (defun find-grep-current-word (ignore-case)
   "interactive way to grep for the word under the cursor using
 ag"
@@ -247,7 +240,6 @@ ag"
 (global-set-key (kbd "C-x 4 j") #'find-file-at-point)
 
 (global-set-key (kbd "M-.") 'xref-find-definitions)
-(setq completion-ignore-case t)
 
 (global-set-key (kbd "C-c C-w") 'backward-kill-word)
 (fset 'yes-or-no-p 'y-or-n-p) ;; "y or n" instead of "yes or no"
