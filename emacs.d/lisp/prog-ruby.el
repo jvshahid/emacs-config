@@ -11,7 +11,6 @@
                 ruby-forward-sexp nil))
 
 (add-hook 'ruby-mode-hook (lambda ()
-                            (hs-minor-mode)
                             (flycheck-mode)
                             (local-set-key (kbd "C-.") 'company-complete)))
 
@@ -19,5 +18,4 @@
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile.*" . ruby-mode))
 (add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
-(add-hook 'ruby-mode-hook 'subword-mode)
 

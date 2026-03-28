@@ -7,10 +7,8 @@
 
 (with-eval-after-load 'clojure-mode
   (add-hook 'clojure-mode-hook 'parinfer-mode)
-  (add-hook 'clojure-mode-hook 'hs-minor-mode)
   (add-hook 'clojure-mode-hook 'clj-refactor-mode)
   (add-hook 'clojure-mode-hook 'flycheck-mode)
-  (add-hook 'clojure-mode-hook 'yas-minor-mode)
   (add-hook 'clojure-mode-hook (lambda ()
                                  (local-set-key (kbd "C-c C-r") 'projectile-toggle-between-implementation-and-test))))
 

@@ -1,7 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
 (defun c-c++-hook ()
-  (subword-mode)
   (eglot-ensure))
 
 (defun shahid/c-key-bindings ()

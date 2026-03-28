@@ -19,3 +19,9 @@
 
 (add-hook 'eglot-managed-mode-hook #'my-eglot-hook)
 
+;; Install eglot-format-buffer as a save hook.  The depth of -10
+;; places this before eglot's willSave notification, so that that notification
+;; reports the actual contents that will be saved.
+(defun eglot-format-buffer-on-save ()
+  (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+

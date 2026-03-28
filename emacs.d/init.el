@@ -148,7 +148,13 @@
 
 (define-key key-translation-map (kbd "C-8") (kbd "DEL"))
 
+;; common programming mode setup
+(add-hook 'prog-mode-hook #'subword-mode)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
+
 ;; programming modes
+(load "prog-lsp")
 (load "prog-autocomplete")
 (load "prog-ruby")
 (load "prog-go")
@@ -158,7 +164,6 @@
 (load "prog-java")
 (load "prog-c")
 (load "prog-terraform")
-(load "prog-lsp")
 (load "prog-claude")
 (load "prog-tla")
 
