@@ -87,7 +87,6 @@
 (load "navigation")
 (load "conf-email")
 (load "conf-magit")
-(load "format-on-save")
 (load "conf-fuzzy")
 (load "conf-org")
 (load "conf-term")
