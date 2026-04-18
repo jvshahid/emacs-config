@@ -10,6 +10,7 @@
 (straight-use-package 'eglot)
 
 (defun my-eglot-hook ()
+  (local-unset-key (kbd "C-c C-j"))
   (local-set-key (kbd "C-c C-j a") #'eglot-code-actions)
   (local-set-key (kbd "C-c C-j f") #'eglot-format)
   (local-set-key (kbd "C-c C-j i") #'eglot-find-implementation)
