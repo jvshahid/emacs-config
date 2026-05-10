@@ -6,3 +6,4 @@ TAGS
 locate.db
 compile_commands.json
 .cache
+.agent-shell/
