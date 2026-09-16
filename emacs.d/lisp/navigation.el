@@ -33,7 +33,8 @@
   ("4" rotate:main-horizontal)
   ("5" rotate:tiled)
   ("u" winner-undo)
-  ("r" winner-redo))
+  ("r" winner-redo)
+  ("o" other-frame))
 
 (global-set-key (kbd "C-c u") #'er/expand-region)
 
