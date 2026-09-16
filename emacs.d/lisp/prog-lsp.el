@@ -26,3 +26,7 @@
 (defun eglot-format-buffer-on-save ()
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
 
+
+;; remove '(left-fringe margin) from code indications. They tend to shift the
+;; layout of the page and mess things up visually. I don't like them.
+(setq eglot-code-action-indications '(eldoc-hint))
